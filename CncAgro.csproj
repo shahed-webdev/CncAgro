@@ -131,7 +131,6 @@
     <Content Include="AccessMember\CSS\Package_Upgrade.css" />
     <Content Include="AccessMember\CSS\Send_Balance.css" />
     <Content Include="AccessMember\MemberProfile.aspx" />
-    <Content Include="AccessMember\Member_Binarytree.aspx" />
     <Content Include="AccessMember\Member_List.aspx" />
     <Content Include="AccessMember\MyAlliance_Details.aspx" />
     <Content Include="AccessMember\Product_Buying_Records.aspx" />
@@ -496,13 +495,6 @@
     </Compile>
     <Compile Include="AccessMember\MemberProfile.aspx.designer.cs">
       <DependentUpon>MemberProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AccessMember\Member_Binarytree.aspx.cs">
-      <DependentUpon>Member_Binarytree.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessMember\Member_Binarytree.aspx.designer.cs">
-      <DependentUpon>Member_Binarytree.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessMember\Member_List.aspx.cs">
       <DependentUpon>Member_List.aspx</DependentUpon>

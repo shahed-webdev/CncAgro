@@ -215,74 +215,6 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
                 </div>
             </div>
 
-            <h3>Member & point</h3>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                            LEFT Point
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("Left_Carry_Point") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                            Right Point
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("Right_Carry_Point") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                            LEFT Member
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("TotalLeft_Member") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                            Right Member
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("TotalRight_Member") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
             <h3>Send & received balance</h3>
 
             <div class="row">
@@ -348,7 +280,7 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
         </ItemTemplate>
     </asp:FormView>
 
-    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT AvailablePoint, Referral_Income, Matching_Income, Instant_Cash_Back_Income, Left_Carry_Point, Right_Carry_Point, TotalLeft_Member, TotalRight_Member, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
+    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Matching_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
         <SelectParameters>
             <asp:SessionParameter Name="MemberID" SessionField="MemberID" Type="Int32" />
         </SelectParameters>

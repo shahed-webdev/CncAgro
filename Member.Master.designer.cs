@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro {
-    
-    
-    public partial class Member {
-        
+namespace CncAgro
+{
+
+
+    public partial class Member
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// head control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
+
         /// <summary>
         /// Form1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
-        
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// AdminFormView control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView AdminFormView;
-        
+
         /// <summary>
         /// MemberSQL control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource MemberSQL;
-        
+
         /// <summary>
         /// HyperLink3 control.
         /// </summary>
@@ -74,16 +76,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
-        
-        /// <summary>
-        /// BTLinkButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BTLinkButton;
-        
+
         /// <summary>
         /// HyperLink4 control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
-        
+
         /// <summary>
         /// HyperLink6 control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink6;
-        
+
         /// <summary>
         /// HyperLink7 control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink7;
-        
+
         /// <summary>
         /// HyperLink8 control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink8;
-        
+
         /// <summary>
         /// HyperLink1 control.
         /// </summary>
@@ -128,7 +121,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
-        
+
         /// <summary>
         /// body control.
         /// </summary>

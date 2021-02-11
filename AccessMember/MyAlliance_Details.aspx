@@ -81,75 +81,7 @@
                     </div>
                 </div>
             </div>
-
-            <h3>Member & point</h3>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                            LEFT Point
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("Left_Carry_Point") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                            Right Point
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("Right_Carry_Point") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                            LEFT Member
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("TotalLeft_Member") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="white-box">
-                        <h2 class="box-title">
-                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                            Right Member
-                        </h2>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                            </li>
-                            <li class="text-right">
-                                <span><%#Eval("TotalRight_Member") %></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+            
             <h3>Send & received balance</h3>
 
             <div class="row">
@@ -207,9 +139,48 @@
         </ItemTemplate>
     </asp:FormView>
 
-    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT AvailablePoint, Referral_Income, Matching_Income, Instant_Cash_Back_Income, Left_Carry_Point, Right_Carry_Point, TotalLeft_Member, TotalRight_Member, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
+    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Matching_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
         <SelectParameters>
             <asp:QueryStringParameter Name="MemberID" QueryStringField="Member" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
+    
+    
+    <div class="Contain">
+        <h3>Genealogy</h3>
+        <div class="form-inline">
+            <div class="form-group">
+                <asp:TextBox ID="FindTextBox" runat="server" CssClass="form-control" placeholder="Find by Userid"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <asp:Button ID="FindButton" runat="server" CssClass="btn btn-primary" Text="Find" OnClick="FindButton_Click" />
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <div class="alert alert-success">
+                <asp:Label ID="Total_Label" runat="server" CssClass="Result_Msg"></asp:Label>
+            </div>
+            <asp:GridView ID="MembersGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="MembersSQL" AllowPaging="True" AllowSorting="True" PageSize="50">
+                <Columns>
+                    <asp:HyperLinkField SortExpression="UserName" DataTextField="UserName" DataNavigateUrlFields="MemberID" DataNavigateUrlFormatString="MyAlliance_Details.aspx?Member={0}" HeaderText="Details" />
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                </Columns>
+                <EmptyDataTemplate>
+                    No Record
+                </EmptyDataTemplate>
+                <PagerStyle CssClass="pgr" />
+            </asp:GridView>
+            <asp:SqlDataSource ID="MembersSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Member.SignUpDate, Member.Is_Identified, Registration.UserName, Member.MemberID, Registration.Name FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Member.Referral_MemberID = @Referral_MemberID) ORDER BY Member.SignUpDate DESC"
+                FilterExpression="UserName LIKE '{0}%'" CancelSelectOnNullParameter="False">
+                <FilterParameters>
+                    <asp:ControlParameter ControlID="FindTextBox" Name="Find" PropertyName="Text" />
+                </FilterParameters>
+                <SelectParameters>
+                    <asp:QueryStringParameter Name="Referral_MemberID" QueryStringField="Member" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+
+        </div>
+    </div>
 </asp:Content>
