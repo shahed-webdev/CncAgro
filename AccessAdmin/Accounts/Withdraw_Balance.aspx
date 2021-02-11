@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-6">
-            <div class="well">
+            <div class="card card-body mb-3">
                 <div class="form-group">
                     <label>
                         User ID
@@ -67,7 +67,7 @@
         <div class="col-md-6 col-sm-6">
             <asp:FormView ID="M_detailsFormView" DataKeyNames="RegistrationID,Category,Is_Identified,Available_Balance,Phone" runat="server" DataSourceID="MemberDetailsSQL" Width="100%" OnDataBound="M_detailsFormView_DataBound">
                 <ItemTemplate>
-                    <div class="well userinfo">
+                    <div class="card userinfo">
                         <img alt="" src="/Handler/UserPhoto.ashx?id=<%# Eval("RegistrationID") %>" class="img-responsive img-circle img" />
                         <ul>
                             <li>

@@ -9,7 +9,7 @@
     <h3>Buying Record</h3>
 
     <div class="panel panel-primary">
-        <div class="panel-heading">
+        <div class="card-header">
             <ul class="nav panel-tabs">
                 <li class="active"><a data-toggle="tab" href="#Pending">Pending Order</a></li>
                 <li><a data-toggle="tab" href="#Confirm">Confirm Order</a></li>
@@ -20,7 +20,7 @@
                 <%} %>
             </ul>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <div class="tab-content">
                 <div id="Pending" class="tab-pane active">
                     <div class="table-responsive">

@@ -5,8 +5,8 @@
 .Disable_b { padding: 5px 11px; background-color: none; border: none;}
 .Error_Msg { color: #ff0000; font-size: 13px; }
 
-.panel-heading h4 { margin:0}
+.card-header h4 { margin:0}
 .updt-btn { margin-top:15px;}
 
-.panel-success > .panel-heading { background-color: #cddc39; border-color: #bce8f1; color: #505050; }
-.panel-info > .panel-heading { background-color: #87ceeb; border-color: #d6e9c6; color: #fff; }
+.panel-success > .card-header { background-color: #cddc39; border-color: #bce8f1; color: #505050; }
+.panel-info > .card-header { background-color: #87ceeb; border-color: #d6e9c6; color: #fff; }

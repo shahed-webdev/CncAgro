@@ -31,7 +31,7 @@
     </div>
 
     <div class="tab-content">
-        <div id="Deposit" class="well tab-pane active">
+        <div id="Deposit" class="card tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="form-inline">
@@ -84,7 +84,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <div id="Withdraw" class="well tab-pane">
+        <div id="Withdraw" class="card tab-pane">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
                     <div class="form-inline">

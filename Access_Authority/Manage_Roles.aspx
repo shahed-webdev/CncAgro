@@ -6,7 +6,7 @@
     <div class="container">
         <asp:Label ID="ActionStatus" runat="server" ForeColor="#CE5300"></asp:Label>
         <h3>Manage Roles By User</h3>
-        <div class="well">
+        <div class="card">
             <div class="form-group">
                 <label>Select a User</label>
                 <asp:DropDownList ID="UserList" runat="server" AutoPostBack="True" DataTextField="UserName" DataValueField="UserName" OnSelectedIndexChanged="UserList_SelectedIndexChanged" CssClass="form-control" />
@@ -23,7 +23,7 @@
             </div>
         </div>
         <h3>Manage Users By Role</h3>
-        <div class="well">
+        <div class="card">
             <div class="form-group">
                 <label>Select a Role</label>
                 <asp:DropDownList ID="RoleList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RoleList_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>

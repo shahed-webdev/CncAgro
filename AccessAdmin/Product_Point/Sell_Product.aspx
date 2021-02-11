@@ -1,72 +1,76 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Sell_Product.aspx.cs" Inherits="CncAgro.AccessAdmin.Product_Point.Sell_Product" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         #user-info { display: none; }
         #Product-info { display: none; }
 
         .userid { font-size: 14px; padding: 13px 5px; margin-bottom: 7px; }
-            .userid .fa { padding-left: 10px; }
+        .userid .fa { padding-left: 10px; }
         .ItemDelete { color: red; cursor: pointer; }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <h3>Sell Product To Customer</h3>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <h3>Sell Product To Customer</h3>
 
-    <div class="col-md-6 well">
-        <div class="form-group">
-            <label>
-                Customer id</label><asp:TextBox ID="MemberUserNameTextBox" placeholder="Customer id" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
+            <div class="card card-body">
+                <div class="form-group">
+                    <label>
+                        Customer id</label><asp:TextBox ID="MemberUserNameTextBox" placeholder="Customer id" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
 
-        <div id="user-info" class="alert-success">
-            <div class="userid">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <asp:Label ID="Member_Name_Label" runat="server"></asp:Label>
-                <i class="fa fa-phone-square" aria-hidden="true"></i>
-                <asp:Label ID="Member_Phone_Label" runat="server"></asp:Label>
-            </div>
-            <asp:HiddenField ID="MemberID_HF" runat="server" />
-            <asp:HiddenField ID="Member_Phone_HF" runat="server" />
-        </div>
+                <div id="user-info" class="alert-success">
+                    <div class="userid">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <asp:Label ID="Member_Name_Label" runat="server"></asp:Label>
+                        <i class="fa fa-phone-square" aria-hidden="true"></i>
+                        <asp:Label ID="Member_Phone_Label" runat="server"></asp:Label>
+                    </div>
+                    <asp:HiddenField ID="MemberID_HF" runat="server" />
+                    <asp:HiddenField ID="Member_Phone_HF" runat="server" />
+                </div>
 
-        <div class="form-group">
-            <label>
-                Product Code</label><asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
+                <div class="form-group">
+                    <label>
+                        Product Code</label><asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
 
-        <div id="Product-info" class="alert-success">
-            <div class="userid">
-                <i class="fa fa-shopping-bag"></i>
-                <label id="ProductNameLabel"></label>
+                <div id="Product-info" class="alert-success">
+                    <div class="userid">
+                        <i class="fa fa-shopping-bag"></i>
+                        <label id="ProductNameLabel"></label>
 
-                <i class="fa fa-money"></i>
-                Price:
+                        <i class="fa fa-money"></i>
+                        Price:
                 <label id="ProductPriceLabel"></label>
 
-                <i class="fa fa-star"></i>
-                Point:
+                        <i class="fa fa-star"></i>
+                        Point:
                 <label id="ProductPointLabel"></label>
 
-                <i class="fa fa-chart-pie"></i>
-                Curent Stock:
+                        <i class="fa fa-chart-pie"></i>
+                        Curent Stock:
                 <label id="Current_Stook_Label"></label>
-            </div>
-            <input id="ProductID_HF" type="hidden" />
-        </div>
+                    </div>
+                    <input id="ProductID_HF" type="hidden" />
+                </div>
 
-        <div class="form-group">
-            <label>
-                Quantity
+                <div class="form-group">
+                    <label>
+                        Quantity
                 <asp:Label ID="StookErLabel" runat="server" ForeColor="#009933"></asp:Label>
-            </label>
-            <asp:TextBox ID="QuantityTextBox" placeholder="Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-            <label id="Tota_Price_Label"></label>
-        </div>
+                    </label>
+                    <asp:TextBox ID="QuantityTextBox" placeholder="Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
+                    <label id="Tota_Price_Label"></label>
+                </div>
 
-        <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-success" />
+                <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-success" />
+            </div>
+        </div>
     </div>
-    <div class="clearfix"></div>
 
     <table style="visibility: hidden;" class="mGrid cart">
         <thead>
@@ -122,11 +126,11 @@ SELECT @ShoppingID = Scope_identity()"
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="A_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Point" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM Member ">
         <InsertParameters>
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value"/>
+            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value" />
             <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
         </InsertParameters>
     </asp:SqlDataSource>
-   <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails">
+    <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails">
         <InsertParameters>
             <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
             <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value" Type="Int32" />
@@ -240,27 +244,27 @@ SELECT @ShoppingID = Scope_identity()"
                 var tPrice = this.Quantity * this.Unit_Price;
                 var tPoint = this.Quantity * this.Unit_Point;
                 cartTable.append(
-                  '<tr>' +
-                  '<td>' + this.Name + '</td>' +
-                  '<td>' + this.Quantity + '</td>' +
-                  '<td>৳' + this.Unit_Price + '</td>' +
-                  '<td>' + this.Unit_Point + '</td>' +
-                  '<td>৳' + tPrice.toFixed(2) + '</td>' +
-                  '<td>' + tPoint.toFixed(2) + '</td>' +
-                  '<td class="text-center" style="width:30px;"><i class="fa fa-trash ItemDelete"></i></td>' +
-                  '</tr>'
+                    '<tr>' +
+                    '<td>' + this.Name + '</td>' +
+                    '<td>' + this.Quantity + '</td>' +
+                    '<td>৳' + this.Unit_Price + '</td>' +
+                    '<td>' + this.Unit_Point + '</td>' +
+                    '<td>৳' + tPrice.toFixed(2) + '</td>' +
+                    '<td>' + tPoint.toFixed(2) + '</td>' +
+                    '<td class="text-center" style="width:30px;"><i class="fa fa-trash ItemDelete"></i></td>' +
+                    '</tr>'
                 );
             });
             cartTable.append(
-              '<tr>' +
-              '<td></td>' +
-              '<td></td>' +
-              '<td></td>' +
-              '<td></td>' +
-              '<td>৳<strong id="GrandTotal"></strong></td>' +
-              '<td><strong id="PointGrandTotal"></strong></td>' +
-              '<td></td>' +
-              '</tr>'
+                '<tr>' +
+                '<td></td>' +
+                '<td></td>' +
+                '<td></td>' +
+                '<td></td>' +
+                '<td>৳<strong id="GrandTotal"></strong></td>' +
+                '<td><strong id="PointGrandTotal"></strong></td>' +
+                '<td></td>' +
+                '</tr>'
             );
             getTotalPrice();
             getTotalPoint();

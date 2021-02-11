@@ -6,7 +6,7 @@
         <h3>Change Password</h3>
         <asp:ChangePassword ID="ChangePassword1" runat="server" ChangePasswordFailureText="Password incorrect or New Password invalid." Width="100%">
             <ChangePasswordTemplate>
-                <div class="well">
+                <div class="card">
                 <div class="form-group">
                     <label>
                         Old Password

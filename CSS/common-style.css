@@ -1,0 +1,6 @@
+﻿
+.navbar-brand { font-weight: 700;}
+
+main { min-height: 800px}
+/*--Back to top----*/
+#toTop { background-color: #808080; border: none; bottom: 10px; cursor: pointer; display: none; position: fixed; right: 10px; }

@@ -45,7 +45,7 @@ namespace CncAgro.AccessAdmin.Accounts
                     SMS_Class SMS = new SMS_Class();
                     int TotalSMS = 0;
                     int SMSBalance = SMS.SMSBalance;
-                    string Msg = "Your withdrawal verification code is: " + Num + ". DNB SUPERSHOP";
+                    string Msg = "Your withdrawal verification code is: " + Num + ". CNC Agro";
 
                     TotalSMS = SMS.SMS_Conut(Msg);
 

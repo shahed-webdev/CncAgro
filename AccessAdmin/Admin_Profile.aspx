@@ -4,7 +4,7 @@
     <link href="CSS/Admin_Dashbord.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="well main-info">
+    <div class="card card-body mb-3">
         <asp:FormView ID="AdminFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="AdminSQL" OnItemUpdated="AdminFormView_ItemUpdated" Width="100%">
             <EditItemTemplate>
                 <div class="col-md-6 col-sm-12">
@@ -110,13 +110,17 @@
     <asp:SqlDataSource ID="SMSSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT SMS_Balance FROM Institution" ProviderName="<%$ ConnectionStrings:DBConnectionString.ProviderName %>"></asp:SqlDataSource>
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-primary" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Change Password</h4>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title white-text w-100 font-weight-bold py-2">Change Password</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
                 </div>
+
                 <div class="modal-body">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
@@ -165,4 +169,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

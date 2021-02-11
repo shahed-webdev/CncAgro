@@ -14,9 +14,9 @@
                 <li><a data-toggle="tab" href="#Customers_Info">Update Info</a></li>
             </ul>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <div class="tab-content">
-                <div id="Dashboard" class="tab-pane active">
+                <div id="Dashboard" role="tabpanel" class="tab-pane fade show active">
                     <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" Width="100%">
                         <ItemTemplate>
                             <div class="Info">
@@ -146,7 +146,7 @@
                 <div id="Customers_Info" class="tab-pane">
                     <asp:FormView ID="MemberDetailsFormView" DefaultMode="Edit" runat="server" DataKeyNames="MemberID,RegistrationID,Default_MemberStatus" DataSourceID="MemberDetailsSQL" Width="100%" OnItemUpdated="MemberDetailsFormView_ItemUpdated">
                         <EditItemTemplate>
-                            <div class="col-md-6 well">
+                            <div class="col-md-6 card">
                                 <input id="QueryMemberID" value='<%# Eval("MemberID") %>' type="hidden" />
                                 <h3><%#Eval("Name") %></h3>
 

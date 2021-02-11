@@ -7,7 +7,7 @@
 
     <asp:ChangePassword ID="ChangePassword" runat="server" ChangePasswordFailureText="Password incorrect or New Password invalid." OnChangedPassword="ChangePassword1_ChangedPassword" Width="100%">
         <ChangePasswordTemplate>
-            <div class="col-md-6 col-sm-12 well">
+            <div class="col-md-6 col-sm-12 card">
                 <div class="form-group">
                     <label>
                         Old Password

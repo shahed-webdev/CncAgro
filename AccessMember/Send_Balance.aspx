@@ -26,7 +26,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
-    <div class="col-md-6 well">
+    <div class="col-md-6 card">
         <div class="form-group">
             <label>
                 Recipient ID

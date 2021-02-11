@@ -82,7 +82,7 @@ namespace CncAgro.AccessMember
         {
             string Phone = ABFormView.DataKey["Phone"].ToString();
             string Code = GetRandomNumbers(6);
-            string sms = "Your balance transfer verification code is: " + Code + ". Without transaction purpose don't share this code anyone. DNB SUPERSHOP";
+            string sms = "Your balance transfer verification code is: " + Code + ". Without transaction purpose don't share this code anyone. CNC Agro";
 
             T_Code_SQL.InsertParameters["Transition_Code"].DefaultValue = Code;
             T_Code_SQL.Insert();
@@ -146,7 +146,7 @@ namespace CncAgro.AccessMember
                         Fund_TransitionSQL.Update();
 
                         //send sms
-                        string sms = "You have received balance " + Send_Balance + " Tk, from id: " + User.Identity.Name + ". DNB SUPERSHOP";
+                        string sms = "You have received balance " + Send_Balance + " Tk, from id: " + User.Identity.Name + ". CNC Agro";
                         Send_SMS(Phone, sms, "Received Balance");
                         Response.Redirect(Request.Url.AbsolutePath);
                     }

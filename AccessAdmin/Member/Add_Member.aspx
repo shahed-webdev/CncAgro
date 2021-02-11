@@ -6,153 +6,154 @@
         #user-info { display: none; }
         #Product-info { display: none; }
         .ItemDelete { color: red; cursor: pointer; }
+        .card { margin-bottom: 20px }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Applicant Info</h3>
-    <div class="well">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Applicant Info</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title mb-0">Applicant Info</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Name*<asp:RequiredFieldValidator ErrorMessage="Enter Name" ID="Required1" runat="server" ControlToValidate="NameTextBox" CssClass="EroorStar" ValidationGroup="1">*</asp:RequiredFieldValidator></label>
+                <asp:TextBox ID="NameTextBox" placeholder="Input Name" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label>Name*<asp:RequiredFieldValidator ErrorMessage="Enter Name" ID="Required1" runat="server" ControlToValidate="NameTextBox" CssClass="EroorStar" ValidationGroup="1">*</asp:RequiredFieldValidator></label>
-                    <asp:TextBox ID="NameTextBox" placeholder="Input Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Father's Name</label>
-                    <asp:TextBox ID="FatherNameTextBox" placeholder="Input Father's Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Mother's Name</label>
-                    <asp:TextBox ID="MotherNameTextBox" placeholder="Input Mother's Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Date of Birth</label>
-                    <asp:TextBox ID="DateofBirthTextBox" placeholder="Input Date of Birth" runat="server" CssClass="form-control datepicker"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Blood Group</label>
-                    <asp:DropDownList ID="BloodGroupDropDownList" runat="server" CssClass="form-control">
-                        <asp:ListItem Value=" ">[ SELECT ]</asp:ListItem>
-                        <asp:ListItem>A+</asp:ListItem>
-                        <asp:ListItem>A-</asp:ListItem>
-                        <asp:ListItem>B+</asp:ListItem>
-                        <asp:ListItem>B-</asp:ListItem>
-                        <asp:ListItem>AB+</asp:ListItem>
-                        <asp:ListItem>AB-</asp:ListItem>
-                        <asp:ListItem>O+</asp:ListItem>
-                        <asp:ListItem>O-</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="form-group">
-                    <label>Gender</label>
-                    <asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal" CssClass="form-control">
-                        <asp:ListItem Selected="True">Male</asp:ListItem>
-                        <asp:ListItem>Female</asp:ListItem>
-                    </asp:RadioButtonList>
-                </div>
-                <div class="form-group">
-                    <label>National ID/Smart Card/PP No.</label>
-                    <asp:TextBox ID="NationalIDTextBox" placeholder="Input National ID/Smart Card ID/PP No." runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Present Address</label>
-                    <asp:TextBox ID="Present_AddressTextBox" placeholder="Input Present Address" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Permanent Address</label>
-                    <asp:TextBox ID="PermanentTextBox" placeholder="Input Permanent Address" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Phone*
+            <div class="form-group">
+                <label>Father's Name</label>
+                <asp:TextBox ID="FatherNameTextBox" placeholder="Input Father's Name" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Mother's Name</label>
+                <asp:TextBox ID="MotherNameTextBox" placeholder="Input Mother's Name" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <asp:TextBox ID="DateofBirthTextBox" placeholder="Input Date of Birth" runat="server" CssClass="form-control datepicker"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Blood Group</label>
+                <asp:DropDownList ID="BloodGroupDropDownList" runat="server" CssClass="form-control">
+                    <asp:ListItem Value=" ">[ SELECT ]</asp:ListItem>
+                    <asp:ListItem>A+</asp:ListItem>
+                    <asp:ListItem>A-</asp:ListItem>
+                    <asp:ListItem>B+</asp:ListItem>
+                    <asp:ListItem>B-</asp:ListItem>
+                    <asp:ListItem>AB+</asp:ListItem>
+                    <asp:ListItem>AB-</asp:ListItem>
+                    <asp:ListItem>O+</asp:ListItem>
+                    <asp:ListItem>O-</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal" CssClass="form-control">
+                    <asp:ListItem Selected="True">Male</asp:ListItem>
+                    <asp:ListItem>Female</asp:ListItem>
+                </asp:RadioButtonList>
+            </div>
+            <div class="form-group">
+                <label>National ID/Smart Card/PP No.</label>
+                <asp:TextBox ID="NationalIDTextBox" placeholder="Input National ID/Smart Card ID/PP No." runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Present Address</label>
+                <asp:TextBox ID="Present_AddressTextBox" placeholder="Input Present Address" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Permanent Address</label>
+                <asp:TextBox ID="PermanentTextBox" placeholder="Input Permanent Address" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>
+                    Phone*
                 <asp:RequiredFieldValidator ErrorMessage="Enter Mobile No." ID="Required" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
-                    </label>
-                    <asp:TextBox ID="PhoneTextBox" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control" placeholder="Input Phone number"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>
-                        E-mail
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
+                </label>
+                <asp:TextBox ID="PhoneTextBox" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control" placeholder="Input Phone number"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>
+                    E-mail
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Email" ErrorMessage="Email not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="1" CssClass="EroorStar"></asp:RegularExpressionValidator>
-                    </label>
-                    <asp:TextBox ID="Email" runat="server" CssClass="form-control mail_Check" placeholder="Write@mail.com"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Applicant Photo</label>
-                    <input id="Applicant_Photo" name="Applicant_Photo" type="file" accept="image/*" />
-                    <asp:HiddenField ID="Applicant_Photo_HF" runat="server" />
-                </div>
+                </label>
+                <asp:TextBox ID="Email" runat="server" CssClass="form-control mail_Check" placeholder="Write@mail.com"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Applicant Photo</label>
+                <input id="Applicant_Photo" name="Applicant_Photo" type="file" accept="image/*" />
+                <asp:HiddenField ID="Applicant_Photo_HF" runat="server" />
             </div>
         </div>
+    </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Nominee Info</h2>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title mb-0">Nominee Info</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Nominee Name</label>
+                <asp:TextBox ID="NomineeNameTextBox" placeholder="Input Nominee Name" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label>Nominee Name</label>
-                    <asp:TextBox ID="NomineeNameTextBox" placeholder="Input Nominee Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Relation With Nominee</label>
-                    <asp:TextBox ID="RelationWithNomineeTextBox" placeholder="Input Relation With Nominee" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Nominee Date Of Birth</label>
-                    <asp:TextBox ID="Nominee_DOB_TextBox" placeholder="Input Relation With Nominee" runat="server" CssClass="form-control datepicker"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Nominee Photo</label>
-                    <input id="Nominee_Photo" name="Nominee_Photo" type="file" accept="image/*" />
-                    <asp:HiddenField ID="Nominee_Photo_HF" runat="server" />
-                </div>
+            <div class="form-group">
+                <label>Relation With Nominee</label>
+                <asp:TextBox ID="RelationWithNomineeTextBox" placeholder="Input Relation With Nominee" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Nominee Date Of Birth</label>
+                <asp:TextBox ID="Nominee_DOB_TextBox" placeholder="Input Relation With Nominee" runat="server" CssClass="form-control datepicker"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Nominee Photo</label>
+                <input id="Nominee_Photo" name="Nominee_Photo" type="file" accept="image/*" />
+                <asp:HiddenField ID="Nominee_Photo_HF" runat="server" />
             </div>
         </div>
+    </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Applicant Bank Info</h2>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title mb-0">Applicant Bank Info</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Bank Name</label>
+                <asp:TextBox ID="BankTextBox" placeholder="Bank Name" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label>Bank Name</label>
-                    <asp:TextBox ID="BankTextBox" placeholder="Bank Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Branch Name</label>
-                    <asp:TextBox ID="BranchTextBox" placeholder="Branch Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Account Name</label>
-                    <asp:TextBox ID="AccountNameTextBox" placeholder="Account Name" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Account Number</label>
-                    <asp:TextBox ID="AccountNumberTextBox" placeholder="Account Number" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
+            <div class="form-group">
+                <label>Branch Name</label>
+                <asp:TextBox ID="BranchTextBox" placeholder="Branch Name" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Account Name</label>
+                <asp:TextBox ID="AccountNameTextBox" placeholder="Account Name" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label>Account Number</label>
+                <asp:TextBox ID="AccountNumberTextBox" placeholder="Account Number" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+    </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Referral & Sponsor Info</h2>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label>
-                        Reference ID*
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title mb-0">Referral & Sponsor Info</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>
+                    Reference ID*
                             <asp:RegularExpressionValidator ID="Re1" runat="server" ControlToValidate="ReferralIDTextBox" ErrorMessage="*" CssClass="EroorStar" ValidationGroup="1" ValidationExpression="^[a-zA-Z0-9]{9,9}$" />
-                        <asp:RequiredFieldValidator ErrorMessage="Enter Reference ID" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ReferralIDTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                        <asp:Label ID="ReferralIDLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                        <label id="Is_Referral"></label>
-                    </label>
-                    <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" placeholder="Referral ID" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
+                    <asp:RequiredFieldValidator ErrorMessage="Enter Reference ID" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ReferralIDTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                    <asp:Label ID="ReferralIDLabel" runat="server" ForeColor="#FF3300"></asp:Label>
+                    <label id="Is_Referral"></label>
+                </label>
+                <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" placeholder="Referral ID" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
 
                 <div id="R_info" class="alert alert-info" style="display: none;">
                     <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -176,67 +177,67 @@
                     <asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                <div id="Product-info" class="alert alert-success">
-                    <div class="userid">
-                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        <label id="ProductNameLabel"></label>
+            <div id="Product-info" class="alert alert-success">
+                <div class="userid">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    <label id="ProductNameLabel"></label>
 
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        Price:
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                    Price:
                 <label id="ProductPriceLabel"></label>
 
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        Point:
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    Point:
                 <label id="ProductPointLabel"></label>
 
-                        <i class="fa fa-chart-pie"></i>
-                        Current Stock:
+                    <i class="fa fa-chart-pie"></i>
+                    Current Stock:
                 <label id="Current_Stook_Label"></label>
-                    </div>
-                    <input id="ProductID_HF" type="hidden" />
                 </div>
-
-                <div class="form-group">
-                    <label>
-                        Quantity
-                <asp:Label ID="StookErLabel" runat="server" ForeColor="#009933"></asp:Label>
-                    </label>
-                    <asp:TextBox ID="QuantityTextBox" placeholder="Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-                    <label id="Tota_Price_Label"></label>
-                </div>
-
-                <div class="form-group">
-                    <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-danger" />
-                </div>
-
-                <table style="visibility: hidden;" class="mGrid cart">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Unit Point</th>
-                            <th>Total Price</th>
-                            <th>Total Point</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartBody"></tbody>
-                </table>
-
-                <asp:HiddenField ID="GTpriceHF" runat="server" />
-                <asp:HiddenField ID="GTpointHF" runat="server" />
+                <input id="ProductID_HF" type="hidden" />
             </div>
-        </div>
-        <div id="AddCustomer" class="form-inline" style="visibility: hidden;">
+
             <div class="form-group">
-                 <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
-                <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Add Customer" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
-                <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
+                <label>
+                    Quantity
+                <asp:Label ID="StookErLabel" runat="server" ForeColor="#009933"></asp:Label>
+                </label>
+                <asp:TextBox ID="QuantityTextBox" placeholder="Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
+                <label id="Tota_Price_Label"></label>
             </div>
-            <asp:HiddenField ID="JsonData" runat="server" />
+
+            <div class="form-group">
+                <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-danger" />
+            </div>
+
+            <table style="visibility: hidden;" class="mGrid cart">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Unit Point</th>
+                        <th>Total Price</th>
+                        <th>Total Point</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="cartBody"></tbody>
+            </table>
+
+            <asp:HiddenField ID="GTpriceHF" runat="server" />
+            <asp:HiddenField ID="GTpointHF" runat="server" />
         </div>
     </div>
+
+    <div id="AddCustomer" class="form-inline" style="visibility: hidden;">
+        <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
+        <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Add Customer" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
+        <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
+
+        <asp:HiddenField ID="JsonData" runat="server" />
+    </div>
+
 
 
     <asp:SqlDataSource ID="RegistrationSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Registration(InstitutionID, UserName, Validation, Category, Name, FatherName, MotherName, Gender, Present_Address, Phone, Email) VALUES (@InstitutionID, @UserName, 'Valid', N'Member', @Name, @FatherName, @MotherName, @Gender, @Present_Address, @Phone, @Email)" SelectCommand="SELECT * FROM [Registration]" UpdateCommand="UPDATE Institution SET Member_SN =Member_SN +1">
@@ -321,7 +322,6 @@ SELECT @ShoppingID = Scope_identity()"
             <asp:Parameter Name="SellingUnitPoint" Type="Double" />
         </InsertParameters>
     </asp:SqlDataSource>
-
 
     <script>
         var cart = [];
@@ -427,27 +427,27 @@ SELECT @ShoppingID = Scope_identity()"
                 var tPrice = this.Quantity * this.Unit_Price;
                 var tPoint = this.Quantity * this.Unit_Point;
                 cartTable.append(
-                  '<tr>' +
-                  '<td>' + this.Name + '</td>' +
-                  '<td>' + this.Quantity + '</td>' +
-                  '<td>৳' + this.Unit_Price + '</td>' +
-                  '<td>' + this.Unit_Point + '</td>' +
-                  '<td>৳' + tPrice.toFixed(2) + '</td>' +
-                  '<td>' + tPoint.toFixed(2) + '</td>' +
-                  '<td class="text-center" style="width:20px;"><b class="ItemDelete">Delete</b></td>' +
-                  '</tr>'
+                    '<tr>' +
+                    '<td>' + this.Name + '</td>' +
+                    '<td>' + this.Quantity + '</td>' +
+                    '<td>৳' + this.Unit_Price + '</td>' +
+                    '<td>' + this.Unit_Point + '</td>' +
+                    '<td>৳' + tPrice.toFixed(2) + '</td>' +
+                    '<td>' + tPoint.toFixed(2) + '</td>' +
+                    '<td class="text-center" style="width:20px;"><b class="ItemDelete">Delete</b></td>' +
+                    '</tr>'
                 );
             });
             cartTable.append(
-              '<tr>' +
-              '<td></td>' +
-              '<td></td>' +
-              '<td></td>' +
-              '<td></td>' +
-              '<td>৳<strong id="GrandTotal"></strong></td>' +
-              '<td><strong id="PointGrandTotal"></strong></td>' +
-              '<td></td>' +
-              '</tr>'
+                '<tr>' +
+                '<td></td>' +
+                '<td></td>' +
+                '<td></td>' +
+                '<td></td>' +
+                '<td>৳<strong id="GrandTotal"></strong></td>' +
+                '<td><strong id="PointGrandTotal"></strong></td>' +
+                '<td></td>' +
+                '</tr>'
             );
             getTotalPrice();
             getTotalPoint();

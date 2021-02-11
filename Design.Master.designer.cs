@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro {
-    
-    
-    public partial class Design {
-        
+namespace CncAgro
+{
+
+
+    public partial class Design
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// head control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
+
         /// <summary>
         /// Form1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
-        
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// CustomerLoginView control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LoginView CustomerLoginView;
-        
+
         /// <summary>
         /// body control.
         /// </summary>

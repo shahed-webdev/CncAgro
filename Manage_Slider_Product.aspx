@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="well Slider_Wrap">
+                        <div class="card Slider_Wrap">
                             <h3>Slider</h3>
                             <div class="form-group">
                                 <label>Slider Image</label>
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="well Slider_Wrap">
+                        <div class="card Slider_Wrap">
                             <h3>Product</h3>
                             <div class="form-group">
                                 <label>Product Category</label>

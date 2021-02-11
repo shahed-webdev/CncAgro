@@ -17,7 +17,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="well Member-info">
+    <div class="card Member-info">
         <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" Width="100%">
             <ItemTemplate>
                 <div class="Info">
