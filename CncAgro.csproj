@@ -170,15 +170,12 @@
     <Content Include="Access_Authority\Profile.aspx" />
     <Content Include="Access_Authority\SignUp_Institution.aspx" />
     <Content Include="Access_Authority\Create_Invoice.aspx" />
-    <Content Include="Bootstrap\css\bootstrap.min.css" />
-    <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Bootstrap\js\bootstrap.min.js" />
     <Content Include="CSS\All_Page_Print.css" />
     <Content Include="CSS\dnb_Inside.css" />
     <Content Include="CSS\All_Master.css" />
-    <Content Include="CSS\Home.css" />
-    <Content Include="CSS\dnb_outside.css" />
-    <Content Include="CSS\Gridview.css" />
+    <Content Include="CSS\home.css" />
+    <Content Include="CSS\common-style.css" />
+    <Content Include="CSS\gridview.css" />
     <Content Include="CSS\Image\Body_BG.png" />
     <Content Include="CSS\Image\CheckBox.png" />
     <Content Include="CSS\Image\Collaps_Ico.png" />
@@ -195,7 +192,6 @@
     <Content Include="CSS\DNBLogin.css" />
     <Content Include="CSS\MemberANDSeller_Master.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Home\CSS\Product_Category.css" />
     <Content Include="Home\Product_Category.aspx" />
     <Content Include="JS\cart\jquery-2.2.3.min.js" />
     <Content Include="JS\cart\jquery.mycart.js" />
@@ -866,10 +862,6 @@
     <Content Include="Member.Master" />
     <Content Include="Seller.Master" />
     <Content Include="Handler\Change_Position_User.ashx" />
-    <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
     <Content Include="Handler\Notice_Image.ashx" />
     <Content Include="Handler\Nominee_Image.ashx" />

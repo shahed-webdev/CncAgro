@@ -2,86 +2,76 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head id="Head1" runat="server">
-    <title>DNB SUPERSHOP</title>
+    <title>CNC Agro</title>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="robots" content="default, index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv='cache-control' content='no-cache' />
-    <meta http-equiv='expires' content='0' />
-    <meta http-equiv='pragma' content='no-cache' />
 
-    <link href="/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/CSS/dnb_outside.css" rel="stylesheet" />
-    <link href="/CSS/Gridview.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!--custom style-->
+    <link href="/CSS/common-style.css?=v=.1" rel="stylesheet" />
+    <link href="/CSS/gridview.css" rel="stylesheet" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/Bootstrap/js/bootstrap.min.js"></script>
 
-    <!--fontawesome-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <!--fonts-->
-    <link href='//fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css' />
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css' />
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 
 <body>
     <form id="Form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <nav class="navbar navbar-inverse my-Nav-Header" role="navigation">
-            <div class="container">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a>
-                                <i class="fa fa-phone"></i>
-                                Help: 01720170662
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <i class="fa fa-cart-arrow-down"></i>
-                                Shop Now
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav Help-right">
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark light-blue accent-4">
+            <div class="container">
+                <a class="navbar-brand" href="/Default.aspx">CNC AGRO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
                         <asp:LoginView ID="CustomerLoginView" runat="server">
                             <AnonymousTemplate>
-                                <li>
-                                    <a href="/Login.aspx">
-                                        <i class="fa fa-sign-in"></i>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Login.aspx">
+                                        <i class="fas fa-sign-in-alt"></i>
                                         Login
                                     </a>
                                 </li>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
-                                <li>
-                                    <a>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                <li class="nav-item">
+                                    <a class="nav-link">
+                                        <i class="fas fa-user" aria-hidden="true"></i>
                                         <asp:LoginName ID="CustomerLoginName" runat="server" />
                                     </a>
                                 </li>
-                                <li><a href="/Profile_Redirect.aspx">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    Profile</a></li>
-                                <li>
-                                    <asp:LoginStatus CssClass="Logout" ID="LoginStatus1" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Profile_Redirect.aspx">
+                                        <i class="fas fa-tachometer-alt mr-1"></i>Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <asp:LoginStatus CssClass="nav-link" ID="LoginStatus1" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
                                 </li>
                             </LoggedInTemplate>
                         </asp:LoginView>
@@ -89,47 +79,32 @@
                 </div>
             </div>
         </nav>
-        <header>
-            <div class="container">
-                <div class="col-sm-4">
-                    <a href="/Default.aspx">
-                        <img src="/CSS/Image/logo-1.png" />
-                    </a>
-                </div>
-                <div class="col-sm-8">
-                    <div class="Notice">
-                    </div>
-                </div>
-            </div>
-        </header>
 
-
-        <div id="Main_Contain">
+        <main>
             <asp:ContentPlaceHolder ID="body" runat="server" />
-        </div>
+        </main>
 
-        <footer class="container-fluid text-center">
-            <div class="CopyRight">
-                Developed by: <a href="http://loopsit.com/" target="_blank">Loops IT</a>
-            </div>
+        <footer class="container-fluid text-center light-blue accent-4 py-3">
+            Developed by: <a class="white-text" href="http://loopsit.com/" target="_blank">Loops IT</a>
         </footer>
-
-        <script>
-            $(function () {
-                $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> TOP</div>');
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() != 0) {
-                        $('#toTop').fadeIn();
-                    } else {
-                        $('#toTop').fadeOut();
-                    }
-                });
-                $('#toTop').click(function () {
-                    $("html, body").animate({ scrollTop: 0 }, 600);
-                    return false;
-                });
-            });
-        </script>
     </form>
+
+
+    <script>
+        $(function () {
+            $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> TOP</div>');
+            $(window).scroll(function () {
+                if ($(this).scrollTop() !== 0) {
+                    $('#toTop').fadeIn();
+                } else {
+                    $('#toTop').fadeOut();
+                }
+            });
+            $('#toTop').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+    </script>
 </body>
 </html>

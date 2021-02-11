@@ -250,7 +250,7 @@ namespace CncAgro.AccessAdmin.Member
                                                 int TotalSMS = 0;
                                                 int SMSBalance = SMS.SMSBalance;
                                                 string PhoneNo = PhoneTextBox.Text.Trim();
-                                                string Msg = "Welcome to DNB SUPERSHOP. Your Information has been Inserted Successfully. Your id: " + UserName + " and Password: " + Password;
+                                                string Msg = "Welcome to CNC Agro. Your Information has been Inserted Successfully. Your id: " + UserName + " and Password: " + Password;
 
                                                 TotalSMS = SMS.SMS_Conut(Msg);
 
