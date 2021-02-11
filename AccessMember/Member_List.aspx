@@ -24,17 +24,13 @@
                 <Columns>
                     <asp:HyperLinkField SortExpression="UserName" DataTextField="UserName" DataNavigateUrlFields="MemberID" DataNavigateUrlFormatString="MyAlliance_Details.aspx?Member={0}" HeaderText="Details" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                    <asp:BoundField DataField="Left_Carry_Point" HeaderText="L.P" SortExpression="Left_Carry_Point" />
-                    <asp:BoundField DataField="Right_Carry_Point" HeaderText="R.P" SortExpression="Right_Carry_Point" />
-                    <asp:BoundField DataField="TotalLeft_Member" HeaderText="L.M" SortExpression="TotalLeft_Member" />
-                    <asp:BoundField DataField="TotalRight_Member" HeaderText="R.M" SortExpression="TotalRight_Member" />
                 </Columns>
                 <EmptyDataTemplate>
                     No Record
                 </EmptyDataTemplate>
                 <PagerStyle CssClass="pgr" />
             </asp:GridView>
-            <asp:SqlDataSource ID="MembersSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Member.Right_Carry_Point, Member.TotalLeft_Member, Member.TotalRight_Member, Member.SignUpDate, Member.Left_Carry_Point, Member.Is_Identified, Registration.UserName, Member.MemberID, Registration.Name FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Member.Referral_MemberID = @Referral_MemberID) ORDER BY Member.SignUpDate DESC"
+            <asp:SqlDataSource ID="MembersSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Member.SignUpDate, Member.Is_Identified, Registration.UserName, Member.MemberID, Registration.Name FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Member.Referral_MemberID = @Referral_MemberID) ORDER BY Member.SignUpDate DESC"
                 FilterExpression="UserName LIKE '{0}%'" CancelSelectOnNullParameter="False">
                 <FilterParameters>
                     <asp:ControlParameter ControlID="FindTextBox" Name="Find" PropertyName="Text" />

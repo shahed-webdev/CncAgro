@@ -102,10 +102,6 @@
                                     <i class="fa fa-users" aria-hidden="true"></i>
                                     <asp:HyperLink ID="HyperLink3" NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
                                 </li>
-                                <li id="Tree">
-                                    <i class="fa fa-recycle" aria-hidden="true"></i>
-                                    <asp:LinkButton ID="BTLinkButton" runat="server" OnClick="BTLinkButton_Click" Text="Genealogical Tree" /></li>
-
                                 <li id="Product">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     <asp:HyperLink ID="HyperLink4" NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
