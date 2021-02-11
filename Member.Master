@@ -1,0 +1,185 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Member.master.cs" Inherits="CncAgro.Member" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>DNB SUPERSHOP</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="default, index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv='cache-control' content='no-cache' />
+    <meta http-equiv='expires' content='0' />
+    <meta http-equiv='pragma' content='no-cache' />
+
+    <!--CSS-->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/CSS/Gridview.css" rel="stylesheet" />
+    <link href="/CSS/MemberANDSeller_Master.css?v=2" rel="stylesheet" />
+    <link href="/CSS/All_Master.css?v=2" rel="stylesheet" />
+    <link href="/CSS/All_Page_Print.css?v=2" rel="stylesheet" media="print" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+    <!--fontawesome-->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <!--google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+
+
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+   <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+
+<body>
+    <form id="Form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <header>
+            <div class="container">
+                <a href="/Default.aspx">
+                    <img src="/CSS/Image/logo-2.png" />
+                </a>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2" id="Side_Nav">
+                    <nav class="navbar navbar-default navbar-fixed-side">
+                        <asp:FormView ID="AdminFormView" runat="server" DataSourceID="MemberSQL" Width="100%">
+                            <ItemTemplate>
+                                <div class="Admin-p-img text-center">
+                                    <a href="/Profile_Redirect.aspx">
+                                        <img alt="No Image" title="Go Profile" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-circle img-responsive" />
+                                    </a>
+
+                                    <a href="/Profile_Redirect.aspx">
+                                        <h4>
+                                            <i class="fa fa-id-badge" aria-hidden="true"></i>
+                                            <asp:Label ID="NameLabel" runat="server" Text='<%# Bind("UserName") %>' />
+                                        </h4>
+                                        <h5>
+                                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                            <%#Eval("Name") %>
+                                        </h5>
+                                    </a>
+
+                                    <asp:LoginView ID="CustomerLoginView" runat="server">
+                                        <AnonymousTemplate>
+                                            <a href="/Login.aspx">Login</a>
+                                        </AnonymousTemplate>
+                                        <LoggedInTemplate>
+                                            <i class="glyphicon glyphicon-log-out"></i>
+                                            <asp:LoginStatus ID="LoginStatus1" CssClass="Logout" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
+                                        </LoggedInTemplate>
+                                    </asp:LoginView>
+                                </div>
+                            </ItemTemplate>
+                        </asp:FormView>
+
+                        <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT UserName,Name, RegistrationID FROM Registration WHERE (RegistrationID = @RegistrationID)">
+                            <SelectParameters>
+                                <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul>
+                                <li id="Member_List">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <asp:HyperLink ID="HyperLink3" NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
+                                </li>
+                                <li id="Tree">
+                                    <i class="fa fa-recycle" aria-hidden="true"></i>
+                                    <asp:LinkButton ID="BTLinkButton" runat="server" OnClick="BTLinkButton_Click" Text="Genealogical Tree" /></li>
+
+                                <li id="Product">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <asp:HyperLink ID="HyperLink4" NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
+                                </li>
+                                <li id="Send_B">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                    <asp:HyperLink ID="HyperLink6" NavigateUrl="~/AccessMember/Send_Balance.aspx" Text="Balance Transfer" runat="server" />
+                                </li>
+                                <li id="Withdraw">
+                                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                    <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AccessMember/Withdraw_Balance.aspx" Text="Withdraw Balance" runat="server" />
+                                </li>
+                                <li id="Requested_Withdraw">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <asp:HyperLink ID="HyperLink8" NavigateUrl="~/AccessMember/Withdraw_Details.aspx" Text="Withdrawal Details" runat="server" />
+                                </li>
+                                <li id="Password">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <asp:HyperLink ID="HyperLink1" NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="col-sm-9 col-md-10" id="Main_Contain">
+                    <!--Jquery-->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                    <script src="/bootstrap/js/bootstrap.min.js"></script>
+                    <!--Autocomplete-->
+                    <script type="text/javascript" src="https://cdn.rawgit.com/bassjobsen/Bootstrap-3-Typeahead/master/bootstrap3-typeahead.min.js"></script>
+                    <!-- Bootstrap Date-Picker Plugin -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+                    <!--Canvas Resize Image-->
+                    <script src="/JS/Resize_Img/binaryajax.js"></script>
+                    <script src="/JS/Resize_Img/canvasResize.js"></script>
+                    <script src="/JS/Resize_Img/exif.js"></script>
+
+                    <asp:ContentPlaceHolder ID="body" runat="server" />
+                </div>
+            </div>
+        </div>
+        <footer class="footer container-fluid text-center">
+            <div class="CopyRight">
+              Developed by: <a href="http://loopsit.com/" target="_blank">Loops IT</a>
+            </div>
+        </footer>
+
+
+        <script>
+            $(function () {
+                $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> TOP</div>');
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() != 0) {
+                        $('#toTop').fadeIn();
+                    } else {
+                        $('#toTop').fadeOut();
+                    }
+                });
+                $('#toTop').click(function () {
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+
+
+                if ($("[id*=JoinLimit_HF]").val() > 0) {
+                    $("#Add_Customer").show();
+                }
+                else {
+                    $("#Add_Customer").hide();
+                }
+            });
+        </script>
+    </form>
+</body>
+</html>

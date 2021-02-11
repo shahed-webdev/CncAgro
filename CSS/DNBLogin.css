@@ -1,0 +1,21 @@
+﻿
+
+
+.input_title { color: rgba(164, 164, 164, 0.9); padding-left: 3px; margin-bottom: 2px; }
+
+.login_title { font-family: "myriad-pro",sans-serif; font-style: normal; font-weight: 100; color: rgba(164, 164, 164, 0.44); }
+.card-container.card { max-width: 350px; }
+.card { background-color: #FFFFFF; padding: 1px 25px 30px; margin:11% auto;  -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 0 16px -4px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 0 16px -4px rgba(0, 0, 0, 0.3); box-shadow: 0 0 16px -4px rgba(0, 0, 0, 0.3); }
+
+.brand { margin-top:0 !important; margin-bottom:20px;}
+.brand a{ color:#fff;}
+.brand a:hover{text-decoration:none;}
+.brand h1{  margin-top:0 !important; margin-bottom:0;}
+
+/*Form stystyleyl
+/*Form styles*/
+.login_box { background: #f7f7f7; border: 3px solid #F4F4F4; padding-left: 15px; margin-bottom: 25px; direction: ltr; height: 44px; font-size: 16px; }
+.form-signin .login_box{ width: 100%; display: block; z-index: 1; position: relative; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.form-signin .btn{ width: 100%; display: block; z-index: 1; position: relative; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.form-signin.btn { font-weight: 700; height: 36px; -moz-user-select: none; -webkit-user-select: none; user-select: none; cursor: default; border-radius: 0; background: #43A6EB; height: 55px; margin-bottom: 10px; }
+

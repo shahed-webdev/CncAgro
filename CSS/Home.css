@@ -1,0 +1,29 @@
+﻿
+#myCarousel .item img { width:100%;}
+
+
+.list-group-item {border:none; border-bottom: 1px solid #e0e0e0 !important; margin-top: 12px; color: #888886 !important;border-radius:0 !important }
+.list-group .link-right { float: right; }
+
+.t-space { margin-top: 50px; }
+.box-heading { background-color: #0d47a1}
+.box-heading h3 { margin: 0; font-size: 21px; padding: 10px 12px; color: #fff; }
+
+/*Products*/
+.Product-heading { width: 100%; font-size: 1.8rem; margin: 0 0 15px; padding: 0; border-bottom: 3px solid #336dc7}
+.Product-heading > span { display: inline-block; margin-bottom: -3px; padding-bottom: 10px; color: #666; border-bottom: 3px solid #003a94}
+
+
+.panel { margin-bottom: 20px; background-color: #fff; border: none; border-radius: 4px; box-shadow: none; text-align: center; }
+.pimg { width: 150px; margin: auto; }
+.panel .panel-body {box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12); border:1px solid #ddd}
+.panel .panel-title {font-size: 13px;text-transform:uppercase; color: rgba(0,0,0,.6); margin-top: 7px;transition: color .1s;}
+
+.btnwaper { text-align:center;margin-bottom: 40px}
+.SeeMore { background-color: #0d47a1; color: #fff; padding: 0.5rem 1.7rem;border-radius:15px }
+.SeeMore:hover {text-decoration:none;background-color:#003a94;color:#fff; }
+.SeeMore:focus{ color:#fff;}
+
+@media (max-width: 768px) {
+    .box-heading h3 { font-size: 16px; }
+}

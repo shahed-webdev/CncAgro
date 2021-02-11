@@ -1,0 +1,24 @@
+﻿
+body { background: #fbfbfb url("Image/Body_BG.png") repeat scroll 0 0;}
+.statistic { padding: 20px 15px; margin-bottom: 15px; }
+.has-shadow { box-shadow: 2px 2px 2px rgba(0,0,0,0.1),-1px 0 2px rgba(0,0,0,0.05); }
+.bg-white { background: #fff !important; }
+.align-items-center { -webkit-box-align: center !important; -webkit-align-items: center !important; -ms-flex-align: center !important; align-items: center !important; }
+.d-flex { display: -webkit-box !important; display: -webkit-flex !important; display: -ms-flexbox !important; display: flex !important; }
+
+.statistic .icon { width: 40px; height: 40px; line-height: 40px; text-align: center; font-size: 20px; min-width: 40px; max-width: 40px; color: #fff; border-radius: 50%; margin-right: 15px; }
+.bg-red { background: #ff7676 !important; color: #fff; }
+.bg-green { background: #54e69d !important; color: #fff; }
+.bg-MatchPoint{ background:#796AEE !important; color: #fff; }
+.bg-FlashPoint{ background: #FFC105 !important; color: #fff; }
+
+.bg-amount { background: #d36f2e !important; color: #fff; }
+.bg-service { background: #FF2F71 !important; color: #fff; }
+.bg-net { background: #8F8F2C !important; color: #fff; }
+
+.statistic strong { font-size: 1.5em; color: #333; font-weight: 700; line-height: 1; }
+.statistic small { color:#7E7E7E; text-transform: uppercase; }
+
+.card { border: 1px solid #dee2e6; margin-bottom: 1.5rem; position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; min-width: 0; word-wrap: break-word; background-color: #fff; background-clip: border-box; }
+.card-body { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; padding: 1rem; }
+.card-body table { margin-bottom:0}

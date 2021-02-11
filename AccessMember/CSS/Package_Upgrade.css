@@ -1,0 +1,12 @@
+﻿
+.Active_Pack { color:#96a502; font-size:18px; margin:20px 0}
+.Upgrade_Pack { color:#3f86a3; font-size:18px; margin:20px 0}
+
+.Disable_b { padding: 5px 11px; background-color: none; border: none;}
+.Error_Msg { color: #ff0000; font-size: 13px; }
+
+.panel-heading h4 { margin:0}
+.updt-btn { margin-top:15px;}
+
+.panel-success > .panel-heading { background-color: #cddc39; border-color: #bce8f1; color: #505050; }
+.panel-info > .panel-heading { background-color: #87ceeb; border-color: #d6e9c6; color: #fff; }

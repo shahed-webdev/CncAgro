@@ -1,0 +1,15 @@
+﻿
+
+@page { margin: 0.3cm; }
+@media print {
+ #Side_Nav, .footer, .NoPrint, .form-inline, .btn-primary, .bottom-header,#toTop{ display: none !important; }
+ body { background: none; }
+.container-fluid { padding-left: 0; padding-right: 0; }
+ #Main_Contain { width: 100%; }
+
+.Top-header {margin-bottom:15px; padding:0; border-bottom:1px solid #9aa4af;}
+.Logo{padding:0 0 10px 0}
+.Logo img { width:120px;}
+
+ .well { padding: 0; margin-bottom: 0; border: none; border-radius: 0; -webkit-box-shadow: none; box-shadow: none; }
+}

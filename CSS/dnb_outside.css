@@ -1,0 +1,30 @@
+﻿
+html, body { height: 100%; min-width: 100%; margin: 0; padding: 0; border: 0; }
+body { 	font-family: 'Roboto', sans-serif; margin: 0; padding: 0;}
+.my-Nav-Header  { background-color:#0d47a1; margin-bottom:0; border-radius:0; border:none;}
+.my-Nav-Header a {color:#fff !important}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form { border-color: #fff; }
+.navbar-inverse .navbar-toggle { border-color: #fff; }
+
+header { border-bottom:2px solid #0d47a1; margin-bottom:25px;}
+header .container { padding:20px 0}
+.Help-right { float:right}
+.Logout:before{font-family:'FontAwesome';content:"\f08b" }
+
+footer { margin: 50px 0 0; background-color:#0d47a1; padding:20px 0}
+.CopyRight {color:#fff;}
+.CopyRight a{color:#fff;}
+
+#Main_Contain { min-height:650px;}
+.btn-primary { background-color: #0d47a1; border-color: #0d47a1; }
+.btn-primary:hover { background-color:#1027b6; border-color:#1027b6;}
+.form-inline { margin-bottom:15px;}
+
+/*--Back to top----*/
+#toTop { background-color:#808080; border:none; bottom: 10px; cursor: pointer; display: none; position: fixed; right: 10px; }
+
+@media (max-width: 768px) {
+  #Main_Contain { min-height:100px !important;}
+  .Help-right { float: none; }
+}
+

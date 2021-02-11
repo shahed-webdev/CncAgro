@@ -1,0 +1,13 @@
+﻿
+
+
+.main-info { background-color: #fefefe;  border-radius: 3px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset; margin-bottom: 20px; min-height: 20px; padding: 15px; }
+.P_Image{width:175px;}
+.Info { margin-bottom:20px;}
+.Info ul{ margin:0;  padding:0}
+.Info ul li { color: #5d6772; font-size: 15px; line-height: 23px; list-style: outside none none; margin: 6px 0 0; padding-bottom: 5px; padding-left: 2px; }
+
+
+.BasicInfo{ margin-top:50px}
+.Edit_Bnt{ border:1px solid #ddd;  border-radius:3px;  cursor:pointer;  font-size:12px;  margin:6px 0 0;  padding:4px 0;  text-align:center}
+

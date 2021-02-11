@@ -1,0 +1,248 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Seller.master.cs" Inherits="CncAgro.Seller" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>DNB SUPERSHOP</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="default, index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv='cache-control' content='no-cache' />
+    <meta http-equiv='expires' content='0' />
+    <meta http-equiv='pragma' content='no-cache' />
+
+
+    <!--CSS-->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/CSS/Gridview.css" rel="stylesheet" />
+    <link href="/CSS/Seller_Member_Master.css?v=2" rel="stylesheet" />
+    <link href="/CSS/Common_Master.css?v=1" rel="stylesheet" />
+    <link href="/CSS/All_Page_Print.css?v=2" rel="stylesheet" media="print" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+    <!--fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"/>
+
+    <!--google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+   <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+
+<body>
+    <form id="Form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <header>
+            <div class="Top-header">
+                <div class="container text-center">
+                    <div class="Logo">
+                        <a href="/Default.aspx">
+                            <img src="/CSS/Image/Logo-2.png" class="img-responsive" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-header" style="padding: 5px 12px" id="bh">
+                <i class="fas fa-cart-arrow-down my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></i>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2" id="Side_Nav">
+                    <nav class="navbar navbar-default navbar-fixed-side">
+                        <asp:FormView ID="AdminFormView" runat="server" DataSourceID="AdminInfoSQL" Width="100%">
+                            <ItemTemplate>
+                                <input type="hidden" id="my-balance" value="<%#Eval("Available_Balance") %>" />
+                                <div class="Admin-p-img text-center">
+                                    <a href="/Profile_Redirect.aspx">
+                                        <img alt="No Image" title="Go Profile" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-circle img-responsive" />
+                                    </a>
+
+                                    <a href="/Profile_Redirect.aspx">
+                                        <h4>
+                                            <i class="glyphicon glyphicon-user rest-userico"></i>
+                                            <asp:Label ID="NameLabel" runat="server" Text='<%# Bind("Name") %>' />
+                                        </h4>
+                                    </a>
+
+                                    <asp:LoginView ID="CustomerLoginView" runat="server">
+                                        <AnonymousTemplate>
+                                            <a href="/Login.aspx">Login</a>
+                                        </AnonymousTemplate>
+                                        <LoggedInTemplate>
+                                            <i class="glyphicon glyphicon-log-out"></i>
+                                            <asp:LoginStatus ID="LoginStatus1" CssClass="Logout" runat="server" LogoutPageUrl="~/Login.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
+                                        </LoggedInTemplate>
+                                    </asp:LoginView>
+                                </div>
+                            </ItemTemplate>
+                        </asp:FormView>
+
+                        <asp:SqlDataSource ID="AdminInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
+                            SelectCommand="SELECT Registration.RegistrationID, Registration.Name, Registration.FatherName, Registration.MotherName, Registration.DateofBirth, Registration.BloodGroup, Registration.Gender, Registration.NationalID, Registration.Present_Address, Registration.Permanent_Address, Registration.Phone, Registration.Email, Seller.Available_Balance FROM Registration INNER JOIN Seller ON Registration.RegistrationID = Seller.SellerRegistrationID WHERE (Registration.RegistrationID = @RegistrationID)">
+                            <SelectParameters>
+                                <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul>
+                                <li id="Add_Customer">
+                                    <i class="fa fa-user-plus"></i>
+                                    <a href="Add_New_Member.aspx">Add Customer</a>
+                                </li>
+                                <li id="Order_Product">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <a href="Order_Product.aspx">Order Product</a>
+                                </li>
+                                <li id="Order_Record">
+                                    <i class="fas fa-list-alt"></i>
+                                    <a href="Order_Record.aspx">Buying Report</a>
+                                </li>
+                                <li id="Stock">
+                                    <i class="fas fa-chart-line"></i>
+                                    <a href="Product_stock.aspx">Product stock</a>
+                                </li>
+                                <li id="Sell">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <a href="Sell_Product.aspx">Sell To Customer</a>
+                                </li>
+                                <li id="Sell_Record">
+                                    <i class="fas fa-file"></i>
+                                    <a href="Product_Selling_Report.aspx">Customer Selling Report</a>
+                                </li>
+                                 <li id="SellerSell">
+                                    <i class="fas fa-truck"></i>
+                                    <a href="Sell_Product_Distributor.aspx">Sell To Distributor</a>
+                                </li>
+                                   <li id="Distributor_Record">
+                                    <i class="fas fa-file"></i>
+                                    <a href="Distributor_Selling_Report.aspx">Distributor Selling Report</a>
+                                </li>
+                                <li id="Withdraw_Request">
+                                    <i class="fas fa-envelope-open"></i>
+                                    <a href="Withdraw_Request.aspx">Withdraw Request</a>
+                                </li>
+                                <li id="Requested_Withdraw">
+                                    <i class="fas fa-money-bill-alt"></i>
+                                    <a href="Withdraw_Details.aspx">Withdrawal Details</a>
+                                </li>
+                                <li id="Received">
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <a href="Received_Balance.aspx">Received Details</a>
+                                </li>
+                                <li id="Password_C">
+                                    <i class="fa fa-lock"></i>
+                                    <a href="Change_Password.aspx">Change Password</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="col-sm-9 col-md-10" id="Main_Contain">
+                    <!--Jquery-->
+                    <script src="/JS/cart/jquery-2.2.3.min.js"></script>
+                    <script src="/bootstrap/js/bootstrap.min.js"></script>
+                    <script src="/JS/cart/jquery.mycart.js?v=8"></script>
+                    <!--Autocomplete-->
+                    <script type="text/javascript" src="https://cdn.rawgit.com/bassjobsen/Bootstrap-3-Typeahead/master/bootstrap3-typeahead.min.js"></script>
+                    <!-- Bootstrap Date-Picker Plugin -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+                    <asp:ContentPlaceHolder ID="body" runat="server" />
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer container-fluid text-center">
+            <div class="CopyRight">
+              Developed by: <a href="http://loopsit.com/" target="_blank">Loops IT</a>
+            </div>
+        </footer>
+
+
+        <script>
+            $(function () {
+                $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> TOP</div>');
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() != 0) {
+                        $('#toTop').fadeIn();
+                    } else {
+                        $('#toTop').fadeOut();
+                    }
+                });
+
+                $('#toTop').click(function () {
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+
+                //add to Cart
+                var goToCartIcon = function ($addTocartBtn) {
+                    var $cartIcon = $(".my-cart-icon");
+                    var $image = $('<img width="50px" height="50px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "99999" });
+                    $addTocartBtn.prepend($image);
+                    var position = $cartIcon.position();
+                    $image.animate({
+                        top: position.top,
+                        left: position.left
+                    }, 800, "linear", function () {
+                        $image.remove();
+                    });
+                }
+
+                $('.my-cart-btn').myCart({
+                    classCartIcon: 'my-cart-icon',
+                    classCartBadge: 'my-cart-badge',
+                    affixCartIcon: true,
+                    checkoutCart: function (products, totalPrice, totalCommission, totalPoint) {
+                        var Get_All_Products = new Array();
+                        $.each(products, function () {
+                            var add = {};
+
+                            add.ProductID = this.id;
+                            add.Quantity = this.quantity;
+                            add.UnitPrice = this.price;
+                            add.UnitPoint = this.point;
+                            add.UnitCommission = this.commission;
+
+                            Get_All_Products.push(add);
+                        });
+                        $.ajax({
+                            type: "Post",
+                            url: "Order_Product.aspx/Set_Product",
+                            data: JSON.stringify({ List_Product: Get_All_Products, totalPrice: totalPrice, totalCommission: totalCommission, totalPoint: totalPoint }),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function () { window.location.href = 'Order_Record.aspx'; },
+                            error: function (err) { alert(err) }
+                        });
+                    },
+                    clickOnAddToCart: function ($addTocart) {
+                        goToCartIcon($addTocart);
+                    }
+                });
+            });
+        </script>
+    </form>
+</body>
+</html>
