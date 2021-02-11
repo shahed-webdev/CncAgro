@@ -8,13 +8,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>DUPLEX COMMISSION</h3>
     <div class="panel panel-primary">
-        <div class="panel-heading">
+        <div class="card-header">
             <ul class="nav panel-tabs">
                 <li class="active"><a data-toggle="tab" href="#Flash_Matching">Duplex Commission</a></li>
                 <li><a data-toggle="tab" href="#Matching_Achievers">Commission Achievers</a></li>
             </ul>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <div class="tab-content">
                 <div id="Flash_Matching" class="tab-pane active">
                     <asp:GridView ID="FlashGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="MemberID" DataSourceID="Flash_ListSQL">

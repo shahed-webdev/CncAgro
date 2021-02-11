@@ -7,19 +7,30 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <a class="Bak" href="Member_List.aspx"><< Back To Customer List</a>
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <ul class="nav panel-tabs">
-                <li class="active"><a data-toggle="tab" href="#Dashboard">Dashboard</a></li>
-                <li><a data-toggle="tab" href="#Customers_Info">Update Info</a></li>
-                <li><a data-toggle="tab" href="#Left_Tree">Left Customers</a></li>
-                <li><a data-toggle="tab" href="#Right_Tree">Right Customers</a></li>
-                <li><a data-toggle="tab" href="#tabPlacementID">Change Placement Id</a></li>
+    
+<div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#Dashboard" role="tab" aria-controls="Dashboard" aria-selected="true">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Customers_Info" role="tab" aria-controls="Customers_Info" aria-selected="false">Update Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Left_Tree" role="tab" aria-controls="Left_Tree" aria-selected="false">Left Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Right_Tree" role="tab" aria-controls="Right_Tree" aria-selected="false">Right Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tabPlacementID" role="tab" aria-controls="tabPlacementID" aria-selected="false">Change Placement Id</a>
+                </li>
             </ul>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <div class="tab-content">
-                <div id="Dashboard" class="tab-pane active">
+                <div id="Dashboard" role="tabpanel" class="tab-pane fade show active">
                     <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" Width="100%">
                         <ItemTemplate>
                             <div class="Info">
@@ -214,10 +225,10 @@
                     </asp:SqlDataSource>
                 </div>
 
-                <div id="Customers_Info" class="tab-pane">
+                <div id="Customers_Info" class="tab-pane fade" role="tabpanel">
                     <asp:FormView ID="MemberDetailsFormView" DefaultMode="Edit" runat="server" DataKeyNames="MemberID,PositionMemberID,RegistrationID,P_UserName,Default_MemberStatus,PositionType" DataSourceID="MemberDetailsSQL" Width="100%" OnItemUpdated="MemberDetailsFormView_ItemUpdated">
                         <EditItemTemplate>
-                            <div class="col-md-6 well">
+                            <div class="col-md-6 card">
                                 <input id="QueryMemberID" value='<%# Eval("MemberID") %>' type="hidden" />
                                 <h3><%#Eval("Name") %></h3>
 
@@ -378,7 +389,7 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
                     </asp:SqlDataSource>
                 </div>
 
-                <div id="Left_Tree" class="tab-pane">
+                <div id="Left_Tree" class="tab-pane fade" role="tabpanel">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <div class="form-inline">
@@ -431,7 +442,7 @@ option (maxrecursion 800)">
                     </asp:UpdatePanel>
                 </div>
 
-                <div id="Right_Tree" class="tab-pane">
+                <div id="Right_Tree" class="tab-pane fade" role="tabpanel">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
                             <div class="form-inline">
@@ -484,7 +495,7 @@ option (maxrecursion 800)">
                     </asp:UpdatePanel>
                 </div>
 
-                <div id="tabPlacementID" class="tab-pane">
+                <div id="tabPlacementID" class="tab-pane fade" role="tabpanel">
                     <div class="alert alert-info">
                         <strong>Current Placement Id:
                            <label id="Current_Plc_ID"></label>

@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <div class="well">
+            <div class="card card-body">
                 <div class="form-group">
                     <label>Notice Title<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Notice_TitleTextBox" CssClass="EroorStar" ErrorMessage="Required" ValidationGroup="N"></asp:RequiredFieldValidator></label>
                     <asp:TextBox ID="Notice_TitleTextBox" placeholder="Notice Title" runat="server" CssClass="form-control"></asp:TextBox>

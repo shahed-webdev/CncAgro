@@ -46,7 +46,7 @@
             </div>
         </EditItemTemplate>
         <ItemTemplate>
-            <div class="well user-info">
+            <div class="card user-info">
                 <div class="Info">
                     <h3>
                         <i class="fa fa-shopping-cart"></i>
@@ -107,8 +107,8 @@ UPDATE  Seller SET  Shop_Name = @Shop_Name, Proprietor =@Proprietor WHERE  (Sell
 
 
     <div class="panel panel-default" style="display: none;" id="IsRequest">
-        <div class="panel-heading">BALANCE REQUEST</div>
-        <div class="panel-body">
+        <div class="card-header">BALANCE REQUEST</div>
+        <div class="card-body">
             <div class="table-responsive">
                 <asp:GridView ID="WithdrawGridView" runat="server" CssClass="mGrid" AutoGenerateColumns="False" DataKeyNames="Transition_CodeID" DataSourceID="RequestSQL">
                     <Columns>
@@ -141,8 +141,8 @@ UPDATE  Seller SET  Shop_Name = @Shop_Name, Proprietor =@Proprietor WHERE  (Sell
     <asp:FormView ID="Stock_FormView" runat="server" DataSourceID="StockSQL" Width="100%">
         <ItemTemplate>
             <div class="panel panel-default">
-                <div class="panel-heading">STOCK DETAILS</div>
-                <div class="panel-body">
+                <div class="card-header">STOCK DETAILS</div>
+                <div class="card-body">
                     <div class="row text-center">
                         <div class="col-sm-4">
                             <div class="Total_Stock Box">
@@ -176,8 +176,8 @@ UPDATE  Seller SET  Shop_Name = @Shop_Name, Proprietor =@Proprietor WHERE  (Sell
     <asp:FormView ID="Income_FormView" runat="server" DataKeyNames="SellerID" DataSourceID="SellerBalanceSQL" Width="100%">
         <ItemTemplate>
             <div class="panel panel-default">
-                <div class="panel-heading">ACCOUNTS DETAILS</div>
-                <div class="panel-body">
+                <div class="card-header">ACCOUNTS DETAILS</div>
+                <div class="card-body">
                     <div class="row text-center">
                         <div class="col-md-3 col-sm-6">
                             <div class="SellingPoint Box">

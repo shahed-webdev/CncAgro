@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Sell Product To Customer</h3>
 
-    <div class="col-md-6 well">
+    <div class="col-md-6 card">
         <div class="form-group">
             <label>
                 Customer id</label><asp:TextBox ID="MemberUserNameTextBox" placeholder="Customer id" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>

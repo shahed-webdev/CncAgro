@@ -46,7 +46,7 @@
 
     <asp:FormView ID="M_detailsFormView" runat="server" DataSourceID="Fund_WithdrawSQL" Width="100%">
         <ItemTemplate>
-            <div class="well userinfo">
+            <div class="card userinfo">
                 <h4 class="alert alert-success text-center">Withdrawal Details</h4>
                 <ul>
                     <li>
@@ -84,7 +84,7 @@
 
     <asp:FormView ID="Seller_detailsFormView" runat="server" DataSourceID="Seller_SQL" Width="100%">
         <ItemTemplate>
-            <div class="well userinfo">
+            <div class="card userinfo">
                 <h4 class="alert alert-success text-center">Withdrawal Details</h4>
                 <ul>
                     <li>

@@ -6,13 +6,13 @@
     <h3>Withdraw Details</h3>
 
     <div class="panel panel-primary">
-        <div class="panel-heading">
+        <div class="card-header">
             <ul class="nav panel-tabs">
                 <li class="active"><a data-toggle="tab" href="#Pending">Pending Withdraw</a></li>
                 <li><a data-toggle="tab" href="#Confirm">Completed Withdraw</a></li>
             </ul>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <div class="tab-content">
                 <div id="Pending" class="tab-pane active">
                     <asp:GridView ID="WithdrawGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="Withdraw_CodeID" DataSourceID="Withdraw_ListSQL">

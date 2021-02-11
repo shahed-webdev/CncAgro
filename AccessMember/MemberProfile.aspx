@@ -4,7 +4,7 @@
     <link href="CSS/Member_Profile.css?v=5" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="well Member-info">
+    <div class="card Member-info">
         <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" OnItemUpdated="MemberFormView_ItemUpdated" Width="100%">
             <EditItemTemplate>
                 <h3>Update Information</h3>
@@ -293,12 +293,12 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
             <ItemTemplate>
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="card-header">
                             <h4><%# Eval("Notice_Title") %></h4>
                             <em style="color: #6F196E">View Date: <%# Eval("Start_Date","{0: d MMM yyyy}") %> - <%# Eval("End_Date","{0: d MMM yyyy}") %></em>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="n-image">
                                 <img alt="" src="/Handler/Notice_Image.ashx?Img=<%#Eval("Noticeboard_General_ID") %>" class="img-responsive" />
                             </div>

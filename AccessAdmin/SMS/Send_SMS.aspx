@@ -10,7 +10,7 @@
    <asp:SqlDataSource ID="SMSSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT SMS_Balance FROM Institution" ProviderName="<%$ ConnectionStrings:DBConnectionString.ProviderName %>">
    </asp:SqlDataSource>
 
-    <div class="col-md-6 well">
+    <div class="col-md-6 card">
     <div class="form-group">
         <label>Phone Number
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="Phone_TextBox" CssClass="EroorStar" ValidationGroup="1"></asp:RequiredFieldValidator>

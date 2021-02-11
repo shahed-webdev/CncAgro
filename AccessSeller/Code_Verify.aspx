@@ -11,7 +11,7 @@
     <h3>Code Verify</h3>
     <asp:FormView ID="M_detailsFormView" runat="server" DataSourceID="Fund_WithdrawSQL" Width="100%" DataKeyNames="Transition_CodeID,Transition_Code,Available_Balance,Sent_RegistrationID,Amount,Phone">
         <ItemTemplate>
-            <div class="well userinfo">
+            <div class="card userinfo">
                 <h4 class="alert alert-success text-center">Send Details</h4>
                 <ul>
                     <li>

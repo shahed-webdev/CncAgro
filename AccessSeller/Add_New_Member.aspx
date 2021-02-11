@@ -11,7 +11,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Applicant Info</h3>
-    <div class="well">
+    <div class="card">
         <div class="row">
             <div class="form-group col-md-3">
                 <label>Name*<asp:RequiredFieldValidator ID="Required1" runat="server" ControlToValidate="NameTextBox" CssClass="EroorStar" ValidationGroup="1">*</asp:RequiredFieldValidator></label>
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="well">
+    <div class="card">
         <div class="form-group">
             <label>
                 Product Code

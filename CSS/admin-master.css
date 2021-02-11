@@ -1,0 +1,62 @@
+﻿
+h3 { margin-bottom: 20px; font-weight: bold; text-transform: uppercase; font-size: 24px; color: #575757; }
+
+.side-bar { background-color: #f0f0f0;  margin-left: -15px }
+
+.profile-info { text-align: center; background-color: #e3e3e3; padding: 25px 0; }
+.profile-info img { width: 120px; height: 120px; border: 5px solid #fff; border-radius: 50%; }
+.profile-info strong a{ color: #444; }
+.profile-info a { color: #000000; }
+
+/*---Treeview Style----------*/
+.rootNode, .treeNode a { color: #333; text-decoration: none; font-size: 15px }
+.rootNode { font-size: 16px; }
+.rootNode:hover { background-color: #333; }
+
+.treeNode { border-bottom: 1px solid #ddd; border-top: 1px solid #eee; outline: medium none; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); width: 100%; padding: 15px 4px; }
+.treeNode:hover { background-color: #ddd}
+
+.leafNode { padding: 4px 0; }
+.leafNode a { font-size: 12px; color: #000}
+.leafNode:hover { text-decoration: none; }
+
+.Selected_Node { color: #0091ea !important }
+/*---End Treeview Style----------*/
+
+
+/*-------------checkbox---------------*/
+input[type=checkbox] { display: none; }
+input[type=checkbox] + label { padding-left: 29px; display: inline-block; height: 21px; line-height: 24px; background-repeat: no-repeat; background-position: 7px 3px; vertical-align: middle; cursor: pointer; background-image: url(Image/CheckBox.png); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; z-index: 20000; }
+input[type=checkbox]:checked + label { background-position: 7px -19px; background-image: url(Image/CheckBox.png); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+/*-----------radio button---------------*/
+input[type=radio] { display: none; }
+input[type=radio] + label { font-weight: normal; padding-left: 26px; height: 21px; display: inline-block; line-height: 21px; background-repeat: no-repeat; background-position: 5px 4px; font-size: 13px; vertical-align: middle; cursor: pointer; background-image: url(Image/RadioButton.png); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+input[type=radio]:checked + label { background-position: 5px -16px; background-image: url(Image/RadioButton.png); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+/*----------End radio button----------*/
+
+.EroorStar { color: red; }
+.EroorSummer { color: red; }
+.SuccessMessage { color: #07a807; font-size: 14px; }
+
+
+.hideGridColumn { display: none; }
+.SuccessMsg { color: #616161; font-size: 10pt; }
+
+.RowColor { background-color: #ffb4a6; }
+.selected { background-color: #A1DCF2; }
+.Deselected { background-color: #fff; }
+.search_textbox { border: 1px solid rgb(0,148,255); border-radius: 3px; width: 90%; height: 22px; }
+
+/*------------update progress----------------*/
+#progress_BG { position: fixed; top: 0px; bottom: 0px; left: 0px; right: 0px; z-index: 120; background-color: #000; filter: alpha(opacity=40); opacity: 0.7; display: none; }
+#progress { position: fixed; top: 40%; left: 46%; text-align: center; z-index: 200; }
+#progress b { color: hsl(200,100%,18%); background-color: #ddd; padding: 2px 5px; }
+
+.datepicker { padding: 6px 12px; }
+
+
+
+@media (max-width: 991px) {
+    .side-bar { height:auto; margin-left: 0 }
+}

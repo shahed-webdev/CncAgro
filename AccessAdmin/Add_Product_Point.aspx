@@ -12,7 +12,7 @@
     <h3>Add Product</h3>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="well">
+            <div class="card card-body mb-3">
                 <div class="form-group">
                     <label>
                         Product Name

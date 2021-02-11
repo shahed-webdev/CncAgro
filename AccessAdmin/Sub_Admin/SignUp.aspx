@@ -13,7 +13,7 @@
         <WizardSteps>
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                 <ContentTemplate>
-                    <div class="col-md-6 well">
+                    <div class="col-md-6 card">
                         <div class="form-group">
                             <label>
                                 Name

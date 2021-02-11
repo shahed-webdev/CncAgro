@@ -6,7 +6,7 @@
     <div class="container">
         <a href="Category.aspx">Back to Category</a>
         <h3>Insert URL Under <strong>'<% =Request.QueryString["CN"] %>'</strong></h3>
-        <div class="well">
+        <div class="card">
             <div class="form-inline">
                 <div class="form-group">
                     <asp:TextBox ID="LinkAsecendingTextBox" placeholder="Ascending" runat="server" CssClass="form-control"></asp:TextBox>
@@ -107,7 +107,7 @@ DELETE FROM Link_Users WHERE (LinkID = @LinkID)"
 
 
         <h3>Add Sub-Category Under <strong>'<% =Request.QueryString["CN"] %>'</strong></h3>
-        <div class="well">
+        <div class="card">
             <div class="form-inline">
                 <div class="form-group">
                     <asp:TextBox ID="AscendingTextBox" placeholder="Ascending" runat="server" CssClass="form-control"></asp:TextBox>

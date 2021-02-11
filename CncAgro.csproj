@@ -171,7 +171,7 @@
     <Content Include="Access_Authority\Create_Invoice.aspx" />
     <Content Include="CSS\All_Page_Print.css" />
     <Content Include="CSS\dnb_Inside.css" />
-    <Content Include="CSS\All_Master.css" />
+    <Content Include="CSS\admin-master.css" />
     <Content Include="CSS\home.css" />
     <Content Include="CSS\common-style.css" />
     <Content Include="CSS\gridview.css" />
@@ -182,8 +182,6 @@
     <Content Include="CSS\Image\Defualt_image.png" />
     <Content Include="CSS\Image\Expand_Ico.png" />
     <Content Include="CSS\Image\loading.gif" />
-    <Content Include="CSS\Image\Logo-1.png" />
-    <Content Include="CSS\Image\Logo-2.png" />
     <Content Include="CSS\Image\RadioButton.png" />
     <Content Include="CSS\Image\Tree_Down.png" />
     <Content Include="CSS\Image\Tree_Top.png" />

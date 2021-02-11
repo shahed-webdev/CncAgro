@@ -5,7 +5,7 @@
 
     <asp:FormView ID="Customer_Info_FV" runat="server" DataSourceID="MemberDetailsSQL" Width="100%">
         <ItemTemplate>
-            <div class="well">
+            <div class="card">
                 <h3><%#Eval("Name") %> <small><%#Eval("UserName") %></small></h3>
                 <table class="table table-bordered table-hover">
                     <tr>
