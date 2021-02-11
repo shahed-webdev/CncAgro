@@ -14,7 +14,7 @@ namespace CncAgro.AccessAdmin.Member
 {
     public partial class Add_Member : System.Web.UI.Page
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
+        private readonly SqlConnection _con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -39,271 +39,186 @@ namespace CncAgro.AccessAdmin.Member
         }
         protected void Add_Customer_Button_Click(object sender, EventArgs e)
         {
-            if (JsonData.Value != "")
+            if (JsonData.Value == "")
             {
-                double T_Point = Convert.ToDouble(GTpointHF.Value);
-                if (T_Point >= 1000)
+                PositionLabel.Text = "No Product added in cart";
+            }
+            else
+            {
+                var point = Convert.ToDouble(GTpointHF.Value);
+                if (point >= 1000)
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT Count(Phone) FROM Registration WHERE (Phone = @Phone)", con);
+                    var cmd = new SqlCommand("SELECT Count(Phone) FROM Registration WHERE (Phone = @Phone)", _con);
                     cmd.Parameters.AddWithValue("@Phone", PhoneTextBox.Text.Trim());
 
-                    con.Open();
-                    int dr = (int)cmd.ExecuteScalar();
-                    con.Close();
+                    _con.Open();
+                    var dr = (int)cmd.ExecuteScalar();
+                    _con.Close();
 
-                    if (dr >= 31)
+                    if (dr >= 1)
                     {
-                        ErrorLabel.Text = "Mobile Number already exists 31 times";
+                        ErrorLabel.Text = "Mobile Number already exists";
                     }
                     else
                     {
-                        bool Is_Available = true;
+                        var isAvailable = true;
 
-                        List<Shopping> P_List = new List<Shopping>(ProductList());
+                        var pList = new List<Shopping>(ProductList());
 
-                        foreach (Shopping item in P_List)
+                        foreach (var item in pList)
                         {
-                            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
+                            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
 
-                            SqlCommand Stockcmd = new SqlCommand("SELECT Stock_Quantity FROM Product_Point_Code WHERE(IsActive = 1) AND (Product_PointID = @ProductID)", con);
-                            Stockcmd.Parameters.AddWithValue("@ProductID", item.ProductID);
+                            var stockCmd = new SqlCommand("SELECT Stock_Quantity FROM Product_Point_Code WHERE(IsActive = 1) AND (Product_PointID = @ProductID)", con);
+                            stockCmd.Parameters.AddWithValue("@ProductID", item.ProductID);
 
                             con.Open();
-                            int Stock = (int)Stockcmd.ExecuteScalar();
+                            var stock = (int)stockCmd.ExecuteScalar();
                             con.Close();
 
-                            if (Stock < item.Quantity)
+                            if (stock < item.Quantity)
                             {
-                                Is_Available = false;
+                                isAvailable = false;
                             }
                         }
 
 
-                        if (Is_Available)
+                        if (isAvailable)
                         {
                             ErrorLabel.Text = "";
 
-                            bool ISLeftStatus = false;
-                            bool ISRightStatus = false;
+                            var referralMemberId = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", _con);
+                            referralMemberId.Parameters.AddWithValue("@UserName", ReferralIDTextBox.Text);
 
-                            SqlCommand PositionUserName = new SqlCommand("SELECT Registration.UserName FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE ((Member.Left_Status = 0) OR (Member.Right_Status = 0)) AND (Registration.UserName= @UserName)", con);
-                            PositionUserName.Parameters.AddWithValue("@UserName", PositionMemberUserNameTextBox.Text.Trim());
+                            _con.Open();
+                            var sReferralMemberId = referralMemberId.ExecuteScalar().ToString();
+                            _con.Close();
 
-                            con.Open();
-                            object IsPositionUserValid = PositionUserName.ExecuteScalar();
-                            con.Close();
 
-                            if (IsPositionUserValid != null)
+                            try
                             {
-                                SqlCommand Referral_MemberID = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", con);
-                                Referral_MemberID.Parameters.AddWithValue("@UserName", ReferralIDTextBox.Text);
+                                var cmdUserSn = new SqlCommand("SELECT Member_SN FROM Institution", _con);
+                                _con.Open();
+                                var userSn = Convert.ToInt32(cmdUserSn.ExecuteScalar());
+                                _con.Close();
 
-                                SqlCommand PositionMemberID = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", con);
-                                PositionMemberID.Parameters.AddWithValue("@UserName", PositionMemberUserNameTextBox.Text.Trim());
+                                var password = CreatePassword(8);
+                                var userName = DateTime.Now.ToString("yyMM") + userSn.ToString().PadLeft(5, '0');
 
-                                con.Open();
-                                string sReferral_MemberID = Referral_MemberID.ExecuteScalar().ToString();
-                                string sPositionMemberID = PositionMemberID.ExecuteScalar().ToString();
-                                con.Close();
+                                MembershipUser newUser = Membership.CreateUser(userName, password, Email.Text, "When you SignUp?", DateTime.Now.ToString(), true, out var createStatus);
 
-
-                                if (PositionTypeDropDownList.SelectedValue == "Left")
+                                if (MembershipCreateStatus.Success == createStatus)
                                 {
-                                    SqlCommand LeftStatus = new SqlCommand("SELECT Left_Status FROM [Member] WHERE (MemberID = @MemberID)", con);
-                                    LeftStatus.Parameters.AddWithValue("@MemberID", sPositionMemberID);
+                                    Roles.AddUserToRole(userName, "Member");
 
-                                    con.Open();
-                                    ISLeftStatus = (bool)LeftStatus.ExecuteScalar();
-                                    con.Close();
-                                }
-
-                                if (PositionTypeDropDownList.SelectedValue == "Right")
-                                {
-                                    SqlCommand RightStatus = new SqlCommand("SELECT Right_Status FROM [Member] WHERE (MemberID = @MemberID)", con);
-                                    RightStatus.Parameters.AddWithValue("@MemberID", sPositionMemberID);
-
-                                    con.Open();
-                                    ISRightStatus = (bool)RightStatus.ExecuteScalar();
-                                    con.Close();
-                                }
+                                    RegistrationSQL.InsertParameters["UserName"].DefaultValue = userName;
+                                    RegistrationSQL.Insert();
 
 
-                                ////---------------------Check left and right-----------------
-                                if (!ISLeftStatus)
-                                {
-                                    if (!ISRightStatus)
+                                    MemberSQL.InsertParameters["Referral_MemberID"].DefaultValue = sReferralMemberId;
+                                    MemberSQL.Insert();
+
+                                    UserLoginSQL.InsertParameters["Password"].DefaultValue = password;
+                                    UserLoginSQL.InsertParameters["UserName"].DefaultValue = userName;
+                                    UserLoginSQL.Insert();
+
+
+                                    var cmdUserMemberId = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", _con);
+                                    cmdUserMemberId.Parameters.AddWithValue("@UserName", userName);
+                                    _con.Open();
+                                    var userMemberId = cmdUserMemberId.ExecuteScalar().ToString();
+                                    _con.Close();
+
+
+                                    //Product Selling block 
+                                    #region Add Product .........
+
+                                    ShoppingSQL.InsertParameters["MemberID"].DefaultValue = userMemberId;
+                                    ShoppingSQL.Insert();
+
+                                    foreach (var item in pList)
                                     {
-                                        try
+                                        Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
+                                        Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
+                                        Product_Selling_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = item.Quantity.ToString();
+                                        Product_Selling_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = item.Unit_Price;
+                                        Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Unit_Point;
+                                        Product_Selling_RecordsSQL.Insert();
+
+
+                                        SellerProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
+                                        SellerProductSQL.UpdateParameters["Stock_Quantity"].DefaultValue = item.Quantity.ToString();
+                                        SellerProductSQL.Update();
+                                    }
+
+                                    #endregion End Product
+
+
+                                    // Update S.P Add_Referral_Bonus
+                                    A_PointSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
+                                    A_PointSQL.UpdateParameters["Point"].DefaultValue = GTpointHF.Value;
+                                    A_PointSQL.Update();
+
+
+                                    // Generation commission 2% to 6 upper generation S.P Add_Generation_Income
+                                    Retail_IncomeSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
+                                    Retail_IncomeSQL.UpdateParameters["Point"].DefaultValue = GTpointHF.Value;
+                                    Retail_IncomeSQL.Update();
+
+                                    // Update S.P Add_Retail_Income
+                                    if (point > 1000)
+                                    {
+                                        Retail_IncomeSQL.InsertParameters["MemberID"].DefaultValue = userMemberId;
+                                        Retail_IncomeSQL.InsertParameters["Point"].DefaultValue = (point - 1000).ToString();
+                                        Retail_IncomeSQL.Insert();
+                                    }
+
+                                    // Send SMS
+                                    #region Send SMS                               
+                                    var sms = new SMS_Class();
+
+                                    var totalSms = 0;
+                                    var smsBalance = sms.SMSBalance;
+                                    var phoneNo = PhoneTextBox.Text.Trim();
+                                    var msg = "Welcome to CNC Agro. Your Information has been Inserted Successfully. Your id: " + userName + " and Password: " + password;
+
+                                    totalSms = sms.SMS_Conut(msg);
+
+                                    if (smsBalance >= totalSms)
+                                    {
+                                        if (sms.SMS_GetBalance() >= totalSms)
                                         {
-                                            SqlCommand Cmd_User_SN = new SqlCommand("SELECT Member_SN FROM Institution", con);
-                                            con.Open();
-                                            int User_SN = Convert.ToInt32(Cmd_User_SN.ExecuteScalar());
-                                            con.Close();
-
-                                            string Password = CreatePassword(8);
-                                            string UserName = DateTime.Now.ToString("yyMM") + User_SN.ToString().PadLeft(5, '0');
-
-                                            MembershipCreateStatus createStatus;
-                                            MembershipUser newUser = Membership.CreateUser(UserName, Password, Email.Text, "When you signup?", DateTime.Now.ToString(), true, out createStatus);
-
-                                            if (MembershipCreateStatus.Success == createStatus)
+                                            var isValid = sms.SMS_Validation(phoneNo, msg);
+                                            if (isValid.Validation)
                                             {
-                                                Roles.AddUserToRole(UserName, "Member");
+                                                var smsSendId = sms.SMS_Send(phoneNo, msg, "Add Customers");
 
-                                                RegistrationSQL.InsertParameters["UserName"].DefaultValue = UserName;
-                                                RegistrationSQL.Insert();
-
-
-                                                MemberSQL.InsertParameters["Referral_MemberID"].DefaultValue = sReferral_MemberID;
-                                                MemberSQL.InsertParameters["PositionMemberID"].DefaultValue = sPositionMemberID;
-                                                MemberSQL.Insert();
-
-                                                UserLoginSQL.InsertParameters["Password"].DefaultValue = Password;
-                                                UserLoginSQL.InsertParameters["UserName"].DefaultValue = UserName;
-                                                UserLoginSQL.Insert();
-
-                                                //--------User_SN Update-----------------------------------------------------
-                                                RegistrationSQL.Update();
-                                                if (PositionTypeDropDownList.SelectedValue == "Left")
-                                                {
-                                                    SqlCommand UpdateMember = new SqlCommand("UPDATE Member SET Left_Status = 1 Where (MemberID = @MemberID)", con);
-                                                    UpdateMember.Parameters.AddWithValue("@MemberID", sPositionMemberID);
-
-                                                    con.Open();
-                                                    UpdateMember.ExecuteNonQuery();
-                                                    con.Close();
-                                                }
-
-                                                if (PositionTypeDropDownList.SelectedValue == "Right")
-                                                {
-                                                    SqlCommand UpdateMember = new SqlCommand("UPDATE Member SET Right_Status = 1 Where (MemberID = @MemberID)", con);
-                                                    UpdateMember.Parameters.AddWithValue("@MemberID", sPositionMemberID);
-
-                                                    con.Open();
-                                                    UpdateMember.ExecuteNonQuery();
-                                                    con.Close();
-                                                }
-
-
-                                                // MemberSQL.Update Total Carry Member Update by SP Add_Update_CarryMember
-
-                                                SqlCommand Cmd_User_MemberID = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", con);
-                                                Cmd_User_MemberID.Parameters.AddWithValue("@UserName", UserName);
-                                                con.Open();
-                                                string User_MemberID = Cmd_User_MemberID.ExecuteScalar().ToString();
-                                                con.Close();
-
-                                                //S.P Add_Update_CarryMember
-                                                MemberSQL.UpdateParameters["MemberID"].DefaultValue = User_MemberID;
-                                                MemberSQL.Update();
-
-
-                                                //Product Selling block 
-                                                #region Add Product .........
-
-                                                ShoppingSQL.InsertParameters["MemberID"].DefaultValue = User_MemberID;
-                                                ShoppingSQL.Insert();
-
-                                                foreach (Shopping item in P_List)
-                                                {
-                                                    Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
-                                                    Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
-                                                    Product_Selling_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = item.Quantity.ToString();
-                                                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = item.Unit_Price;
-                                                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Unit_Point;
-                                                    Product_Selling_RecordsSQL.Insert();
-
-
-                                                    SellerProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
-                                                    SellerProductSQL.UpdateParameters["Stock_Quantity"].DefaultValue = item.Quantity.ToString();
-                                                    SellerProductSQL.Update();
-                                                }
-
-                                                #endregion End Product
-
-
-
-                                                // Update S.P Add_Point
-                                                A_PointSQL.InsertParameters["MemberID"].DefaultValue = User_MemberID;
-                                                A_PointSQL.InsertParameters["Point"].DefaultValue = GTpointHF.Value;
-                                                A_PointSQL.Insert();
-
-                                                // Update S.P Add_Referral_Bonus
-
-                                                A_PointSQL.UpdateParameters["MemberID"].DefaultValue = User_MemberID;
-                                                A_PointSQL.UpdateParameters["Point"].DefaultValue = GTpointHF.Value;
-                                                A_PointSQL.Update();
-
-                                                // Update S.P Add_Retail_Income
-
-                                                if (T_Point > 1000)
-                                                {
-                                                    Retail_IncomeSQL.InsertParameters["MemberID"].DefaultValue = User_MemberID;
-                                                    Retail_IncomeSQL.InsertParameters["Point"].DefaultValue = (T_Point - 1000).ToString();
-                                                    Retail_IncomeSQL.Insert();
-                                                }
-
-                                                // Send SMS
-                                                #region Send SMS                               
-                                                SMS_Class SMS = new SMS_Class();
-
-                                                int TotalSMS = 0;
-                                                int SMSBalance = SMS.SMSBalance;
-                                                string PhoneNo = PhoneTextBox.Text.Trim();
-                                                string Msg = "Welcome to CNC Agro. Your Information has been Inserted Successfully. Your id: " + UserName + " and Password: " + Password;
-
-                                                TotalSMS = SMS.SMS_Conut(Msg);
-
-                                                if (SMSBalance >= TotalSMS)
-                                                {
-                                                    if (SMS.SMS_GetBalance() >= TotalSMS)
-                                                    {
-                                                        Get_Validation IsValid = SMS.SMS_Validation(PhoneNo, Msg);
-                                                        if (IsValid.Validation)
-                                                        {
-                                                            Guid SMS_Send_ID = SMS.SMS_Send(PhoneNo, Msg, "Add Customers");
-
-                                                            SMS_OtherInfoSQL.InsertParameters["SMS_Send_ID"].DefaultValue = SMS_Send_ID.ToString();
-                                                            SMS_OtherInfoSQL.InsertParameters["MemberID"].DefaultValue = User_MemberID;
-                                                            SMS_OtherInfoSQL.Insert();
-                                                        }
-                                                    }
-                                                }
-                                                #endregion SMS
-
-                                                GTpriceHF.Value = "";
-                                                GTpointHF.Value = "";
-                                                Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart()", true);
-
-                                                Response.Redirect("../Product_Point/Receipt.aspx?ShoppingID=" + ViewState["ShoppingID"].ToString());
-                                            }
-                                            else
-                                            {
-                                                ErrorLabel.Text = GetErrorMessage(createStatus) + "<br />";
+                                                SMS_OtherInfoSQL.InsertParameters["SMS_Send_ID"].DefaultValue = smsSendId.ToString();
+                                                SMS_OtherInfoSQL.InsertParameters["MemberID"].DefaultValue = userMemberId;
+                                                SMS_OtherInfoSQL.Insert();
                                             }
                                         }
-                                        catch (MembershipCreateUserException ex)
-                                        {
-                                            ErrorLabel.Text = GetErrorMessage(ex.StatusCode) + "<br />";
-                                        }
-                                        catch (HttpException ex)
-                                        {
-                                            ErrorLabel.Text = ex.Message + "<br />";
-                                        }
                                     }
-                                    else
-                                    {
-                                        PositionTypeLabel.Text = "Team B Member Full";
-                                    }
+                                    #endregion SMS
+
+                                    GTpriceHF.Value = "";
+                                    GTpointHF.Value = "";
+                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart()", true);
+
+                                    Response.Redirect("../Product_Point/Receipt.aspx?ShoppingID=" + ViewState["ShoppingID"].ToString());
                                 }
                                 else
                                 {
-                                    PositionTypeLabel.Text = "Team A Member Full";
+                                    ErrorLabel.Text = GetErrorMessage(createStatus) + "<br />";
                                 }
                             }
-                            else
+                            catch (MembershipCreateUserException ex)
                             {
-                                PositionLabel.Text = "Invalid Spot Member User Id";
+                                ErrorLabel.Text = GetErrorMessage(ex.StatusCode) + "<br />";
+                            }
+                            catch (HttpException ex)
+                            {
+                                ErrorLabel.Text = ex.Message + "<br />";
                             }
                         }
                         else
@@ -316,10 +231,6 @@ namespace CncAgro.AccessAdmin.Member
                 {
                     PositionLabel.Text = "Minimum 1000 point need to join new member";
                 }
-            }
-            else
-            {
-                PositionLabel.Text = "No Product added in cart";
             }
 
         }

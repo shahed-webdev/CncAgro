@@ -155,58 +155,27 @@
                 <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" placeholder="Referral ID" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div id="R_info" class="alert alert-info" style="display: none;">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <label id="R_Name_Label"></label>
-                <i class="fa fa-phone-square" aria-hidden="true"></i>
-                <label id="R_Phone_Label"></label>
-            </div>
-
-            <div class="form-group">
-                <label>
-                    Placement ID*
-                          <asp:RequiredFieldValidator ID="Required3" runat="server" ErrorMessage="Enter Placement ID" ControlToValidate="PositionMemberUserNameTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="Re2" runat="server" ControlToValidate="PositionMemberUserNameTextBox" ErrorMessage="*" CssClass="EroorStar" ValidationGroup="1" ValidationExpression="^[a-zA-Z0-9]{9,9}$" />
-                    <asp:Label ID="PositionLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                    <label id="Is_Position"></label>
-                </label>
-                <asp:TextBox ID="PositionMemberUserNameTextBox" autocomplete="off" placeholder="Placement ID" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div id="P_info" class="alert alert-info" style="display: none;">
-                <i class="fa fa-user-circle"></i>
-                <label id="P_Name_Label"></label>
-                <i class="fa fa-phone-square"></i>
-                <label id="P_Phone_Label"></label>
-                <input id="MemberIDhf" type="hidden" />
-            </div>
-
-            <div class="form-group">
-                <label>
-                    Position Type*<label id="Is_LeftRight"></label>
-                    <asp:RequiredFieldValidator ID="Required4" runat="server" ControlToValidate="PositionTypeDropDownList" CssClass="EroorStar" ForeColor="Red" InitialValue="0" ValidationGroup="1" ErrorMessage="Select Position Type">*</asp:RequiredFieldValidator>
-                    <asp:Label ID="PositionTypeLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                </label>
-
-                <asp:DropDownList ID="PositionTypeDropDownList" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="0">[ SELECT ]</asp:ListItem>
-                    <asp:ListItem Value="Left">Left</asp:ListItem>
-                    <asp:ListItem Value="Right">Right</asp:ListItem>
-                </asp:DropDownList>
+                <div id="R_info" class="alert alert-info" style="display: none;">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <label id="R_Name_Label"></label>
+                    <i class="fa fa-phone-square" aria-hidden="true"></i>
+                    <label id="R_Phone_Label"></label>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title mb-0">Product</div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>
-                    Product Code
-                </label>
-                <asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Product</h2>
             </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>
+                        Product Code
+                        <asp:Label ID="PositionLabel" runat="server" ForeColor="#FF3300"></asp:Label>
+                    </label>
+                    <asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
 
             <div id="Product-info" class="alert alert-success">
                 <div class="userid">
@@ -284,12 +253,10 @@
             <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" />
         </InsertParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Member(MemberRegistrationID, InstitutionID, Referral_MemberID, PositionMemberID, PositionType, Is_Identified, Identified_Date) VALUES ((SELECT  IDENT_CURRENT('Registration')), @InstitutionID,  @Referral_MemberID, @PositionMemberID, @PositionType, 1, GETDATE())" SelectCommand="SELECT * FROM [Member]" UpdateCommand="Add_Update_CarryMember" UpdateCommandType="StoredProcedure">
+    <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Member(MemberRegistrationID, InstitutionID, Referral_MemberID,   Is_Identified, Identified_Date) VALUES ((SELECT  IDENT_CURRENT('Registration')), @InstitutionID,  @Referral_MemberID, 1, GETDATE())" SelectCommand="SELECT * FROM [Member]" UpdateCommand="Add_Update_CarryMember" UpdateCommandType="StoredProcedure">
         <InsertParameters>
             <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" Type="Int32" />
-            <asp:ControlParameter ControlID="PositionTypeDropDownList" Name="PositionType" PropertyName="SelectedValue" Type="String" />
             <asp:Parameter Name="Referral_MemberID" Type="Int32" />
-            <asp:Parameter Name="PositionMemberID" Type="Int32" />
         </InsertParameters>
         <UpdateParameters>
             <asp:Parameter Name="MemberID" Type="Int32" />
@@ -336,11 +303,15 @@ SELECT @ShoppingID = Scope_identity()"
             <asp:Parameter Name="Product_PointID" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails">
+    <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails" UpdateCommand="Add_Generation_Income" UpdateCommandType="StoredProcedure">
         <InsertParameters>
             <asp:Parameter Name="MemberID" Type="Int32" />
             <asp:Parameter Name="Point" Type="Int32" />
         </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="MemberID" Type="Int32" />
+            <asp:Parameter Name="Point" Type="Int32" />
+        </UpdateParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="Product_Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Selling_Records(ProductID, ShoppingID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@ProductID,@ShoppingID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)" SelectCommand="SELECT * FROM [Product_Selling_Records]">
         <InsertParameters>
