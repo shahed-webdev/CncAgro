@@ -7,27 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember.Bonus_Details {
-    
-    
-    public partial class Infinity_Bonus_Details {
-        
+namespace CncAgro.AccessAdmin.Bonus_Com
+{
+
+
+    public partial class Duplex_Commission
+    {
+
         /// <summary>
-        /// Records_Infinity_MatchingGridView control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Records_Infinity_MatchingGridView;
-        
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
         /// <summary>
-        /// Records_Infinity_MatchingSQL control.
+        /// RecordGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Records_Infinity_MatchingSQL;
+        protected global::System.Web.UI.WebControls.GridView RecordGridView;
+
+        /// <summary>
+        /// RecordsSQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource RecordsSQL;
     }
 }

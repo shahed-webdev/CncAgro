@@ -70,8 +70,8 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="Comission">
-                        <h5>Duplex Commission</h5>
-                        <%#Eval("Matching_Income","{0:N}") %>
+                        <h5>Generation Commission</h5>
+                        <%#Eval("Generation_Income","{0:N}") %>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -139,7 +139,7 @@
         </ItemTemplate>
     </asp:FormView>
 
-    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Matching_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
+    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Generation_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
         <SelectParameters>
             <asp:QueryStringParameter Name="MemberID" QueryStringField="Member" Type="Int32" />
         </SelectParameters>

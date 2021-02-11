@@ -203,8 +203,8 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
                 </div>
                 <div class="col-sm-4">
                     <div class="Comission">
-                        <h5>Duplex Commission</h5>
-                       <a href="Bonus_Details/Infinity_Bonus_Details.aspx"> <%#Eval("Matching_Income","{0:N}") %></a>
+                        <h5>Generation Commission</h5>
+                       <a href="Bonus_Details/Generation_Bonus_Details.aspx"> <%#Eval("Generation_Income","{0:N}") %></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -280,7 +280,7 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
         </ItemTemplate>
     </asp:FormView>
 
-    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Matching_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
+    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Generation_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
         <SelectParameters>
             <asp:SessionParameter Name="MemberID" SessionField="MemberID" Type="Int32" />
         </SelectParameters>

@@ -102,7 +102,7 @@
     <Content Include="AccessAdmin\Product_Point\Sell_Product.aspx" />
     <Content Include="AccessAdmin\Product_Short_List.aspx" />
     <Content Include="AccessAdmin\Seller\Distribution_Receipt.aspx" />
-    <Content Include="AccessAdmin\Bonus_Com\Duplex_Commission.aspx" />
+    <Content Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx" />
     <Content Include="AccessAdmin\Member\Member_List.aspx" />
     <Content Include="AccessAdmin\Member\Default_Member.aspx" />
     <Content Include="AccessAdmin\Member\Member_Access_Control.aspx" />
@@ -117,10 +117,7 @@
     <Content Include="AccessAdmin\Sub_Admin\SignUp.aspx" />
     <Content Include="AccessMember\Added_Customer_Info.aspx" />
     <Content Include="AccessMember\Bonus_Details\Cash_Back.aspx" />
-    <Content Include="AccessMember\Bonus_Details\Executive_Bonus_Details.aspx" />
     <Content Include="AccessMember\Bonus_Details\Generation_Bonus_Details.aspx" />
-    <Content Include="AccessMember\Bonus_Details\Infinity_Bonus_Details.aspx" />
-    <Content Include="AccessMember\Bonus_Details\Membership_Bonus_Details.aspx" />
     <Content Include="AccessMember\Bonus_Details\Received_Details.aspx" />
     <Content Include="AccessMember\Bonus_Details\Referral_Bonus_Details.aspx" />
     <Content Include="AccessMember\Bonus_Details\Send_Details.aspx" />
@@ -321,12 +318,12 @@
     <Compile Include="AccessAdmin\Seller\Distribution_Receipt.aspx.designer.cs">
       <DependentUpon>Distribution_Receipt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessAdmin\Bonus_Com\Duplex_Commission.aspx.cs">
-      <DependentUpon>Duplex_Commission.aspx</DependentUpon>
+    <Compile Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx.cs">
+      <DependentUpon>Generation_Commission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessAdmin\Bonus_Com\Duplex_Commission.aspx.designer.cs">
-      <DependentUpon>Duplex_Commission.aspx</DependentUpon>
+    <Compile Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx.designer.cs">
+      <DependentUpon>Generation_Commission.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessAdmin\Member\Member_List.aspx.cs">
       <DependentUpon>Member_List.aspx</DependentUpon>
@@ -426,33 +423,12 @@
     <Compile Include="AccessMember\Bonus_Details\Cash_Back.aspx.designer.cs">
       <DependentUpon>Cash_Back.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessMember\Bonus_Details\Executive_Bonus_Details.aspx.cs">
-      <DependentUpon>Executive_Bonus_Details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessMember\Bonus_Details\Executive_Bonus_Details.aspx.designer.cs">
-      <DependentUpon>Executive_Bonus_Details.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AccessMember\Bonus_Details\Generation_Bonus_Details.aspx.cs">
       <DependentUpon>Generation_Bonus_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AccessMember\Bonus_Details\Generation_Bonus_Details.aspx.designer.cs">
       <DependentUpon>Generation_Bonus_Details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AccessMember\Bonus_Details\Infinity_Bonus_Details.aspx.cs">
-      <DependentUpon>Infinity_Bonus_Details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessMember\Bonus_Details\Infinity_Bonus_Details.aspx.designer.cs">
-      <DependentUpon>Infinity_Bonus_Details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AccessMember\Bonus_Details\Membership_Bonus_Details.aspx.cs">
-      <DependentUpon>Membership_Bonus_Details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessMember\Bonus_Details\Membership_Bonus_Details.aspx.designer.cs">
-      <DependentUpon>Membership_Bonus_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessMember\Bonus_Details\Received_Details.aspx.cs">
       <DependentUpon>Received_Details.aspx</DependentUpon>

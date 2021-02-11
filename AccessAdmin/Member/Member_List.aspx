@@ -24,7 +24,6 @@
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                <asp:BoundField DataField="AvailablePoint" HeaderText="Available Point" SortExpression="AvailablePoint" />
                 <asp:BoundField DataField="SignUpDate" HeaderText="SignUp Date" SortExpression="SignUpDate" DataFormatString="{0:d MMM yyyy}" />
             </Columns>
             <EmptyDataTemplate>
@@ -33,7 +32,7 @@
             <PagerStyle CssClass="pgr" />
         </asp:GridView>
         <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
-            SelectCommand="SELECT Registration.Name, Registration.Phone, Registration.Email, Registration.UserName, Member.Is_Identified, Member.SignUpDate, Member.MemberID, Member.AvailablePoint FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.Category = N'Member') AND (Member.Is_Identified = 1) AND (Member.Default_MemberStatus = 0)"
+            SelectCommand="SELECT Registration.Name, Registration.Phone, Registration.Email, Registration.UserName, Member.Is_Identified, Member.SignUpDate, Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.Category = N'Member') AND (Member.Is_Identified = 1) AND (Member.Default_MemberStatus = 0)"
             FilterExpression="Name LIKE '{0}%' or Phone LIKE '{0}%' or UserName LIKE '{0}%'" CancelSelectOnNullParameter="False">
             <FilterParameters>
                 <asp:ControlParameter ControlID="FindTextBox" Name="Find" PropertyName="Text" />

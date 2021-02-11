@@ -12,9 +12,6 @@
             <ul class="nav panel-tabs">
                 <li class="active"><a data-toggle="tab" href="#Dashboard">Dashboard</a></li>
                 <li><a data-toggle="tab" href="#Customers_Info">Update Info</a></li>
-                <li><a data-toggle="tab" href="#Left_Tree">Left Customers</a></li>
-                <li><a data-toggle="tab" href="#Right_Tree">Right Customers</a></li>
-                <li><a data-toggle="tab" href="#tabPlacementID">Change Placement Id</a></li>
             </ul>
         </div>
         <div class="panel-body">
@@ -72,82 +69,14 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="Comission">
-                                        <h5>Duplex Commission</h5>
-                                        <%#Eval("Matching_Income","{0:N}") %>
+                                        <h5>Generation Commission</h5>
+                                        <%#Eval("Generation_Income","{0:N}") %>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="Comission">
                                         <h5>Retail Commission</h5>
                                         <%#Eval("Instant_Cash_Back_Income","{0:N}") %>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h3>Member & point</h3>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="white-box">
-                                        <h2 class="box-title">
-                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                                            LEFT Point
-                                        </h2>
-                                        <ul class="list-inline two-part">
-                                            <li>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </li>
-                                            <li class="text-right">
-                                                <span><%#Eval("Left_Carry_Point") %></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="white-box">
-                                        <h2 class="box-title">
-                                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                                            Right Point
-                                        </h2>
-                                        <ul class="list-inline two-part">
-                                            <li>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </li>
-                                            <li class="text-right">
-                                                <span><%#Eval("Right_Carry_Point") %></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="white-box">
-                                        <h2 class="box-title">
-                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                                            LEFT Member
-                                        </h2>
-                                        <ul class="list-inline two-part">
-                                            <li>
-                                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                            </li>
-                                            <li class="text-right">
-                                                <span><%#Eval("TotalLeft_Member") %></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="white-box">
-                                        <h2 class="box-title">
-                                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                                            Right Member
-                                        </h2>
-                                        <ul class="list-inline two-part">
-                                            <li>
-                                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                            </li>
-                                            <li class="text-right">
-                                                <span><%#Eval("TotalRight_Member") %></span>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +136,7 @@
                             </div>
                         </ItemTemplate>
                     </asp:FormView>
-                    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT AvailablePoint, Referral_Income, Matching_Income, Instant_Cash_Back_Income, Left_Carry_Point, Right_Carry_Point, TotalLeft_Member, TotalRight_Member, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
+                    <asp:SqlDataSource ID="BonusSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Referral_Income, Generation_Income, Instant_Cash_Back_Income, Available_Balance, SignUpDate, Total_Amount, Withdraw_Balance, Send_Balance, Received__Balance FROM Member WHERE (MemberID = @MemberID)">
                         <SelectParameters>
                             <asp:QueryStringParameter Name="MemberID" QueryStringField="member" Type="Int32" />
                         </SelectParameters>
@@ -215,7 +144,7 @@
                 </div>
 
                 <div id="Customers_Info" class="tab-pane">
-                    <asp:FormView ID="MemberDetailsFormView" DefaultMode="Edit" runat="server" DataKeyNames="MemberID,PositionMemberID,RegistrationID,P_UserName,Default_MemberStatus,PositionType" DataSourceID="MemberDetailsSQL" Width="100%" OnItemUpdated="MemberDetailsFormView_ItemUpdated">
+                    <asp:FormView ID="MemberDetailsFormView" DefaultMode="Edit" runat="server" DataKeyNames="MemberID,RegistrationID,Default_MemberStatus" DataSourceID="MemberDetailsSQL" Width="100%" OnItemUpdated="MemberDetailsFormView_ItemUpdated">
                         <EditItemTemplate>
                             <div class="col-md-6 well">
                                 <input id="QueryMemberID" value='<%# Eval("MemberID") %>' type="hidden" />
@@ -224,9 +153,6 @@
                                 <div class="alert alert-success text-center">
                                     <label>User ID</label>
                                     <asp:Label ID="UserNameLabel" runat="server" Text='<%# Bind("UserName") %>' />.
-
-                                    <label>Placement User ID</label>
-                                    <asp:Label ID="Placement_Label" runat="server" Text='<%# Bind("P_UserName") %>' />.
 
                                     <label>Referral User ID</label>
                                     <asp:Label ID="Referral_Label" runat="server" Text='<%# Bind("R_UserName") %>' />.
@@ -345,7 +271,7 @@
                             </div>
                         </EditItemTemplate>
                     </asp:FormView>
-                    <asp:SqlDataSource ID="MemberDetailsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.FatherName, Registration.Gender, Registration.NationalID, Registration.Present_Address, Registration.Permanent_Address, Registration.Phone, Registration.Email, Registration.MotherName, Registration.UserName, Member.Is_Identified, Member.SignUpDate, Member.MemberID, Registration.RegistrationID, Registration.DateofBirth, Registration.BloodGroup, P_Registration.UserName AS P_UserName, R_Registration.UserName AS R_UserName, Member.PositionMemberID, Member.Default_MemberStatus, Member.PositionType, Member.MemberRegistrationID, Member.Nominee_Name, Member.Nominee_Relationship,Member.Nominee_DOB, Member.Bank, Member.Branch, Member.AccountName, Member.AccountNo FROM Registration AS R_Registration INNER JOIN Member AS R_Member ON R_Registration.RegistrationID = R_Member.MemberRegistrationID RIGHT OUTER JOIN Registration AS P_Registration INNER JOIN Member AS P_Member ON P_Registration.RegistrationID = P_Member.MemberRegistrationID RIGHT OUTER JOIN Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID ON P_Member.MemberID = Member.PositionMemberID ON R_Member.MemberID = Member.Referral_MemberID WHERE (Registration.Category = N'Member') AND (Member.MemberID = @MemberID)"
+                    <asp:SqlDataSource ID="MemberDetailsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.FatherName, Registration.Gender, Registration.NationalID, Registration.Present_Address, Registration.Permanent_Address, Registration.Phone, Registration.Email, Registration.MotherName, Registration.UserName, Member.Is_Identified, Member.SignUpDate, Member.MemberID, Registration.RegistrationID, Registration.DateofBirth, Registration.BloodGroup, R_Registration.UserName AS R_UserName, Member.Default_MemberStatus, Member.MemberRegistrationID, Member.Nominee_Name, Member.Nominee_Relationship, Member.Nominee_DOB, Member.Bank, Member.Branch, Member.AccountName, Member.AccountNo FROM Registration AS R_Registration INNER JOIN Member AS R_Member ON R_Registration.RegistrationID = R_Member.MemberRegistrationID RIGHT OUTER JOIN Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID ON R_Member.MemberID = Member.Referral_MemberID WHERE (Registration.Category = N'Member') AND (Member.MemberID = @MemberID)"
                         UpdateCommand="UPDATE  Registration SET  Name = @Name, FatherName = @FatherName, MotherName = @MotherName, DateofBirth = @DateofBirth, BloodGroup = @BloodGroup, Gender = @Gender, NationalID = @NationalID,Present_Address = @Present_Address, Permanent_Address = @Permanent_Address, Phone = @Phone, Email = @Email FROM  Registration INNER JOIN Member ON Registration.RegistrationID = Member.MemberRegistrationID
 WHERE   (Member.MemberID = @MemberID)
 
@@ -374,200 +300,6 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
                             <asp:Parameter Name="AccountName" />
                             <asp:Parameter Name="AccountNo" />
                             <asp:Parameter Name="Nominee_DOB" />
-                        </UpdateParameters>
-                    </asp:SqlDataSource>
-                </div>
-
-                <div id="Left_Tree" class="tab-pane">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <asp:TextBox ID="L_UserIDTextBox" placeholder="User ID" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>
-                                <div class="form-group">
-                                    <asp:Button ID="L_FindButton" runat="server" CssClass="btn btn-primary" Text="Find" OnClick="L_FindButton_Click" />
-                                </div>
-                            </div>
-
-                            <div class="alert alert-info">
-                                <asp:Label ID="L_Total_Label" runat="server" CssClass="Result_Msg"></asp:Label>
-                            </div>
-                            <asp:GridView ID="LeftGridView" runat="server" CssClass="mGrid" DataSourceID="LeftSQL" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" PageSize="20">
-                                <Columns>
-                                    <asp:BoundField HeaderText="User ID" DataField="UserID" SortExpression="UserID" />
-                                    <asp:BoundField HeaderText="Name" DataField="Name" SortExpression="Name" />
-                                    <asp:BoundField HeaderText="Phone" DataField="Phone" SortExpression="Phone" />
-                                    <asp:BoundField HeaderText="Refarrel ID" DataField="Refarrel_ID" SortExpression="Refarrel_ID" />
-                                </Columns>
-                                <EmptyDataTemplate>
-                                    No Records Found !
-                                </EmptyDataTemplate>
-                                <PagerStyle CssClass="pgr" />
-                            </asp:GridView>
-                            <asp:SqlDataSource ID="LeftSQL" runat="server" CancelSelectOnNullParameter="False" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="WITH DirectReports (PositionMemberID, MemberID,PositionType)
-AS
-(SELECT e.PositionMemberID, e.MemberID, e.PositionType
-    FROM dbo.Member AS e
-    WHERE PositionMemberID = @MemberID and PositionType = 'Left'
-    UNION ALL SELECT e.PositionMemberID, e.MemberID,e.PositionType
-    FROM dbo.Member AS e
-  INNER JOIN DirectReports AS d ON e.PositionMemberID = d.MemberID
-)
-SELECT Registration.UserName AS UserID, Registration.Name,Registration.Phone,Refarrel_Registration.UserName AS Refarrel_ID
-FROM DirectReports
-INNER JOIN dbo.Member ON DirectReports.MemberID = Member.MemberID 
-INNER JOIN dbo.Registration ON Member.MemberRegistrationID  = Registration.RegistrationID
-INNER JOIN Member AS Refarrel_Member ON Member.Referral_MemberID = Refarrel_Member.MemberID 
-INNER JOIN Registration AS Refarrel_Registration ON Refarrel_Member.MemberRegistrationID = Refarrel_Registration.RegistrationID
-WHERE Registration.UserName like @UserID +'%' 
-option (maxrecursion 800)">
-                                <SelectParameters>
-                                    <asp:QueryStringParameter Name="MemberID" QueryStringField="member" />
-                                    <asp:ControlParameter ControlID="L_UserIDTextBox" DefaultValue="%" Name="UserID" PropertyName="Text" />
-                                </SelectParameters>
-                            </asp:SqlDataSource>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
-
-                <div id="Right_Tree" class="tab-pane">
-                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                        <ContentTemplate>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <asp:TextBox ID="R_UserIDTextBox" runat="server" placeholder="User ID" CssClass="form-control"></asp:TextBox>
-                                </div>
-                                <div class="form-group">
-                                    <asp:Button ID="R_Find_Button" runat="server" CssClass="btn btn-primary" Text="Find" OnClick="R_Find_Button_Click" />
-                                </div>
-                            </div>
-
-                            <div class="alert alert-info">
-                                <asp:Label ID="R_Total_Label" runat="server" CssClass="Result_Msg"></asp:Label>
-                            </div>
-                            <asp:GridView ID="RightGridView" runat="server" CssClass="mGrid" DataSourceID="RightSQL" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" PageSize="20">
-                                <Columns>
-                                    <asp:BoundField HeaderText="User ID" DataField="UserID" SortExpression="UserID" />
-                                    <asp:BoundField HeaderText="Name" DataField="Name" SortExpression="Name" />
-                                    <asp:BoundField HeaderText="Phone" DataField="Phone" SortExpression="Phone" />
-                                    <asp:BoundField HeaderText="Refarrel ID" DataField="Refarrel_ID" SortExpression="Refarrel_ID" />
-                                </Columns>
-                                <EmptyDataTemplate>
-                                    No Records Found !
-                                </EmptyDataTemplate>
-                                <PagerStyle CssClass="pgr" />
-                            </asp:GridView>
-                            <asp:SqlDataSource ID="RightSQL" runat="server" CancelSelectOnNullParameter="False" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="WITH DirectReports (PositionMemberID, MemberID,PositionType)
-AS (SELECT e.PositionMemberID, e.MemberID, e.PositionType
-    FROM dbo.Member AS e
-    WHERE PositionMemberID = @MemberID and PositionType = 'Right'
-    UNION ALL
-    SELECT e.PositionMemberID, e.MemberID,e.PositionType
-    FROM dbo.Member AS e
-  INNER JOIN DirectReports AS d ON e.PositionMemberID = d.MemberID)
-
-SELECT Registration.UserName AS UserID, Registration.Name,Registration.Phone,Refarrel_Registration.UserName AS Refarrel_ID
-FROM DirectReports
-INNER JOIN dbo.Member ON DirectReports.MemberID = Member.MemberID 
-INNER JOIN dbo.Registration ON Member.MemberRegistrationID  = Registration.RegistrationID
-INNER JOIN Member AS Refarrel_Member ON Member.Referral_MemberID = Refarrel_Member.MemberID 
-INNER JOIN Registration AS Refarrel_Registration ON Refarrel_Member.MemberRegistrationID = Refarrel_Registration.RegistrationID
-WHERE Registration.UserName like @UserID +'%'
-option (maxrecursion 800)">
-                                <SelectParameters>
-                                    <asp:QueryStringParameter Name="MemberID" QueryStringField="member" />
-                                    <asp:ControlParameter ControlID="R_UserIDTextBox" DefaultValue="%" Name="UserID" PropertyName="Text" />
-                                </SelectParameters>
-                            </asp:SqlDataSource>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
-
-                <div id="tabPlacementID" class="tab-pane">
-                    <div class="alert alert-info">
-                        <strong>Current Placement Id:
-                           <label id="Current_Plc_ID"></label>
-                        </strong>
-                    </div>
-
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <asp:TextBox ID="PositionMemberUserNameTextBox" autocomplete="off" runat="server" CssClass="form-control" placeholder="Placement ID"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="Required3" runat="server" ControlToValidate="PositionMemberUserNameTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group">
-                            <asp:DropDownList ID="PositionTypeDropDownList" runat="server" CssClass="form-control">
-                                <asp:ListItem Value="0">[ POSITION TYPE ]</asp:ListItem>
-                                <asp:ListItem>Left</asp:ListItem>
-                                <asp:ListItem>Right</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="Required4" runat="server" ControlToValidate="PositionTypeDropDownList" CssClass="EroorStar" ForeColor="Red" InitialValue="0" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group">
-                            <asp:Button ID="ChangeIDButton" runat="server" CssClass="btn btn-primary" Text="Change Placement" ValidationGroup="1" OnClick="ChangeIDButton_Click" />
-                            <asp:Label ID="PositionTypeLabel" runat="server" CssClass="Error"></asp:Label>
-                            <asp:Label ID="PositionLabel" runat="server" CssClass="Error"></asp:Label>
-                            <label id="Is_P_Position"></label>
-                        </div>
-                    </div>
-
-                    <div id="P_info" class="alert alert-success" style="display: none;">
-                        <i class="fa fa-user-circle"></i>
-                        <label id="P_Name_Label"></label>
-                        <i class="fa fa-phone-square"></i>
-                        <label id="P_Phone_Label"></label>
-                    </div>
-
-                    <asp:SqlDataSource ID="UpdatePlacementSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Member]" UpdateCommand="UPDATE Member SET PositionMemberID = @PositionMemberID, PositionType =@PositionType WHERE (MemberID = @MemberID)" InsertCommand="Add_Update_CarryMember" InsertCommandType="StoredProcedure">
-                        <InsertParameters>
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="MemberID" PropertyName="DataKey[0]" Type="Int32" />
-                        </InsertParameters>
-                        <UpdateParameters>
-                            <asp:Parameter Name="PositionMemberID" />
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="MemberID" PropertyName="DataKey[0]" Type="Int32" />
-                            <asp:ControlParameter ControlID="PositionTypeDropDownList" Name="PositionType" PropertyName="SelectedValue" />
-                        </UpdateParameters>
-                    </asp:SqlDataSource>
-                    <asp:SqlDataSource ID="UpdateOldPlacementSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Update_CarryMember" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM [Member] ">
-                        <InsertParameters>
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="MemberID" PropertyName="DataKey[1]" Type="Int32" />
-                        </InsertParameters>
-                    </asp:SqlDataSource>
-                    <asp:SqlDataSource ID="Position_Change_RecordSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Member_Position_Change_Record(MemberID, Old_PositionMemberID, New_PositionMemberID, Admin_RegistrationID, Old_PositionType, New_PositionType) VALUES (@MemberID, @Old_PositionMemberID, @New_PositionMemberID, @Admin_RegistrationID, @Old_PositionType, @New_PositionType)" SelectCommand="SELECT * FROM [Member_Position_Change_Record]">
-                        <InsertParameters>
-                            <asp:SessionParameter Name="Admin_RegistrationID" SessionField="RegistrationID" Type="Int32" />
-                            <asp:QueryStringParameter Name="MemberID" QueryStringField="member" Type="Int32" />
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="Old_PositionMemberID" PropertyName="DataKey[1]" Type="Int32" />
-                            <asp:ControlParameter ControlID="PositionTypeDropDownList" Name="New_PositionType" PropertyName="SelectedValue" Type="String" />
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="Old_PositionType" PropertyName="DataKey[5]" Type="String" />
-                            <asp:Parameter Name="New_PositionMemberID" Type="Int32" />
-                        </InsertParameters>
-                    </asp:SqlDataSource>
-                    <asp:SqlDataSource ID="Update_Old_M_Position_SQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT MemberID FROM Member" UpdateCommand="IF(@Position ='Left')
-BEGIN
-UPDATE Member SET Left_Status = 0 Where (MemberID = @PositionMemberID)
-END
-IF(@Position ='Right')
-BEGIN
-UPDATE Member SET Right_Status = 0 Where (MemberID = @PositionMemberID)
-END">
-                        <UpdateParameters>
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="Position" PropertyName="DataKey[5]" />
-                            <asp:ControlParameter ControlID="MemberDetailsFormView" Name="PositionMemberID" PropertyName="DataKey[1]" />
-                        </UpdateParameters>
-                    </asp:SqlDataSource>
-                    <asp:SqlDataSource ID="Update_M_PositionSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT MemberID FROM Member" UpdateCommand="IF(@Position ='Left')
-BEGIN
-UPDATE Member SET Left_Status = 1 Where (MemberID = @MemberID)
-END
-IF(@Position ='Right')
-BEGIN
-UPDATE Member SET Right_Status = 1 Where (MemberID = @MemberID)
-END">
-                        <UpdateParameters>
-                            <asp:ControlParameter ControlID="PositionTypeDropDownList" Name="Position" PropertyName="SelectedValue" />
-                            <asp:Parameter Name="MemberID" />
                         </UpdateParameters>
                     </asp:SqlDataSource>
                 </div>

@@ -186,7 +186,7 @@ SELECT SUM(ISNULL(Commission_Amount,0)) AS Amount,   SUM(ISNULL(Tax_Service_Char
             </asp:Repeater>
         </div>
     </div>
-    <asp:SqlDataSource ID="BonusNetSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT 'Duplex Commission' as NAME, ISNULL(SUM(Amount),0) AS Amount, ISNULL(SUM(Tax_Service_Charge),0) AS Tax_Service_Charge, ISNULL(SUM(Net_Amount),0) AS Net  FROM Member_Bouns_Records_Infinity_Matching WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
+    <asp:SqlDataSource ID="BonusNetSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT 'Generation Commission' as NAME, ISNULL(SUM(Amount),0) AS Amount, ISNULL(SUM(Tax_Service_Charge),0) AS Tax_Service_Charge, ISNULL(SUM(Net_Amount),0) AS Net  FROM Member_Bouns_Records_Infinity_Matching WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
 union
 SELECT 'Reference &amp; Spot Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, ISNULL(SUM(Tax_Service_Charge),0) AS Tax_Service_Charge, ISNULL(SUM(Net_Amount),0) AS Net FROM  Member_Bouns_Records_Referral WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
 union

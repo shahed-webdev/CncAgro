@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Web.Script.Serialization;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CncAgro.AccessAdmin.Member
@@ -23,27 +22,6 @@ namespace CncAgro.AccessAdmin.Member
             {
                 Response.Redirect("Member_List.aspx");
             }
-
-            if (!Page.IsPostBack)
-            {
-                DataView dv = (DataView)LeftSQL.Select(DataSourceSelectArguments.Empty);
-                L_Total_Label.Text = "Left Customers: " + dv.Count.ToString();
-
-                DataView dv2 = (DataView)RightSQL.Select(DataSourceSelectArguments.Empty);
-                R_Total_Label.Text = "Right Customers: " + dv2.Count.ToString();
-            }
-        }
-
-
-        protected void L_FindButton_Click(object sender, EventArgs e)
-        {
-            DataView dv = (DataView)LeftSQL.Select(DataSourceSelectArguments.Empty);
-            L_Total_Label.Text = "Left Customers: " + dv.Count.ToString();
-        }
-        protected void R_Find_Button_Click(object sender, EventArgs e)
-        {
-            DataView dv2 = (DataView)RightSQL.Select(DataSourceSelectArguments.Empty);
-            R_Total_Label.Text = "Right Customers: " + dv2.Count.ToString();
         }
 
 
@@ -217,106 +195,6 @@ namespace CncAgro.AccessAdmin.Member
             }
 
             return R;
-        }
-
-        protected void ChangeIDButton_Click(object sender, EventArgs e)
-        {
-            bool ISLeftStatus = false;
-            bool ISRightStatus = false;
-            bool Default_Status = (bool)MemberDetailsFormView.DataKey["Default_MemberStatus"];
-
-            if (!Default_Status)
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
-
-                SqlCommand PositionUserName = new SqlCommand("Add_Member_Position_Change_Check", con);
-                PositionUserName.CommandType = CommandType.StoredProcedure;
-                PositionUserName.Parameters.AddWithValue("@MemberID", MemberDetailsFormView.DataKey["MemberID"].ToString());
-                PositionUserName.Parameters.AddWithValue("@UserName", PositionMemberUserNameTextBox.Text.Trim());
-
-                con.Open();
-                object Is_Possible = PositionUserName.ExecuteScalar();
-                con.Close();
-
-                if (Is_Possible != null)
-                {
-                    SqlCommand NEW_PositionMemberID = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", con);
-                    NEW_PositionMemberID.Parameters.AddWithValue("@UserName", PositionMemberUserNameTextBox.Text.Trim());
-
-                    con.Open();
-                    object IsPositionUserValid = NEW_PositionMemberID.ExecuteScalar();
-                    string s_New_PositionMemberID = NEW_PositionMemberID.ExecuteScalar().ToString();
-                    con.Close();
-
-                    if (IsPositionUserValid != null)
-                    {
-                        if (PositionTypeDropDownList.SelectedValue == "Left")
-                        {
-                            SqlCommand LeftStatus = new SqlCommand("SELECT Left_Status FROM [Member] WHERE (MemberID = @MemberID)", con);
-                            LeftStatus.Parameters.AddWithValue("@MemberID", s_New_PositionMemberID);
-
-                            con.Open();
-                            ISLeftStatus = (bool)LeftStatus.ExecuteScalar();
-                            con.Close();
-                        }
-
-                        if (PositionTypeDropDownList.SelectedValue == "Right")
-                        {
-                            SqlCommand RightStatus = new SqlCommand("SELECT Right_Status FROM [Member] WHERE (MemberID = @MemberID)", con);
-                            RightStatus.Parameters.AddWithValue("@MemberID", s_New_PositionMemberID);
-
-                            con.Open();
-                            ISRightStatus = (bool)RightStatus.ExecuteScalar();
-                            con.Close();
-                        }
-
-
-                        ////---------------------Check left and right-----------------
-                        if (!ISLeftStatus)
-                        {
-                            if (!ISRightStatus)
-                            {
-                                Position_Change_RecordSQL.InsertParameters["New_PositionMemberID"].DefaultValue = s_New_PositionMemberID;
-                                Position_Change_RecordSQL.Insert();
-
-                                Update_M_PositionSQL.UpdateParameters["MemberID"].DefaultValue = s_New_PositionMemberID;
-                                Update_M_PositionSQL.Update();
-
-
-                                Update_Old_M_Position_SQL.Update();
-
-
-                                UpdatePlacementSQL.UpdateParameters["PositionMemberID"].DefaultValue = s_New_PositionMemberID;
-                                UpdatePlacementSQL.Update();
-
-                                // SP ------------- Add_Update_CarryMember
-                                UpdatePlacementSQL.Insert();
-
-                                // SP ------------- Add_Update_CarryMember
-                                UpdateOldPlacementSQL.Insert();
-
-                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully Changed')", true);
-                            }
-                            else
-                            {
-                                PositionTypeLabel.Text = "Right Carry Member Full";
-                            }
-                        }
-                        else
-                        {
-                            PositionTypeLabel.Text = "Left Carry Member Full";
-                        }
-                    }
-                    else
-                    {
-                        PositionLabel.Text = "Invalid Position Member User Name";
-                    }
-                }
-                else
-                {
-                    PositionLabel.Text = "Can't Change Position";
-                }
-            }
         }
     }
 }
