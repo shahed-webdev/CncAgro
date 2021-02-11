@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Generation Commission</h3>
-      <a class="Sub_Link" href="../Point_And_Bonus_Details.aspx"><< Back To Previous</a>
+      <a class="Sub_Link" href="../MemberProfile.aspx"><< Back To Previous</a>
    <asp:GridView ID="GenerationGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="Records_GenerationSQL" AllowPaging="True" PageSize="50">
       <Columns>
          <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />

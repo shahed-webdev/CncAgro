@@ -48,63 +48,9 @@
                 </SelectParameters>
             </asp:SqlDataSource>
         </div>
-        <div class="col-sm-6">
-            <asp:FormView ID="MatchingFormView" runat="server" DataSourceID="MatchingSQL" Width="100%">
-                <ItemTemplate>
-                    <div class="statistic d-flex align-items-center bg-white has-shadow">
-                        <div class="icon bg-MatchPoint"><i class="fa fa-star"></i></div>
-                        <div class="text">
-                            <strong><%# Eval("MatchPoint","{0:N}") %></strong><br />
-                            <small>Matching Point</small>
-                        </div>
-                    </div>
-                    <div class="statistic d-flex align-items-center bg-white has-shadow">
-                        <div class="icon bg-FlashPoint"><i class="fa fa-star"></i></div>
-                        <div class="text">
-                            <strong><%# Eval("FlashPoint","{0:N}") %></strong><br />
-                            <small>Flash Point</small>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:FormView>
-            <asp:SqlDataSource ID="MatchingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT ISNULL(SUM(Matching_Point),0) AS MatchPoint, ISNULL(SUM(Flash_Point),0) AS FlashPoint FROM Member_Bouns_Records_Infinity_Matching WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))" CancelSelectOnNullParameter="False">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="From_TextBox" Name="From_Date" PropertyName="Text" />
-                    <asp:ControlParameter ControlID="TO_TextBox" Name="To_Date" PropertyName="Text" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-        </div>
+
     </div>
-
-    <asp:FormView ID="CarryFormView" runat="server" DataSourceID="CarrySQL" Width="100%">
-        <ItemTemplate>
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Left Carry Forward</th>
-                                    <th>Right Carry Forward</th>
-                                    <th>Total Carry Forward</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><%# Eval("TeamA","{0:N}") %></td>
-                                    <td><%# Eval("TeamB","{0:N}") %></td>
-                                    <td><%# Eval("Total","{0:N}") %></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </ItemTemplate>
-    </asp:FormView>
-    <asp:SqlDataSource ID="CarrySQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT SUM(Total_Left_Point) AS TeamA, SUM(Total_Right_Point) AS TeamB, SUM(Total_Left_Point + Total_Right_Point) AS Total FROM Member" CancelSelectOnNullParameter="False">
-    </asp:SqlDataSource>
-
+    
 
     <h4>Tax And Service Charge Report</h4>
     <asp:FormView ID="ServiceChargeFormView" runat="server" DataSourceID="Total_SChargeSQL" Width="100%">
@@ -144,7 +90,7 @@
         </ItemTemplate>
     </asp:FormView>
     <asp:SqlDataSource ID="Total_SChargeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT ISNULL(SUM(ALL_Table.Amount),0) AS Amount, ISNULL(SUM(ALL_Table.Tax_Service_Charge),0) AS Service_Charge, ISNULL(SUM(ALL_Table.Net),0) AS Net  FROM(
-SELECT  SUM(ISNULL(Amount,0)) AS Amount, SUM(ISNULL(Tax_Service_Charge,0)) AS Tax_Service_Charge, SUM(ISNULL(Net_Amount,0)) AS Net  FROM Member_Bouns_Records_Infinity_Matching WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
+SELECT  SUM(ISNULL(Amount,0)) AS Amount, SUM(ISNULL(Tax_Service_Charge,0)) AS Tax_Service_Charge, SUM(ISNULL(Net_Amount,0)) AS Net  FROM Member_Bouns_Records_Generation WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
 union
 SELECT SUM(ISNULL(Commission_Amount,0)) AS Amount, SUM(ISNULL(Tax_Service_Charge,0)) AS Tax_Service_Charge, SUM(ISNULL(Net_Amount,0)) AS Net  FROM  Member_Bouns_Records_Referral WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
 union
@@ -186,7 +132,8 @@ SELECT SUM(ISNULL(Commission_Amount,0)) AS Amount,   SUM(ISNULL(Tax_Service_Char
             </asp:Repeater>
         </div>
     </div>
-    <asp:SqlDataSource ID="BonusNetSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT 'Generation Commission' as NAME, ISNULL(SUM(Amount),0) AS Amount, ISNULL(SUM(Tax_Service_Charge),0) AS Tax_Service_Charge, ISNULL(SUM(Net_Amount),0) AS Net  FROM Member_Bouns_Records_Infinity_Matching WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
+    <asp:SqlDataSource ID="BonusNetSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="
+SELECT 'Generation Commission' as NAME, ISNULL(SUM(Amount),0) AS Amount, ISNULL(SUM(Tax_Service_Charge),0) AS Tax_Service_Charge, ISNULL(SUM(Net_Amount),0) AS Net  FROM Member_Bouns_Records_Generation WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
 union
 SELECT 'Reference &amp; Spot Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, ISNULL(SUM(Tax_Service_Charge),0) AS Tax_Service_Charge, ISNULL(SUM(Net_Amount),0) AS Net FROM  Member_Bouns_Records_Referral WHERE (CAST(Insert_Date AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))
 union
