@@ -169,8 +169,6 @@
     <Content Include="Access_Authority\Profile.aspx" />
     <Content Include="Access_Authority\SignUp_Institution.aspx" />
     <Content Include="Access_Authority\Create_Invoice.aspx" />
-    <Content Include="CSS\All_Page_Print.css" />
-    <Content Include="CSS\dnb_Inside.css" />
     <Content Include="CSS\admin-master.css" />
     <Content Include="CSS\home.css" />
     <Content Include="CSS\common-style.css" />
@@ -186,8 +184,6 @@
     <Content Include="CSS\Image\Tree_Down.png" />
     <Content Include="CSS\Image\Tree_Top.png" />
     <Content Include="CSS\Image\Upgrade.png" />
-    <Content Include="CSS\DNBLogin.css" />
-    <Content Include="CSS\MemberANDSeller_Master.css" />
     <Content Include="Default.aspx" />
     <Content Include="Home\Product_Category.aspx" />
     <Content Include="JS\cart\jquery-2.2.3.min.js" />

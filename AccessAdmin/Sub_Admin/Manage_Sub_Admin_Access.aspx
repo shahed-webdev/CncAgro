@@ -10,7 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Manage Sub-Admin Page Access</h3>
 
-    <div class="form-inline">
+    <div class="form-inline mb-3">
         <div class="form-group">
             <asp:DropDownList ID="UserListDropDownList" runat="server" DataSourceID="UserListSQL" DataTextField="Name" DataValueField="UserName" AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="UserListDropDownList_SelectedIndexChanged">
                 <asp:ListItem Value="0">[ Select Sub-admin ]</asp:ListItem>

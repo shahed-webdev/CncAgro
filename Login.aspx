@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+    <asp:Label ID="InvalidErrorLabel" runat="server" CssClass="Error"></asp:Label>
     <asp:Login ID="CustomerLogin" runat="server" OnLoginError="CustomerLogin_LoginError" OnLoggedIn="CustomerLogin_LoggedIn" DestinationPageUrl="~/Profile_Redirect.aspx" Width="100%">
         <LayoutTemplate>
             <div class="container mt-5">
@@ -43,6 +44,6 @@
             </div>
         </LayoutTemplate>
     </asp:Login>
-    <asp:Label ID="InvalidErrorLabel" runat="server" CssClass="Error"></asp:Label>
+   
 
 </asp:Content>

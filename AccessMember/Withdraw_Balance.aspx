@@ -23,9 +23,9 @@
             <asp:SessionParameter Name="MemberID" SessionField="MemberID" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-
+    
+    <div class="alert alert-info">You'll get a text message with your verification code.</div>
     <div class="form-inline">
-        <div class="alert alert-info">You'll get a text message with your verification code.</div>
         <div class="form-group">
             <asp:TextBox ID="Amount_TextBox" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" CssClass="form-control" placeholder="Withdraw Amount" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="Amount_TextBox" CssClass="EroorStar" ValidationGroup="1"></asp:RequiredFieldValidator>

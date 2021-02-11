@@ -4,7 +4,7 @@
     <link href="CSS/Member_Profile.css?v=5" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="card Member-info">
+    <div class="card card-body mb-3">
         <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" OnItemUpdated="MemberFormView_ItemUpdated" Width="100%">
             <EditItemTemplate>
                 <h3>Update Information</h3>

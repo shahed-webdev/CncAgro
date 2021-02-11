@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro {
-    
-    
-    public partial class Login {
-        
-        /// <summary>
-        /// CustomerLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Login CustomerLogin;
-        
+namespace CncAgro
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// InvalidErrorLabel control.
         /// </summary>
@@ -29,5 +22,14 @@ namespace CncAgro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label InvalidErrorLabel;
+
+        /// <summary>
+        /// CustomerLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Login CustomerLogin;
     }
 }

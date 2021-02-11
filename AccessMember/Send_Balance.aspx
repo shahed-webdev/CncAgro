@@ -26,13 +26,13 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
-    <div class="col-md-6 card">
+    <div class="col-md-6 card card-body mb-3">
         <div class="form-group">
             <label>
                 Recipient ID
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="MemberUserNameTextBox" CssClass="EroorStar" ErrorMessage="Required" ValidationGroup="1"></asp:RequiredFieldValidator>
             </label>
-            <asp:TextBox ID="MemberUserNameTextBox" placeholder="Distributor/Customer id" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="MemberUserNameTextBox" placeholder="Customer id" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
         <div id="user-info" class="alert-success">
@@ -126,13 +126,17 @@ UPDATE  Fund_Transition_Code SET IS_Used = 1 WHERE (Transition_CodeID = @Transit
 
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-primary" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Enter verification Code</h4>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title white-text w-100 font-weight-bold py-2">Enter verification Code</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
                 </div>
+
                 <div class="modal-body">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
@@ -155,6 +159,7 @@ UPDATE  Fund_Transition_Code SET IS_Used = 1 WHERE (Transition_CodeID = @Transit
             </div>
         </div>
     </div>
+    
 
     <script>
         //Get Member UserName
