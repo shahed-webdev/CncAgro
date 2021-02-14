@@ -67,6 +67,12 @@ input[type=radio]:checked + label { background-position: 5px -16px; background-i
 
 
 @media print {
-    .side-bar, .btn, .form-inline { display: none; }
-    .container { width: 100%; }
+    body { min-width: 0 !important; background-color: #fff; padding: 0 !important }
+     footer, .side-bar, .btn, .form-inline { display: none !important; }
+
+    .container-fluid, .container { min-width: 0 !important; width: 100%; overflow: hidden !important }
+    .card-body { padding: 0 !important; }
+
+    .navbar { display: block !important}
+    .navbar a{ text-decoration: none}
 }

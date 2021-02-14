@@ -191,18 +191,18 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
 
     <asp:FormView ID="BonusFormView" runat="server" DataSourceID="BonusSQL" Width="100%">
         <ItemTemplate>
-            <h3><strong style="color:#0d47a1">Balance: ৳<%#Eval("Available_Balance","{0:N}") %></strong></h3>
+            <h3><strong style="color: #0d47a1">Balance: ৳<%#Eval("Available_Balance","{0:N}") %></strong></h3>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="Comission">
                         <h5>Referral Commission</h5>
-                       <a href="Bonus_Details/Referral_Bonus_Details.aspx"><%#Eval("Referral_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
+                        <a href="Bonus_Details/Referral_Bonus_Details.aspx"><%#Eval("Referral_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="Comission">
                         <h5>Generation Commission</h5>
-                       <a href="Bonus_Details/Generation_Bonus_Details.aspx"> <%#Eval("Generation_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
+                        <a href="Bonus_Details/Generation_Bonus_Details.aspx"><%#Eval("Generation_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -283,8 +283,8 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
             <asp:SessionParameter Name="MemberID" SessionField="MemberID" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    
-<%if (Notice_Repeater.Items.Count > 0)
+
+    <%if (Notice_Repeater.Items.Count > 0)
         { %>
     <h4>NOTICE</h4>
     <div class="row">

@@ -4,15 +4,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Generation Commission</h3>
+
       <a class="Sub_Link" href="../MemberProfile.aspx"><< Back To Previous</a>
    <asp:GridView ID="GenerationGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="Records_GenerationSQL" AllowPaging="True" PageSize="50">
       <Columns>
-         <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
+         <asp:BoundField DataField="UserName" HeaderText="User Id" SortExpression="UserName" />
          <asp:BoundField DataField="Generation" HeaderText="Generation" SortExpression="Generation" />
           <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
-          <asp:BoundField DataField="Tax_Service_Charge" HeaderText="Tax_Service_Charge" SortExpression="Tax_Service_Charge" />
-          <asp:BoundField DataField="Net_Amount" HeaderText="Net_Amount" SortExpression="Net_Amount" ReadOnly="True" />
-         <asp:BoundField DataField="Insert_Date" HeaderText="Insert_Date" SortExpression="Insert_Date" />
+          <asp:BoundField DataField="Tax_Service_Charge" HeaderText="Tax/Service Charge" SortExpression="Tax_Service_Charge" />
+          <asp:BoundField DataField="Net_Amount" HeaderText="Net Amount" SortExpression="Net_Amount" ReadOnly="True" />
+         <asp:BoundField DataField="Insert_Date" HeaderText="Date" SortExpression="Insert_Date" />
       </Columns>
         <EmptyDataTemplate>
          Empty
