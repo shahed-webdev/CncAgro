@@ -10,7 +10,7 @@
         <div class="form-group">
             <asp:TextBox ID="From_TextBox" placeholder="From Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control datepicker"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group mx-2">
             <asp:TextBox ID="TO_TextBox" placeholder="To Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control datepicker"></asp:TextBox>
         </div>
         <div class="form-group">
@@ -18,7 +18,7 @@
         </div>
     </div>
  
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
             <Columns>
                 <asp:BoundField DataField="Shopping_SN" HeaderText="Receipt No" InsertVisible="False" ReadOnly="True" SortExpression="Shopping_SN" />
