@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .Slider_Wrap { margin: 15px 0 20px 0; }
         h3 { border-bottom: 1px solid #ddd; margin-bottom: 15px; color: #777; padding-bottom: 5px; }
         .slider_img { width: 100px; }
         .file { height: auto !important; }
@@ -11,10 +10,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container-fluid">
+            <div class="container-fluid my-3">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="card Slider_Wrap">
+                        <div class="card card-body">
                             <h3>Slider</h3>
                             <div class="form-group">
                                 <label>Slider Image</label>
@@ -24,26 +23,26 @@
                                 <label>Caption</label>
                                 <asp:TextBox ID="CaptionTextBox" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
-                                <asp:Button ID="SubmitButton" runat="server" Text="Submit" CssClass="btn btn-default" OnClick="SubmitButton_Click" />
-                                <asp:SqlDataSource ID="SliderSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
-                                    DeleteCommand="DELETE FROM [Home_Slider] WHERE [SliderID] = @SliderID"
-                                    SelectCommand="SELECT * FROM [Home_Slider]"
-                                    UpdateCommand="UPDATE [Home_Slider] SET [Description] = @Description WHERE [SliderID] = @SliderID">
-                                    <DeleteParameters>
-                                        <asp:Parameter Name="SliderID" Type="Int32" />
-                                    </DeleteParameters>
-                                    <UpdateParameters>
-                                        <asp:Parameter Name="Description" Type="String" />
-                                        <asp:Parameter Name="SliderID" Type="Int32" />
-                                    </UpdateParameters>
-                                </asp:SqlDataSource>
-                           
+                            <asp:Button ID="SubmitButton" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="SubmitButton_Click" />
+                            <asp:SqlDataSource ID="SliderSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
+                                DeleteCommand="DELETE FROM [Home_Slider] WHERE [SliderID] = @SliderID"
+                                SelectCommand="SELECT * FROM [Home_Slider]"
+                                UpdateCommand="UPDATE [Home_Slider] SET [Description] = @Description WHERE [SliderID] = @SliderID">
+                                <DeleteParameters>
+                                    <asp:Parameter Name="SliderID" Type="Int32" />
+                                </DeleteParameters>
+                                <UpdateParameters>
+                                    <asp:Parameter Name="Description" Type="String" />
+                                    <asp:Parameter Name="SliderID" Type="Int32" />
+                                </UpdateParameters>
+                            </asp:SqlDataSource>
+
                             <br />
                             <asp:GridView ID="SliderGridView" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="SliderID" DataSourceID="SliderSQL" ForeColor="Black" GridLines="Horizontal" Width="100%">
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <img class="img-responsive slider_img" src='/Handler/Home_Slider.ashx?Img=<%#Eval("SliderID") %>' />
+                                            <img class="img-responsive slider_img" src='/Handler/HomePageSliderImage.ashx?id=<%#Eval("SliderID") %>' alt="" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Description" HeaderText="Caption" SortExpression="Description" />
@@ -62,9 +61,8 @@
                             </asp:GridView>
                         </div>
                     </div>
-
                     <div class="col-md-6">
-                        <div class="card Slider_Wrap">
+                        <div class="card card-body">
                             <h3>Product</h3>
                             <div class="form-group">
                                 <label>Product Category</label>
@@ -111,7 +109,7 @@
                                     <asp:BoundField DataField="Product_Title" HeaderText="Product Title" SortExpression="Product_Title" />
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <img src='/Handler/Home_Products.ashx?Img=<%#Eval("ProductID") %>' class="img-responsive  slider_img" />
+                                            <img src='/Handler/HomePageProductImage.ashx?id=<%#Eval("ProductID") %>' class="img-responsive  slider_img" alt="" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:CommandField ShowEditButton="True" />

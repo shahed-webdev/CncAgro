@@ -10,7 +10,7 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="form-inline">
+            <div class="form-inline mb-3">
                 <div class="form-group">
                     <asp:TextBox ID="FindTextBox" placeholder="Code, Name" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>

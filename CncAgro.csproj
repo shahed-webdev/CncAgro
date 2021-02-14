@@ -744,8 +744,8 @@
     <Compile Include="Handler\Change_Position_User.ashx.cs">
       <DependentUpon>Change_Position_User.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Handler\Document_Image.ashx.cs">
-      <DependentUpon>Document_Image.ashx</DependentUpon>
+    <Compile Include="Handler\DocumentImage.ashx.cs">
+      <DependentUpon>DocumentImage.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\HomePageProductImage.ashx.cs">
       <DependentUpon>HomePageProductImage.ashx</DependentUpon>
@@ -753,8 +753,8 @@
     <Compile Include="Handler\HomePageSliderImage.ashx.cs">
       <DependentUpon>HomePageSliderImage.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Handler\Nominee_Image.ashx.cs">
-      <DependentUpon>Nominee_Image.ashx</DependentUpon>
+    <Compile Include="Handler\NomineeImage.ashx.cs">
+      <DependentUpon>NomineeImage.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\Notice_Image.ashx.cs">
       <DependentUpon>Notice_Image.ashx</DependentUpon>
@@ -817,7 +817,6 @@
     <Content Include="Basic.Master" />
     <Content Include="Handler\AuthorityHandler.ashx" />
     <Content Include="Handler\UserName.ashx" />
-    <Content Include="Handler\Document_Image.ashx" />
     <Content Include="Handler\Add_New_Member_User.ashx" />
     <Content Include="Design.Master" />
     <Content Include="Handler\Tree_UserName.ashx" />
@@ -826,10 +825,11 @@
     <Content Include="Handler\Change_Position_User.ashx" />
     <Content Include="packages.config" />
     <Content Include="Handler\Notice_Image.ashx" />
-    <Content Include="Handler\Nominee_Image.ashx" />
     <Content Include="Handler\HomePageSliderImage.ashx" />
     <Content Include="Handler\HomePageProductImage.ashx" />
     <Content Include="Handler\UserPhoto.ashx" />
+    <Content Include="Handler\DocumentImage.ashx" />
+    <Content Include="Handler\NomineeImage.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

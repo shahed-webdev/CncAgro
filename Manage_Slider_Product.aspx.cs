@@ -9,30 +9,31 @@ using System.Web.UI;
 
 namespace CncAgro
 {
-    public partial class Manage_Slider_Product : System.Web.UI.Page
+    public partial class Manage_Slider_Product : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager.GetCurrent(this).RegisterPostBackControl(this.SubmitButton);
-            ScriptManager.GetCurrent(this).RegisterPostBackControl(this.ProductButton);
+            ScriptManager.GetCurrent(this)?.RegisterPostBackControl(this.SubmitButton);
+            ScriptManager.GetCurrent(this)?.RegisterPostBackControl(this.ProductButton);
         }
+
         protected void SubmitButton_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
 
             // Check file exist or not  
             if (Slider_FileUpload.PostedFile != null)
             {
                 // Check the extension of image  
-                string extension = Path.GetExtension(Slider_FileUpload.FileName);
-                if (extension.ToLower() == ".png" || extension.ToLower() == ".jpg")
-                {
-                    Stream strm = Slider_FileUpload.PostedFile.InputStream;
-                    using (var Upload_image = System.Drawing.Image.FromStream(strm))
-                    {
-                        int newWidth = 800; // New Width of Image in Pixel  
-                        int newHeight = 400; // New Height of Image in Pixel  
+                var extension = Path.GetExtension(Slider_FileUpload.FileName);
+                const int newWidth = 800;
+                const int newHeight = 400; // New Height of Image in Pixel  
 
+                if (extension != null && (extension.ToLower() == ".png" || extension.ToLower() == ".jpg"))
+                {
+                    var inputStream = Slider_FileUpload.PostedFile.InputStream;
+                    using (var uploadImage = Image.FromStream(inputStream))
+                    {
                         var thumbImg = new Bitmap(newWidth, newHeight);
                         var thumbGraph = Graphics.FromImage(thumbImg);
 
@@ -40,25 +41,27 @@ namespace CncAgro
                         thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
                         thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
-                        System.IO.MemoryStream stream = new MemoryStream();
-                        thumbGraph.DrawImage(Upload_image, imgRectangle);
+                        var stream = new MemoryStream();
+                        thumbGraph.DrawImage(uploadImage, imgRectangle);
 
                         // Save the file  
                         thumbImg.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                         stream.Position = 0;
-                        byte[] image = new byte[stream.Length + 1];
+                        var image = new byte[stream.Length + 1];
                         stream.Read(image, 0, image.Length);
 
                         // Create SQL Command
-                        SqlCommand cmd = new SqlCommand();
-                        cmd.CommandText = "INSERT INTO Home_Slider (Image,Description) VALUES (@Image,@Description)";
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Connection = con;
+                        var cmd = new SqlCommand
+                        {
+                            CommandText = "INSERT INTO Home_Slider (Image,Description) VALUES (@Image,@Description)",
+                            CommandType = CommandType.Text,
+                            Connection = con
+                        };
 
-                        SqlParameter UploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length);
+                        var uploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length);
                         cmd.Parameters.AddWithValue("@Description", CaptionTextBox.Text);
-                        UploadedImage.Value = image;
-                        cmd.Parameters.Add(UploadedImage);
+                        uploadedImage.Value = image;
+                        cmd.Parameters.Add(uploadedImage);
 
                         con.Open();
                         cmd.ExecuteNonQuery();
@@ -74,20 +77,20 @@ namespace CncAgro
         protected void ProductButton_Click(object sender, EventArgs e)
         {
             ProductSQL.Insert();
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
 
             // Check file exist or not  
             if (Product_FileUpload.PostedFile != null)
             {
                 // Check the extension of image  
-                string extension = Path.GetExtension(Product_FileUpload.FileName);
-                if (extension.ToLower() == ".png" || extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg")
+                var extension = Path.GetExtension(Product_FileUpload.FileName);
+                if (extension != null && (extension.ToLower() == ".png" || extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg"))
                 {
-                    Stream strm = Product_FileUpload.PostedFile.InputStream;
-                    using (var Upload_image = System.Drawing.Image.FromStream(strm))
+                    var inputStream = Product_FileUpload.PostedFile.InputStream;
+                    using (var uploadImage = Image.FromStream(inputStream))
                     {
-                        int newWidth = 150; // New Width of Image in Pixel  
-                        int newHeight = 150; // New Height of Image in Pixel  
+                        const int newWidth = 200; // New Width of Image in Pixel  
+                        const int newHeight = 200; // New Height of Image in Pixel  
 
                         var thumbImg = new Bitmap(newWidth, newHeight);
                         var thumbGraph = Graphics.FromImage(thumbImg);
@@ -96,30 +99,30 @@ namespace CncAgro
                         thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
                         thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
-                        System.IO.MemoryStream stream = new MemoryStream();
-                        thumbGraph.DrawImage(Upload_image, imgRectangle);
+                        var stream = new MemoryStream();
+                        thumbGraph.DrawImage(uploadImage, imgRectangle);
 
                         // Save the file  
                         thumbImg.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                         stream.Position = 0;
-                        byte[] image = new byte[stream.Length + 1];
+                        var image = new byte[stream.Length + 1];
                         stream.Read(image, 0, image.Length);
 
                         // Create SQL Command
-                        SqlCommand cmd = new SqlCommand();
-                        cmd.CommandText = "UPDATE Home_Product SET Product_Image = @Image WHERE (ProductID = (select IDENT_CURRENT('Home_Product')))";
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Connection = con;
+                        var cmd = new SqlCommand
+                        {
+                            CommandText = "UPDATE Home_Product SET Product_Image = @Image WHERE (ProductID = (select IDENT_CURRENT('Home_Product')))",
+                            CommandType = CommandType.Text,
+                            Connection = con
+                        };
 
-                        SqlParameter UploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length);
+                        var uploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length) {Value = image};
 
-                        UploadedImage.Value = image;
-                        cmd.Parameters.Add(UploadedImage);
+                        cmd.Parameters.Add(uploadedImage);
 
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
-
                     }
                 }
             }

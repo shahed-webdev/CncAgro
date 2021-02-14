@@ -43,8 +43,8 @@
                         <asp:FileUpload ID="AdminFileUpload" runat="server" />
                     </div>
 
-                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-default" />
-                    &nbsp;<asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn-default" />
+                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-primary" />
+                    &nbsp;<asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn-primary" />
                 </div>
             </EditItemTemplate>
 
@@ -80,8 +80,8 @@
                 </div>
 
                 <div class="col-md-12">
-                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-default" runat="server" CausesValidation="False" CommandName="Edit" Text="Update" />
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Change Password</button>
+                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="Edit" Text="Update" />
+                    <button type="button" class="btn btn-outline-primary p-2" data-toggle="modal" data-target="#myModal">Change Password</button>
                 </div>
             </ItemTemplate>
         </asp:FormView>

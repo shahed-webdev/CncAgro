@@ -11,13 +11,13 @@
         <ContentTemplate>
             <asp:GridView ID="RecordGridView" AllowPaging="True" AllowSorting="True" PageSize="100" runat="server" AutoGenerateColumns="False" DataSourceID="RecordsSQL" CssClass="mGrid" DataKeyNames="Generation_Income_RecordsID">
                 <Columns>
-                    <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
-                    <asp:BoundField DataField="GenerationUser" HeaderText="GenerationUser" SortExpression="GenerationUser" />
+                    <asp:BoundField DataField="UserName" HeaderText="User Id" SortExpression="UserName" />
+                    <asp:BoundField DataField="GenerationUser" HeaderText="Generation User" SortExpression="GenerationUser" />
                     <asp:BoundField DataField="Generation" HeaderText="Generation" SortExpression="Generation" />
                     <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
-                    <asp:BoundField DataField="Tax_Service_Charge" HeaderText="Tax_Service_Charge" SortExpression="Tax_Service_Charge" />
-                    <asp:BoundField DataField="Net_Amount" HeaderText="Net_Amount" ReadOnly="True" SortExpression="Net_Amount" />
-                    <asp:BoundField DataField="Insert_Date" HeaderText="Insert_Date" SortExpression="Insert_Date" />
+                    <asp:BoundField DataField="Tax_Service_Charge" HeaderText="Tax/Service Charge" SortExpression="Tax_Service_Charge" />
+                    <asp:BoundField DataField="Net_Amount" HeaderText="Net Amount" ReadOnly="True" SortExpression="Net_Amount" />
+                    <asp:BoundField DataField="Insert_Date" HeaderText="Date" SortExpression="Insert_Date" />
                 </Columns>
                 <EmptyDataTemplate>
                     No Record

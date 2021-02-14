@@ -48,7 +48,7 @@
             </div>
 
             <div class="table-responsive">
-                <div class="form-inline">
+                <div class="form-inline mb-3">
                     <div class="form-group">
                         <asp:TextBox ID="FindTextBox" placeholder="Code, Name" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
@@ -59,7 +59,7 @@
 
                 <asp:GridView ID="ProductGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid table-hover" DataKeyNames="Product_PointID" DataSourceID="Product_PointSQL" AllowSorting="True">
                     <Columns>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Short List">
                             <ItemTemplate>
                                 <asp:CheckBox ID="SelectCheckBox" AutoPostBack="true" Checked='<%#Eval("IsActive") %>' runat="server" Text=" " OnCheckedChanged="SelectCheckBox_CheckedChanged" />
                             </ItemTemplate>
