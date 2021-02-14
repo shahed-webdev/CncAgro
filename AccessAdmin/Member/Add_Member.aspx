@@ -231,10 +231,9 @@
     </div>
 
     <div id="AddCustomer" class="form-inline" style="visibility: hidden;">
-        <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
         <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Add Customer" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
         <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
-
+        <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
         <asp:HiddenField ID="JsonData" runat="server" />
     </div>
 
@@ -412,7 +411,7 @@ SELECT @ShoppingID = Scope_identity()"
         }
 
         function showCart() {
-            if (cart.length == 0) {
+            if (cart.length === 0) {
                 $(".cart").css("visibility", "hidden");
                 $("#AddCustomer").css("visibility", "hidden");
                 return;
@@ -481,7 +480,7 @@ SELECT @ShoppingID = Scope_identity()"
                             });
                             result(label);
 
-                            if (label == "") {
+                            if (label === "") {
                                 $("[id*=Add_Customer_Button]").prop("disabled", true);
                                 $("#Is_Referral").text("Referral ID is not valid");
                             }
@@ -499,84 +498,6 @@ SELECT @ShoppingID = Scope_identity()"
                 }
             });
 
-            //Get Position Member
-            $('[id*=PositionMemberUserNameTextBox]').typeahead({
-                minLength: 4,
-                source: function (request, result) {
-                    $.ajax({
-                        url: "Add_Member.aspx/Get_UserInfo_ID",
-                        data: JSON.stringify({ 'prefix': request }),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (response) {
-                            label = [];
-                            map = {};
-                            $.map(JSON.parse(response.d), function (item) {
-                                label.push(item.Username);
-                                map[item.Username] = item;
-                            });
-                            result(label);
-
-                            $("#MemberIDhf").val("");
-                            if (label == "") {
-                                $("[id*=Add_Customer_Button]").prop("disabled", true);
-                                $("[id*=PositionTypeDropDownList]").prop("disabled", true);
-                                $("[id*=PositionTypeDropDownList]")[0].selectedIndex = 0;
-                                $("#Is_Position").text("Placement ID is not valid");
-                            }
-                            else {
-                                $("#Is_Position").text("");
-                                $("[id*=PositionTypeDropDownList]").prop("disabled", false);
-                            }
-                        }
-                    });
-                },
-                updater: function (item) {
-                    $("#P_info").css("display", "block");
-                    $("#P_Name_Label").text(map[item].Name);
-                    $("#P_Phone_Label").text(map[item].Phone);
-                    $("#MemberIDhf").val(map[item].MemberID);
-                    $("[id*=PositionTypeDropDownList]")[0].selectedIndex = 0;
-                    $("#Is_LeftRight").text('');
-                    return item;
-                }
-            });
-
-
-            //Check Left right
-            $("[id*=PositionTypeDropDownList]").prop("disabled", true);
-
-            $("[id*=PositionTypeDropDownList]").on('change', function () {
-                var Position_MemberID = $("#MemberIDhf").val();
-                var PositionType = $(this).find('option:selected').text();
-
-                if (Position_MemberID != "" && $("[id*=PositionTypeDropDownList] option:selected").val() != "0") {
-                    $.ajax({
-                        type: "POST",
-                        url: "Add_Member.aspx/Check_Left_Right",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({ 'Position_MemberID': Position_MemberID, 'PositionType': PositionType }),
-                        dataType: "json",
-                        success: function (response) {
-                            $("#Is_LeftRight").text(response.d);
-
-                            if (response.d != "") {
-                                $("[id*=Add_Customer_Button]").prop("disabled", true);
-                            }
-                            else {
-                                if ($("#Is_Position").text() == "" && $("#Is_Referral").text() == "" && $("#Is_LeftRight").text() == "") {
-                                    $("[id*=Add_Customer_Button]").prop("disabled", false);
-                                }
-                            }
-                        }
-                    });
-                }
-
-                if (Position_MemberID == "") {
-                    $("[id*=PositionMemberUserNameTextBox]").val("");
-                }
-            });
 
 
             //*********Add Product********
