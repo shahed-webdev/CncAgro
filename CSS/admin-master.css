@@ -67,6 +67,6 @@ input[type=radio]:checked + label { background-position: 5px -16px; background-i
 
 
 @media print {
-    .side-bar, .btn { display: none; }
-    body { width: 100%}
+    .side-bar, .btn, .form-inline { display: none; }
+    .container { width: 100%; }
 }

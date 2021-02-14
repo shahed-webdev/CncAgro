@@ -283,14 +283,15 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
             <asp:SessionParameter Name="MemberID" SessionField="MemberID" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <%if (Notice_Repeater.Items.Count > 0)
+    
+<%if (Notice_Repeater.Items.Count > 0)
         { %>
     <h4>NOTICE</h4>
     <div class="row">
         <asp:Repeater ID="Notice_Repeater" runat="server" DataSourceID="NoticeSQL">
             <ItemTemplate>
                 <div class="col-md-6">
-                    <div class="panel panel-default">
+                    <div class="card">
                         <div class="card-header">
                             <h4><%# Eval("Notice_Title") %></h4>
                             <em style="color: #6F196E">View Date: <%# Eval("Start_Date","{0: d MMM yyyy}") %> - <%# Eval("End_Date","{0: d MMM yyyy}") %></em>
