@@ -1,25 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Receipt.aspx.cs" Inherits="CncAgro.AccessAdmin.Product_Point.Receipt" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../CSS/Receipt.css" rel="stylesheet" />
+    <link href="../CSS/Receipt.css?v=1" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="Contain">
+    <div class="contain">
         <asp:FormView ID="MemberFormView" runat="server" DataSourceID="MemberInfoSQL" Width="100%">
             <ItemTemplate>
-                <div class="clearfix">
-                    <div class="pull-left R_Info">
+                <div class="row mb-3">
+                    <div class="col-6">
                         <ul>
                             <li>Invoice: <strong>#<%# Eval("Shopping_SN") %></strong></li>
                             <li>Date: <strong><%# Eval("ShoppingDate","{0:d MMM yyyy}") %></strong></li>
                         </ul>
                     </div>
 
-                    <div class="pull-right R_Info">
+                    <div class="col-6 text-right">
                         <ul>
-                            <li><strong><i class="fa fa-user"></i>
-                                <%# Eval("Name") %></strong></li>
-                            <li><strong><i class="fa fa-id-badge"></i>
-                                <%# Eval("UserName") %></strong></li>
+                            <li>
+                                <strong><i class="fa fa-user"></i>
+                                    <%# Eval("Name") %></strong>
+                            </li>
+                            <li>
+                                <strong><i class="fa fa-id-badge"></i>
+                                    <%# Eval("UserName") %></strong>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -75,20 +80,20 @@
                 <asp:QueryStringParameter Name="ShoppingID" QueryStringField="ShoppingID" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <a class="btn btn-primary hidden-print" href="Sell_Product.aspx"><i class="fa fa-caret-left"></i> Sell Again</a>
-        <button type="button" class="btn btn-primary hidden-print" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> Print</button>
+        <a class="btn btn-primary hidden-print" href="Sell_Product.aspx"><i class="fa fa-caret-left mr-1"></i>Sell Again</a>
+        <button type="button" class="btn btn-primary hidden-print" onclick="window.print();"><span class="glyphicon glyphicon-print"></span>Print</button>
     </div>
 
     <script>
         $(function () {
-            var Amount_Total = 0;
-            $("[id*=TotalPriceLabel]").each(function () { Amount_Total = Amount_Total + parseFloat($(this).text()) });
-            $("#Amount_GrandTotal").text("Total: " + Amount_Total.toFixed(2));
+            var amountTotal = 0;
+            $("[id*=TotalPriceLabel]").each(function () { amountTotal = amountTotal + parseFloat($(this).text()) });
+            $("#Amount_GrandTotal").text(`Total: ${amountTotal.toFixed(2)}`);
 
 
-            var Point_Total = 0;
-            $("[id*=TotalPointLabel]").each(function () { Point_Total = Point_Total + parseFloat($(this).text()) });
-            $("#Point_GrandTotal").text("Total: " + Point_Total);
+            var pointTotal = 0;
+            $("[id*=TotalPointLabel]").each(function () { pointTotal = pointTotal + parseFloat($(this).text()) });
+            $("#Point_GrandTotal").text(`Total: ${pointTotal}`);
         });
     </script>
 </asp:Content>

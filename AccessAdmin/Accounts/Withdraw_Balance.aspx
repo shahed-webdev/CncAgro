@@ -67,7 +67,7 @@
         <div class="col-md-6 col-sm-6">
             <asp:FormView ID="M_detailsFormView" DataKeyNames="RegistrationID,Category,Is_Identified,Available_Balance,Phone" runat="server" DataSourceID="MemberDetailsSQL" Width="100%" OnDataBound="M_detailsFormView_DataBound">
                 <ItemTemplate>
-                    <div class="card userinfo">
+                    <div class="card card-body userinfo text-center">
                         <img alt="" src="/Handler/UserPhoto.ashx?id=<%# Eval("RegistrationID") %>" class="img-responsive img-circle img" />
                         <ul>
                             <li>

@@ -4,14 +4,14 @@
     <style>
         .userinfo ul { margin: 19px 0 0; padding: 0; }
         .userinfo ul li { border-bottom: 1px solid #ddd; font-size: 16px; list-style: outside none none; padding: 10px 0; text-align: center; }
-        .userinfo ul li:last-child { border-bottom:none; }
+        .userinfo ul li:last-child { border-bottom: none; }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3 class="NoPrint">Enter verification Code</h3>
-    
+
     <%if (M_detailsFormView.DataItemCount < 1 || Seller_detailsFormView.DataItemCount < 1)
-   {%>
+        {%>
     <div class="alert alert-danger NoPrint">
         Enter verification code you have received in your mobile
     </div>
@@ -75,9 +75,6 @@
                         Requested Date: <%#Eval("Insert_Date","{0:d MMM yyyy}") %>
                     </li>
                 </ul>
-
-                <br />
-                <button type="button" value="Print" onclick="window.print()" class="btn btn-danger NoPrint">Print</button>
             </div>
         </ItemTemplate>
     </asp:FormView>
@@ -120,7 +117,7 @@
     </asp:FormView>
 
     <%if (M_detailsFormView.DataItemCount > 0 || Seller_detailsFormView.DataItemCount > 0)
-   {%>
+        {%>
     <div class="form-inline">
         <div class="form-group">
             <asp:Button ID="Withdraw_Button" runat="server" Text="Withdraw" CssClass="btn btn-primary" OnClick="Withdraw_Button_Click" />

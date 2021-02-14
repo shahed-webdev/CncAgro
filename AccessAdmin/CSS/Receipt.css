@@ -1,7 +1,6 @@
 ﻿
-.R_Info { margin-bottom:10px}
-.R_Info ul{margin:0; padding:0 }
-.R_Info ul li{list-style:none;}
+.contain ul { margin: 0; padding: 0 }
+.contain ul li { list-style: none; }
 
 .B_Info{ width:100%; text-align:center}
 .B_Info td{font-size:16px; color:#000; font-weight:bold}

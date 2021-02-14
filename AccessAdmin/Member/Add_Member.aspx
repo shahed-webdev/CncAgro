@@ -155,27 +155,27 @@
                 <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" placeholder="Referral ID" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
-                <div id="R_info" class="alert alert-info" style="display: none;">
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    <label id="R_Name_Label"></label>
-                    <i class="fa fa-phone-square" aria-hidden="true"></i>
-                    <label id="R_Phone_Label"></label>
-                </div>
+            <div id="R_info" class="alert alert-info" style="display: none;">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                <label id="R_Name_Label"></label>
+                <i class="fa fa-phone-square" aria-hidden="true"></i>
+                <label id="R_Phone_Label"></label>
             </div>
         </div>
+    </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Product</h2>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label>
-                        Product Code
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title mb-0">Product</div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>
+                    Product Code
                         <asp:Label ID="PositionLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                    </label>
-                    <asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
+                </label>
+                <asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
 
             <div id="Product-info" class="alert alert-success">
                 <div class="userid">
@@ -230,7 +230,7 @@
         </div>
     </div>
 
-    <div id="AddCustomer" class="form-inline" style="visibility: hidden;">
+    <div id="AddCustomer mt-3" class="form-inline" style="visibility: hidden;">
         <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Add Customer" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
         <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
         <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
@@ -347,13 +347,13 @@ SELECT @ShoppingID = Scope_identity()"
 
 
             // create JavaScript Object
-            if (Code != '' && Quantity != '' && ProductID != '') {
+            if (Code !== '' && Quantity !== '' && ProductID !== '') {
                 // if Code is already present
                 for (var i in cart) {
-                    if (cart[i].ProductID == ProductID) { alert("This Product already added"); return; }
+                    if (cart[i].ProductID === ProductID) { alert("This Product already added"); return; }
                 }
 
-                var item = { Code: Code, ProductID: ProductID, Name: Name, Quantity: Quantity, Unit_Price: Unit_Price, Unit_Point: Unit_Point };
+                const item = { Code: Code, ProductID: ProductID, Name: Name, Quantity: Quantity, Unit_Price: Unit_Price, Unit_Point: Unit_Point };
                 cart.push(item);
                 saveCart();
                 showCart();
@@ -382,7 +382,7 @@ SELECT @ShoppingID = Scope_identity()"
 
         //Delete
         $(document).on("click", ".ItemDelete", function () {
-            var index = $(this).closest("tr").index();
+            const index = $(this).closest("tr").index();
 
             cart.splice(index, 1);
             showCart();
@@ -423,18 +423,10 @@ SELECT @ShoppingID = Scope_identity()"
             cartTable.empty();
 
             $.each(cart, function () {
-                var tPrice = this.Quantity * this.Unit_Price;
-                var tPoint = this.Quantity * this.Unit_Point;
+                const tPrice = this.Quantity * this.Unit_Price;
+                const tPoint = this.Quantity * this.Unit_Point;
                 cartTable.append(
-                    '<tr>' +
-                    '<td>' + this.Name + '</td>' +
-                    '<td>' + this.Quantity + '</td>' +
-                    '<td>৳' + this.Unit_Price + '</td>' +
-                    '<td>' + this.Unit_Point + '</td>' +
-                    '<td>৳' + tPrice.toFixed(2) + '</td>' +
-                    '<td>' + tPoint.toFixed(2) + '</td>' +
-                    '<td class="text-center" style="width:20px;"><b class="ItemDelete">Delete</b></td>' +
-                    '</tr>'
+                    `<tr><td>${this.Name}</td><td>${this.Quantity}</td><td>৳${this.Unit_Price}</td><td>${this.Unit_Point}</td><td>৳${tPrice.toFixed(2)}</td><td>${tPoint.toFixed(2)}</td><td class="text-center" style="width:20px;"><b class="ItemDelete">Delete</b></td></tr>`
                 );
             });
             cartTable.append(
@@ -501,11 +493,6 @@ SELECT @ShoppingID = Scope_identity()"
 
 
             //*********Add Product********
-            if (parseFloat($("[id*=GTpointHF]").val()) >= 125) {
-                $("[id*=Generation_Type_RadioB]").hide();
-                $("[id*=Generation_Type_RadioB]").find("input[value='G']").attr("checked", "checked");
-            }
-
             //Get Product info
             $('[id*=ProductCodeTextBox]').typeahead({
                 minLength: 1,

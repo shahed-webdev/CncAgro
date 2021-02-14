@@ -64,3 +64,9 @@ input[type=radio]:checked + label { background-position: 5px -16px; background-i
     .profile-info {padding: 8px 0; }
     .profile-info img { width: 80px; height: 80px; border: 2px solid #fff;}
 }
+
+
+@media print {
+    .side-bar, .btn { display: none; }
+    body { width: 100%}
+}
