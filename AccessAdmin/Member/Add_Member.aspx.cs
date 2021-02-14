@@ -122,6 +122,7 @@ namespace CncAgro.AccessAdmin.Member
                                     UserLoginSQL.InsertParameters["UserName"].DefaultValue = userName;
                                     UserLoginSQL.Insert();
 
+                                    RegistrationSQL.Update();
 
                                     var cmdUserMemberId = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", _con);
                                     cmdUserMemberId.Parameters.AddWithValue("@UserName", userName);

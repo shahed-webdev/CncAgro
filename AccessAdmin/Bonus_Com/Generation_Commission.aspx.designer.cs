@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Bonus_Com
+namespace DnbBD.AccessAdmin.Bonus_Com
 {
 
 
-    public partial class Duplex_Commission
+    public partial class Generation_Commission
     {
 
         /// <summary>

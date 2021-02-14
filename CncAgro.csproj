@@ -90,6 +90,7 @@
     <Content Include="AccessAdmin\Accounts\Withdraw_Report.aspx" />
     <Content Include="AccessAdmin\Add_Product_Point.aspx" />
     <Content Include="AccessAdmin\Admin_Profile.aspx" />
+    <Content Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx" />
     <Content Include="AccessAdmin\Bonus_Com\Retail_Commission.aspx" />
     <Content Include="AccessAdmin\Change_User_Password.aspx" />
     <Content Include="AccessAdmin\CSS\Admin_Dashbord.css" />
@@ -102,7 +103,6 @@
     <Content Include="AccessAdmin\Product_Point\Sell_Product.aspx" />
     <Content Include="AccessAdmin\Product_Short_List.aspx" />
     <Content Include="AccessAdmin\Seller\Distribution_Receipt.aspx" />
-    <Content Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx" />
     <Content Include="AccessAdmin\Member\Member_List.aspx" />
     <Content Include="AccessAdmin\Member\Default_Member.aspx" />
     <Content Include="AccessAdmin\Member\Member_Access_Control.aspx" />
@@ -252,6 +252,13 @@
     <Compile Include="AccessAdmin\Admin_Profile.aspx.designer.cs">
       <DependentUpon>Admin_Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx.cs">
+      <DependentUpon>Generation_Commission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx.designer.cs">
+      <DependentUpon>Generation_Commission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AccessAdmin\Bonus_Com\Retail_Commission.aspx.cs">
       <DependentUpon>Retail_Commission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,13 +314,6 @@
     </Compile>
     <Compile Include="AccessAdmin\Seller\Distribution_Receipt.aspx.designer.cs">
       <DependentUpon>Distribution_Receipt.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx.cs">
-      <DependentUpon>Generation_Commission.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessAdmin\Bonus_Com\Generation_Commission.aspx.designer.cs">
-      <DependentUpon>Generation_Commission.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessAdmin\Member\Member_List.aspx.cs">
       <DependentUpon>Member_List.aspx</DependentUpon>

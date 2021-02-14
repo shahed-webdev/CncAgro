@@ -124,12 +124,6 @@ SELECT @ShoppingID = Scope_identity()"
             <asp:Parameter Name="Product_PointID" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="A_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Point" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM Member ">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value" />
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-        </InsertParameters>
-    </asp:SqlDataSource>
     <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails">
         <InsertParameters>
             <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />

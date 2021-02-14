@@ -125,35 +125,35 @@ namespace CncAgro.AccessAdmin.Product_Point
             if (JsonData.Value != "")
             {
                 #region Check Stock
-                bool Is_Available = true;
-                List<Shopping> P_List = new List<Shopping>(ProductList());
+                var isAvailable = true;
+                var pList = new List<Shopping>(ProductList());
 
-                foreach (Shopping item in P_List)
+                foreach (var item in pList)
                 {
-                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
+                    var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
 
-                    SqlCommand cmd = new SqlCommand("SELECT Stock_Quantity FROM Product_Point_Code WHERE(IsActive = 1) AND (Product_PointID = @ProductID)", con);
+                    var cmd = new SqlCommand("SELECT Stock_Quantity FROM Product_Point_Code WHERE(IsActive = 1) AND (Product_PointID = @ProductID)", con);
                     cmd.Parameters.AddWithValue("@ProductID", item.ProductID);
 
                     con.Open();
-                    int Stock = (int)cmd.ExecuteScalar();
+                    var stock = (int)cmd.ExecuteScalar();
                     con.Close();
 
-                    if (Stock < item.Quantity)
+                    if (stock < item.Quantity)
                     {
-                        Is_Available = false;
+                        isAvailable = false;
                     }
                 }
                 #endregion end
 
 
-                if (Is_Available)
+                if (isAvailable)
                 {
                     #region Add Product
 
                     ShoppingSQL.Insert();
 
-                    foreach (Shopping item in P_List)
+                    foreach (var item in pList)
                     {
                         Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
                         Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
@@ -167,9 +167,6 @@ namespace CncAgro.AccessAdmin.Product_Point
                         SellerProductSQL.Update();
                     }
                     #endregion End Product
-
-                    // Update S.P Add_Point
-                    A_PointSQL.Insert();
 
                     // Update S.P Add_Retail_Income
                     Retail_IncomeSQL.Insert();
