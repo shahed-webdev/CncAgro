@@ -39,7 +39,8 @@
     <div class="table-responsive">
         <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
             <Columns>
-                <asp:BoundField DataField="Shopping_SN" HeaderText="Receipt No" InsertVisible="False" ReadOnly="True" SortExpression="Shopping_SN" />
+                
+                <asp:HyperLinkField SortExpression="Shopping_SN" DataTextField="Shopping_SN" DataNavigateUrlFields="ShoppingID" DataNavigateUrlFormatString="../Product_Point/Receipt.aspx?ShoppingID={0}" HeaderText="Receipt No" />
                 <asp:BoundField DataField="UserName" HeaderText="User ID" SortExpression="UserName" />
                 <asp:TemplateField HeaderText="Details">
                     <ItemTemplate>
