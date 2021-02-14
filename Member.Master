@@ -129,7 +129,7 @@
                                         <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AccessMember/Withdraw_Balance.aspx" Text="Withdraw Balance" runat="server" />
                                     </li>
                                     <li id="Requested_Withdraw">
-                                        <i class="fa fa-money" aria-hidden="true"></i>
+                                        <i class="fas fa-file-alt"></i>
                                         <asp:HyperLink ID="HyperLink8" NavigateUrl="~/AccessMember/Withdraw_Details.aspx" Text="Withdrawal Details" runat="server" />
                                     </li>
                                     <li id="Password">

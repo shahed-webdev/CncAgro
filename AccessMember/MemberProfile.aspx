@@ -104,8 +104,8 @@
                         <asp:FileUpload ID="N_IDFileUpload" runat="server" />
                     </div>
 
-                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-default" />
-                    &nbsp;<asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn-default" />
+                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-primary" />
+                    &nbsp;<asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn-primary" />
                 </div>
             </EditItemTemplate>
 
@@ -153,15 +153,13 @@
                     </ul>
                 </div>
 
-                <div class="col-md-12">
-                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-default" runat="server" CausesValidation="False" CommandName="Edit" Text="Update" />
+                <div>
+                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="Edit" Text="Update" />
                 </div>
             </ItemTemplate>
         </asp:FormView>
         <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.Phone, Registration.Email, Member.MemberID, Member.SignUpDate, Registration.RegistrationID, Refarel_Registration.UserName AS Refarel_UserName, Registration.FatherName, Registration.MotherName, Registration.Present_Address, Registration.Permanent_Address, Registration.DateofBirth, Registration.Gender, Registration.BloodGroup, Registration.NationalID, Member.Nominee_Name, Member.Nominee_Relationship, Member.Bank, Member.Branch, Member.AccountName, Member.AccountNo, Member.Nominee_DOB FROM Registration AS Refarel_Registration INNER JOIN Member AS Refarel_Member ON Refarel_Registration.RegistrationID = Refarel_Member.MemberRegistrationID RIGHT OUTER JOIN Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID ON Refarel_Member.MemberID = Member.Referral_MemberID WHERE (Member.InstitutionID = @InstitutionID) AND (Registration.RegistrationID = @RegistrationID)" UpdateCommand="UPDATE  Registration SET  Name = @Name, FatherName = @FatherName, MotherName = @MotherName, DateofBirth = @DateofBirth, BloodGroup = @BloodGroup, Gender = @Gender, NationalID = @NationalID,Present_Address = @Present_Address, Permanent_Address = @Permanent_Address, Phone = @Phone, Email = @Email FROM  Registration INNER JOIN Member ON Registration.RegistrationID = Member.MemberRegistrationID
-WHERE   (Member.MemberID = @MemberID)
-
-
+WHERE (Member.MemberID = @MemberID)
 UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_Relationship,Nominee_DOB = @Nominee_DOB, Bank = @Bank, Branch = @Branch, AccountName = @AccountName, AccountNo = @AccountNo WHERE(MemberID = @MemberID)">
             <SelectParameters>
                 <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" />
@@ -198,19 +196,19 @@ UPDATE Member SET Nominee_Name = @Nominee_Name, Nominee_Relationship = @Nominee_
                 <div class="col-sm-4">
                     <div class="Comission">
                         <h5>Referral Commission</h5>
-                       <a href="Bonus_Details/Referral_Bonus_Details.aspx"> <%#Eval("Referral_Income","{0:N}") %></a>
+                       <a href="Bonus_Details/Referral_Bonus_Details.aspx"><%#Eval("Referral_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="Comission">
                         <h5>Generation Commission</h5>
-                       <a href="Bonus_Details/Generation_Bonus_Details.aspx"> <%#Eval("Generation_Income","{0:N}") %></a>
+                       <a href="Bonus_Details/Generation_Bonus_Details.aspx"> <%#Eval("Generation_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="Comission">
                         <h5>Retail Commission</h5>
-                        <a href="Bonus_Details/Cash_Back.aspx"><%#Eval("Instant_Cash_Back_Income","{0:N}") %></a>
+                        <a href="Bonus_Details/Cash_Back.aspx"><%#Eval("Instant_Cash_Back_Income","{0:N}") %><i class="fas fa-long-arrow-alt-right ml-1"></i></a>
                     </div>
                 </div>
             </div>

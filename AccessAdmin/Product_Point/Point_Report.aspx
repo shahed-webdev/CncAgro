@@ -10,7 +10,7 @@
         <div class="form-group">
             <asp:TextBox ID="From_TextBox" placeholder="From Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="datepicker form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group mx-2">
             <asp:TextBox ID="TO_TextBox" placeholder="To Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="datepicker form-control"></asp:TextBox>
         </div>
         <div class="form-group">
@@ -19,11 +19,11 @@
     </div>
 
 
-    <h4>POINT REPORT</h4>
-    <div class="row">
-        <div class="col-sm-6">
-            <asp:FormView ID="PointFormView" runat="server" DataSourceID="PointSQL" Width="100%">
-                <ItemTemplate>
+    <h5 class="my-3">POINT REPORT</h5>
+    <asp:FormView ID="PointFormView" runat="server" DataSourceID="PointSQL" Width="100%">
+        <ItemTemplate>
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="statistic d-flex align-items-center bg-white has-shadow">
                         <div class="icon bg-red"><i class="fa fa-star"></i></div>
                         <div class="text">
@@ -31,34 +31,37 @@
                             <small>Total Point</small>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-sm-6">
                     <div class="statistic d-flex align-items-center bg-white has-shadow">
-                        <div class="icon bg-green"><i class="fa fa-money"></i></div>
+                        <div class="icon bg-green"><i class="fas fa-money-bill-alt"></i></div>
                         <div class="text">
                             <strong><%# Eval("Amount","{0:N}") %></strong>
                             <small>TK</small><br />
                             <small>Total Amount</small>
                         </div>
                     </div>
-                </ItemTemplate>
-            </asp:FormView>
-            <asp:SqlDataSource ID="PointSQL" runat="server" CancelSelectOnNullParameter="False" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT ISNULL(SUM(ShoppingAmount),0) AS Amount, ISNULL(SUM(ShoppingPoint),0) AS Point FROM Shopping WHERE ((ShoppingDate  BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000')))">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="From_TextBox" Name="From_Date" PropertyName="Text" />
-                    <asp:ControlParameter ControlID="TO_TextBox" Name="To_Date" PropertyName="Text" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-        </div>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:FormView>
+    <asp:SqlDataSource ID="PointSQL" runat="server" CancelSelectOnNullParameter="False" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT ISNULL(SUM(ShoppingAmount),0) AS Amount, ISNULL(SUM(ShoppingPoint),0) AS Point FROM Shopping WHERE ((ShoppingDate  BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000')))">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="From_TextBox" Name="From_Date" PropertyName="Text" />
+            <asp:ControlParameter ControlID="TO_TextBox" Name="To_Date" PropertyName="Text" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
-    </div>
-    
 
-    <h4>Tax And Service Charge Report</h4>
+    <h5 class="my-3">Tax And Service Charge Report</h5>
     <asp:FormView ID="ServiceChargeFormView" runat="server" DataSourceID="Total_SChargeSQL" Width="100%">
         <ItemTemplate>
             <div class="row">
                 <div class="col-md-4">
                     <div class="statistic d-flex align-items-center bg-white has-shadow">
-                        <div class="icon bg-amount"><i class="fa fa-money"></i></div>
+                        <div class="icon bg-amount"><i class="fas fa-money-bill-alt"></i></div>
+
                         <div class="text">
                             <strong><%# Eval("Amount","{0:N}") %></strong>
                             <small>TK</small><br />
@@ -68,7 +71,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="statistic d-flex align-items-center bg-white has-shadow">
-                        <div class="icon bg-service"><i class="fa fa-bar-chart"></i></div>
+                        <div class="icon bg-service"><i class="fas fa-money-bill-alt"></i></div>
                         <div class="text">
                             <strong><%# Eval("Service_Charge","{0:N}") %></strong>
                             <small>TK</small><br />
@@ -78,7 +81,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="statistic d-flex align-items-center bg-white has-shadow">
-                        <div class="icon bg-net"><i class="fa fa-bar-chart"></i></div>
+                        <div class="icon bg-net"><i class="fas fa-money-bill-alt"></i></div>
                         <div class="text">
                             <strong><%# Eval("Net","{0:N}") %></strong>
                             <small>TK</small><br />
@@ -156,8 +159,8 @@ SELECT 'Retail Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, 
             });
 
             //get date in label
-            var from = $("[id*=From_TextBox]").val();
-            var To = $("[id*=TO_TextBox]").val();
+            const from = $("[id*=From_TextBox]").val();
+            const To = $("[id*=TO_TextBox]").val();
 
             var tt;
             var Brases1 = "";
@@ -166,7 +169,7 @@ SELECT 'Retail Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, 
             var B = "";
             var TODate = "";
 
-            if (To == "" || from == "" || To == "" && from == "") {
+            if (To === "" || from === "" || To === "" && from === "") {
                 tt = "";
                 A = "";
                 B = "";
@@ -177,9 +180,9 @@ SELECT 'Retail Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, 
                 Brases2 = ")";
             }
 
-            if (To == "" && from == "") { Brases1 = ""; }
+            if (To === "" && from === "") { Brases1 = ""; }
 
-            if (To == from) {
+            if (To === from) {
                 TODate = "";
                 tt = "";
                 var Brases1 = "";
@@ -187,15 +190,15 @@ SELECT 'Retail Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, 
             }
             else { TODate = To; }
 
-            if (from == "" && To != "") {
+            if (from === "" && To !== "") {
                 B = " Before ";
             }
 
-            if (To == "" && from != "") {
+            if (To === "" && from !== "") {
                 A = " After ";
             }
 
-            if (from != "" && To != "") {
+            if (from !== "" && To !== "") {
                 A = "";
                 B = "";
             }
@@ -203,6 +206,6 @@ SELECT 'Retail Commission' as NAME, ISNULL(SUM(Commission_Amount),0) AS Amount, 
             $(".Date").text(Brases1 + B + A + from + tt + TODate + Brases2);
         });
 
-        function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 != a && 31 < a && (48 > a || 57 < a) ? !1 : !0 };
+        function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 !== a && 31 < a && (48 > a || 57 < a) ? false : true };
     </script>
 </asp:Content>

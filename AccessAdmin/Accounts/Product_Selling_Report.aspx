@@ -9,10 +9,10 @@
         <div class="form-group">
             <asp:TextBox ID="From_TextBox" placeholder="From Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="datepicker form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group mx-2">
             <asp:TextBox ID="TO_TextBox" placeholder="To Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="datepicker form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group mr-2">
             <asp:TextBox ID="CustomerID_TextBox" CssClass="form-control" placeholder="Customer Id" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
@@ -23,7 +23,7 @@
     <asp:FormView ID="Total_FormView" runat="server" DataSourceID="TotalSQL" Width="100%">
         <ItemTemplate>
             <div class="Amount_Summery alert alert-success">
-                <label class="Date"></label>
+                <span class="Date"></span>
                 Total: <%# Eval("Total","{0:N}") %> Tk.
             </div>
         </ItemTemplate>
