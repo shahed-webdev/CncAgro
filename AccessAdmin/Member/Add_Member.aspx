@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         #Is_Position, #Is_Referral, #Is_LeftRight { color: #ff6a00; display: inline; }
-        #user-info { display: none; }
+        #user-info{ display: none; }
+        #addCustomer{ display: none; }
         #Product-info { display: none; }
         .ItemDelete { color: red; cursor: pointer; }
         .card { margin-bottom: 20px }
@@ -210,7 +211,7 @@
                 <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-danger" />
             </div>
 
-            <table style="visibility: hidden;" class="mGrid cart">
+            <table class="mGrid cart" style="display: none;">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -230,7 +231,7 @@
         </div>
     </div>
 
-    <div id="AddCustomer mt-3" class="form-inline" style="visibility: hidden;">
+    <div id="addCustomer">
         <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Add Customer" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
         <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
         <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
@@ -324,38 +325,26 @@ SELECT @ShoppingID = Scope_identity()"
 
     <script>
         var cart = [];
-        $(function () {
-            $("[id*=Add_Customer_Button]").click(function () {
-                if (localStorage.cart) {
-                    $("[id*=JsonData]").val(JSON.stringify(cart));
-                }
-            });
-
-            if (localStorage.cart) {
-                cart = JSON.parse(localStorage.cart);
-                showCart();
-            }
-        });
 
         function addToCart() {
-            var ProductID = $("#ProductID_HF").val();
-            var Code = $("[id*=ProductCodeTextBox]").val();
-            var Name = $("#ProductNameLabel").text();
-            var Quantity = $("[id*=QuantityTextBox]").val().trim();
-            var Unit_Price = $("#ProductPriceLabel").text();
-            var Unit_Point = $("#ProductPointLabel").text();
+            const productId = $("#ProductID_HF").val();
+            const Code = $("[id*=ProductCodeTextBox]").val();
+            const Name = $("#ProductNameLabel").text();
+            const Quantity = $("[id*=QuantityTextBox]").val().trim();
+            const unitPrice = $("#ProductPriceLabel").text();
+            const unitPoint = $("#ProductPointLabel").text();
 
 
             // create JavaScript Object
-            if (Code !== '' && Quantity !== '' && ProductID !== '') {
+            if (Code !== '' && Quantity !== '' && productId !== '') {
                 // if Code is already present
-                for (var i in cart) {
-                    if (cart[i].ProductID === ProductID) { alert("This Product already added"); return; }
+                for (let i in cart) {
+                    if (cart[i].ProductID === productId) { alert("This Product already added"); return; }
                 }
 
-                const item = { Code: Code, ProductID: ProductID, Name: Name, Quantity: Quantity, Unit_Price: Unit_Price, Unit_Point: Unit_Point };
+                const item = { Code: Code, ProductID: productId, Name: Name, Quantity: Quantity, Unit_Price: unitPrice, Unit_Point: unitPoint };
                 cart.push(item);
-                saveCart();
+               
                 showCart();
 
                 $("[id*=ProductCodeTextBox]").val("");
@@ -374,20 +363,14 @@ SELECT @ShoppingID = Scope_identity()"
             }
         }
 
-        function saveCart() {
-            if (window.localStorage) {
-                localStorage.cart = JSON.stringify(cart);
-            }
-        }
 
         //Delete
         $(document).on("click", ".ItemDelete", function () {
             const index = $(this).closest("tr").index();
 
             cart.splice(index, 1);
-            showCart();
-            saveCart();
 
+            showCart();
             getTotalPrice();
             getTotalPoint();
         });
@@ -411,14 +394,15 @@ SELECT @ShoppingID = Scope_identity()"
         }
 
         function showCart() {
-            if (cart.length === 0) {
-                $(".cart").css("visibility", "hidden");
-                $("#AddCustomer").css("visibility", "hidden");
+            if (!cart.length) {
+                $(".cart").css("display", "none");
+                $("#addCustomer").css("display", "none");
                 return;
             }
 
-            $(".cart").css("visibility", "visible");
-            $("#AddCustomer").css("visibility", "visible");
+            $(".cart").css("display", "table");
+            $("#addCustomer").css("display", "block");
+
             var cartTable = $("#cartBody");
             cartTable.empty();
 
@@ -440,16 +424,17 @@ SELECT @ShoppingID = Scope_identity()"
                 '<td></td>' +
                 '</tr>'
             );
+
             getTotalPrice();
             getTotalPoint();
-        }
-
-        function RemoveCart() {
-            localStorage.removeItem("cart");
         }
         /**End Cart*/
 
         $(function () {
+            $("[id*=Add_Customer_Button]").click(function () {
+                $("[id*=JsonData]").val(JSON.stringify(cart));
+            });
+
             //Link Active
             $("#Add_Customer").addClass('L_Active');
 
@@ -489,7 +474,6 @@ SELECT @ShoppingID = Scope_identity()"
                     return item;
                 }
             });
-
 
 
             //*********Add Product********

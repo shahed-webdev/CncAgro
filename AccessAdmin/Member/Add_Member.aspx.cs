@@ -17,10 +17,6 @@ namespace CncAgro.AccessAdmin.Member
         private readonly SqlConnection _con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart();", true);
-            }
         }
 
         class Shopping
@@ -204,8 +200,7 @@ namespace CncAgro.AccessAdmin.Member
 
                                     GTpriceHF.Value = "";
                                     GTpointHF.Value = "";
-                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart()", true);
-
+                                    
                                     Response.Redirect("../Product_Point/Receipt.aspx?ShoppingID=" + ViewState["ShoppingID"].ToString());
                                 }
                                 else
