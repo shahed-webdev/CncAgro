@@ -141,11 +141,6 @@
                             <asp:Label ID="PhoneLabel1" runat="server" Text='<%# Bind("Phone") %>' />
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-user rest-userico"></i>
-                            <b>Referral ID:</b>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Refarel_UserName") %>' />
-                        </li>
-                        <li>
                             <i class="glyphicon glyphicon-calendar"></i>
                             <b>Signup Date:</b>
                             <asp:Label ID="SignUpDateLabel" runat="server" Text='<%# Bind("SignUpDate","{0:d MMMM yyyy}") %>' />
