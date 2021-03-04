@@ -1,7 +1,6 @@
 ﻿
 
 .mGrid { background-color: #fff; border:none;  width: 100%; word-wrap: break-word; }
-.mGrid.table-bordered { border: 1px solid #dee2e6; }
 
 .mGrid th { color: #212529; font-size: .9rem; font-weight: 500; vertical-align: bottom; border: none; border-bottom: 2px solid #dee2e6; padding: 1.1rem .75rem 1rem .75rem }
 .mGrid th a { color: #212529; font-size: .9rem; text-decoration: none; }
@@ -9,13 +8,13 @@
 .mGrid td { color: #212529; font-size: .9rem; /*vertical-align: bottom;*/ border: none; border-top: 1px solid #dee2e6; padding: 1.1rem .75rem 1rem .75rem }
 .mGrid td a { color: #0034ce; text-decoration: none; }
 
+.mGrid.table-bordered { border: 1px solid #dee2e6; }
+.mGrid.table-bordered td {  border: 1px solid #dee2e6; }
+.mGrid.table-bordered th { border-bottom-width: 2px !important; border: 1px solid #dee2e6; }
+
 
 .mGrid .pgr { border-top: 2px solid #e0e0e0 }
 .mGrid .pgr table { margin: 3px 0; }
 .mGrid .pgr td { border-left: 1px solid #ddd; border-width: 0 0 0 1px; color: #1da092; font-weight: bold; line-height: 12px; padding: 8px 6px; }
 .mGrid .pgr a { color: #666; text-decoration: none; }
 .mGrid .pgr a:hover { color: #000; text-decoration: none; }
-
-.mGrid .Selected { background-color: #ddd; }
-.mGrid .GridFooter { background-color: #f4f4f4; border: 1px solid #ddd; font-weight: bold; padding: 7px 13px; text-align: center; }
-.mGrid .GridFooter td { padding: 0; }

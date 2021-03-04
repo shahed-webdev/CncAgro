@@ -25,14 +25,12 @@
                 <asp:BoundField DataField="Shopping_SN" HeaderText="Receipt No" InsertVisible="False" ReadOnly="True" SortExpression="Shopping_SN" />
                 <asp:TemplateField HeaderText="Details">
                     <ItemTemplate>
-                        <asp:DataList ID="RecordsDataList" runat="server" DataSourceID="Selling_RecordsSQL" Width="100%">
+                        <asp:Repeater runat="server" DataSourceID="Selling_RecordsSQL">
                             <ItemTemplate>
-                                <%# Eval("Product_Name") %>
-                                Quantity:<%# Eval("SellingQuantity") %>
-                                Unit Price:<%# Eval("SellingUnitPrice") %>
-                                Unit Point:<%# Eval("SellingUnitPoint") %>
+                                <p class="mb-0"><strong><%# Eval("Product_Name") %></strong></p>
+                                <span>৳<%# Eval("SellingUnitPrice") %> x<%# Eval("SellingQuantity") %></span>
                             </ItemTemplate>
-                        </asp:DataList>
+                        </asp:Repeater>
                         <asp:HiddenField ID="ShoppingID_HF" runat="server" Value='<%# Eval("ShoppingID") %>' />
                         <asp:SqlDataSource ID="Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_Selling_Records.SellingQuantity, Product_Selling_Records.SellingUnitPrice, Product_Selling_Records.SellingUnitPoint, Product_Point_Code.Product_Name, Product_Point_Code.Product_Code FROM Product_Selling_Records INNER JOIN Product_Point_Code ON Product_Selling_Records.ProductID = Product_Point_Code.Product_PointID WHERE (Product_Selling_Records.ShoppingID = @ShoppingID)">
                             <SelectParameters>
@@ -42,7 +40,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ShoppingAmount" HeaderText="Total Amount" SortExpression="ShoppingAmount" />
-                <asp:BoundField DataField="ShoppingPoint" HeaderText="Total Point" SortExpression="ShoppingPoint" />
                 <asp:BoundField DataField="ShoppingDate" HeaderText="Date" SortExpression="ShoppingDate" DataFormatString="{0:d MMM yyyy}" />
             </Columns>
             <EmptyDataTemplate>
