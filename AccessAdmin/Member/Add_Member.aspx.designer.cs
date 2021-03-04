@@ -15,15 +15,6 @@ namespace CncAgro.AccessAdmin.Member
     {
 
         /// <summary>
-        /// Required1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Required1;
-
-        /// <summary>
         /// NameTextBox control.
         /// </summary>
         /// <remarks>
@@ -40,24 +31,6 @@ namespace CncAgro.AccessAdmin.Member
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FatherNameTextBox;
-
-        /// <summary>
-        /// Required control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Required;
-
-        /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
 
         /// <summary>
         /// PhoneTextBox control.
@@ -96,15 +69,6 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.RadioButtonList GenderRadioButtonList;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
-
-        /// <summary>
         /// Email control.
         /// </summary>
         /// <remarks>
@@ -114,40 +78,13 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// ApplicantPhotoHF control.
+        /// UserPhotoFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ApplicantPhotoHF;
-
-        /// <summary>
-        /// Re1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Re1;
-
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// ReferralIDLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ReferralIDLabel;
+        protected global::System.Web.UI.WebControls.FileUpload UserPhotoFileUpload;
 
         /// <summary>
         /// ReferralIDTextBox control.
@@ -168,24 +105,6 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.HiddenField HiddenReferralMemberId;
 
         /// <summary>
-        /// GTpriceHF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField GTpriceHF;
-
-        /// <summary>
-        /// GTpointHF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField GTpointHF;
-
-        /// <summary>
         /// Add_Customer_Button control.
         /// </summary>
         /// <remarks>
@@ -204,13 +123,13 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.Label ErrorLabel;
 
         /// <summary>
-        /// ValidationSummary1 control.
+        /// HiddenGrandTotalAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenGrandTotalAmount;
 
         /// <summary>
         /// JsonData control.

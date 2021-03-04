@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Customer Access Control</h3>
+  <div class="card card-body">
     <div class="form-inline">
         <div class="form-group">
             <asp:TextBox ID="FindTextBox" runat="server" CssClass="form-control" placeholder="Find by Name, Username, Phone"></asp:TextBox>
@@ -13,9 +14,9 @@
         </div>
     </div>
 
-    <div class="alert alert-success">
+    <h5 class="mt-3">
         <asp:Label ID="Total_Label" runat="server" CssClass="Result_Msg"></asp:Label>
-    </div>
+    </h5>
 
     <div class="table-responsive">
         <asp:GridView ID="Member_GridView" AllowSorting="true" runat="server" AutoGenerateColumns="False" DataKeyNames="UserName" DataSourceID="MemberSQL" CssClass="mGrid" AllowPaging="True" PageSize="15">
@@ -53,4 +54,5 @@
             </FilterParameters>
         </asp:SqlDataSource>
     </div>
+  </div>
 </asp:Content>

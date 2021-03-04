@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="Customer Registration" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Add_Member.aspx.cs" Inherits="CncAgro.AccessAdmin.Member.Add_Member" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .remove { cursor: pointer; color: #ff0000 }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-
     <div class="container">
         <h3>Applicant Info</h3>
 
@@ -11,8 +13,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Name*<asp:RequiredFieldValidator ErrorMessage="Enter Name" ID="Required1" runat="server" ControlToValidate="NameTextBox" CssClass="EroorStar" ValidationGroup="1">*</asp:RequiredFieldValidator></label>
-                        <asp:TextBox ID="NameTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label>Name*</label>
+                        <asp:TextBox ID="NameTextBox" runat="server" CssClass="form-control" required=""></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -23,12 +25,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>
-                            Phone*
-                            <asp:RequiredFieldValidator ErrorMessage="Enter Mobile No." ID="Required" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(013)|(014)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
-                        </label>
-                        <asp:TextBox ID="PhoneTextBox" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label>Mobile Number*</label>
+                        <asp:TextBox ID="PhoneTextBox" minlength="11" MaxLength="11" pattern="(88)?((011)|(015)|(016)|(017)|(013)|(014)|(018)|(019))\d{8,8}" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control" required=""></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -60,32 +58,23 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>
-                            E-mail
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Email" ErrorMessage="Email not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="1" CssClass="EroorStar"></asp:RegularExpressionValidator>
-                        </label>
-                        <asp:TextBox ID="Email" runat="server" CssClass="form-control mail_Check"></asp:TextBox>
+                        <label>E-mail</label>
+                        <asp:TextBox ID="Email" type="email" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Applicant Photo</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="applicant-photo" accept="image/*">
-                            <label class="custom-file-label" for="applicant-photo">Choose file</label>
+                            <asp:FileUpload class="custom-file-input" ID="UserPhotoFileUpload" runat="server" accept="image/*" />
+                            <label class="custom-file-label" for="body_UserPhotoFileUpload">Choose file</label>
                         </div>
-                        <asp:HiddenField ID="ApplicantPhotoHF" runat="server" />
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>
-                            Reference Id*
-                            <asp:RegularExpressionValidator ID="Re1" runat="server" ControlToValidate="ReferralIDTextBox" ErrorMessage="*" CssClass="EroorStar" ValidationGroup="1" ValidationExpression="^[a-zA-Z0-9]{9,9}$" />
-                            <asp:RequiredFieldValidator ErrorMessage="Enter Reference ID" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ReferralIDTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                            <asp:Label ID="ReferralIDLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                        </label>
-                        <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label id="errorReference">Reference Id*</label>
+                        <asp:TextBox ID="ReferralIDTextBox" minlength="9" MaxLength="9" onkeypress="return isNumberKey(event)" autocomplete="off" runat="server" CssClass="form-control" required=""></asp:TextBox>
                         <asp:HiddenField ID="HiddenReferralMemberId" runat="server" />
 
                         <div id="show-reference-info" class="mt-2"></div>
@@ -112,116 +101,120 @@
                         <th><strong>Unit Price</strong></th>
                         <th><strong>Quantity</strong></th>
                         <th><strong>Total Price</strong></th>
-                        <th class="text-center"><strong>Delete</strong></th>
+                        <th class="text-center" style="width: 30px"><strong>Delete</strong></th>
                     </tr>
                 </thead>
                 <tbody id="tBody"></tbody>
             </table>
 
-            <asp:HiddenField ID="GTpriceHF" runat="server" />
-            <asp:HiddenField ID="GTpointHF" runat="server" />
+            <div class="text-right">
+                <h5 id="grandTotal" class="font-weight-bold"></h5>
+            </div>
         </div>
 
-        <div id="addCustomer" class="mt-3">
-            <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary btn-lg" Text="Submit" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
+        <div id="postCustomer" class="mt-3">
+            <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary btn-lg" Text="Submit" ValidationGroup="1" OnClientClick="return formValidation();" OnClick="Add_Customer_Button_Click" />
             <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
-            <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
+
+            <!--pass total amount/point-->
+            <asp:HiddenField ID="HiddenGrandTotalAmount" runat="server" />
+            <!--pass array as text-->
             <asp:HiddenField ID="JsonData" runat="server" />
         </div>
     </div>
 
 
-
-    <asp:SqlDataSource ID="RegistrationSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Registration(InstitutionID, UserName, Validation, Category, Name, FatherName, Gender, Present_Address, Phone, Email, Image) VALUES (@InstitutionID, @UserName, 'Valid', N'Member', @Name, @FatherName, @Gender, @Present_Address, @Phone, @Email, @Image)" SelectCommand="SELECT * FROM [Registration]" UpdateCommand="UPDATE Institution SET Member_SN =Member_SN +1">
-        <InsertParameters>
-            <asp:Parameter Name="UserName" />
-            <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" />
-            <asp:ControlParameter ControlID="NameTextBox" Name="Name" PropertyName="Text" />
-            <asp:ControlParameter ControlID="FatherNameTextBox" Name="FatherName" PropertyName="Text" />
-            <asp:ControlParameter ControlID="GenderRadioButtonList" Name="Gender" PropertyName="SelectedValue" />
-            <asp:ControlParameter ControlID="Present_AddressTextBox" Name="Present_Address" PropertyName="Text" />
-            <asp:ControlParameter ControlID="PhoneTextBox" Name="Phone" PropertyName="Text" />
-            <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" />
-            <asp:ControlParameter ControlID="ApplicantPhotoHF" Name="Image" PropertyName="Value" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Member(MemberRegistrationID, InstitutionID, Referral_MemberID,   Is_Identified, Identified_Date) VALUES ((SELECT  IDENT_CURRENT('Registration')), @InstitutionID,  @Referral_MemberID, 1, GETDATE())" SelectCommand="SELECT * FROM [Member]" UpdateCommand="Add_Update_CarryMember" UpdateCommandType="StoredProcedure">
-        <InsertParameters>
-            <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" Type="Int32" />
-            <asp:Parameter Name="Referral_MemberID" Type="Int32" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="MemberID" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="UserLoginSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO [User_Login_Info] ([UserName], [Password], [Email]) VALUES (@UserName, @Password, @Email)" SelectCommand="SELECT * FROM [User_Login_Info]">
-        <InsertParameters>
-            <asp:Parameter Name="UserName" Type="String" />
-            <asp:Parameter Name="Password" Type="String" />
-            <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" Type="String" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SMS_OtherInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO SMS_OtherInfo(SMS_Send_ID, MemberID, RegistrationID) VALUES (@SMS_Send_ID, @MemberID, @RegistrationID)" SelectCommand="SELECT * FROM [SMS_OtherInfo]">
-        <InsertParameters>
-            <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" Type="Int32" />
-            <asp:Parameter DbType="Guid" Name="SMS_Send_ID" />
-            <asp:Parameter Name="MemberID" Type="Int32" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="A_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Point" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM Member " UpdateCommand="Add_Referral_Bonus" UpdateCommandType="StoredProcedure">
-        <InsertParameters>
-            <asp:Parameter Name="Point" />
-            <asp:Parameter Name="MemberID" Type="Int32" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="MemberID" Type="Int32" />
-            <asp:Parameter Name="Point" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="ShoppingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Shopping(Seller_RegistrationID, MemberID, ShoppingAmount, ShoppingPoint) VALUES (@SellerRegistrationID, @MemberID, @ShoppingAmount, @ShoppingPoint)
+    <div>
+        <asp:SqlDataSource ID="RegistrationSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Registration(InstitutionID, UserName, Validation, Category, Name, FatherName, Gender, Present_Address, Phone, Email, Image) VALUES (@InstitutionID, @UserName, 'Valid', N'Member', @Name, @FatherName, @Gender, @Present_Address, @Phone, @Email, @Image)" SelectCommand="SELECT * FROM [Registration]" UpdateCommand="UPDATE Institution SET Member_SN =Member_SN +1">
+            <InsertParameters>
+                <asp:Parameter Name="UserName" />
+                <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" />
+                <asp:ControlParameter ControlID="NameTextBox" Name="Name" PropertyName="Text" />
+                <asp:ControlParameter ControlID="FatherNameTextBox" Name="FatherName" PropertyName="Text" />
+                <asp:ControlParameter ControlID="GenderRadioButtonList" Name="Gender" PropertyName="SelectedValue" />
+                <asp:ControlParameter ControlID="Present_AddressTextBox" Name="Present_Address" PropertyName="Text" />
+                <asp:ControlParameter ControlID="PhoneTextBox" Name="Phone" PropertyName="Text" />
+                <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" />
+                <asp:ControlParameter ControlID="UserPhotoFileUpload" Name="Image" PropertyName="FileBytes" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Member(MemberRegistrationID, InstitutionID, Referral_MemberID,   Is_Identified, Identified_Date) VALUES ((SELECT  IDENT_CURRENT('Registration')), @InstitutionID,  @Referral_MemberID, 1, GETDATE())" SelectCommand="SELECT * FROM [Member]" UpdateCommand="Add_Update_CarryMember" UpdateCommandType="StoredProcedure">
+            <InsertParameters>
+                <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" Type="Int32" />
+                <asp:Parameter Name="Referral_MemberID" Type="Int32" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="MemberID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="UserLoginSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO [User_Login_Info] ([UserName], [Password], [Email]) VALUES (@UserName, @Password, @Email)" SelectCommand="SELECT * FROM [User_Login_Info]">
+            <InsertParameters>
+                <asp:Parameter Name="UserName" Type="String" />
+                <asp:Parameter Name="Password" Type="String" />
+                <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" Type="String" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SMS_OtherInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO SMS_OtherInfo(SMS_Send_ID, MemberID, RegistrationID) VALUES (@SMS_Send_ID, @MemberID, @RegistrationID)" SelectCommand="SELECT * FROM [SMS_OtherInfo]">
+            <InsertParameters>
+                <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" Type="Int32" />
+                <asp:Parameter DbType="Guid" Name="SMS_Send_ID" />
+                <asp:Parameter Name="MemberID" Type="Int32" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="A_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Point" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM Member " UpdateCommand="Add_Referral_Bonus" UpdateCommandType="StoredProcedure">
+            <InsertParameters>
+                <asp:Parameter Name="Point" />
+                <asp:Parameter Name="MemberID" Type="Int32" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="MemberID" Type="Int32" />
+                <asp:Parameter Name="Point" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="ShoppingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Shopping(Seller_RegistrationID, MemberID, ShoppingAmount, ShoppingPoint) VALUES (@SellerRegistrationID, @MemberID, @ShoppingAmount, @ShoppingPoint)
 SELECT @ShoppingID = Scope_identity()"
-        OnInserted="ShoppingSQL_Inserted" SelectCommand="SELECT * FROM [Shopping]">
-        <InsertParameters>
-            <asp:SessionParameter Name="SellerRegistrationID" SessionField="RegistrationID" />
-            <asp:Parameter Name="MemberID" Type="Int32" />
-            <asp:ControlParameter ControlID="GTpriceHF" Name="ShoppingAmount" PropertyName="Value" />
-            <asp:ControlParameter ControlID="GTpointHF" Name="ShoppingPoint" PropertyName="Value" />
-            <asp:Parameter Name="ShoppingID" Direction="Output" Size="50" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_PointID FROM Product_Point_Code" UpdateCommand="UPDATE Product_Point_Code SET Stock_Quantity = Stock_Quantity - @Stock_Quantity WHERE (Product_PointID = @Product_PointID)">
-        <UpdateParameters>
-            <asp:Parameter Name="Stock_Quantity" />
-            <asp:Parameter Name="Product_PointID" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails" UpdateCommand="Add_Generation_Income" UpdateCommandType="StoredProcedure">
-        <InsertParameters>
-            <asp:Parameter Name="MemberID" Type="Int32" />
-            <asp:Parameter Name="Point" Type="Int32" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="MemberID" Type="Int32" />
-            <asp:Parameter Name="Point" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Product_Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Selling_Records(ProductID, ShoppingID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@ProductID,@ShoppingID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)" SelectCommand="SELECT * FROM [Product_Selling_Records]">
-        <InsertParameters>
-            <asp:Parameter Name="ProductID" Type="Int32" />
-            <asp:Parameter Name="ShoppingID" />
-            <asp:Parameter Name="SellingQuantity" Type="Int32" />
-            <asp:Parameter Name="SellingUnitPrice" Type="Double" />
-            <asp:Parameter Name="SellingUnitPoint" Type="Double" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-
+            OnInserted="ShoppingSQL_Inserted" SelectCommand="SELECT * FROM [Shopping]">
+            <InsertParameters>
+                <asp:SessionParameter Name="SellerRegistrationID" SessionField="RegistrationID" />
+                <asp:Parameter Name="MemberID" Type="Int32" />
+                <asp:ControlParameter ControlID="HiddenGrandTotalAmount" Name="ShoppingAmount" PropertyName="Value" />
+                <asp:ControlParameter ControlID="HiddenGrandTotalAmount" Name="ShoppingPoint" PropertyName="Value" />
+                <asp:Parameter Name="ShoppingID" Direction="Output" Size="50" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_PointID FROM Product_Point_Code" UpdateCommand="UPDATE Product_Point_Code SET Stock_Quantity = Stock_Quantity - @Stock_Quantity WHERE (Product_PointID = @Product_PointID)">
+            <UpdateParameters>
+                <asp:Parameter Name="Stock_Quantity" />
+                <asp:Parameter Name="Product_PointID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails" UpdateCommand="Add_Generation_Income" UpdateCommandType="StoredProcedure">
+            <InsertParameters>
+                <asp:Parameter Name="MemberID" Type="Int32" />
+                <asp:Parameter Name="Point" Type="Int32" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="MemberID" Type="Int32" />
+                <asp:Parameter Name="Point" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="Product_Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Selling_Records(ProductID, ShoppingID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@ProductID,@ShoppingID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)" SelectCommand="SELECT * FROM [Product_Selling_Records]">
+            <InsertParameters>
+                <asp:Parameter Name="ProductID" Type="Int32" />
+                <asp:Parameter Name="ShoppingID" />
+                <asp:Parameter Name="SellingQuantity" Type="Int32" />
+                <asp:Parameter Name="SellingUnitPrice" Type="Double" />
+                <asp:Parameter Name="SellingUnitPoint" Type="Double" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+    </div>
 
     <script>
-        (function () {
+        const addMember = (function () {
             //**** REFERENCE INFO ****
-            resetReferenceInfo();
-
             const inputReferenceId = document.getElementById("body_ReferralIDTextBox");
+            const referenceMemberId = document.getElementById("body_HiddenReferralMemberId");
+            const referenceInfo = document.getElementById("show-reference-info");
 
             //autocomplete
             $(inputReferenceId).typeahead({
@@ -253,7 +246,8 @@ SELECT @ShoppingID = Scope_identity()"
 
             //on input reference id
             inputReferenceId.addEventListener("input", function () {
-                resetReferenceInfo();
+                referenceMemberId.value = "";
+                referenceInfo.innerHTML = "";
             });
 
             //append find user info
@@ -263,12 +257,6 @@ SELECT @ShoppingID = Scope_identity()"
 
                 const infoContainer = document.getElementById("show-reference-info");
                 infoContainer.innerHTML = `<span class="badge badge-dark mr-2">${item.Name}</span><span class="badge badge-dark">${item.Phone}</span>`
-            }
-
-            //reset reference info 
-            function resetReferenceInfo() {
-                document.getElementById("body_HiddenReferralMemberId").value = "";
-                document.getElementById("show-reference-info").innerHTML = "";
             }
 
             //set image file
@@ -290,21 +278,7 @@ SELECT @ShoppingID = Scope_identity()"
                     $(pathInput).notify(`image size must be less than ${allowSize}MB. your file size:${size.toFixed()} MB`, { position: "bottom left" });
                     return;
                 }
-
-                //convert file to base64
-                fileToBase64(e.target.files[0]);
             });
-
-            //Convert File to base64
-            function fileToBase64(file) {
-                const reader = new FileReader();
-                reader.onload = (function (theFile) {
-                    return function (e) {
-                        document.getElementById('body_ApplicantPhotoHF').value = window.btoa(e.target.result);
-                    };
-                })(file);
-                reader.readAsBinaryString(file);
-            }
 
 
             //**** PRODUCT ****//
@@ -343,6 +317,21 @@ SELECT @ShoppingID = Scope_identity()"
             //save to cart
             function saveCart() {
                 localStorage.setItem('added-product', JSON.stringify(cart));
+
+                grandTotalAmount();
+            }
+
+            //sum total amount
+            const postJsonData = document.getElementById("body_JsonData");
+
+            function grandTotalAmount() {
+                const total = cart.reduce((acc, item) => acc + item.TotalPrice, 0);
+
+                document.getElementById("body_HiddenGrandTotalAmount").value = total;
+                document.getElementById("grandTotal").textContent = total ? `Grand Total: ৳${total}` : "";
+
+                //set array for submit to database
+                postJsonData.value = cart.length ? JSON.stringify(cart) : "";
             }
 
             //add new product to table
@@ -367,18 +356,17 @@ SELECT @ShoppingID = Scope_identity()"
             //create table row
             function createRow(item) {
                 const tr = document.createElement("tr");
-                tr.setAttribute("data-id", item.ProductID);
                 tr.innerHTML = `
                     <td><strong>${item.Name}</strong></td>
                     <td>৳${item.Price}</td>
-                    <td><input id="${item.ProductID}" data-stock="${item.Stock}" data-price="${item.Price}" type="number" value="${item.Quantity}" class="form-control inputQuantity"></td>
+                    <td><input min="1" max="${item.Stock}" id="${item.ProductID}" data-stock="${item.Stock}" data-price="${item.Price}" type="number" value="${item.Quantity}" class="form-control inputQuantity" required></td>
                     <td>৳<span class="total-price">${item.TotalPrice}</span></td>
-                    <td class="text-center"><i data-id="${item.ProductID}" class="remove fas fa-trash"></i></td>`
+                    <td class="text-center"><i id="${item.ProductID}" class="remove fas fa-trash"></i></td>`
                 return tr;
             }
 
             //append product info
-            function rebuildProductTable() {
+            const rebuildProductTable = function () {
                 tBody.innerHTML = "";
                 const store = localStorage.getItem("added-product");
                 if (!store) return;
@@ -387,19 +375,34 @@ SELECT @ShoppingID = Scope_identity()"
 
                 cart.forEach(item => {
                     tBody.appendChild(createRow(item));
-                })
+                });
+
+                grandTotalAmount();
             }
 
-            //on update quantity
-            tBody.addEventListener("input", function (evt) {
+            //on update quantity/delete
+            tBody.addEventListener("input", onQuantityAndDelete);
+            tBody.addEventListener("click", onQuantityAndDelete);
+
+            //reset reference info 
+            const resetReferenceInfo = function () {
+                if (inputReferenceId.value)
+                    inputReferenceId.value = "";
+
+                referenceMemberId.value = "";
+                referenceInfo.innerHTML = "";
+            }
+
+            //function delete and quantity update
+            function onQuantityAndDelete(evt) {
                 const element = evt.target;
 
                 const onQuantity = element.classList.contains("inputQuantity");
                 const onRemove = element.classList.contains("remove");
 
-                const id = element.parentElement.parentElement.getAttribute("data-id");
-
+                //quantity update
                 if (onQuantity) {
+                    const id = +element.id;
                     const price = +element.getAttribute("data-price");
                     const stock = +element.getAttribute("data-stock");
                     const inputQuantity = +element.value;
@@ -413,21 +416,72 @@ SELECT @ShoppingID = Scope_identity()"
                     const totalPrice = price * inputQuantity;
 
                     cart.forEach((item, i) => {
-                        if (item.ProductId === id) {
+                        if (item.ProductID === id) {
                             cart[i].Quantity = inputQuantity;
                             cart[i].TotalPrice = totalPrice;
                         }
                     });
 
                     setTotalPrice.textContent = totalPrice;
-                    saveCart();
                 }
 
-                if (onRemove) { }
-            });
+                //remove product from list
 
-            //call function
-            rebuildProductTable();
+                if (onRemove) {
+                    const id = +element.id;
+                    cart = cart.filter(item => item.ProductID !== id);
+                    element.parentElement.parentElement.remove();
+                }
+
+                //save changes cart
+                saveCart();
+            }
+
+            //check form validation before submit
+            const formIsValid = function () {
+                if (!referenceMemberId.value && inputReferenceId.value !== "") {
+                    $("#errorReference").notify("invalid reference user", { position: "top right" });
+                    return false;
+                }
+
+                if (!postJsonData.value) {
+                    $("#postCustomer").notify("No Product Added!", { position: "bottom left" });
+                    return false;
+                }
+
+                return true;
+            }
+
+            //clear cart after submit
+            const emptyCart = function () {
+                cart = [];
+                localStorage.removeItem('added-product');
+            }
+
+            //***public function***
+            return {
+                rebuildProductTable,
+                resetReferenceInfo,
+                formIsValid,
+                emptyCart
+            }
         })();
+
+
+        //call function
+        addMember.resetReferenceInfo();
+        addMember.rebuildProductTable();
+
+        //check form validation before submit
+        function formValidation() {
+            const isValid = addMember.formIsValid();
+
+            if (isValid) addMember.emptyCart();
+
+            return isValid;
+        }
+
+        //allow only number
+        function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 !== a && 31 < a && (48 > a || 57 < a) ? false : true };
     </script>
 </asp:Content>

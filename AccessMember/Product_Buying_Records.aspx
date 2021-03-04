@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Product Buying Records" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Product_Buying_Records.aspx.cs" Inherits="CncAgro.AccessMember.Product_Buying_Records" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <style>
+    <style>
         .mGrid td table td { text-align: right; border: none; }
     </style>
 </asp:Content>
@@ -17,25 +18,19 @@
             <asp:Button ID="FindButton" runat="server" CssClass="btn btn-primary" Text="Find" />
         </div>
     </div>
- 
+
     <div class="table-responsive mt-3">
-        <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
+        <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid table-bordered" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
             <Columns>
                 <asp:BoundField DataField="Shopping_SN" HeaderText="Receipt No" InsertVisible="False" ReadOnly="True" SortExpression="Shopping_SN" />
                 <asp:TemplateField HeaderText="Details">
                     <ItemTemplate>
                         <asp:DataList ID="RecordsDataList" runat="server" DataSourceID="Selling_RecordsSQL" Width="100%">
                             <ItemTemplate>
-                                <asp:Label ID="Product_NameLabel" runat="server" Text='<%# Eval("Product_Name") %>' Font-Bold="True" ForeColor="#009933" />
-                                <br />
-                                Quantity:
-                     <asp:Label ID="SellingQuantityLabel" runat="server" Text='<%# Eval("SellingQuantity") %>' />
-                                <br />
-                                Unit Price:
-                     <asp:Label ID="SellingUnitPriceLabel" runat="server" Text='<%# Eval("SellingUnitPrice") %>' />
-                                <br />
-                                Unit Point:
-                     <asp:Label ID="SellingUnitPointLabel" runat="server" Text='<%# Eval("SellingUnitPoint") %>' />
+                                <%# Eval("Product_Name") %>
+                                Quantity:<%# Eval("SellingQuantity") %>
+                                Unit Price:<%# Eval("SellingUnitPrice") %>
+                                Unit Point:<%# Eval("SellingUnitPoint") %>
                             </ItemTemplate>
                         </asp:DataList>
                         <asp:HiddenField ID="ShoppingID_HF" runat="server" Value='<%# Eval("ShoppingID") %>' />
