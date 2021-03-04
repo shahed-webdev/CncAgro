@@ -169,7 +169,16 @@ namespace CncAgro.AccessMember.Selling
 
                                 #endregion End Product
 
+                                // Update S.P Add_Referral_Bonus
+                                A_PointSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
+                                A_PointSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
+                                A_PointSQL.Update();
 
+
+                                // Generation commission 2% to 6 upper generation S.P Add_Generation_Income
+                                Retail_IncomeSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
+                                Retail_IncomeSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
+                                Retail_IncomeSQL.Update();
 
                                 // Update S.P Add_Retail_Income
                                 if (point > 1000)
