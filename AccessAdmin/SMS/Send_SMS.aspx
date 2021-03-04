@@ -15,7 +15,7 @@
             <label>
                 Phone Number
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="Phone_TextBox" CssClass="EroorStar" ValidationGroup="1"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Phone_TextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Phone_TextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(013)|(014)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
             </label>
             <asp:TextBox ID="Phone_TextBox" CssClass="form-control" runat="server"></asp:TextBox>
         </div>

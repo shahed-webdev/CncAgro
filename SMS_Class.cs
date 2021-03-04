@@ -62,7 +62,7 @@ namespace CncAgro
             bool IsValid = true;
             string Validation_Message = "";
 
-            if (!Regex.IsMatch(Number, @"^(88)?((011)|(015)|(016)|(017)|(018)|(019))\d{8,8}$"))
+            if (!Regex.IsMatch(Number, @"^(88)?((011)|(015)|(016)|(017)|(013)|(014)|(018)|(019))\d{8,8}$"))
             {
                 IsValid = false;
                 Validation_Message += "Invalid Mobile Number ";

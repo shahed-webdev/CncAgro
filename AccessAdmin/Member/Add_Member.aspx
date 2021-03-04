@@ -1,256 +1,148 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Add_Member.aspx.cs" Inherits="CncAgro.AccessAdmin.Member.Add_Member" %>
+﻿<%@ Page Title="Customer Registration" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Add_Member.aspx.cs" Inherits="DnbBD.AccessAdmin.Member.Add_Member" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        #Is_Position, #Is_Referral, #Is_LeftRight { color: #ff6a00; display: inline; }
-        #user-info{ display: none; }
-        #addCustomer{ display: none; }
-        #Product-info { display: none; }
-        .ItemDelete { color: red; cursor: pointer; }
-        .card { margin-bottom: 20px }
-    </style>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <h3>Applicant Info</h3>
 
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title mb-0">Applicant Info</div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>Name*<asp:RequiredFieldValidator ErrorMessage="Enter Name" ID="Required1" runat="server" ControlToValidate="NameTextBox" CssClass="EroorStar" ValidationGroup="1">*</asp:RequiredFieldValidator></label>
-                <asp:TextBox ID="NameTextBox" placeholder="Input Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Father's Name</label>
-                <asp:TextBox ID="FatherNameTextBox" placeholder="Input Father's Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Mother's Name</label>
-                <asp:TextBox ID="MotherNameTextBox" placeholder="Input Mother's Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Date of Birth</label>
-                <asp:TextBox ID="DateofBirthTextBox" placeholder="Input Date of Birth" runat="server" CssClass="form-control datepicker"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Blood Group</label>
-                <asp:DropDownList ID="BloodGroupDropDownList" runat="server" CssClass="form-control">
-                    <asp:ListItem Value=" ">[ SELECT ]</asp:ListItem>
-                    <asp:ListItem>A+</asp:ListItem>
-                    <asp:ListItem>A-</asp:ListItem>
-                    <asp:ListItem>B+</asp:ListItem>
-                    <asp:ListItem>B-</asp:ListItem>
-                    <asp:ListItem>AB+</asp:ListItem>
-                    <asp:ListItem>AB-</asp:ListItem>
-                    <asp:ListItem>O+</asp:ListItem>
-                    <asp:ListItem>O-</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="form-group">
-                <label>Gender</label>
-                <asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal" CssClass="form-control">
-                    <asp:ListItem Selected="True">Male</asp:ListItem>
-                    <asp:ListItem>Female</asp:ListItem>
-                </asp:RadioButtonList>
-            </div>
-            <div class="form-group">
-                <label>National ID/Smart Card/PP No.</label>
-                <asp:TextBox ID="NationalIDTextBox" placeholder="Input National ID/Smart Card ID/PP No." runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Present Address</label>
-                <asp:TextBox ID="Present_AddressTextBox" placeholder="Input Present Address" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Permanent Address</label>
-                <asp:TextBox ID="PermanentTextBox" placeholder="Input Permanent Address" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>
-                    Phone*
-                <asp:RequiredFieldValidator ErrorMessage="Enter Mobile No." ID="Required" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
-                </label>
-                <asp:TextBox ID="PhoneTextBox" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control" placeholder="Input Phone number"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>
-                    E-mail
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Email" ErrorMessage="Email not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="1" CssClass="EroorStar"></asp:RegularExpressionValidator>
-                </label>
-                <asp:TextBox ID="Email" runat="server" CssClass="form-control mail_Check" placeholder="Write@mail.com"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Applicant Photo</label>
-                <input id="Applicant_Photo" name="Applicant_Photo" type="file" accept="image/*" />
-                <asp:HiddenField ID="Applicant_Photo_HF" runat="server" />
-            </div>
-        </div>
-    </div>
+    <div class="container">
+        <h3>Applicant Info</h3>
 
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title mb-0">Nominee Info</div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>Nominee Name</label>
-                <asp:TextBox ID="NomineeNameTextBox" placeholder="Input Nominee Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Relation With Nominee</label>
-                <asp:TextBox ID="RelationWithNomineeTextBox" placeholder="Input Relation With Nominee" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Nominee Date Of Birth</label>
-                <asp:TextBox ID="Nominee_DOB_TextBox" placeholder="Input Relation With Nominee" runat="server" CssClass="form-control datepicker"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Nominee Photo</label>
-                <input id="Nominee_Photo" name="Nominee_Photo" type="file" accept="image/*" />
-                <asp:HiddenField ID="Nominee_Photo_HF" runat="server" />
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title mb-0">Applicant Bank Info</div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>Bank Name</label>
-                <asp:TextBox ID="BankTextBox" placeholder="Bank Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Branch Name</label>
-                <asp:TextBox ID="BranchTextBox" placeholder="Branch Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Account Name</label>
-                <asp:TextBox ID="AccountNameTextBox" placeholder="Account Name" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label>Account Number</label>
-                <asp:TextBox ID="AccountNumberTextBox" placeholder="Account Number" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title mb-0">Referral & Sponsor Info</div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>
-                    Reference ID*
-                            <asp:RegularExpressionValidator ID="Re1" runat="server" ControlToValidate="ReferralIDTextBox" ErrorMessage="*" CssClass="EroorStar" ValidationGroup="1" ValidationExpression="^[a-zA-Z0-9]{9,9}$" />
-                    <asp:RequiredFieldValidator ErrorMessage="Enter Reference ID" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ReferralIDTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                    <asp:Label ID="ReferralIDLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                    <label id="Is_Referral"></label>
-                </label>
-                <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" placeholder="Referral ID" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-
-            <div id="R_info" class="alert alert-info" style="display: none;">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <label id="R_Name_Label"></label>
-                <i class="fa fa-phone-square" aria-hidden="true"></i>
-                <label id="R_Phone_Label"></label>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title mb-0">Product</div>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>
-                    Product Code
-                        <asp:Label ID="PositionLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                </label>
-                <asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-
-            <div id="Product-info" class="alert alert-success">
-                <div class="userid">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                    <label id="ProductNameLabel"></label>
-
-                    <i class="fa fa-money" aria-hidden="true"></i>
-                    Price:
-                <label id="ProductPriceLabel"></label>
-
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    Point:
-                <label id="ProductPointLabel"></label>
-
-                    <i class="fa fa-chart-pie"></i>
-                    Current Stock:
-                <label id="Current_Stook_Label"></label>
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Name*<asp:RequiredFieldValidator ErrorMessage="Enter Name" ID="Required1" runat="server" ControlToValidate="NameTextBox" CssClass="EroorStar" ValidationGroup="1">*</asp:RequiredFieldValidator></label>
+                        <asp:TextBox ID="NameTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
                 </div>
-                <input id="ProductID_HF" type="hidden" />
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Father's Name</label>
+                        <asp:TextBox ID="FatherNameTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>
+                            Phone*
+                            <asp:RequiredFieldValidator ErrorMessage="Enter Mobile No." ID="Required" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid Mobile No. " ValidationExpression="(88)?((011)|(015)|(016)|(017)|(013)|(014)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
+                        </label>
+                        <asp:TextBox ID="PhoneTextBox" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>
-                    Quantity
-                <asp:Label ID="StookErLabel" runat="server" ForeColor="#009933"></asp:Label>
-                </label>
-                <asp:TextBox ID="QuantityTextBox" placeholder="Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-                <label id="Tota_Price_Label"></label>
+            <div class="row my-3">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Present Address</label>
+                        <asp:TextBox ID="Present_AddressTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <asp:TextBox ID="DateofBirthTextBox" runat="server" CssClass="form-control datepicker"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal" CssClass="form-control">
+                            <asp:ListItem Selected="True">Male</asp:ListItem>
+                            <asp:ListItem>Female</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-danger" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>
+                            E-mail
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Email" ErrorMessage="Email not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="1" CssClass="EroorStar"></asp:RegularExpressionValidator>
+                        </label>
+                        <asp:TextBox ID="Email" runat="server" CssClass="form-control mail_Check"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Applicant Photo</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="applicant-photo" accept="image/*">
+                            <label class="custom-file-label" for="applicant-photo">Choose file</label>
+                        </div>
+                        <asp:HiddenField ID="ApplicantPhotoHF" runat="server" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>
+                            Reference Id*
+                            <asp:RegularExpressionValidator ID="Re1" runat="server" ControlToValidate="ReferralIDTextBox" ErrorMessage="*" CssClass="EroorStar" ValidationGroup="1" ValidationExpression="^[a-zA-Z0-9]{9,9}$" />
+                            <asp:RequiredFieldValidator ErrorMessage="Enter Reference ID" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ReferralIDTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                            <asp:Label ID="ReferralIDLabel" runat="server" ForeColor="#FF3300"></asp:Label>
+                        </label>
+                        <asp:TextBox ID="ReferralIDTextBox" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:HiddenField ID="HiddenReferralMemberId" runat="server" />
+
+                        <div id="show-reference-info" class="mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-4">Add Product</h3>
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="form-group">
+                        <h6 class="font-weight-bold text-center">Add Product by Code</h6>
+                        <input id="inputProductCode" type="text" autocomplete="off" placeholder="find Product" class="form-control" />
+                    </div>
+                </div>
             </div>
 
-            <table class="mGrid cart" style="display: none;">
+            <table class="table cart">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Unit Point</th>
-                        <th>Total Price</th>
-                        <th>Total Point</th>
-                        <th>Delete</th>
+                        <th><strong>Name</strong></th>
+                        <th><strong>Unit Price</strong></th>
+                        <th><strong>Quantity</strong></th>
+                        <th><strong>Total Price</strong></th>
+                        <th class="text-center"><strong>Delete</strong></th>
                     </tr>
                 </thead>
-                <tbody id="cartBody"></tbody>
+                <tbody id="tBody"></tbody>
             </table>
 
             <asp:HiddenField ID="GTpriceHF" runat="server" />
             <asp:HiddenField ID="GTpointHF" runat="server" />
         </div>
+
+        <div id="addCustomer" class="mt-3">
+            <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary btn-lg" Text="Submit" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
+            <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
+            <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
+            <asp:HiddenField ID="JsonData" runat="server" />
+        </div>
     </div>
 
-    <div id="addCustomer">
-        <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Add Customer" ValidationGroup="1" OnClick="Add_Customer_Button_Click" />
-        <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
-        <asp:ValidationSummary CssClass="EroorSummer" ID="ValidationSummary1" runat="server" ValidationGroup="1" DisplayMode="List" />
-        <asp:HiddenField ID="JsonData" runat="server" />
-    </div>
 
 
-
-    <asp:SqlDataSource ID="RegistrationSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Registration(InstitutionID, UserName, Validation, Category, Name, FatherName, MotherName, Gender, Present_Address, Phone, Email) VALUES (@InstitutionID, @UserName, 'Valid', N'Member', @Name, @FatherName, @MotherName, @Gender, @Present_Address, @Phone, @Email)" SelectCommand="SELECT * FROM [Registration]" UpdateCommand="UPDATE Institution SET Member_SN =Member_SN +1">
+    <asp:SqlDataSource ID="RegistrationSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Registration(InstitutionID, UserName, Validation, Category, Name, FatherName, Gender, Present_Address, Phone, Email, Image) VALUES (@InstitutionID, @UserName, 'Valid', N'Member', @Name, @FatherName, @Gender, @Present_Address, @Phone, @Email, @Image)" SelectCommand="SELECT * FROM [Registration]" UpdateCommand="UPDATE Institution SET Member_SN =Member_SN +1">
         <InsertParameters>
-            <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" />
             <asp:Parameter Name="UserName" />
+            <asp:SessionParameter Name="InstitutionID" SessionField="InstitutionID" />
             <asp:ControlParameter ControlID="NameTextBox" Name="Name" PropertyName="Text" />
             <asp:ControlParameter ControlID="FatherNameTextBox" Name="FatherName" PropertyName="Text" />
-            <asp:ControlParameter ControlID="MotherNameTextBox" Name="MotherName" PropertyName="Text" />
             <asp:ControlParameter ControlID="GenderRadioButtonList" Name="Gender" PropertyName="SelectedValue" />
             <asp:ControlParameter ControlID="Present_AddressTextBox" Name="Present_Address" PropertyName="Text" />
             <asp:ControlParameter ControlID="PhoneTextBox" Name="Phone" PropertyName="Text" />
             <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" />
+            <asp:ControlParameter ControlID="ApplicantPhotoHF" Name="Image" PropertyName="Value" />
         </InsertParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Member(MemberRegistrationID, InstitutionID, Referral_MemberID,   Is_Identified, Identified_Date) VALUES ((SELECT  IDENT_CURRENT('Registration')), @InstitutionID,  @Referral_MemberID, 1, GETDATE())" SelectCommand="SELECT * FROM [Member]" UpdateCommand="Add_Update_CarryMember" UpdateCommandType="StoredProcedure">
@@ -323,225 +215,219 @@ SELECT @ShoppingID = Scope_identity()"
         </InsertParameters>
     </asp:SqlDataSource>
 
+
     <script>
-        var cart = [];
+        (function () {
+            //**** REFERENCE INFO ****
+            resetReferenceInfo();
 
-        function addToCart() {
-            const productId = $("#ProductID_HF").val();
-            const Code = $("[id*=ProductCodeTextBox]").val();
-            const Name = $("#ProductNameLabel").text();
-            const Quantity = $("[id*=QuantityTextBox]").val().trim();
-            const unitPrice = $("#ProductPriceLabel").text();
-            const unitPoint = $("#ProductPointLabel").text();
+            const inputReferenceId = document.getElementById("body_ReferralIDTextBox");
 
-
-            // create JavaScript Object
-            if (Code !== '' && Quantity !== '' && productId !== '') {
-                // if Code is already present
-                for (let i in cart) {
-                    if (cart[i].ProductID === productId) { alert("This Product already added"); return; }
-                }
-
-                const item = { Code: Code, ProductID: productId, Name: Name, Quantity: Quantity, Unit_Price: unitPrice, Unit_Point: unitPoint };
-                cart.push(item);
-               
-                showCart();
-
-                $("[id*=ProductCodeTextBox]").val("");
-                $("[id*=QuantityTextBox]").val("");
-                $("#ProductNameLabel").text("");
-                $("#ProductPriceLabel").text("");
-                $("#ProductPointLabel").text("");
-                $("#Current_Stook_Label").text("");
-                $("#Tota_Price_Label").text("");
-                $("[id*=StookErLabel]").text("");
-                $("#ProductID_HF").val("");
-                $("#Product-info").css("display", "none");
-            }
-            else {
-                alert("Product code & quantity required");
-            }
-        }
-
-
-        //Delete
-        $(document).on("click", ".ItemDelete", function () {
-            const index = $(this).closest("tr").index();
-
-            cart.splice(index, 1);
-
-            showCart();
-            getTotalPrice();
-            getTotalPoint();
-        });
-
-        function getTotalPrice() {
-            var total = 0;
-            $.each(cart, function () {
-                total += this.Quantity * this.Unit_Price;
-            });
-            $("#GrandTotal").text(total);
-            $("[id*=GTpriceHF]").val(total);
-        }
-
-        function getTotalPoint() {
-            var total = 0;
-            $.each(cart, function () {
-                total += this.Quantity * this.Unit_Point;
-            });
-            $("#PointGrandTotal").text(total);
-            $("[id*=GTpointHF]").val(total);
-        }
-
-        function showCart() {
-            if (!cart.length) {
-                $(".cart").css("display", "none");
-                $("#addCustomer").css("display", "none");
-                return;
-            }
-
-            $(".cart").css("display", "table");
-            $("#addCustomer").css("display", "block");
-
-            var cartTable = $("#cartBody");
-            cartTable.empty();
-
-            $.each(cart, function () {
-                const tPrice = this.Quantity * this.Unit_Price;
-                const tPoint = this.Quantity * this.Unit_Point;
-                cartTable.append(
-                    `<tr><td>${this.Name}</td><td>${this.Quantity}</td><td>৳${this.Unit_Price}</td><td>${this.Unit_Point}</td><td>৳${tPrice.toFixed(2)}</td><td>${tPoint.toFixed(2)}</td><td class="text-center" style="width:20px;"><b class="ItemDelete">Delete</b></td></tr>`
-                );
-            });
-            cartTable.append(
-                '<tr>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td>৳<strong id="GrandTotal"></strong></td>' +
-                '<td><strong id="PointGrandTotal"></strong></td>' +
-                '<td></td>' +
-                '</tr>'
-            );
-
-            getTotalPrice();
-            getTotalPoint();
-        }
-        /**End Cart*/
-
-        $(function () {
-            $("[id*=Add_Customer_Button]").click(function () {
-                $("[id*=JsonData]").val(JSON.stringify(cart));
-            });
-
-            //Link Active
-            $("#Add_Customer").addClass('L_Active');
-
-            //Get Referral Member
-            $('[id*=ReferralIDTextBox]').typeahead({
-                minLength: 4,
+            //autocomplete
+            $(inputReferenceId).typeahead({
+                minLength: 2,
+                displayText: function (item) {
+                    return item.UserName;
+                },
+                afterSelect: function (item) {
+                    this.$element[0].value = item.UserName;
+                },
                 source: function (request, result) {
                     $.ajax({
-                        url: "Add_Member.aspx/Get_UserInfo_ID",
-                        data: JSON.stringify({ 'prefix': request }),
-                        dataType: "json",
                         type: "POST",
+                        url: "Add_Member.aspx/GetUsers",
+                        data: JSON.stringify({ 'prefix': request }),
                         contentType: "application/json; charset=utf-8",
+                        dataType: "json",
                         success: function (response) {
-                            label = [];
-                            map = {};
-                            $.map(JSON.parse(response.d), function (item) {
-                                label.push(item.Username);
-                                map[item.Username] = item;
-                            });
-                            result(label);
-
-                            if (label === "") {
-                                $("[id*=Add_Customer_Button]").prop("disabled", true);
-                                $("#Is_Referral").text("Referral ID is not valid");
-                            }
-                            else {
-                                $("#Is_Referral").text("");
-                            }
-                        }
+                            result(JSON.parse(response.d));
+                        },
+                        error: function (err) { console.log(err) }
                     });
                 },
                 updater: function (item) {
-                    $("#R_info").css("display", "block");
-                    $("#R_Name_Label").text(map[item].Name);
-                    $("#R_Phone_Label").text(map[item].Phone);
+                    appendReferenceInfo(item);
                     return item;
                 }
+            })
+
+            //on input reference id
+            inputReferenceId.addEventListener("input", function () {
+                resetReferenceInfo();
             });
 
+            //append find user info
+            function appendReferenceInfo(item) {
+                const memberId = document.getElementById("body_HiddenReferralMemberId");
+                memberId.value = item.MemberID;
 
-            //*********Add Product********
-            //Get Product info
-            $('[id*=ProductCodeTextBox]').typeahead({
-                minLength: 1,
+                const infoContainer = document.getElementById("show-reference-info");
+                infoContainer.innerHTML = `<span class="badge badge-dark mr-2">${item.Name}</span><span class="badge badge-dark">${item.Phone}</span>`
+            }
+
+            //reset reference info 
+            function resetReferenceInfo() {
+                document.getElementById("body_HiddenReferralMemberId").value = "";
+                document.getElementById("show-reference-info").innerHTML = "";
+            }
+
+            //set image file
+            $('input[type="file"]').change(function (e) {
+                const pathInput = e.target.parentElement.parentElement;
+                const size = e.target.files[0].size / 1024 / 1024;
+                const allowSize = 1;
+                const regex = new RegExp("(.*?)\.(jpeg|jpg|png|webp)$");
+
+
+                if (!(regex.test(e.target.value.toLowerCase()))) {
+                    e.target.value = "";
+                    $(pathInput).notify("Please select correct file format", { position: "bottom left" });
+                    return;
+                }
+
+                if (size > allowSize) {
+                    e.target.value = "";
+                    $(pathInput).notify(`image size must be less than ${allowSize}MB. your file size:${size.toFixed()} MB`, { position: "bottom left" });
+                    return;
+                }
+
+                //convert file to base64
+                fileToBase64(e.target.files[0]);
+            });
+
+            //Convert File to base64
+            function fileToBase64(file) {
+                const reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        document.getElementById('body_ApplicantPhotoHF').value = window.btoa(e.target.result);
+                    };
+                })(file);
+                reader.readAsBinaryString(file);
+            }
+
+
+            //**** PRODUCT ****//
+            let cart = [];
+            const inputProductCode = document.getElementById("inputProductCode");
+            const tBody = document.getElementById("tBody");
+
+            //autocomplete
+            $(inputProductCode).typeahead({
+                minLength: 2,
+                displayText: function (item) {
+                    return item.Code;
+                },
+                afterSelect: function (item) {
+                    this.$element[0].value = "";
+                },
                 source: function (request, result) {
                     $.ajax({
+                        type: "POST",
                         url: "Add_Member.aspx/GetProduct",
                         data: JSON.stringify({ 'prefix': request }),
-                        dataType: "json",
-                        type: "POST",
                         contentType: "application/json; charset=utf-8",
+                        dataType: "json",
                         success: function (response) {
-                            label = [];
-                            map = {};
-                            $.map(JSON.parse(response.d), function (item) {
-                                label.push(item.Code);
-                                map[item.Code] = item;
-                            });
-                            result(label);
-                        }
+                            result(JSON.parse(response.d));
+                        },
+                        error: function (err) { console.log(err) }
                     });
                 },
                 updater: function (item) {
-                    $("#Product-info").css("display", "block");
-                    $("#ProductNameLabel").text(map[item].Name);
-                    $("#ProductPriceLabel").text(map[item].Price);
-                    $("#ProductPointLabel").text(map[item].Point);
-                    $("#Current_Stook_Label").text(map[item].Stock);
-                    $("#ProductID_HF").val(map[item].ProductID);
+                    addProduct(item);
                     return item;
                 }
-            });
+            })
 
-            //Product reset
-            $("[id*=ProductCodeTextBox]").on('keyup', function () {
-                $("#ProductNameLabel").text("");
-                $("#ProductPriceLabel").text("");
-                $("#ProductPointLabel").text("");
-                $("#Current_Stook_Label").text("");
+            //save to cart
+            function saveCart() {
+                localStorage.setItem('added-product', JSON.stringify(cart));
+            }
 
-                $("[id*=QuantityTextBox]").val("");
-                $("#Tota_Price_Label").text("");
-                $("[id*=StookErLabel]").text("");
-                $("#ProductID_HF").val("");
-                $("#Product-info").css("display", "none");
-            });
-
-            //Quantity TextBox
-            $("[id*=QuantityTextBox]").on('keyup', function () {
-                var Price = parseFloat($("#ProductPriceLabel").text());
-                var Qntity = parseFloat($("[id*=QuantityTextBox]").val());
-                var StookQunt = parseFloat($("#Current_Stook_Label").text());
-
-                var total = parseFloat(Price * Qntity);
-
-                if (!isNaN(total)) {
-                    $("#Tota_Price_Label").text("Total Price: " + total.toFixed(2) + " Tk");
-                    StookQunt >= Qntity ? ($("#CartButton").prop("disabled", !1), $("[id*=StookErLabel]").text("Remaining Stook " + (StookQunt - Qntity))) : ($("#CartButton").prop("disabled", !0), $("[id*=StookErLabel]").text("Stock Product Quantity " + StookQunt + ". You Don't Sell " + Qntity));
+            //add new product to table
+            function addProduct(product) {
+                const isAdded = cart.some(item => item.ProductID === product.ProductID);
+                if (isAdded) {
+                    $(inputProductCode).notify("Product already added to list", { position: "bottom left" });
+                    return;
                 }
-                else {
-                    $("#Tota_Price_Label").text("");
-                    $("[id*=StookErLabel]").text("");
-                }
-            });
-        });
 
-        function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 != a && 31 < a && (48 > a || 57 < a) ? !1 : !0 };
+                product.Quantity = 1;
+                product.TotalPrice = product.Price;
+                cart.push(product);
+
+                //save data to local store
+                saveCart();
+
+                //append row in table
+                tBody.appendChild(createRow(product));
+            }
+
+            //create table row
+            function createRow(item) {
+                const tr = document.createElement("tr");
+                tr.setAttribute("data-id", item.ProductID);
+                tr.innerHTML = `
+                    <td><strong>${item.Name}</strong></td>
+                    <td>৳${item.Price}</td>
+                    <td><input id="${item.ProductID}" data-stock="${item.Stock}" data-price="${item.Price}" type="number" value="${item.Quantity}" class="form-control inputQuantity"></td>
+                    <td>৳<span class="total-price">${item.TotalPrice}</span></td>
+                    <td class="text-center"><i data-id="${item.ProductID}" class="remove fas fa-trash"></i></td>`
+                return tr;
+            }
+
+            //append product info
+            function rebuildProductTable() {
+                tBody.innerHTML = "";
+                const store = localStorage.getItem("added-product");
+                if (!store) return;
+
+                cart = JSON.parse(store);
+
+                cart.forEach(item => {
+                    tBody.appendChild(createRow(item));
+                })
+            }
+
+            //on update quantity
+            tBody.addEventListener("input", function (evt) {
+                const element = evt.target;
+
+                const onQuantity = element.classList.contains("inputQuantity");
+                const onRemove = element.classList.contains("remove");
+
+                const id = element.parentElement.parentElement.getAttribute("data-id");
+
+                if (onQuantity) {
+                    const price = +element.getAttribute("data-price");
+                    const stock = +element.getAttribute("data-stock");
+                    const inputQuantity = +element.value;
+                    const setTotalPrice = element.parentElement.parentElement.querySelector(".total-price");
+
+                    if (stock < inputQuantity) {
+                        $("#tBody").notify(`Quantity more than stock. current stock: ${stock}`, { position: "bottom center" });
+                        return;
+                    }
+
+                    const totalPrice = price * inputQuantity;
+
+                    cart.forEach((item, i) => {
+                        if (item.ProductId === id) {
+                            cart[i].Quantity = inputQuantity;
+                            cart[i].TotalPrice = totalPrice;
+                        }
+                    });
+
+                    setTotalPrice.textContent = totalPrice;
+                    saveCart();
+                }
+
+                if (onRemove) { }
+            });
+
+            //call function
+            rebuildProductTable();
+        })();
     </script>
 </asp:Content>

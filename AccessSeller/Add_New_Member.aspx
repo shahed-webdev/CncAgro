@@ -40,7 +40,7 @@
                 <label>
                     Phone*
 				<asp:RequiredFieldValidator ID="Required" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid" ValidationExpression="(88)?((011)|(015)|(016)|(017)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneTextBox" CssClass="EroorStar" ErrorMessage="Invalid" ValidationExpression="(88)?((011)|(015)|(016)|(017)|(013)|(014)|(018)|(019))\d{8,8}" ValidationGroup="1"></asp:RegularExpressionValidator>
                 </label>
                 <asp:TextBox ID="PhoneTextBox" onkeypress="return isNumberKey(event)" runat="server" CssClass="form-control _phone_Check" placeholder="Input Phone number"></asp:TextBox>
             </div>

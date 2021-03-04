@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Member
+namespace DnbBD.AccessAdmin.Member
 {
 
 
@@ -42,69 +42,6 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.TextBox FatherNameTextBox;
 
         /// <summary>
-        /// MotherNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MotherNameTextBox;
-
-        /// <summary>
-        /// DateofBirthTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DateofBirthTextBox;
-
-        /// <summary>
-        /// BloodGroupDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList BloodGroupDropDownList;
-
-        /// <summary>
-        /// GenderRadioButtonList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList GenderRadioButtonList;
-
-        /// <summary>
-        /// NationalIDTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NationalIDTextBox;
-
-        /// <summary>
-        /// Present_AddressTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Present_AddressTextBox;
-
-        /// <summary>
-        /// PermanentTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PermanentTextBox;
-
-        /// <summary>
         /// Required control.
         /// </summary>
         /// <remarks>
@@ -132,6 +69,33 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.TextBox PhoneTextBox;
 
         /// <summary>
+        /// Present_AddressTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Present_AddressTextBox;
+
+        /// <summary>
+        /// DateofBirthTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DateofBirthTextBox;
+
+        /// <summary>
+        /// GenderRadioButtonList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList GenderRadioButtonList;
+
+        /// <summary>
         /// RegularExpressionValidator2 control.
         /// </summary>
         /// <remarks>
@@ -150,85 +114,13 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// Applicant_Photo_HF control.
+        /// ApplicantPhotoHF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Applicant_Photo_HF;
-
-        /// <summary>
-        /// NomineeNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NomineeNameTextBox;
-
-        /// <summary>
-        /// RelationWithNomineeTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RelationWithNomineeTextBox;
-
-        /// <summary>
-        /// Nominee_DOB_TextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Nominee_DOB_TextBox;
-
-        /// <summary>
-        /// Nominee_Photo_HF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Nominee_Photo_HF;
-
-        /// <summary>
-        /// BankTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BankTextBox;
-
-        /// <summary>
-        /// BranchTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BranchTextBox;
-
-        /// <summary>
-        /// AccountNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AccountNameTextBox;
-
-        /// <summary>
-        /// AccountNumberTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AccountNumberTextBox;
+        protected global::System.Web.UI.WebControls.HiddenField ApplicantPhotoHF;
 
         /// <summary>
         /// Re1 control.
@@ -267,40 +159,13 @@ namespace CncAgro.AccessAdmin.Member
         protected global::System.Web.UI.WebControls.TextBox ReferralIDTextBox;
 
         /// <summary>
-        /// PositionLabel control.
+        /// HiddenReferralMemberId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PositionLabel;
-
-        /// <summary>
-        /// ProductCodeTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductCodeTextBox;
-
-        /// <summary>
-        /// StookErLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label StookErLabel;
-
-        /// <summary>
-        /// QuantityTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox QuantityTextBox;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenReferralMemberId;
 
         /// <summary>
         /// GTpriceHF control.
