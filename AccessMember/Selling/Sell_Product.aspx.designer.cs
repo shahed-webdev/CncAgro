@@ -150,15 +150,6 @@ namespace CncAgro.AccessSeller
         protected global::System.Web.UI.WebControls.SqlDataSource Product_Selling_RecordsSQL;
 
         /// <summary>
-        /// SellerUpdateSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SellerUpdateSQL;
-
-        /// <summary>
         /// SellerProductSQL control.
         /// </summary>
         /// <remarks>
@@ -168,48 +159,12 @@ namespace CncAgro.AccessSeller
         protected global::System.Web.UI.WebControls.SqlDataSource SellerProductSQL;
 
         /// <summary>
-        /// A_PointSQL control.
+        /// RetailSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource A_PointSQL;
-
-        /// <summary>
-        /// AutoPlan_SQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource AutoPlan_SQL;
-
-        /// <summary>
-        /// GenerationSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource GenerationSQL;
-
-        /// <summary>
-        /// Package_UpdateSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Package_UpdateSQL;
-
-        /// <summary>
-        /// Seller_ComissionSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Seller_ComissionSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource RetailSQL;
     }
 }

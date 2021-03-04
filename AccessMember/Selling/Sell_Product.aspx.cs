@@ -24,21 +24,21 @@ namespace CncAgro.AccessSeller
         [WebMethod]
         public static string GetCustomers(string prefix)
         {
-            List<Member> User = new List<Member>();
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+            var user = new List<Member>();
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (var cmd = new SqlCommand())
                 {
                     cmd.CommandText = "SELECT top(3) Registration.UserName, Registration.Name, Registration.Phone, Member.MemberID FROM Registration INNER JOIN  Member ON Registration.RegistrationID = Member.MemberRegistrationID WHERE Registration.UserName LIKE @UserName + '%'";
                     cmd.Parameters.AddWithValue("@UserName", prefix);
                     cmd.Connection = con;
 
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    var dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        User.Add(new Member
+                        user.Add(new Member
                         {
                             Username = dr["UserName"].ToString(),
                             Name = dr["Name"].ToString(),
@@ -48,7 +48,7 @@ namespace CncAgro.AccessSeller
                     }
                     con.Close();
 
-                    var json = new JavaScriptSerializer().Serialize(User);
+                    var json = new JavaScriptSerializer().Serialize(user);
                     return json;
                 }
             }
@@ -65,10 +65,10 @@ namespace CncAgro.AccessSeller
         [WebMethod]
         public static string GetProduct(string prefix)
         {
-            List<Product> User = new List<Product>();
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+            var user = new List<Product>();
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (var cmd = new SqlCommand())
                 {
                     cmd.CommandText = "SELECT top(3) Product_Point_Code.Product_Code, Product_Point_Code.Product_Name, Product_Point_Code.Product_Price, Product_Point_Code.Product_Point, Product_Point_Code.Product_PointID, MemberProduct.ProductStock FROM Product_Point_Code INNER JOIN MemberProduct ON Product_Point_Code.Product_PointID = MemberProduct.Product_PointID WHERE MemberProduct.MemberID = @MemberID AND MemberProduct.ProductStock > 0 AND Product_Point_Code.Product_Code LIKE @Product_Code + '%'";
                     cmd.Parameters.AddWithValue("@Product_Code", prefix);
@@ -76,11 +76,11 @@ namespace CncAgro.AccessSeller
                     cmd.Connection = con;
 
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    var dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        User.Add(new Product
+                        user.Add(new Product
                         {
                             Code = dr["Product_Code"].ToString(),
                             Name = dr["Product_Name"].ToString(),
@@ -92,7 +92,7 @@ namespace CncAgro.AccessSeller
                     }
                     con.Close();
 
-                    var json = new JavaScriptSerializer().Serialize(User);
+                    var json = new JavaScriptSerializer().Serialize(user);
                     return json;
                 }
             }
@@ -127,37 +127,36 @@ namespace CncAgro.AccessSeller
             if (JsonData.Value != "")
             {
                 #region Check Stock
-                bool Is_Available = true;
-                List<Shopping> P_List = new List<Shopping>(ProductList());
+                var isAvailable = true;
+                var pList = new List<Shopping>(ProductList());
 
-                foreach (Shopping item in P_List)
+                foreach (var item in pList)
                 {
-                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
+                    var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
 
-                    SqlCommand cmd = new SqlCommand("SELECT SellerProduct_Stock FROM Seller_Product WHERE(Product_PointID = @ProductID) AND(SellerID = @SellerID)", con);
+                    var cmd = new SqlCommand("SELECT ProductStock FROM MemberProduct WHERE(Product_PointID = @ProductID) AND(MemberID = @MemberID)", con);
                     cmd.Parameters.AddWithValue("@ProductID", item.ProductID);
-                    cmd.Parameters.AddWithValue("@SellerID", Session["SellerID"].ToString());
+                    cmd.Parameters.AddWithValue("@MemberID", Session["MemberID"].ToString());
 
                     con.Open();
-                    int Stock = (int)cmd.ExecuteScalar();
+                    var stock = (int)cmd.ExecuteScalar();
                     con.Close();
 
-                    if (Stock < item.Quantity)
+                    if (stock < item.Quantity)
                     {
-                        Is_Available = false;
+                        isAvailable = false;
                     }
                 }
                 #endregion end
 
 
-                if (Is_Available)
+                if (isAvailable)
                 {
                     #region Add Product
 
                     ShoppingSQL.Insert();
-                    SellerUpdateSQL.Update();
 
-                    foreach (Shopping item in P_List)
+                    foreach (var item in pList)
                     {
                         Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
                         Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
@@ -167,42 +166,14 @@ namespace CncAgro.AccessSeller
                         Product_Selling_RecordsSQL.Insert();
 
                         SellerProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
-                        SellerProductSQL.UpdateParameters["SellerProduct_Stock"].DefaultValue = item.Quantity.ToString();
+                        SellerProductSQL.UpdateParameters["ProductStock"].DefaultValue = item.Quantity.ToString();
                         SellerProductSQL.Update();
                     }
                     #endregion End Product
-
-                    // Update S.P Add_Point
-                    A_PointSQL.Insert();
-
-                    // Update S.P Add_Referral_Bonus
-                    A_PointSQL.Update();
-
-                    //Package Update
-                    Package_UpdateSQL.Update();
-
-                    if (Generation_Type_RadioB.SelectedValue == "G")
-                    {
-                        // Update S.P Add_Generation_UniLevel
-                        GenerationSQL.Update();
-                    }
-                    else
-                    {
-                        // Update S.P Add_Generation_Retail
-                        GenerationSQL.Insert();
-                    }
-
-                    // AutoPlan
-                    AutoPlan_SQL.Insert();
+                    // Update S.P Add_Retail_Income
+                    RetailSQL.Update();
 
 
-                    // Update S.P Add_Designation_Loop
-                    AutoPlan_SQL.Update();
-
-
-                    //Seller commission S.P
-                    Seller_ComissionSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
-                    Seller_ComissionSQL.Insert();
 
                     GTpriceHF.Value = "";
                     GTpointHF.Value = "";

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember.Selling
+namespace CncAgro.AccessSeller
 {
 
 

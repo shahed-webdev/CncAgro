@@ -101,7 +101,7 @@
     </div>
 
 
-    <asp:SqlDataSource ID="ShoppingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO [Shopping] ([SellerID], [MemberID], [ShoppingAmount],ShoppingPoint) VALUES ((SELECT  SellerID FROM Seller WHERE (SellerRegistrationID = @SellerRegistrationID)), @MemberID, @ShoppingAmount,@ShoppingPoint)
+    <asp:SqlDataSource ID="ShoppingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO [Shopping] ([Seller_RegistrationID], [MemberID], [ShoppingAmount],ShoppingPoint) VALUES (@SellerRegistrationID, @MemberID, @ShoppingAmount,@ShoppingPoint)
 SELECT @ShoppingID = Scope_identity()"
         SelectCommand="SELECT * FROM [Shopping]" OnInserted="ShoppingSQL_Inserted">
         <InsertParameters>
@@ -121,63 +121,21 @@ SELECT @ShoppingID = Scope_identity()"
             <asp:Parameter Name="SellingUnitPoint" Type="Double" />
         </InsertParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SellerUpdateSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Seller]" UpdateCommand="UPDATE Seller SET SellingPoint = SellingPoint + @SellingPoint, Selling_Amount = Selling_Amount +@Selling_Amount WHERE (SellerRegistrationID = @SellerRegistrationID)">
-        <UpdateParameters>
-            <asp:SessionParameter Name="SellerRegistrationID" SessionField="RegistrationID" />
-            <asp:ControlParameter ControlID="GTpointHF" Name="SellingPoint" PropertyName="Value"/>
-            <asp:ControlParameter ControlID="GTpriceHF" Name="Selling_Amount" PropertyName="Value" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Seller_Product] WHERE ([SellerID] = @SellerID)" UpdateCommand="UPDATE Seller_Product SET SellerProduct_Stock =SellerProduct_Stock - @SellerProduct_Stock WHERE (SellerID = @SellerID) AND (Product_PointID = @Product_PointID)">
+    <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT MemberID FROM MemberProduct WHERE (MemberID = @MemberID)" UpdateCommand="UPDATE MemberProduct SET ProductStock = ProductStock - @ProductStock WHERE (MemberID = @MemberID) AND (Product_PointID = @Product_PointID)">
         <SelectParameters>
-            <asp:SessionParameter Name="SellerID" SessionField="SellerID" Type="Int32" />
+            <asp:SessionParameter Name="MemberID" SessionField="MemberID" />
         </SelectParameters>
         <UpdateParameters>
-            <asp:SessionParameter Name="SellerID" SessionField="SellerID" Type="Int32" />
-            <asp:Parameter Name="SellerProduct_Stock" Type="Int32" />
+            <asp:Parameter Name="ProductStock" />
+            <asp:Parameter Name="MemberID" />
             <asp:Parameter Name="Product_PointID" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="A_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Point" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM Member " UpdateCommand="Add_Referral_Bonus" UpdateCommandType="StoredProcedure">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value"/>
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-        </InsertParameters>
+    <asp:SqlDataSource ID="RetailSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails" UpdateCommand="Add_Retail_Income" UpdateCommandType="StoredProcedure">
         <UpdateParameters>
             <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
             <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value"/>
         </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="AutoPlan_SQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="IF EXISTS(SELECT MemberID, Auto_Member_SN FROM  Member  Where MemberID = @MemberID  AND Own_Point &gt;= 500 AND  Auto_Member_SN IS NULL)
-BEGIN
-  INSERT INTO Member_AutoPlan (MemberID,AutoPlan_No) Values (@MemberID,1)
-END"
-        SelectCommand="SELECT * FROM [Member_AutoPlan]" UpdateCommand="Add_Designation_Loop" UpdateCommandType="StoredProcedure">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="GenerationSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Generation_Retail" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_UniLevel_ID FROM Generation_Uni_Level" UpdateCommand="Add_Generation_UniLevel" UpdateCommandType="StoredProcedure">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value"/>
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value"/>
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Package_UpdateSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Member_PackageID FROM Member_Package" UpdateCommand="Add_Package_Update" UpdateCommandType="StoredProcedure">
-        <UpdateParameters>
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Seller_ComissionSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Seller_Commission" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM [Seller]">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value"/>
-            <asp:SessionParameter Name="SellerID" SessionField="SellerID" Type="Int32" />
-            <asp:Parameter Name="ShoppingID" Type="Int32" />
-        </InsertParameters>
     </asp:SqlDataSource>
 
 
