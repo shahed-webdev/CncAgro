@@ -81,14 +81,8 @@
                                         </a>
 
                                         <a href="/Profile_Redirect.aspx">
-                                            <h4>
-                                                <i class="fa fa-id-badge" aria-hidden="true"></i>
-                                                <asp:Label ID="NameLabel" runat="server" Text='<%# Bind("UserName") %>' />
-                                            </h4>
-                                            <h5>
-                                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                                <%#Eval("Name") %>
-                                            </h5>
+                                            <p class="mb-0 font-weight-bold"><%# Eval("UserName") %></p>
+                                            <p class="mb-0"><%#Eval("Name") %></p>
                                         </a>
 
                                         <asp:LoginView ID="CustomerLoginView" runat="server">
