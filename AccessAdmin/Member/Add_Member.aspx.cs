@@ -104,7 +104,7 @@ namespace CncAgro.AccessAdmin.Member
                             var password = CreatePassword(8);
                             var userName = DateTime.Now.ToString("yyMM") + userSn.ToString().PadLeft(5, '0');
 
-                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?",DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
+                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?", DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
 
                             if (MembershipCreateStatus.Success == createStatus)
                             {
