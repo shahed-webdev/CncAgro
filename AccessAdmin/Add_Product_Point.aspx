@@ -5,50 +5,66 @@
         #Product-info { display: none; }
 
         .userid { font-size: 14px; padding: 13px 5px; margin-bottom: 7px; }
-            .userid .fa { padding-left: 10px; }
+        .userid .fa { padding-left: 10px; }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Add Product</h3>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="card card-body mb-3">
-                <div class="form-group">
-                    <label>
-                        Product Name
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Product_NameTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator>
-                    </label>
-                    <asp:TextBox ID="Product_NameTextBox" placeholder="Product Name" runat="server" CssClass="form-control"></asp:TextBox>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Product Name
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Product_NameTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator>
+                            </label>
+                            <asp:TextBox ID="Product_NameTextBox" placeholder="Product Name" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Product Code
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Product_CodeTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator>
+                            </label>
+                            <asp:TextBox ID="Product_CodeTextBox" placeholder="Product Code" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>
-                        Product Code
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Product_CodeTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator>
-                    </label>
-                    <asp:TextBox ID="Product_CodeTextBox" placeholder="Product Code" runat="server" CssClass="form-control"></asp:TextBox>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Point<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="Product_PointTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator></label>
+                            <asp:TextBox ID="Product_PointTextBox" placeholder="Product Point" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Price<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="Product_PriceTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator></label>
+                            <asp:TextBox ID="Product_PriceTextBox" placeholder="Price" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>
+                                Stock Quantity
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="QuantityTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator></label>
+                            <asp:TextBox ID="QuantityTextBox" placeholder="Stock Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Point<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="Product_PointTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator></label>
-                    <asp:TextBox ID="Product_PointTextBox" placeholder="Product Point" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>Price<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="Product_PriceTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator></label>
-                    <asp:TextBox ID="Product_PriceTextBox" placeholder="Price" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Stock Quantity
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="QuantityTextBox" CssClass="EroorStar" ErrorMessage="*" ValidationGroup="A"></asp:RequiredFieldValidator></label>
-                    <asp:TextBox ID="QuantityTextBox" placeholder="Stock Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
+
+                <div>
                     <asp:Button ID="Add_Product_Button" runat="server" CssClass="btn btn-primary" Text="Add New Product" OnClick="Add_Product_Button_Click" ValidationGroup="A" />
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Update Product Stock</button>
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <div class="form-inline mb-3">
+            <div class="card card-body mb-4">
+                <div class="form-inline">
                     <div class="form-group">
                         <asp:TextBox ID="FindTextBox" placeholder="Code, Name" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
@@ -57,125 +73,129 @@
                     </div>
                 </div>
 
-                <asp:GridView ID="ProductGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid table-hover" DataKeyNames="Product_PointID" DataSourceID="Product_PointSQL" AllowSorting="True">
-                    <Columns>
-                        <asp:TemplateField HeaderText="Short List">
-                            <ItemTemplate>
-                                <asp:CheckBox ID="SelectCheckBox" AutoPostBack="true" Checked='<%#Eval("IsActive") %>' runat="server" Text=" " OnCheckedChanged="SelectCheckBox_CheckedChanged" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Product Name" SortExpression="Product_Name">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="U_ProductTextBox" TextMode="MultiLine" CssClass="form-control" runat="server" Text='<%# Bind("Product_Name") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="Rvalidator1" runat="server" ControlToValidate="U_ProductTextBox" CssClass="Error" ErrorMessage="*" SetFocusOnError="True" ValidationGroup="U"></asp:RequiredFieldValidator>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <%# Eval("Product_Name") %>
-                            </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Left" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Code" SortExpression="Product_Code">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="U_CodeTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Product_Code") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="Rv2" runat="server" ControlToValidate="U_CodeTextBox" CssClass="Error" ErrorMessage="*" SetFocusOnError="True" ValidationGroup="U"></asp:RequiredFieldValidator>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Product_Code") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Point" SortExpression="Product_Point">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox2" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control" Text='<%# Bind("Product_Point") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label4" runat="server" Text='<%# Bind("Product_Point") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Price" SortExpression="Product_Price">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox3" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control" runat="server" Text='<%# Bind("Product_Price") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label5" runat="server" Text='<%# Bind("Product_Price") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Quantity" SortExpression="Stock_Quantity">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control" Text='<%# Bind("Stock_Quantity") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Stock_Quantity") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False" HeaderText="Edit">
-                            <EditItemTemplate>
-                                <asp:LinkButton ID="UpdateButton" ValidationGroup="U" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
-                                <asp:LinkButton ID="CancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False" HeaderText="Delete">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="DeleteButton" OnClientClick="return confirm('Are you sure want to delete?')" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <EmptyDataTemplate>
-                        No Added Product
-                    </EmptyDataTemplate>
-                </asp:GridView>
-                <asp:SqlDataSource ID="Product_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" DeleteCommand="IF NOT EXISTS (SELECT * FROM  Seller_Product WHERE (Product_PointID = @Product_PointID))
+                <div class="table-responsive">
+                    <asp:GridView ID="ProductGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="Product_PointID" DataSourceID="Product_PointSQL" AllowSorting="True">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Short List">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="SelectCheckBox" AutoPostBack="true" Checked='<%#Eval("IsActive") %>' runat="server" Text=" " OnCheckedChanged="SelectCheckBox_CheckedChanged" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Product Name" SortExpression="Product_Name">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="U_ProductTextBox" TextMode="MultiLine" CssClass="form-control" runat="server" Text='<%# Bind("Product_Name") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="Rvalidator1" runat="server" ControlToValidate="U_ProductTextBox" CssClass="Error" ErrorMessage="*" SetFocusOnError="True" ValidationGroup="U"></asp:RequiredFieldValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <%# Eval("Product_Name") %>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Code" SortExpression="Product_Code">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="U_CodeTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Product_Code") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="Rv2" runat="server" ControlToValidate="U_CodeTextBox" CssClass="Error" ErrorMessage="*" SetFocusOnError="True" ValidationGroup="U"></asp:RequiredFieldValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("Product_Code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Point" SortExpression="Product_Point">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox2" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control" Text='<%# Bind("Product_Point") %>'></asp:TextBox>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Product_Point") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Price" SortExpression="Product_Price">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox3" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control" runat="server" Text='<%# Bind("Product_Price") %>'></asp:TextBox>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Product_Price") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Quantity" SortExpression="Stock_Quantity">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox1" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control" Text='<%# Bind("Stock_Quantity") %>'></asp:TextBox>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("Stock_Quantity") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ShowHeader="False" HeaderText="Edit">
+                                <EditItemTemplate>
+                                    <asp:LinkButton ID="UpdateButton" ValidationGroup="U" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
+                                    <asp:LinkButton ID="CancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ShowHeader="False" HeaderText="Delete">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="DeleteButton" OnClientClick="return confirm('Are you sure want to delete?')" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EmptyDataTemplate>
+                            No Added Product
+                        </EmptyDataTemplate>
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="Product_PointSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" DeleteCommand="IF NOT EXISTS (SELECT * FROM  Seller_Product WHERE (Product_PointID = @Product_PointID))
 DELETE FROM [Product_Point_Code] WHERE [Product_PointID] = @Product_PointID"
-                    InsertCommand="IF NOT EXISTS (SELECT * FROM  Product_Point_Code WHERE  (Product_Code = @Product_Code))
+                        InsertCommand="IF NOT EXISTS (SELECT * FROM  Product_Point_Code WHERE  (Product_Code = @Product_Code))
 BEGIN
 INSERT INTO Product_Point_Code(Product_Name, Product_Code, Product_Point, Product_Price,Stock_Quantity) VALUES (@Product_Name, @Product_Code, @Product_Point, @Product_Price,@Stock_Quantity)
 END"
-                    SelectCommand="SELECT * FROM [Product_Point_Code]" UpdateCommand="IF NOT EXISTS (SELECT * FROM  Product_Point_Code WHERE  (Product_Code = @Product_Code) and  [Product_PointID] &lt;&gt; @Product_PointID)
+                        SelectCommand="SELECT * FROM [Product_Point_Code]" UpdateCommand="IF NOT EXISTS (SELECT * FROM  Product_Point_Code WHERE  (Product_Code = @Product_Code) and  [Product_PointID] &lt;&gt; @Product_PointID)
 BEGIN
 UPDATE [Product_Point_Code] SET [Product_Name] = @Product_Name, [Product_Code] = @Product_Code, Product_Point = @Product_Point, Product_Price = @Product_Price, Stock_Quantity = @Stock_Quantity WHERE [Product_PointID] = @Product_PointID
 END"
-                    FilterExpression="Product_Code like '{0}%' OR Product_Name like '{0}%'">
-                    <DeleteParameters>
-                        <asp:Parameter Name="Product_PointID" Type="Int32" />
-                    </DeleteParameters>
-                    <FilterParameters>
-                        <asp:ControlParameter ControlID="FindTextBox" Name="Find" PropertyName="Text" />
-                    </FilterParameters>
-                    <InsertParameters>
-                        <asp:ControlParameter ControlID="Product_CodeTextBox" Name="Product_Code" PropertyName="Text" Type="String" />
-                        <asp:ControlParameter ControlID="Product_NameTextBox" Name="Product_Name" PropertyName="Text" Type="String" />
-                        <asp:ControlParameter ControlID="Product_PointTextBox" Name="Product_Point" PropertyName="Text" Type="Double" />
-                        <asp:ControlParameter ControlID="Product_PriceTextBox" Name="Product_Price" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="QuantityTextBox" Name="Stock_Quantity" PropertyName="Text" />
-                    </InsertParameters>
-                    <UpdateParameters>
-                        <asp:Parameter Name="Product_Code" Type="String" />
-                        <asp:Parameter Name="Product_PointID" Type="Int32" />
-                        <asp:Parameter Name="Product_Name" Type="String" />
-                        <asp:Parameter Name="Product_Point" />
-                        <asp:Parameter Name="Product_Price" />
-                        <asp:Parameter Name="Stock_Quantity" />
-                    </UpdateParameters>
-                </asp:SqlDataSource>
-                <asp:SqlDataSource ID="ShortListSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Product_Point_Code]" UpdateCommand="UPDATE [Product_Point_Code] SET [IsActive] = @IsActive WHERE [Product_PointID] = @Product_PointID">
-                    <UpdateParameters>
-                        <asp:Parameter Name="IsActive" Type="Boolean" />
-                        <asp:Parameter Name="Product_PointID" Type="Int32" />
-                    </UpdateParameters>
-                </asp:SqlDataSource>
+                        FilterExpression="Product_Code like '{0}%' OR Product_Name like '{0}%'">
+                        <DeleteParameters>
+                            <asp:Parameter Name="Product_PointID" Type="Int32" />
+                        </DeleteParameters>
+                        <FilterParameters>
+                            <asp:ControlParameter ControlID="FindTextBox" Name="Find" PropertyName="Text" />
+                        </FilterParameters>
+                        <InsertParameters>
+                            <asp:ControlParameter ControlID="Product_CodeTextBox" Name="Product_Code" PropertyName="Text" Type="String" />
+                            <asp:ControlParameter ControlID="Product_NameTextBox" Name="Product_Name" PropertyName="Text" Type="String" />
+                            <asp:ControlParameter ControlID="Product_PointTextBox" Name="Product_Point" PropertyName="Text" Type="Double" />
+                            <asp:ControlParameter ControlID="Product_PriceTextBox" Name="Product_Price" PropertyName="Text" />
+                            <asp:ControlParameter ControlID="QuantityTextBox" Name="Stock_Quantity" PropertyName="Text" />
+                        </InsertParameters>
+                        <UpdateParameters>
+                            <asp:Parameter Name="Product_Code" Type="String" />
+                            <asp:Parameter Name="Product_PointID" Type="Int32" />
+                            <asp:Parameter Name="Product_Name" Type="String" />
+                            <asp:Parameter Name="Product_Point" />
+                            <asp:Parameter Name="Product_Price" />
+                            <asp:Parameter Name="Stock_Quantity" />
+                        </UpdateParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="ShortListSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Product_Point_Code]" UpdateCommand="UPDATE [Product_Point_Code] SET [IsActive] = @IsActive WHERE [Product_PointID] = @Product_PointID">
+                        <UpdateParameters>
+                            <asp:Parameter Name="IsActive" Type="Boolean" />
+                            <asp:Parameter Name="Product_PointID" Type="Int32" />
+                        </UpdateParameters>
+                    </asp:SqlDataSource>
+                </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Update Stock Quantity</h4>
+                    <h4 class="heading">Update Stock Quantity</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -233,7 +253,7 @@ END"
                                         </asp:TemplateField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:Button ID="DeleteImageButton" runat="server" CausesValidation="False" CommandName="Delete" CssClass="btn btn-default" Text="Delete" OnClick="RowDelete"></asp:Button>
+                                                <asp:Button ID="DeleteImageButton" runat="server" CausesValidation="False" CommandName="Delete" class="btn" Text="Delete" OnClick="RowDelete"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle Width="40px" />
                                         </asp:TemplateField>

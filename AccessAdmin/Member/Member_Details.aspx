@@ -20,7 +20,7 @@
                 <ItemTemplate>
                     <div class="Info">
                         <div class="infowrap">
-                            <img src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-thumbnail img-responsive" alt=""/>
+                            <img src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-thumbnail img-responsive" alt="" />
                         </div>
                         <div class="infowrap">
                             <ul>
@@ -145,128 +145,58 @@
         <div id="Customers_Info" class="tab-pane">
             <asp:FormView ID="MemberDetailsFormView" DefaultMode="Edit" runat="server" DataKeyNames="MemberID,RegistrationID,Default_MemberStatus" DataSourceID="MemberDetailsSQL" Width="100%" OnItemUpdated="MemberDetailsFormView_ItemUpdated">
                 <EditItemTemplate>
-                    <div class="col-md-6">
-                        <input id="QueryMemberID" value='<%# Eval("MemberID") %>' type="hidden" />
-                        <h4 class="my-3"><%#Eval("Name") %></h4>
+                    <div class="row">
+                        <div class="col-md-6 card card-body">
+                            <input id="QueryMemberID" value='<%# Eval("MemberID") %>' type="hidden" />
+                            <h4 class="my-3"><%#Eval("Name") %></h4>
 
-                        <div class="alert alert-success text-center">
-                            <label>User ID</label>
-                            <asp:Label ID="UserNameLabel" runat="server" Text='<%# Bind("UserName") %>' />.
+                            <div class="alert alert-success text-center">
+                                <label>User ID</label>
+                                <asp:Label ID="UserNameLabel" runat="server" Text='<%# Bind("UserName") %>' />.
 
                                     <label>Referral User ID</label>
-                            <asp:Label ID="Referral_Label" runat="server" Text='<%# Bind("R_UserName") %>' />.
-                        </div>
+                                <asp:Label ID="Referral_Label" runat="server" Text='<%# Bind("R_UserName") %>' />.
+                            </div>
 
-                        <img alt="" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-responsive img-circle Photo" />
+                            <img alt="" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-responsive img-circle Photo" />
 
 
-                        <div class="form-group">
-                            <label>Name</label>
-                            <asp:TextBox ID="NameTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Name") %>' />
+                            <div class="form-group">
+                                <label>Name</label>
+                                <asp:TextBox ID="NameTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Name") %>' />
+                            </div>
+                            <div class="form-group">
+                                <label>Father's Name</label>
+                                <asp:TextBox ID="FatherNameLabel" CssClass="form-control" runat="server" Text='<%# Bind("FatherName") %>' />
+                            </div>
+                            <div class="form-group">
+                                <asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal" SelectedValue='<%# Bind("Gender") %>'>
+                                    <asp:ListItem>Male</asp:ListItem>
+                                    <asp:ListItem>Female</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+                            <div class="form-group">
+                                <label>Present Address</label>
+                                <asp:TextBox ID="Present_AddressLabel" CssClass="form-control" runat="server" Text='<%# Bind("Present_Address") %>' />
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <asp:TextBox ID="PhoneLabel" CssClass="form-control" runat="server" Text='<%# Bind("Phone") %>' />
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <asp:TextBox ID="EmailLabel" CssClass="form-control" runat="server" Text='<%# Bind("Email") %>' />
+                            </div>
+                            <div class="form-group">
+                                <label>SignUp Date</label>
+                                <asp:Label ID="SignUpDateLabel" runat="server" Text='<%# Bind("SignUpDate","{0:d MMM yyyy}") %>' />
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <asp:TextBox ID="DateofBirthLabel" CssClass="form-control datepicker" runat="server" Text='<%# Bind("DateofBirth") %>' />
+                            </div>
+                            <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" CssClass="btn btn-primary" Text="Update" />
                         </div>
-
-                        <div class="form-group">
-                            <label>Father's Name</label>
-                            <asp:TextBox ID="FatherNameLabel" CssClass="form-control" runat="server" Text='<%# Bind("FatherName") %>' />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Mother's Name</label>
-                            <asp:TextBox ID="MotherNameLabel" CssClass="form-control" runat="server" Text='<%# Bind("MotherName") %>' />
-                        </div>
-
-                        <div class="form-group">
-                            <asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal" SelectedValue='<%# Bind("Gender") %>'>
-                                <asp:ListItem>Male</asp:ListItem>
-                                <asp:ListItem>Female</asp:ListItem>
-                            </asp:RadioButtonList>
-                        </div>
-
-                        <div class="form-group">
-                            <label>National ID</label>
-                            <asp:TextBox ID="NationalIDLabel" CssClass="form-control" runat="server" Text='<%# Bind("NationalID") %>' />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Present Address</label>
-                            <asp:TextBox ID="Present_AddressLabel" CssClass="form-control" runat="server" Text='<%# Bind("Present_Address") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Permanent Address</label>
-                            <asp:TextBox ID="Permanent_AddressLabel" CssClass="form-control" runat="server" Text='<%# Bind("Permanent_Address") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <asp:TextBox ID="PhoneLabel" CssClass="form-control" runat="server" Text='<%# Bind("Phone") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <asp:TextBox ID="EmailLabel" CssClass="form-control" runat="server" Text='<%# Bind("Email") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>SignUp Date</label>
-                            <asp:Label ID="SignUpDateLabel" runat="server" Text='<%# Bind("SignUpDate","{0:d MMM yyyy}") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <asp:TextBox ID="DateofBirthLabel" CssClass="form-control datepicker" runat="server" Text='<%# Bind("DateofBirth") %>' />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Blood Group</label>
-                            <asp:DropDownList ID="BloodGroupDropDownList" runat="server" CssClass="form-control" SelectedValue='<%# Bind("BloodGroup") %>'>
-                                <asp:ListItem Value=" ">[ SELECT ]</asp:ListItem>
-                                <asp:ListItem>A+</asp:ListItem>
-                                <asp:ListItem>A-</asp:ListItem>
-                                <asp:ListItem>B+</asp:ListItem>
-                                <asp:ListItem>B-</asp:ListItem>
-                                <asp:ListItem>AB+</asp:ListItem>
-                                <asp:ListItem>AB-</asp:ListItem>
-                                <asp:ListItem>O+</asp:ListItem>
-                                <asp:ListItem>O-</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Nominee Name</label>
-                            <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" Text='<%# Bind("Nominee_Name") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Nominee Relationship</label>
-                            <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server" Text='<%# Bind("Nominee_Relationship") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Nominee Date Of Birth</label>
-                            <asp:TextBox ID="TextBox7" CssClass="form-control datepicker" runat="server" Text='<%# Bind("Nominee_DOB") %>' />
-                        </div>
-                        <img alt="" src="/Handler/NomineeImage.ashx?id=<%#Eval("MemberID") %>" class="img-responsive img-circle Photo" />
-
-                        <div class="form-group">
-                            <label>Bank</label>
-                            <asp:TextBox ID="TextBox3" CssClass="form-control" runat="server" Text='<%# Bind("Bank") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Branch</label>
-                            <asp:TextBox ID="TextBox4" CssClass="form-control" runat="server" Text='<%# Bind("Branch") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Account Name</label>
-                            <asp:TextBox ID="TextBox5" CssClass="form-control" runat="server" Text='<%# Bind("AccountName") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Account No.</label>
-                            <asp:TextBox ID="TextBox6" CssClass="form-control" runat="server" Text='<%# Bind("AccountNo") %>' />
-                        </div>
-                        <div class="form-group">
-                            <label>Upload/Change Doc.</label>
-                            <asp:FileUpload ID="ImageFileUpload" runat="server" />
-                        </div>
-
-                        <div class="form-group">
-                            <img alt="" src="/Handler/DocumentImage.ashx?id=<%#Eval("MemberID") %>" class="img-responsive img-thumbnail Doc" />
-                        </div>
-
-                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" CssClass="btn btn-primary" Text="Update" />
                     </div>
                 </EditItemTemplate>
             </asp:FormView>

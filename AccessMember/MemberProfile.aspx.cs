@@ -16,111 +16,57 @@ namespace CncAgro.AccessMember
         }
         protected void MemberFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
 
-            FileUpload MemberFileUpload = (FileUpload)MemberFormView.FindControl("MemberFileUpload");
+            var memberFileUpload = (FileUpload)MemberFormView.FindControl("MemberFileUpload");
 
             //Member Image
-            if (MemberFileUpload.PostedFile != null && MemberFileUpload.PostedFile.FileName != "")
+            if (memberFileUpload.PostedFile == null || memberFileUpload.PostedFile.FileName == "") return;
+
+            var strExtension = Path.GetExtension(memberFileUpload.FileName);
+            if (!((strExtension.ToUpper() == ".JPG") || (strExtension.ToUpper() == ".JPEG") || (strExtension.ToUpper() == ".PNG"))) return;
+
+            // Resize Image Before Uploading to DataBase
+            var imageToBeResized = System.Drawing.Image.FromStream(memberFileUpload.PostedFile.InputStream);
+            var imageHeight = imageToBeResized.Height;
+            var imageWidth = imageToBeResized.Width;
+
+            const int maxHeight = 200;
+            const int maxWidth = 180;
+
+            imageHeight = (imageHeight * maxWidth) / imageWidth;
+            imageWidth = maxWidth;
+
+            if (imageHeight > maxHeight)
             {
-                string strExtension = System.IO.Path.GetExtension(MemberFileUpload.FileName);
-                if ((strExtension.ToUpper() == ".JPG") | (strExtension.ToUpper() == ".GIF") | (strExtension.ToUpper() == ".PNG"))
-                {
-                    // Resize Image Before Uploading to DataBase
-                    System.Drawing.Image imageToBeResized = System.Drawing.Image.FromStream(MemberFileUpload.PostedFile.InputStream);
-                    int imageHeight = imageToBeResized.Height;
-                    int imageWidth = imageToBeResized.Width;
-
-                    int maxHeight = 200;
-                    int maxWidth = 180;
-
-                    imageHeight = (imageHeight * maxWidth) / imageWidth;
-                    imageWidth = maxWidth;
-
-                    if (imageHeight > maxHeight)
-                    {
-                        imageWidth = (imageWidth * maxHeight) / imageHeight;
-                        imageHeight = maxHeight;
-                    }
-
-                    Bitmap bitmap = new Bitmap(imageToBeResized, imageWidth, imageHeight);
-                    System.IO.MemoryStream stream = new MemoryStream();
-                    bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    stream.Position = 0;
-                    byte[] image = new byte[stream.Length + 1];
-                    stream.Read(image, 0, image.Length);
-
-
-                    // Create SQL Command
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "UPDATE Registration SET Image = @Image Where RegistrationID = @RegistrationID";
-                    cmd.Parameters.AddWithValue("@RegistrationID", MemberFormView.DataKey["RegistrationID"].ToString());
-
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = con;
-
-                    SqlParameter UploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length);
-
-                    UploadedImage.Value = image;
-                    cmd.Parameters.Add(UploadedImage);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
+                imageWidth = (imageWidth * maxHeight) / imageHeight;
+                imageHeight = maxHeight;
             }
 
-            //Document
-            FileUpload N_IDFileUpload = (FileUpload)MemberFormView.FindControl("N_IDFileUpload");
-            if (N_IDFileUpload.PostedFile != null && N_IDFileUpload.PostedFile.FileName != "")
+            var bitmap = new Bitmap(imageToBeResized, imageWidth, imageHeight);
+            var stream = new MemoryStream();
+            bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            stream.Position = 0;
+            var image = new byte[stream.Length + 1];
+            stream.Read(image, 0, image.Length);
+
+
+            // Create SQL Command
+            var cmd = new SqlCommand
             {
-                string strExtension = Path.GetExtension(N_IDFileUpload.FileName);
-                if ((strExtension.ToUpper() == ".JPG") | (strExtension.ToUpper() == ".GIF") | (strExtension.ToUpper() == ".PNG"))
-                {
-                    // Resize Image Before Uploading to DataBase
-                    System.Drawing.Image imageToBeResized = System.Drawing.Image.FromStream(N_IDFileUpload.PostedFile.InputStream);
-                    int imageHeight = imageToBeResized.Height;
-                    int imageWidth = imageToBeResized.Width;
+                CommandText = "UPDATE Registration SET Image = @Image Where RegistrationID = @RegistrationID"
+            };
+            cmd.Parameters.AddWithValue("@RegistrationID", MemberFormView.DataKey["RegistrationID"].ToString());
 
-                    int maxHeight = 600;
-                    int maxWidth = 600;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
 
-                    imageHeight = (imageHeight * maxWidth) / imageWidth;
-                    imageWidth = maxWidth;
+            var uploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length) {Value = image};
+            cmd.Parameters.Add(uploadedImage);
 
-                    if (imageHeight > maxHeight)
-                    {
-                        imageWidth = (imageWidth * maxHeight) / imageHeight;
-                        imageHeight = maxHeight;
-                    }
-
-                    Bitmap bitmap = new Bitmap(imageToBeResized, imageWidth, imageHeight);
-                    System.IO.MemoryStream stream = new MemoryStream();
-                    bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    stream.Position = 0;
-                    byte[] image = new byte[stream.Length + 1];
-                    stream.Read(image, 0, image.Length);
-
-
-                    // Create SQL Command
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "UPDATE Member SET Document_Image = @Document_Image WHERE (MemberID = @MemberID) AND Document_Image IS NULL";
-                    cmd.Parameters.AddWithValue("@MemberID", Session["MemberID"].ToString());
-
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = con;
-
-                    SqlParameter UploadedImage = new SqlParameter("@Document_Image", SqlDbType.Image, image.Length);
-
-                    UploadedImage.Value = image;
-                    cmd.Parameters.Add(UploadedImage);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
-
     }
 }

@@ -26,8 +26,8 @@ namespace DnbBD.AccessAdmin.Member
         {
             public string ProductID { get; set; }
             public int Quantity { get; set; }
-            public string Unit_Price { get; set; }
-            public string Unit_Point { get; set; }
+            public string Price { get; set; }
+            public string Point { get; set; }
         }
 
         private IEnumerable<Shopping> ProductList()
@@ -54,7 +54,7 @@ namespace DnbBD.AccessAdmin.Member
                 return;
             }
 
-            var point = Convert.ToDouble(GTpointHF.Value);
+            var point = Convert.ToDouble(HiddenGrandTotalAmount.Value);
             if (point >= 1000)
             {
                 //var cmd = new SqlCommand("SELECT Count(Phone) FROM Registration WHERE (Phone = @Phone)", _con);
@@ -107,8 +107,7 @@ namespace DnbBD.AccessAdmin.Member
                             var password = CreatePassword(8);
                             var userName = DateTime.Now.ToString("yyMM") + userSn.ToString().PadLeft(5, '0');
 
-                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?",
-                                DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
+                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?",DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
 
                             if (MembershipCreateStatus.Success == createStatus)
                             {
@@ -147,10 +146,9 @@ namespace DnbBD.AccessAdmin.Member
                                     Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
                                     Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
                                     Product_Selling_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = item.Quantity.ToString();
-                                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = item.Unit_Price;
-                                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Unit_Point;
+                                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = item.Price;
+                                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Point;
                                     Product_Selling_RecordsSQL.Insert();
-
 
                                     SellerProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
                                     SellerProductSQL.UpdateParameters["Stock_Quantity"].DefaultValue = item.Quantity.ToString();
@@ -162,13 +160,13 @@ namespace DnbBD.AccessAdmin.Member
 
                                 // Update S.P Add_Referral_Bonus
                                 A_PointSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
-                                A_PointSQL.UpdateParameters["Point"].DefaultValue = GTpointHF.Value;
+                                A_PointSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
                                 A_PointSQL.Update();
 
 
                                 // Generation commission 2% to 6 upper generation S.P Add_Generation_Income
                                 Retail_IncomeSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
-                                Retail_IncomeSQL.UpdateParameters["Point"].DefaultValue = GTpointHF.Value;
+                                Retail_IncomeSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
                                 Retail_IncomeSQL.Update();
 
                                 // Update S.P Add_Retail_Income
@@ -201,8 +199,7 @@ namespace DnbBD.AccessAdmin.Member
                                         {
                                             var smsSendId = sms.SMS_Send(phoneNo, msg, "Add Customers");
 
-                                            SMS_OtherInfoSQL.InsertParameters["SMS_Send_ID"].DefaultValue =
-                                                smsSendId.ToString();
+                                            SMS_OtherInfoSQL.InsertParameters["SMS_Send_ID"].DefaultValue = smsSendId.ToString();
                                             SMS_OtherInfoSQL.InsertParameters["MemberID"].DefaultValue = userMemberId;
                                             SMS_OtherInfoSQL.Insert();
                                         }
@@ -211,8 +208,7 @@ namespace DnbBD.AccessAdmin.Member
 
                                 #endregion SMS
 
-                                GTpriceHF.Value = "";
-                                GTpointHF.Value = "";
+                                HiddenGrandTotalAmount.Value = "";
 
                                 Response.Redirect($"../Product_Point/Receipt.aspx?ShoppingID={ViewState["ShoppingID"]}");
                             }
@@ -238,7 +234,7 @@ namespace DnbBD.AccessAdmin.Member
             }
             else
             {
-                ErrorLabel.Text = "Minimum 1000 point need to join new customer";
+                ErrorLabel.Text = "Minimum 1000tk product need to join new customer";
             }
         }
 
