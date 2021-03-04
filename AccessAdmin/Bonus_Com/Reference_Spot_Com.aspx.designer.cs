@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Bonus_Com {
-    
-    
-    public partial class Reference_Spot_Com {
-        
+namespace CncAgro.AccessAdmin.Bonus_Com
+{
+
+
+    public partial class Reference_Spot_Com
+    {
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Bonus_Com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// RecordGridView control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Bonus_Com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView RecordGridView;
-        
+
         /// <summary>
         /// RecordsSQL control.
         /// </summary>

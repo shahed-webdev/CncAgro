@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="DnbBD.AccessAdmin.Member.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="CncAgro.AccessAdmin.Member.WebForm1" %>
 
 <!DOCTYPE html>
 

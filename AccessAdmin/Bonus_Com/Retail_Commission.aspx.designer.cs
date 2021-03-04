@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Bonus_Com {
-    
-    
-    public partial class Retail_Commission {
-        
+namespace CncAgro.AccessAdmin.Bonus_Com
+{
+
+
+    public partial class Retail_Commission
+    {
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Bonus_Com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Records_CachBackGridView control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Bonus_Com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView Records_CachBackGridView;
-        
+
         /// <summary>
         /// Records_CachBackSQL control.
         /// </summary>

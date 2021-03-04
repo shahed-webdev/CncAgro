@@ -116,7 +116,7 @@ namespace CncAgro
                             Connection = con
                         };
 
-                        var uploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length) {Value = image};
+                        var uploadedImage = new SqlParameter("@Image", SqlDbType.Image, image.Length) { Value = image };
 
                         cmd.Parameters.Add(uploadedImage);
 

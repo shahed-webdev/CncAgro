@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Product_Point {
-    
-    
-    public partial class Receipt {
-        
+namespace CncAgro.AccessAdmin.Product_Point
+{
+
+
+    public partial class Receipt
+    {
+
         /// <summary>
         /// MemberFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Product_Point {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView MemberFormView;
-        
+
         /// <summary>
         /// MemberInfoSQL control.
         /// </summary>

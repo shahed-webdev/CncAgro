@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin {
-    
-    
-    public partial class Admin_Profile {
-        
+namespace CncAgro.AccessAdmin
+{
+
+
+    public partial class Admin_Profile
+    {
+
         /// <summary>
         /// AdminFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView AdminFormView;
-        
+
         /// <summary>
         /// AdminSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource AdminSQL;
-        
+
         /// <summary>
         /// SMSFormView control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView SMSFormView;
-        
+
         /// <summary>
         /// SMSSQL control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SMSSQL;
-        
+
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// ChangePassword control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ChangePassword ChangePassword;
-        
+
         /// <summary>
         /// User_Login_InfoSQL control.
         /// </summary>

@@ -136,6 +136,28 @@
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                         <asp:HyperLink ID="HyperLink1" NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />
                                     </li>
+                                    <li id="Password">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <asp:HyperLink ID="HyperLink2" NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
+                                    </li>
+                                    <li id="Password">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <asp:HyperLink ID="HyperLink5" NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
+                                    </li>
+                                    <li id="Password">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <asp:HyperLink ID="HyperLink9" NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
+                                    </li>
+                                    
+                                    <li id="Password">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <asp:HyperLink ID="HyperLink10" NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
+                                    </li>
+                                    
+                                    <li id="Password">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <asp:HyperLink ID="HyperLink11" NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
+                                    </li>
                                 </ul>
                             </div>
                         </nav>

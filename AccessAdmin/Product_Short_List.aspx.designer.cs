@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin {
-    
-    
-    public partial class Product_Short_List {
-        
+namespace CncAgro.AccessAdmin
+{
+
+
+    public partial class Product_Short_List
+    {
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// FindTextBox control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FindTextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
         /// ProductGridView control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ProductGridView;
-        
+
         /// <summary>
         /// Product_PointSQL control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Product_PointSQL;
-        
+
         /// <summary>
         /// UpdateProgress control.
         /// </summary>

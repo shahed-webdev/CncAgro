@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Sub_Admin {
-    
-    
-    public partial class Manage_Sub_Admin_Access {
-        
+namespace CncAgro.AccessAdmin.Sub_Admin
+{
+
+
+    public partial class Manage_Sub_Admin_Access
+    {
+
         /// <summary>
         /// UserListDropDownList control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Sub_Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList UserListDropDownList;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Sub_Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// UserListSQL control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin.Sub_Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource UserListSQL;
-        
+
         /// <summary>
         /// LinkGridView control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin.Sub_Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView LinkGridView;
-        
+
         /// <summary>
         /// LinkPageSQL control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin.Sub_Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource LinkPageSQL;
-        
+
         /// <summary>
         /// UpdateButton control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin.Sub_Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UpdateButton;
-        
+
         /// <summary>
         /// UpdateLinkSQL control.
         /// </summary>

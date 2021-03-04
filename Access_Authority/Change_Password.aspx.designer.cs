@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class Change_Password {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class Change_Password
+    {
+
         /// <summary>
         /// ChangePassword1 control.
         /// </summary>

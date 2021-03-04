@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Sell_Product_Distributor {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Sell_Product_Distributor
+    {
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// DistributorUserNameTextBox control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox DistributorUserNameTextBox;
-        
+
         /// <summary>
         /// SellerID_HF control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField SellerID_HF;
-        
+
         /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
+
         /// <summary>
         /// ProductCodeTextBox control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ProductCodeTextBox;
-        
+
         /// <summary>
         /// StockErLabel control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label StockErLabel;
-        
+
         /// <summary>
         /// RequiredFieldValidator3 control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+
         /// <summary>
         /// Rex control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator Rex;
-        
+
         /// <summary>
         /// QuantityTextBox control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox QuantityTextBox;
-        
+
         /// <summary>
         /// Total_Price_HF control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField Total_Price_HF;
-        
+
         /// <summary>
         /// Total_Point_HF control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField Total_Point_HF;
-        
+
         /// <summary>
         /// Total_Commission_HF control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField Total_Commission_HF;
-        
+
         /// <summary>
         /// Sell_Button control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Sell_Button;
-        
+
         /// <summary>
         /// JsonData control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField JsonData;
-        
+
         /// <summary>
         /// Product_DistributionSQL control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Product_DistributionSQL;
-        
+
         /// <summary>
         /// Product_Distribution_RecordsSQL control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Product_Distribution_RecordsSQL;
-        
+
         /// <summary>
         /// Seller_Product_insert_UpdateSQL control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Seller_Product_insert_UpdateSQL;
-        
+
         /// <summary>
         /// Stock_UpdateSQL control.
         /// </summary>

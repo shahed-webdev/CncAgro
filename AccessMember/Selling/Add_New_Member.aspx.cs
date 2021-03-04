@@ -7,10 +7,9 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Security;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CncAgro.AccessSeller
+namespace CncAgro.AccessMember.Selling
 {
     public partial class Add_New_Member : System.Web.UI.Page
     {

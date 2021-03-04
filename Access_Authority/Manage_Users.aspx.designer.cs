@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class Manage_Users {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class Manage_Users
+    {
+
         /// <summary>
         /// FilteringUI control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater FilteringUI;
-        
+
         /// <summary>
         /// UserAccounts control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView UserAccounts;
-        
+
         /// <summary>
         /// lnkFirst control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkFirst;
-        
+
         /// <summary>
         /// lnkPrev control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkPrev;
-        
+
         /// <summary>
         /// lnkNext control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkNext;
-        
+
         /// <summary>
         /// lnkLast control.
         /// </summary>

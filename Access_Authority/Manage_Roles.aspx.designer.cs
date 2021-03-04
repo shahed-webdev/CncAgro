@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class Manage_Roles {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class Manage_Roles
+    {
+
         /// <summary>
         /// ActionStatus control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ActionStatus;
-        
+
         /// <summary>
         /// UserList control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList UserList;
-        
+
         /// <summary>
         /// UsersRoleList control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater UsersRoleList;
-        
+
         /// <summary>
         /// RoleList control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList RoleList;
-        
+
         /// <summary>
         /// RolesUserList control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView RolesUserList;
-        
+
         /// <summary>
         /// UserNameToAddToRole control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UserNameToAddToRole;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// AddUserToRoleButton control.
         /// </summary>

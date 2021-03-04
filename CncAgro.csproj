@@ -135,24 +135,23 @@
     <Content Include="AccessMember\Send_Balance.aspx" />
     <Content Include="AccessMember\Withdraw_Balance.aspx" />
     <Content Include="AccessMember\Withdraw_Details.aspx" />
-    <Content Include="AccessSeller\Add_New_Member.aspx" />
-    <Content Include="AccessSeller\Buying_Details.aspx" />
+    <Content Include="AccessMember\Selling\Add_New_Member.aspx" />
     <Content Include="AccessSeller\Change_Password.aspx" />
     <Content Include="AccessSeller\Code_Verify.aspx" />
     <Content Include="AccessSeller\Commission_Records.aspx" />
     <Content Include="AccessSeller\CSS\Seller_Profile.css" />
     <Content Include="AccessSeller\CSS\Receipt.css" />
     <Content Include="AccessSeller\Distributor_Selling_Report.aspx" />
-    <Content Include="AccessSeller\Order_Details.aspx" />
-    <Content Include="AccessSeller\Order_Product.aspx" />
-    <Content Include="AccessSeller\Order_Record.aspx" />
-    <Content Include="AccessSeller\Product_Selling_Report.aspx" />
-    <Content Include="AccessSeller\Product_stock.aspx" />
-    <Content Include="AccessSeller\Receipt.aspx" />
+    <Content Include="AccessMember\Selling\Order_Details.aspx" />
+    <Content Include="AccessMember\Selling\Order_Product.aspx" />
+    <Content Include="AccessMember\Selling\Order_Record.aspx" />
+    <Content Include="AccessMember\Selling\Product_Selling_Report.aspx" />
+    <Content Include="AccessMember\Selling\Product_stock.aspx" />
+    <Content Include="AccessMember\Selling\Receipt.aspx" />
     <Content Include="AccessSeller\Receipt_Distributor.aspx" />
     <Content Include="AccessSeller\Received_Balance.aspx" />
     <Content Include="AccessSeller\Seller_Profile.aspx" />
-    <Content Include="AccessSeller\Sell_Product.aspx" />
+    <Content Include="AccessMember\Selling\Sell_Product.aspx" />
     <Content Include="AccessSeller\Sell_Product_Distributor.aspx" />
     <Content Include="AccessSeller\Withdraw_Details.aspx" />
     <Content Include="AccessSeller\Withdraw_Request.aspx" />
@@ -513,19 +512,12 @@
     <Compile Include="AccessMember\Withdraw_Details.aspx.designer.cs">
       <DependentUpon>Withdraw_Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Add_New_Member.aspx.cs">
+    <Compile Include="AccessMember\Selling\Add_New_Member.aspx.cs">
       <DependentUpon>Add_New_Member.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Add_New_Member.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Add_New_Member.aspx.designer.cs">
       <DependentUpon>Add_New_Member.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AccessSeller\Buying_Details.aspx.cs">
-      <DependentUpon>Buying_Details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessSeller\Buying_Details.aspx.designer.cs">
-      <DependentUpon>Buying_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessSeller\Change_Password.aspx.cs">
       <DependentUpon>Change_Password.aspx</DependentUpon>
@@ -555,46 +547,46 @@
     <Compile Include="AccessSeller\Distributor_Selling_Report.aspx.designer.cs">
       <DependentUpon>Distributor_Selling_Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Order_Details.aspx.cs">
+    <Compile Include="AccessMember\Selling\Order_Details.aspx.cs">
       <DependentUpon>Order_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Order_Details.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Order_Details.aspx.designer.cs">
       <DependentUpon>Order_Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Order_Product.aspx.cs">
+    <Compile Include="AccessMember\Selling\Order_Product.aspx.cs">
       <DependentUpon>Order_Product.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Order_Product.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Order_Product.aspx.designer.cs">
       <DependentUpon>Order_Product.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Order_Record.aspx.cs">
+    <Compile Include="AccessMember\Selling\Order_Record.aspx.cs">
       <DependentUpon>Order_Record.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Order_Record.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Order_Record.aspx.designer.cs">
       <DependentUpon>Order_Record.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Product_Selling_Report.aspx.cs">
+    <Compile Include="AccessMember\Selling\Product_Selling_Report.aspx.cs">
       <DependentUpon>Product_Selling_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Product_Selling_Report.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Product_Selling_Report.aspx.designer.cs">
       <DependentUpon>Product_Selling_Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Product_stock.aspx.cs">
+    <Compile Include="AccessMember\Selling\Product_stock.aspx.cs">
       <DependentUpon>Product_stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Product_stock.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Product_stock.aspx.designer.cs">
       <DependentUpon>Product_stock.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Receipt.aspx.cs">
+    <Compile Include="AccessMember\Selling\Receipt.aspx.cs">
       <DependentUpon>Receipt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Receipt.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Receipt.aspx.designer.cs">
       <DependentUpon>Receipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessSeller\Receipt_Distributor.aspx.cs">
@@ -618,11 +610,11 @@
     <Compile Include="AccessSeller\Seller_Profile.aspx.designer.cs">
       <DependentUpon>Seller_Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessSeller\Sell_Product.aspx.cs">
+    <Compile Include="AccessMember\Selling\Sell_Product.aspx.cs">
       <DependentUpon>Sell_Product.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessSeller\Sell_Product.aspx.designer.cs">
+    <Compile Include="AccessMember\Selling\Sell_Product.aspx.designer.cs">
       <DependentUpon>Sell_Product.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessSeller\Sell_Product_Distributor.aspx.cs">

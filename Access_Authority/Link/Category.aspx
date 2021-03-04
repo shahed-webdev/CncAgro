@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Category" Language="C#" MasterPageFile="~/Design.Master" AutoEventWireup="true" CodeBehind="Category.aspx.cs" Inherits="CncAgro.Access_Authority.Page_Link.Category" %>
+﻿<%@ Page Title="Category" Language="C#" MasterPageFile="~/Design.Master" AutoEventWireup="true" CodeBehind="Category.aspx.cs" Inherits="CncAgro.Access_Authority.Link.Category" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">

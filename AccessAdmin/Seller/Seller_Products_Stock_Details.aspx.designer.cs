@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Seller {
-    
-    
-    public partial class Seller_Products_Stock_Details {
-        
+namespace CncAgro.AccessAdmin.Seller
+{
+
+
+    public partial class Seller_Products_Stock_Details
+    {
+
         /// <summary>
         /// SellerFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Seller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView SellerFormView;
-        
+
         /// <summary>
         /// SellerSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Seller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SellerSQL;
-        
+
         /// <summary>
         /// Stock_FormView control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin.Seller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView Stock_FormView;
-        
+
         /// <summary>
         /// StockSQL control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin.Seller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource StockSQL;
-        
+
         /// <summary>
         /// ProductGridView control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin.Seller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ProductGridView;
-        
+
         /// <summary>
         /// Seller_ProductSQL control.
         /// </summary>

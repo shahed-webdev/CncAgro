@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember {
-    
-    
-    public partial class Product_Buying_Records {
-        
+namespace CncAgro.AccessMember
+{
+
+
+    public partial class Product_Buying_Records
+    {
+
         /// <summary>
         /// From_TextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox From_TextBox;
-        
+
         /// <summary>
         /// TO_TextBox control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TO_TextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
         /// Sellingeport_GridView control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView Sellingeport_GridView;
-        
+
         /// <summary>
         /// SellingeportSQL control.
         /// </summary>

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class Create_Delete_Role {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class Create_Delete_Role
+    {
+
         /// <summary>
         /// RoleName control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox RoleName;
-        
+
         /// <summary>
         /// RoleNameReqField control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RoleNameReqField;
-        
+
         /// <summary>
         /// CreateRoleButton control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CreateRoleButton;
-        
+
         /// <summary>
         /// RoleList control.
         /// </summary>

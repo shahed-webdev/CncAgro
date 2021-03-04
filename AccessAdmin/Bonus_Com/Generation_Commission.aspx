@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Generation_Commission.aspx.cs" Inherits="DnbBD.AccessAdmin.Bonus_Com.Generation_Commission" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Generation_Commission.aspx.cs" Inherits="CncAgro.AccessAdmin.Bonus_Com.Generation_Commission" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .Archivers { margin-bottom: 2px; font-size: 18px; }

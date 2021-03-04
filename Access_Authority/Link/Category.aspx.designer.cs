@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority.Page_Link {
-    
-    
-    public partial class Category {
-        
+namespace CncAgro.Access_Authority.Link
+{
+
+
+    public partial class Category
+    {
+
         /// <summary>
         /// AscendingTextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AscendingTextBox;
-        
+
         /// <summary>
         /// CategoryTextBox control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CategoryTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// SubmitButton control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SubmitButton;
-        
+
         /// <summary>
         /// CategoryGridView control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView CategoryGridView;
-        
+
         /// <summary>
         /// CategorySQL control.
         /// </summary>

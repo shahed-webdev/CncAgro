@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 
 namespace CncAgro.AccessAdmin.Sub_Admin
 {
@@ -46,6 +40,6 @@ namespace CncAgro.AccessAdmin.Sub_Admin
             MembershipUser usr = Membership.GetUser(Member_GridView.DataKeys[Row.DataItemIndex]["UserName"].ToString());
             usr.UnlockUser();
             LockedOutCheckBox.Checked = usr.IsLockedOut;
-        }   
+        }
     }
 }

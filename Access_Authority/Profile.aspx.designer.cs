@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class Profile {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class Profile
+    {
+
         /// <summary>
         /// UserAccounts control.
         /// </summary>

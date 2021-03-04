@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 
-namespace CncAgro.AccessAdmin.Accounts
+namespace CncAgro.AccessAdmin.Accounts.Income_Expense
 {
     public partial class Deposit_Withdraw : System.Web.UI.Page
     {

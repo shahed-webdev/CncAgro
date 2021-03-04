@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class Approve_Unlock_User {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class Approve_Unlock_User
+    {
+
         /// <summary>
         /// UserNameLabel control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label UserNameLabel;
-        
+
         /// <summary>
         /// IsApproved control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox IsApproved;
-        
+
         /// <summary>
         /// LastLockoutDateLabel control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LastLockoutDateLabel;
-        
+
         /// <summary>
         /// UnlockUserButton control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UnlockUserButton;
-        
+
         /// <summary>
         /// StatusMessage control.
         /// </summary>

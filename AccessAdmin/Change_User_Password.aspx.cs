@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CncAgro.AccessAdmin
 {
@@ -21,7 +16,7 @@ namespace CncAgro.AccessAdmin
         public void ChangePassword_OnClick(object sender, EventArgs args)
         {
             string userName = UserInfoFormView.DataKey["UserName"].ToString();
-            MembershipUser User = Membership.GetUser(userName); 
+            MembershipUser User = Membership.GetUser(userName);
 
             try
             {

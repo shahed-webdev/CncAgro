@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember {
-    
-    
-    public partial class MemberProfile {
-        
+namespace CncAgro.AccessMember
+{
+
+
+    public partial class MemberProfile
+    {
+
         /// <summary>
         /// MemberFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView MemberFormView;
-        
+
         /// <summary>
         /// MemberSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource MemberSQL;
-        
+
         /// <summary>
         /// BonusFormView control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView BonusFormView;
-        
+
         /// <summary>
         /// BonusSQL control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource BonusSQL;
-        
+
         /// <summary>
         /// Notice_Repeater control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Notice_Repeater;
-        
+
         /// <summary>
         /// NoticeSQL control.
         /// </summary>

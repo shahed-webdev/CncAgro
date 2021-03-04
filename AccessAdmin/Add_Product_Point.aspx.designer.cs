@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin {
-    
-    
-    public partial class Add_Product_Point {
-        
+namespace CncAgro.AccessAdmin
+{
+
+
+    public partial class Add_Product_Point
+    {
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// Product_NameTextBox control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Product_NameTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
+
         /// <summary>
         /// Product_CodeTextBox control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Product_CodeTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator3 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+
         /// <summary>
         /// Product_PointTextBox control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Product_PointTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
+
         /// <summary>
         /// Product_PriceTextBox control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Product_PriceTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator5 control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-        
+
         /// <summary>
         /// QuantityTextBox control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox QuantityTextBox;
-        
+
         /// <summary>
         /// Add_Product_Button control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Add_Product_Button;
-        
+
         /// <summary>
         /// FindTextBox control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FindTextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
         /// ProductGridView control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ProductGridView;
-        
+
         /// <summary>
         /// Product_PointSQL control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Product_PointSQL;
-        
+
         /// <summary>
         /// ShortListSQL control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource ShortListSQL;
-        
+
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// RequiredFieldValidator6 control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
-        
+
         /// <summary>
         /// ProductCodeTextBox control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ProductCodeTextBox;
-        
+
         /// <summary>
         /// ProductID_HF control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ProductID_HF;
-        
+
         /// <summary>
         /// ProductCode_HF control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ProductCode_HF;
-        
+
         /// <summary>
         /// RequiredFieldValidator7 control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
-        
+
         /// <summary>
         /// Update_Quantity_TextBox control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Update_Quantity_TextBox;
-        
+
         /// <summary>
         /// AddToCartButton control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddToCartButton;
-        
+
         /// <summary>
         /// ChargeGridView control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ChargeGridView;
-        
+
         /// <summary>
         /// Add_Stock_Button control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Add_Stock_Button;
-        
+
         /// <summary>
         /// Product_Stock_RecordSQL control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Product_Stock_RecordSQL;
-        
+
         /// <summary>
         /// UpdateProgress control.
         /// </summary>

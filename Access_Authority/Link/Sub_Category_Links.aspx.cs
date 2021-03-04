@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CncAgro.Access_Authority.Page_Link
+namespace CncAgro.Access_Authority.Link
 {
     public partial class Sub_Category_Links : System.Web.UI.Page
     {

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Change_Password {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Change_Password
+    {
+
         /// <summary>
         /// ChangePassword control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ChangePassword ChangePassword;
-        
+
         /// <summary>
         /// User_Login_InfoSQL control.
         /// </summary>

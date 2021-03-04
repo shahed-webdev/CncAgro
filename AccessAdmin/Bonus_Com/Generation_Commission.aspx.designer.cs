@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DnbBD.AccessAdmin.Bonus_Com
+namespace CncAgro.AccessAdmin.Bonus_Com
 {
 
 

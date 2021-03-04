@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.SMS {
-    
-    
-    public partial class Sent_Records {
-        
+namespace CncAgro.AccessAdmin.SMS
+{
+
+
+    public partial class Sent_Records
+    {
+
         /// <summary>
         /// SMSFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.SMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView SMSFormView;
-        
+
         /// <summary>
         /// SMSSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.SMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SMSSQL;
-        
+
         /// <summary>
         /// FromDateTextBox control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin.SMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FromDateTextBox;
-        
+
         /// <summary>
         /// ToDateTextBox control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin.SMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ToDateTextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin.SMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
         /// SentGridView control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin.SMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView SentGridView;
-        
+
         /// <summary>
         /// Sent_RecordSQL control.
         /// </summary>

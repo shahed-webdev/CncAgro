@@ -7,9 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro {
-    
-    
-    public partial class Profile_Redirect {
+namespace CncAgro
+{
+
+
+    public partial class Profile_Redirect
+    {
     }
 }

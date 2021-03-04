@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority.Page_Link {
-    
-    
-    public partial class Sub_Category {
-        
+namespace CncAgro.Access_Authority.Link
+{
+
+
+    public partial class Sub_Category
+    {
+
         /// <summary>
         /// LinkAsecendingTextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox LinkAsecendingTextBox;
-        
+
         /// <summary>
         /// PageTitleTextBox control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PageTitleTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
+
         /// <summary>
         /// PageURLTextBox control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PageURLTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
+
         /// <summary>
         /// RoleDropDownList control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList RoleDropDownList;
-        
+
         /// <summary>
         /// RequiredFieldValidator3 control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+
         /// <summary>
         /// RoleSQL control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource RoleSQL;
-        
+
         /// <summary>
         /// UrlButton control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UrlButton;
-        
+
         /// <summary>
         /// InsertedLinkGridView control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView InsertedLinkGridView;
-        
+
         /// <summary>
         /// Link_PagesSQL control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Link_PagesSQL;
-        
+
         /// <summary>
         /// AscendingTextBox control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AscendingTextBox;
-        
+
         /// <summary>
         /// SubCategoryTextBox control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SubCategoryTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// SubmitButton control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SubmitButton;
-        
+
         /// <summary>
         /// SubCategoryGridView control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace CncAgro.Access_Authority.Page_Link {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView SubCategoryGridView;
-        
+
         /// <summary>
         /// SubCategorySQL control.
         /// </summary>

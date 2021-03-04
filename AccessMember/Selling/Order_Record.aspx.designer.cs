@@ -7,72 +7,65 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Product_Selling_Report {
-        
+namespace CncAgro.AccessMember.Selling
+{
+
+
+    public partial class Order_Record
+    {
+
         /// <summary>
-        /// From_TextBox control.
+        /// PendingGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox From_TextBox;
-        
+        protected global::System.Web.UI.WebControls.GridView PendingGridView;
+
         /// <summary>
-        /// TO_TextBox control.
+        /// PendingSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TO_TextBox;
-        
+        protected global::System.Web.UI.WebControls.SqlDataSource PendingSQL;
+
         /// <summary>
-        /// FindButton control.
+        /// ConfirmGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button FindButton;
-        
+        protected global::System.Web.UI.WebControls.GridView ConfirmGridView;
+
         /// <summary>
-        /// Total_FormView control.
+        /// ConfirmSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView Total_FormView;
-        
+        protected global::System.Web.UI.WebControls.SqlDataSource ConfirmSQL;
+
         /// <summary>
-        /// TotalSQL control.
+        /// InstockGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource TotalSQL;
-        
+        protected global::System.Web.UI.WebControls.GridView InstockGridView;
+
         /// <summary>
-        /// Sellingeport_GridView control.
+        /// InStockSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Sellingeport_GridView;
-        
-        /// <summary>
-        /// SellingeportSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SellingeportSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource InStockSQL;
     }
 }

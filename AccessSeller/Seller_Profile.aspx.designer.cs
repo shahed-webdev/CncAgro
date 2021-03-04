@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Seller_Profile {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Seller_Profile
+    {
+
         /// <summary>
         /// SellerFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView SellerFormView;
-        
+
         /// <summary>
         /// SellerSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SellerSQL;
-        
+
         /// <summary>
         /// WithdrawGridView control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView WithdrawGridView;
-        
+
         /// <summary>
         /// RequestSQL control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource RequestSQL;
-        
+
         /// <summary>
         /// Stock_FormView control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView Stock_FormView;
-        
+
         /// <summary>
         /// StockSQL control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource StockSQL;
-        
+
         /// <summary>
         /// Income_FormView control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView Income_FormView;
-        
+
         /// <summary>
         /// SellerBalanceSQL control.
         /// </summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Deposit/Withdraw" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Deposit_Withdraw.aspx.cs" Inherits="CncAgro.AccessAdmin.Accounts.Deposit_Withdraw" %>
+﻿<%@ Page Title="Deposit/Withdraw" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Deposit_Withdraw.aspx.cs" Inherits="CncAgro.AccessAdmin.Accounts.Income_Expense.Deposit_Withdraw" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

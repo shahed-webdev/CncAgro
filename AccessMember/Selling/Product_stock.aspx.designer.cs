@@ -7,29 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Order_Product {
-        
-        /// <summary>
-        /// SellerFormView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView SellerFormView;
-        
-        /// <summary>
-        /// SellerSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SellerSQL;
-        
+namespace CncAgro.AccessMember.Selling
+{
+
+
+    public partial class Product_stock
+    {
+
         /// <summary>
         /// FindTextBox control.
         /// </summary>
@@ -38,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FindTextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -47,23 +31,41 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
-        /// ProductGridView control.
+        /// Stock_FormView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ProductGridView;
-        
+        protected global::System.Web.UI.WebControls.FormView Stock_FormView;
+
         /// <summary>
-        /// Product_PointSQL control.
+        /// StockSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Product_PointSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource StockSQL;
+
+        /// <summary>
+        /// ProductStockGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ProductStockGridView;
+
+        /// <summary>
+        /// ProductStockSQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource ProductStockSQL;
     }
 }

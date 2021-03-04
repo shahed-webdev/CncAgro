@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Member {
-    
-    
-    public partial class Default_Member {
-        
+namespace CncAgro.AccessAdmin.Member
+{
+
+
+    public partial class Default_Member
+    {
+
         /// <summary>
         /// DefaultMemberFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView DefaultMemberFormView;
-        
+
         /// <summary>
         /// DefaultMemberSQL control.
         /// </summary>

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Accounts {
-    
-    
-    public partial class Deposit_Withdraw {
-        
+namespace CncAgro.AccessAdmin.Accounts.Income_Expense
+{
+
+
+    public partial class Deposit_Withdraw
+    {
+
         /// <summary>
         /// UpdatePanel3 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
+
         /// <summary>
         /// ABFormView control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView ABFormView;
-        
+
         /// <summary>
         /// ABSQL control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource ABSQL;
-        
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// AccountIN_AmountTextBox control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AccountIN_AmountTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// IN_DetailsTextBox control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox IN_DetailsTextBox;
-        
+
         /// <summary>
         /// IN_ChequeTextBox control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox IN_ChequeTextBox;
-        
+
         /// <summary>
         /// IN_Date_TextBox control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox IN_Date_TextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
+
         /// <summary>
         /// DepositButton control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DepositButton;
-        
+
         /// <summary>
         /// DELabel control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label DELabel;
-        
+
         /// <summary>
         /// DepositGridView control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView DepositGridView;
-        
+
         /// <summary>
         /// DepositSQL control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DepositSQL;
-        
+
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// AccountOUT_AmountTextBox control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AccountOUT_AmountTextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator3 control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+
         /// <summary>
         /// Out_DetailsTextBox control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Out_DetailsTextBox;
-        
+
         /// <summary>
         /// OUT_Cheque_TextBox control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox OUT_Cheque_TextBox;
-        
+
         /// <summary>
         /// OUT_Date_TextBox control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox OUT_Date_TextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
+
         /// <summary>
         /// WithdrawButton control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button WithdrawButton;
-        
+
         /// <summary>
         /// WELabel control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label WELabel;
-        
+
         /// <summary>
         /// WithdrawGridView control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView WithdrawGridView;
-        
+
         /// <summary>
         /// WithdrawSQL control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource WithdrawSQL;
-        
+
         /// <summary>
         /// UpdateProgress control.
         /// </summary>

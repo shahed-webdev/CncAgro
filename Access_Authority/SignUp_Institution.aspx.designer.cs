@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Access_Authority {
-    
-    
-    public partial class SignUp_Institution {
-        
+namespace CncAgro.Access_Authority
+{
+
+
+    public partial class SignUp_Institution
+    {
+
         /// <summary>
         /// Create_User control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CreateUserWizard Create_User;
-        
+
         /// <summary>
         /// CreateUserWizardStep1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CreateUserWizardStep CreateUserWizardStep1;
-        
+
         /// <summary>
         /// CompleteWizardStep1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Access_Authority {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompleteWizardStep CompleteWizardStep1;
-        
+
         /// <summary>
         /// RegistrationSQL control.
         /// </summary>

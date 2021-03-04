@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DnbBD.AccessAdmin.Member
+namespace CncAgro.AccessAdmin.Member
 {
 
 

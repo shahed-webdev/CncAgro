@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember {
-    
-    
-    public partial class Withdraw_Balance {
-        
+namespace CncAgro.AccessMember
+{
+
+
+    public partial class Withdraw_Balance
+    {
+
         /// <summary>
         /// ABFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView ABFormView;
-        
+
         /// <summary>
         /// AvilAbleBalanceSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource AvilAbleBalanceSQL;
-        
+
         /// <summary>
         /// Amount_TextBox control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Amount_TextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// Withdraw_Button control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Withdraw_Button;
-        
+
         /// <summary>
         /// W_Code_SQL control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource W_Code_SQL;
-        
+
         /// <summary>
         /// SMS_OtherInfoSQL control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SMS_OtherInfoSQL;
-        
+
         /// <summary>
         /// ErorLabel control.
         /// </summary>

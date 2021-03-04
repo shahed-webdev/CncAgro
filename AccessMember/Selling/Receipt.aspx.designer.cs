@@ -7,27 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Buying_Details {
-        
+namespace CncAgro.AccessMember.Selling
+{
+
+
+    public partial class Receipt
+    {
+
         /// <summary>
-        /// DetailsGridView control.
+        /// MemberFormView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DetailsGridView;
-        
+        protected global::System.Web.UI.WebControls.FormView MemberFormView;
+
         /// <summary>
-        /// DetailsSQL control.
+        /// MemberInfoSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource DetailsSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource MemberInfoSQL;
     }
 }

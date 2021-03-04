@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Security;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using CncAgro;
 
-namespace DnbBD.AccessAdmin.Member
+namespace CncAgro.AccessAdmin.Member
 {
     public partial class Add_Member : System.Web.UI.Page
     {

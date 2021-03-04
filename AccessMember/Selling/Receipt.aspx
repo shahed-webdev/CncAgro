@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Receipt" Language="C#" MasterPageFile="~/Seller.Master" AutoEventWireup="true" CodeBehind="Receipt.aspx.cs" Inherits="CncAgro.AccessSeller.Receipt" %>
+﻿<%@ Page Title="Receipt" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Receipt.aspx.cs" Inherits="CncAgro.AccessMember.Selling.Receipt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="CSS/Receipt.css?v=2" rel="stylesheet" />

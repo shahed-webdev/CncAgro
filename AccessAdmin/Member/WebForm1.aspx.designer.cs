@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace DnbBD.AccessAdmin.Member
+namespace CncAgro.AccessAdmin.Member
 {
     public partial class WebForm1
     {

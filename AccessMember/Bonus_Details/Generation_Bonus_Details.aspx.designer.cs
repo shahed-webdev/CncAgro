@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember.Bonus_Details {
-    
-    
-    public partial class Generation_Bonus_Details {
-        
+namespace CncAgro.AccessMember.Bonus_Details
+{
+
+
+    public partial class Generation_Bonus_Details
+    {
+
         /// <summary>
         /// GenerationGridView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessMember.Bonus_Details {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GenerationGridView;
-        
+
         /// <summary>
         /// Records_GenerationSQL control.
         /// </summary>

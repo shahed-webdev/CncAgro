@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin {
-    
-    
-    public partial class Change_User_Password {
-        
+namespace CncAgro.AccessAdmin
+{
+
+
+    public partial class Change_User_Password
+    {
+
         /// <summary>
         /// UserInfoFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView UserInfoFormView;
-        
+
         /// <summary>
         /// UserInfoSQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource UserInfoSQL;
-        
+
         /// <summary>
         /// PasswordRequiredValidator control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordRequiredValidator;
-        
+
         /// <summary>
         /// PasswordTextbox control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PasswordTextbox;
-        
+
         /// <summary>
         /// PasswordConfirmRequiredValidator control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordConfirmRequiredValidator;
-        
+
         /// <summary>
         /// PasswordConfirmCompareValidator control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator PasswordConfirmCompareValidator;
-        
+
         /// <summary>
         /// PasswordConfirmTextbox control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PasswordConfirmTextbox;
-        
+
         /// <summary>
         /// ChangePasswordButton control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ChangePasswordButton;
-        
+
         /// <summary>
         /// User_Login_InfoSQL control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource User_Login_InfoSQL;
-        
+
         /// <summary>
         /// Msg control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CncAgro.AccessAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Msg;
-        
+
         /// <summary>
         /// RegExp1 control.
         /// </summary>

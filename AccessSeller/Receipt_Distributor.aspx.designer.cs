@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Receipt_Distributor {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Receipt_Distributor
+    {
+
         /// <summary>
         /// MemberFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView MemberFormView;
-        
+
         /// <summary>
         /// MemberInfoSQL control.
         /// </summary>

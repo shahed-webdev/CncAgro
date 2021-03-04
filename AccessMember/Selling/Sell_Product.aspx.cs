@@ -70,9 +70,9 @@ namespace CncAgro.AccessSeller
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "SELECT top(3) Product_Point_Code.Product_Code, Product_Point_Code.Product_Name, Product_Point_Code.Product_Price, Product_Point_Code.Product_Point, Product_Point_Code.Product_PointID, Seller_Product.SellerProduct_Stock FROM Product_Point_Code INNER JOIN Seller_Product ON Product_Point_Code.Product_PointID = Seller_Product.Product_PointID WHERE Seller_Product.SellerID = @SellerID AND Seller_Product.SellerProduct_Stock > 0 AND Product_Point_Code.Product_Code LIKE @Product_Code + '%'";
+                    cmd.CommandText = "SELECT top(3) Product_Point_Code.Product_Code, Product_Point_Code.Product_Name, Product_Point_Code.Product_Price, Product_Point_Code.Product_Point, Product_Point_Code.Product_PointID, MemberProduct.ProductStock FROM Product_Point_Code INNER JOIN MemberProduct ON Product_Point_Code.Product_PointID = MemberProduct.Product_PointID WHERE MemberProduct.MemberID = @MemberID AND MemberProduct.ProductStock > 0 AND Product_Point_Code.Product_Code LIKE @Product_Code + '%'";
                     cmd.Parameters.AddWithValue("@Product_Code", prefix);
-                    cmd.Parameters.AddWithValue("@SellerID", HttpContext.Current.Session["SellerID"].ToString());
+                    cmd.Parameters.AddWithValue("@MemberID", HttpContext.Current.Session["MemberID"].ToString());
                     cmd.Connection = con;
 
                     con.Open();
@@ -86,7 +86,7 @@ namespace CncAgro.AccessSeller
                             Name = dr["Product_Name"].ToString(),
                             Price = dr["Product_Price"].ToString(),
                             Point = dr["Product_Point"].ToString(),
-                            Stock = dr["SellerProduct_Stock"].ToString(),
+                            Stock = dr["ProductStock"].ToString(),
                             ProductID = dr["Product_PointID"].ToString()
                         });
                     }

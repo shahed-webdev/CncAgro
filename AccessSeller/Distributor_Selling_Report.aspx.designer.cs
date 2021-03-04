@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Distributor_Selling_Report {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Distributor_Selling_Report
+    {
+
         /// <summary>
         /// From_TextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox From_TextBox;
-        
+
         /// <summary>
         /// TO_TextBox control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TO_TextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
         /// Total_FormView control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView Total_FormView;
-        
+
         /// <summary>
         /// TotalSQL control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource TotalSQL;
-        
+
         /// <summary>
         /// Sellingeport_GridView control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView Sellingeport_GridView;
-        
+
         /// <summary>
         /// SellingeportSQL control.
         /// </summary>

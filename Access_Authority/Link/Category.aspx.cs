@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CncAgro.Access_Authority.Page_Link
+namespace CncAgro.Access_Authority.Link
 {
     public partial class Category : System.Web.UI.Page
     {

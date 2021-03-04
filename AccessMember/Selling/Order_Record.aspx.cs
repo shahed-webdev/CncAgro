@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace CncAgro.AccessSeller
+namespace CncAgro.AccessMember.Selling
 {
     public partial class Order_Record : System.Web.UI.Page
     {

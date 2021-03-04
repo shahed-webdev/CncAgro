@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CncAgro.Access_Authority

@@ -2,8 +2,6 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Security;
-using System.Web.UI;
-
 
 namespace CncAgro
 {
@@ -51,7 +49,7 @@ namespace CncAgro
         protected void CustomerLogin_LoggedIn(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
-          
+
             if (Roles.IsUserInRole(CustomerLogin.UserName, "Authority")) //for Authority
             {
                 SqlCommand RegistrationIDcmd = new SqlCommand("SELECT RegistrationID from Registration where UserName = @UserName", con);

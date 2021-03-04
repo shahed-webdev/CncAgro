@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Received_Balance {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Received_Balance
+    {
+
         /// <summary>
         /// ConfirmGridView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ConfirmGridView;
-        
+
         /// <summary>
         /// ConfirmSQL control.
         /// </summary>

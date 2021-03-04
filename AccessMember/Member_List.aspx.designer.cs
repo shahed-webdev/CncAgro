@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember {
-    
-    
-    public partial class Member_List {
-        
+namespace CncAgro.AccessMember
+{
+
+
+    public partial class Member_List
+    {
+
         /// <summary>
         /// FindTextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FindTextBox;
-        
+
         /// <summary>
         /// FindButton control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-        
+
         /// <summary>
         /// Total_Label control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Total_Label;
-        
+
         /// <summary>
         /// MembersGridView control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView MembersGridView;
-        
+
         /// <summary>
         /// MembersSQL control.
         /// </summary>

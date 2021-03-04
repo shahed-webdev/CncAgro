@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Stock Details" Language="C#" MasterPageFile="~/Seller.Master" AutoEventWireup="true" CodeBehind="Product_stock.aspx.cs" Inherits="CncAgro.AccessSeller.Product_stock" %>
+﻿<%@ Page Title="Stock Details" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Product_stock.aspx.cs" Inherits="CncAgro.AccessSeller.Product_stock" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>

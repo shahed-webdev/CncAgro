@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="NomineeImage.ashx.cs" Class="DnbBD.Handler.NomineeImage" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="NomineeImage.ashx.cs" Class="CncAgro.Handler.NomineeImage" %>

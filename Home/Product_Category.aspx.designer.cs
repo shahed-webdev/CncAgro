@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.Home {
-    
-    
-    public partial class Product_Category {
-        
+namespace CncAgro.Home
+{
+
+
+    public partial class Product_Category
+    {
+
         /// <summary>
         /// CategoryFormView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.Home {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView CategoryFormView;
-        
+
         /// <summary>
         /// CategorySQL control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.Home {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource CategorySQL;
-        
+
         /// <summary>
         /// Product_Repeater control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.Home {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Product_Repeater;
-        
+
         /// <summary>
         /// ProductSQL control.
         /// </summary>

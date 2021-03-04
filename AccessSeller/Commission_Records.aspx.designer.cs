@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessSeller {
-    
-    
-    public partial class Commission_Records {
-        
+namespace CncAgro.AccessSeller
+{
+
+
+    public partial class Commission_Records
+    {
+
         /// <summary>
         /// CommissionGridView control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessSeller {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView CommissionGridView;
-        
+
         /// <summary>
         /// CommissionSQL control.
         /// </summary>

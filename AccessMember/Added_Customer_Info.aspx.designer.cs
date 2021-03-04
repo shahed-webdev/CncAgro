@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessMember {
-    
-    
-    public partial class Added_Customer_Info {
-        
+namespace CncAgro.AccessMember
+{
+
+
+    public partial class Added_Customer_Info
+    {
+
         /// <summary>
         /// Customer_Info_FV control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessMember {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView Customer_Info_FV;
-        
+
         /// <summary>
         /// MemberDetailsSQL control.
         /// </summary>

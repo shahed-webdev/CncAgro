@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Accounts {
-    
-    
-    public partial class Withdraw_Receipt {
-        
+namespace CncAgro.AccessAdmin.Accounts
+{
+
+
+    public partial class Withdraw_Receipt
+    {
+
         /// <summary>
         /// Code_TextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Code_TextBox;
-        
+
         /// <summary>
         /// RequiredFieldValidator3 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+
         /// <summary>
         /// Verify_Button control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Verify_Button;
-        
+
         /// <summary>
         /// InvalidUserLabel control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label InvalidUserLabel;
-        
+
         /// <summary>
         /// Fund_WithdrawSQL control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Fund_WithdrawSQL;
-        
+
         /// <summary>
         /// Seller_SQL control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Seller_SQL;
-        
+
         /// <summary>
         /// M_detailsFormView control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView M_detailsFormView;
-        
+
         /// <summary>
         /// Seller_detailsFormView control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView Seller_detailsFormView;
-        
+
         /// <summary>
         /// Withdraw_Button control.
         /// </summary>

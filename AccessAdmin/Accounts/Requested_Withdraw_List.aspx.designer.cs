@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Accounts {
-    
-    
-    public partial class Requested_Withdraw_List {
-        
+namespace CncAgro.AccessAdmin.Accounts
+{
+
+
+    public partial class Requested_Withdraw_List
+    {
+
         /// <summary>
         /// Find_TextBox control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Find_TextBox;
-        
+
         /// <summary>
         /// Find_Button control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Find_Button;
-        
+
         /// <summary>
         /// WithdrawGridView control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CncAgro.AccessAdmin.Accounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView WithdrawGridView;
-        
+
         /// <summary>
         /// Withdraw_ListSQL control.
         /// </summary>
