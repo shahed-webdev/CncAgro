@@ -15,15 +15,13 @@ namespace CncAgro.AccessMember.Selling
         }
 
         [WebMethod]
-        public static void Set_Product(List<Product> listProduct, double totalPrice)
+        public static void PostOderProduct(List<Product> listProduct, double totalPrice)
         {
             var memberId = HttpContext.Current.Session["MemberID"].ToString();
 
             var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
 
-            var distributionCmd = new SqlCommand("INSERT INTO Product_Distribution " +
-                                                 "(MemberID, Product_Total_Amount, Product_Total_Point, Distribution_SN)" +
-                                                 "VALUES (@MemberID,@Product_Total_Amount,@Product_Total_Point, dbo.Distribution_SerialNumber()) SELECT Scope_identity()", con);
+            var distributionCmd = new SqlCommand("INSERT INTO Product_Distribution (MemberID, Product_Total_Amount, Product_Total_Point, Distribution_SN) VALUES (@MemberID,@Product_Total_Amount,@Product_Total_Point, dbo.Distribution_SerialNumber()) SELECT Scope_identity()", con);
             distributionCmd.Parameters.AddWithValue("@MemberID", memberId);
             distributionCmd.Parameters.AddWithValue("@Product_Total_Amount", totalPrice);
             distributionCmd.Parameters.AddWithValue("@Product_Total_Point", totalPrice);
@@ -37,22 +35,22 @@ namespace CncAgro.AccessMember.Selling
                 var distributionRecordsCmd = new SqlCommand("INSERT INTO Product_Distribution_Records(Product_DistributionID, ProductID, SellingQuantity, SellingUnitPrice, SellingUnitPoint, SellingUnit_Commission) VALUES (@Product_DistributionID, @ProductID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint, @SellingUnit_Commission)", con);
                 var productCmd = new SqlCommand("UPDATE Product_Point_Code SET Order_Quantity = Order_Quantity + @Order_Quantity WHERE (Product_PointID = @ProductID)", con);
 
-
                 distributionRecordsCmd.Parameters.AddWithValue("@Product_DistributionID", distributionId);
                 distributionRecordsCmd.Parameters.AddWithValue("@ProductID", product.ProductID);
                 distributionRecordsCmd.Parameters.AddWithValue("@SellingQuantity", product.Quantity);
                 distributionRecordsCmd.Parameters.AddWithValue("@SellingUnitPrice", product.UnitPrice);
                 distributionRecordsCmd.Parameters.AddWithValue("@SellingUnitPoint", product.UnitPoint);
 
-
                 productCmd.Parameters.AddWithValue("@Order_Quantity", product.Quantity);
                 productCmd.Parameters.AddWithValue("@ProductID", product.ProductID);
+                
                 con.Open();
                 distributionRecordsCmd.ExecuteScalar();
                 productCmd.ExecuteScalar();
                 con.Close();
             }
         }
+
         public class Product
         {
             public string ProductID { get; set; }
