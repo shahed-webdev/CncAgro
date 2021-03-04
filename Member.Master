@@ -45,12 +45,16 @@
 
     <style>
         /*---Treeview Style----------*/
-        .side-bar ul { margin: 0; padding: 0; width: 100% }
-        .side-bar ul li { border-bottom: 1px solid #ddd; border-top: 1px solid #eee; font-size: 15px; list-style: outside none none; padding-left: 5px; }
-        .side-bar ul li a { color: #333; font-family: helvetica; font-size: 15px; line-height: 53px; text-decoration: none; padding-left: 5px; }
-        .side-bar ul li i { color: #333; }
+        .side-bar { background-color: #333; margin-left: -15px; }
+        .side-bar table td{ padding:0}
 
-        .L_Active { background-color: #ddd}
+        .profile-info { text-align: center; background-color: #afe1ff; padding: 25px 0; }
+        .side-bar ul { margin: 0; padding: 30px 0; width: 100% }
+        .side-bar ul li { font-size: 15px; list-style: outside none none; padding: 15px 0 15px 20px; }
+        .side-bar ul li a { color: #fff; font-size: 1rem; font-weight: 500; text-decoration: none; padding-left: 5px; }
+        .side-bar ul li i { color: #fff; }
+
+        .L_Active { background-color: #252525}
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
@@ -107,50 +111,50 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul>
                                     <li id="Member_List">
-                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink3" NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
+                                        <i class="fa fa-users"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
                                     </li>
                                     <li id="Product">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink4" NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
                                     </li>
                                     <li id="Send_B">
-                                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                        <i class="fa fa-paper-plane"></i>
                                         <asp:HyperLink ID="HyperLink6" NavigateUrl="~/AccessMember/Send_Balance.aspx" Text="Balance Transfer" runat="server" />
                                     </li>
                                     <li id="Withdraw">
-                                        <i class="fa fa-envelope-open" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AccessMember/Withdraw_Balance.aspx" Text="Withdraw Balance" runat="server" />
+                                        <i class="fa fa-envelope-open"></i>
+                                        <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AccessMember/Withdraw_Balance.aspx" Text="Balance Withdrawal" runat="server" />
                                     </li>
                                     <li id="Requested_Withdraw">
                                         <i class="fas fa-file-alt"></i>
                                         <asp:HyperLink ID="HyperLink8" NavigateUrl="~/AccessMember/Withdraw_Details.aspx" Text="Withdrawal Details" runat="server" />
                                     </li>
-                                    <li id="Password">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink1" NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />
+                                    <li id="order-product">
+                                        <i class="fas fa-cart-plus"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
+                                    </li>
+                                    <li id="order-record">
+                                        <i class="fas fa-file-alt"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
+                                    </li>
+                                    <li id="add-customer">
+                                        <i class="fas fa-user-plus"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
+                                    </li>
+
+                                    <li id="product-stock">
+                                        <i class="fa fa-lock"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
+                                    </li>
+
+                                    <li id="sell-product">
+                                        <i class="fa fa-lock"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
                                     </li>
                                     <li id="Password">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink2" NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
-                                    </li>
-                                    <li id="Password">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink5" NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
-                                    </li>
-                                    <li id="Password">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink9" NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
-                                    </li>
-                                    
-                                    <li id="Password">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink10" NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
-                                    </li>
-                                    
-                                    <li id="Password">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <asp:HyperLink ID="HyperLink11" NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
+                                        <i class="fa fa-lock"></i>
+                                        <asp:HyperLink NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />
                                     </li>
                                 </ul>
                             </div>

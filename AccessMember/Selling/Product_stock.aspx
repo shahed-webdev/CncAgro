@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Stock Details" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Product_stock.aspx.cs" Inherits="CncAgro.AccessSeller.Product_stock" %>
+﻿<%@ Page Title="Stock Details" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Product_stock.aspx.cs" Inherits="CncAgro.AccessMember.Selling.Product_stock" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .Box { color: #fff; padding: 15px; font-size:15px; margin-bottom:15px; }
-         .Box h5 { font-size:20px;}
+        .Box { color: #fff; padding: 15px; font-size: 15px; margin-bottom: 15px; }
+        .Box h5 { font-size: 20px; }
 
         .Total_Stock { background-color: #2F4254; }
         .Total_Price { background-color: #6F196E; }
@@ -79,8 +79,8 @@
     </div>
 
     <script>
-        $(document).ready(function () {
-            $("#Stock").addClass('L_Active');
+        $(function () {
+            $("#product-stock").addClass('L_Active');
         });
     </script>
 </asp:Content>

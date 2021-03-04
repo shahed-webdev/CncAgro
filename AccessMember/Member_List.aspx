@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Genealogy" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Member_List.aspx.cs" Inherits="CncAgro.AccessMember.Member_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-   </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <div class="Contain">
@@ -44,7 +42,7 @@
     </div>
 
     <script>
-        $(document).ready(function () {
+        $(function () {
             $("#Member_List").addClass('L_Active');
         })
     </script>

@@ -319,7 +319,7 @@ END"
         /**End Cart*/
 
         $(function () {
-            $("#Sell").addClass('L_Active');
+            $("#sell-product").addClass('L_Active');
 
             //Get Member UserName
             $('[id*=MemberUserNameTextBox]').typeahead({
