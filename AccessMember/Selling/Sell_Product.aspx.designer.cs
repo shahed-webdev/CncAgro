@@ -105,15 +105,6 @@ namespace CncAgro.AccessSeller
         protected global::System.Web.UI.WebControls.HiddenField GTpointHF;
 
         /// <summary>
-        /// Generation_Type_RadioB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList Generation_Type_RadioB;
-
-        /// <summary>
         /// Sell_Button control.
         /// </summary>
         /// <remarks>
@@ -150,13 +141,13 @@ namespace CncAgro.AccessSeller
         protected global::System.Web.UI.WebControls.SqlDataSource Product_Selling_RecordsSQL;
 
         /// <summary>
-        /// SellerProductSQL control.
+        /// MemberProductSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SellerProductSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource MemberProductSQL;
 
         /// <summary>
         /// RetailSQL control.

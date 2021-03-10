@@ -89,12 +89,6 @@
 
     <div id="Add_Product" class="form-inline" style="visibility: hidden; margin-top: 15px;">
         <div class="form-group">
-            <asp:RadioButtonList ID="Generation_Type_RadioB" runat="server" CssClass="form-control" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                <asp:ListItem Selected="True" Value="G">Generation Commission</asp:ListItem>
-                <asp:ListItem Value="R">Retail Profit  Commission</asp:ListItem>
-            </asp:RadioButtonList>
-        </div>
-        <div class="form-group">
             <asp:Button ID="Sell_Button" runat="server" CssClass="btn btn-primary" OnClick="SellButton_Click" Text="Sell Product" />
             <asp:HiddenField ID="JsonData" runat="server" />
         </div>
@@ -121,14 +115,14 @@ SELECT @ShoppingID = Scope_identity()"
             <asp:Parameter Name="SellingUnitPoint" Type="Double" />
         </InsertParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT MemberID FROM MemberProduct WHERE (MemberID = @MemberID)" UpdateCommand="UPDATE MemberProduct SET ProductStock = ProductStock - @ProductStock WHERE (MemberID = @MemberID) AND (Product_PointID = @Product_PointID)">
+    <asp:SqlDataSource ID="MemberProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT MemberID FROM MemberProduct WHERE (MemberID = @MemberID)" UpdateCommand="UPDATE MemberProduct SET ProductStock = ProductStock - @ProductStock WHERE (MemberID = @MemberID) AND (Product_PointID = @Product_PointID)">
         <SelectParameters>
             <asp:SessionParameter Name="MemberID" SessionField="MemberID" />
         </SelectParameters>
         <UpdateParameters>
             <asp:Parameter Name="ProductStock" />
-            <asp:Parameter Name="MemberID" />
             <asp:Parameter Name="Product_PointID" Type="Int32" />
+            <asp:SessionParameter Name="MemberID" SessionField="MemberID" />
         </UpdateParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="RetailSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails" UpdateCommand="Add_Retail_Income" UpdateCommandType="StoredProcedure">
