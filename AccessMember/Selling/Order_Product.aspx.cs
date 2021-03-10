@@ -15,7 +15,7 @@ namespace CncAgro.AccessMember.Selling
         }
 
         [WebMethod]
-        public static void PostOderProduct(List<Product> listProduct, double totalPrice)
+        public static string PostOderProduct(List<Product> listProduct, double totalPrice)
         {
             var memberId = HttpContext.Current.Session["MemberID"].ToString();
 
@@ -32,7 +32,7 @@ namespace CncAgro.AccessMember.Selling
 
             foreach (var product in listProduct)
             {
-                var distributionRecordsCmd = new SqlCommand("INSERT INTO Product_Distribution_Records(Product_DistributionID, ProductID, SellingQuantity, SellingUnitPrice, SellingUnitPoint, SellingUnit_Commission) VALUES (@Product_DistributionID, @ProductID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint, @SellingUnit_Commission)", con);
+                var distributionRecordsCmd = new SqlCommand("INSERT INTO Product_Distribution_Records(Product_DistributionID, ProductID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@Product_DistributionID, @ProductID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)", con);
                 var productCmd = new SqlCommand("UPDATE Product_Point_Code SET Order_Quantity = Order_Quantity + @Order_Quantity WHERE (Product_PointID = @ProductID)", con);
 
                 distributionRecordsCmd.Parameters.AddWithValue("@Product_DistributionID", distributionId);
@@ -43,12 +43,15 @@ namespace CncAgro.AccessMember.Selling
 
                 productCmd.Parameters.AddWithValue("@Order_Quantity", product.Quantity);
                 productCmd.Parameters.AddWithValue("@ProductID", product.ProductID);
-                
+
                 con.Open();
                 distributionRecordsCmd.ExecuteScalar();
                 productCmd.ExecuteScalar();
                 con.Close();
             }
+
+            return distributionId;
+
         }
 
         public class Product

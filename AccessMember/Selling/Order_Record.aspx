@@ -24,7 +24,7 @@
                             <Columns>
                                 <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?DistributionID={0}" HeaderText="Details" />
                                 <asp:BoundField DataField="Product_Total_Amount" DataFormatString="{0:N}" HeaderText="Total Amount" SortExpression="Product_Total_Amount" />
-                                <asp:BoundField DataField="Product_Distribution_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Order Date" SortExpression="Product_Distribution_Date" />
+                                <asp:BoundField DataField="InsertDate" DataFormatString="{0:d MMM yyyy}" HeaderText="Order Date" SortExpression="InsertDate" />
                                 <asp:TemplateField HeaderText="Delete" ShowHeader="False">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClientClick="return confirm('This order will delete permanently and your balance will return.\n Are you sure want to delete?')"></asp:LinkButton>
@@ -41,7 +41,7 @@ DELETE FROM Product_Distribution WHERE (Product_DistributionID = @Product_Distri
                                 <asp:Parameter Name="Product_DistributionID" />
                             </DeleteParameters>
                             <SelectParameters>
-                                <asp:SessionParameter Name="SellerID" SessionField="SellerID" />
+                                <asp:SessionParameter Name="MemberID" SessionField="MemberID" />
                             </SelectParameters>
                         </asp:SqlDataSource>
                     </div>

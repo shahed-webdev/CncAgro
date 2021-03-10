@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Invoice" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Distribution_Receipt.aspx.cs" Inherits="CncAgro.AccessAdmin.Seller.Distribution_Receipt" %>
+﻿<%@ Page Title="Invoice" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Distribution_Receipt.aspx.cs" Inherits="CncAgro.AccessAdmin.Member.ProductDistribution.Distribution_Receipt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>

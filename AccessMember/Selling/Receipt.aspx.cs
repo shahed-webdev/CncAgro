@@ -8,7 +8,7 @@ namespace CncAgro.AccessMember.Selling
         {
             if (string.IsNullOrEmpty(Request.QueryString["ShoppingID"]))
             {
-                Response.Redirect("Sell_Product.aspx");
+                Response.Redirect("Order_Record.aspx");
             }
         }
     }

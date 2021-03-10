@@ -13,9 +13,9 @@
     <a href="Order_Confirmation.aspx"><i class="far fa-hand-point-left"></i>Back to order list</a>
 
     <div class="row">
-        <asp:FormView ID="InfoFormView" runat="server" DataSourceID="SellerInfoSQL" Width="100%" DataKeyNames="SellerID,Net_Amount,Available_Balance">
+        <asp:FormView ID="InfoFormView" runat="server" DataSourceID="MemberInfoSQL" Width="100%" DataKeyNames="MemberID,Available_Balance">
             <ItemTemplate>
-                <input id="SelleridHF" type="hidden" value='<%#Eval("SellerID") %>' />
+                <input id="MemberidHF" type="hidden" value='<%#Eval("MemberID") %>' />
                 <div class="col-md-12">
                     <div class="well">
                         <h4 style="margin-top: 0; margin-bottom: 2px;"><%# Eval("Name") %> <small style="color: #ff6a00">Balance: <%#Eval("Available_Balance","{0:N}")%> Tk</small></h4>
@@ -32,7 +32,7 @@
             </ItemTemplate>
         </asp:FormView>
     </div>
-    <asp:SqlDataSource ID="SellerInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_Distribution.Distribution_SN, Registration.UserName, Registration.Name, Registration.Phone, Product_Distribution.SellerID, Product_Distribution.Net_Amount, Seller.Available_Balance FROM Product_Distribution INNER JOIN Seller ON Product_Distribution.SellerID = Seller.SellerID INNER JOIN Registration ON Seller.SellerRegistrationID = Registration.RegistrationID WHERE (Product_Distribution.Product_DistributionID = @Product_DistributionID)">
+    <asp:SqlDataSource ID="MemberInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_Distribution.Distribution_SN, Registration.UserName, Registration.Name, Registration.Phone, Product_Distribution.MemberID, Member.Available_Balance FROM Product_Distribution INNER JOIN Member ON Product_Distribution.MemberID = Member.MemberID INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Product_Distribution.Product_DistributionID = @Product_DistributionID)">
         <SelectParameters>
             <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="DistributionID" Type="Int32" />
         </SelectParameters>
@@ -73,7 +73,6 @@
                     <asp:HiddenField ID="UPHF" runat="server" />
                     <asp:HiddenField ID="Point_HF" runat="server" />
                     <asp:HiddenField ID="Current_StookHF" runat="server" />
-                    <asp:HiddenField ID="Commission_HF" runat="server" />
                 </div>
 
                 <div class="form-group">
@@ -119,11 +118,6 @@
                         <asp:Label ID="Selling_UPointLabel" runat="server" Text='<%# Bind("SellingUnitPoint") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Unit Comm.">
-                    <ItemTemplate>
-                        <asp:Label ID="Commission_Label" runat="server" Text='<%# Bind("SellingUnit_Commission") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Total Price">
                     <ItemTemplate>
                         <asp:Label ID="TotalPriceLabel" runat="server" Text='<%# Bind("ProductPrice") %>'></asp:Label>
@@ -144,16 +138,6 @@
                         </div>
                     </FooterTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Total Comm.">
-                    <ItemTemplate>
-                        <asp:Label ID="TotalCom_Label" runat="server" Text='<%# Bind("Total_Commission") %>'></asp:Label>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        <div class="Amnt">
-                            <label id="Commission_GrandTotal"></label>
-                        </div>
-                    </FooterTemplate>
-                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Delete">
                     <ItemTemplate>
                         <asp:Button ID="DeleteButton" runat="server" CssClass="btn btn-default" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="RowDelete"></asp:Button>
@@ -165,7 +149,6 @@
         </asp:GridView>
         <asp:HiddenField ID="Total_Price_HF" runat="server" />
         <asp:HiddenField ID="Total_Point_HF" runat="server" />
-        <asp:HiddenField ID="Total_Commission_HF" runat="server" />
         <br />
 
         <%# Eval("Name") %>
@@ -175,22 +158,15 @@
     </div>
 
     <asp:SqlDataSource ID="Product_DistributionSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
-        SelectCommand="SELECT * FROM [Product_Distribution]" UpdateCommand="UPDATE  Product_Distribution SET Product_Total_Point = @Product_Total_Point, Commission_Amount = @Commission_Amount, Is_Confirmed = 1, Confirm_Date = GETDATE(), Confirmed_RegistrationID = @RegistrationID,   Product_Total_Amount = @Product_Total_Amount WHERE (Product_DistributionID = @Product_DistributionID)">
+        SelectCommand="SELECT * FROM [Product_Distribution]" UpdateCommand="UPDATE Product_Distribution SET Product_Total_Point = @Product_Total_Point, Is_Confirmed = 1, Confirm_Date = GETDATE(), Confirmed_RegistrationID = @RegistrationID, Product_Total_Amount = @Product_Total_Amount WHERE (Product_DistributionID = @Product_DistributionID)">
         <UpdateParameters>
-            <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
-            <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="DistributionID" />
             <asp:ControlParameter ControlID="Total_Point_HF" Name="Product_Total_Point" PropertyName="Value" />
+            <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
             <asp:ControlParameter ControlID="Total_Price_HF" Name="Product_Total_Amount" PropertyName="Value" />
-            <asp:ControlParameter ControlID="Total_Commission_HF" Name="Commission_Amount" PropertyName="Value" />
+            <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="DistributionID" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Seller_UpdateSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Seller]" UpdateCommand="UPDATE Seller SET Buying_Amount = Buying_Amount + @Buying_Amount WHERE (SellerID = @SellerID)">
-        <UpdateParameters>
-            <asp:Parameter Name="Buying_Amount" />
-            <asp:Parameter Name="SellerID" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Product_Distribution_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Distribution_Records (Product_DistributionID, ProductID, SellingQuantity, SellingUnitPrice, SellingUnitPoint, SellingUnit_Commission) VALUES (@Product_DistributionID, @ProductID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint, @SellingUnit_Commission)" SelectCommand="SELECT * FROM [Product_Distribution_Records]" DeleteCommand="DELETE FROM Product_Distribution_Records WHERE (Product_DistributionID = @Product_DistributionID)">
+    <asp:SqlDataSource ID="Product_Distribution_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Distribution_Records(Product_DistributionID, ProductID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@Product_DistributionID, @ProductID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)" SelectCommand="SELECT * FROM [Product_Distribution_Records]" DeleteCommand="DELETE FROM Product_Distribution_Records WHERE (Product_DistributionID = @Product_DistributionID)">
         <DeleteParameters>
             <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="DistributionID" />
         </DeleteParameters>
@@ -200,19 +176,14 @@
             <asp:Parameter Name="SellingQuantity" Type="Int32" />
             <asp:Parameter Name="SellingUnitPrice" Type="Double" />
             <asp:Parameter Name="SellingUnitPoint" Type="Double" />
-            <asp:Parameter Name="SellingUnit_Commission" />
         </InsertParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="Cancel_SQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" DeleteCommand="DELETE FROM Product_Distribution_Records WHERE (Product_DistributionID = @Product_DistributionID)
 DELETE FROM Product_Distribution WHERE (Product_DistributionID = @Product_DistributionID)"
-        SelectCommand="SELECT Product_DistributionID FROM Product_Distribution" UpdateCommand="UPDATE Seller SET Buying_Amount = Buying_Amount - @Buying_Amount WHERE (SellerID = @SellerID)">
+        SelectCommand="SELECT Product_DistributionID FROM Product_Distribution">
         <DeleteParameters>
             <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="DistributionID" />
         </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="Buying_Amount" />
-            <asp:Parameter Name="SellerID" />
-        </UpdateParameters>
     </asp:SqlDataSource>
 
     <script>
@@ -238,7 +209,7 @@ DELETE FROM Product_Distribution WHERE (Product_DistributionID = @Product_Distri
                 source: function (request, result) {
                     $.ajax({
                         url: "Order_Details.aspx/GetProduct",
-                        data: JSON.stringify({ 'prefix': request, 'SellerID': $("#SelleridHF").val() }),
+                        data: JSON.stringify({ 'prefix': request, 'MemberID': $("#MemberidHF").val() }),
                         dataType: "json",
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
