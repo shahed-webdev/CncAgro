@@ -75,86 +75,88 @@
                 <div class="col-lg-2 h-100">
                     <div class="side-bar">
                         <nav class="navbar-expand-lg">
-                            <asp:FormView ID="AdminFormView" runat="server" DataSourceID="MemberSQL" Width="100%">
-                                <ItemTemplate>
-                                    <div class="profile-info">
-                                        <a href="/Profile_Redirect.aspx">
-                                            <img alt="No Image" title="Go Profile" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>">
-                                        </a>
-
-                                        <a href="/Profile_Redirect.aspx">
-                                            <p class="mb-0 font-weight-bold"><%# Eval("UserName") %></p>
-                                            <p class="mb-0"><%#Eval("Name") %></p>
-                                        </a>
-
-                                        <asp:LoginView ID="CustomerLoginView" runat="server">
-                                            <AnonymousTemplate>
-                                                <a href="/Login.aspx">Login</a>
-                                            </AnonymousTemplate>
-                                            <LoggedInTemplate>
-                                                <i class="glyphicon glyphicon-log-out"></i>
-                                                <asp:LoginStatus ID="LoginStatus1" CssClass="Logout" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
-                                            </LoggedInTemplate>
-                                        </asp:LoginView>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:FormView>
-
-                            <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT UserName,Name, RegistrationID FROM Registration WHERE (RegistrationID = @RegistrationID)">
-                                <SelectParameters>
-                                    <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
-                                </SelectParameters>
-                            </asp:SqlDataSource>
-
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul>
-                                    <li id="Member_List">
-                                        <i class="fa fa-users"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
-                                    </li>
-                                    <li id="Product">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
-                                    </li>
-                                    <li id="Send_B">
-                                        <i class="fa fa-paper-plane"></i>
-                                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/AccessMember/Send_Balance.aspx" Text="Balance Transfer" runat="server" />
-                                    </li>
-                                    <li id="Withdraw">
-                                        <i class="fa fa-envelope-open"></i>
-                                        <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AccessMember/Withdraw_Balance.aspx" Text="Balance Withdrawal" runat="server" />
-                                    </li>
-                                    <li id="Requested_Withdraw">
-                                        <i class="fas fa-file-alt"></i>
-                                        <asp:HyperLink ID="HyperLink8" NavigateUrl="~/AccessMember/Withdraw_Details.aspx" Text="Withdrawal Details" runat="server" />
-                                    </li>
-                                    <li id="order-product">
-                                        <i class="fas fa-cart-plus"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
-                                    </li>
-                                    <li id="order-record">
-                                        <i class="fas fa-file-alt"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
-                                    </li>
-                                    <li id="add-customer">
-                                        <i class="fas fa-user-plus"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
-                                    </li>
+                                <div class="flex-grow-1">
+                                    <asp:FormView ID="AdminFormView" runat="server" DataSourceID="MemberSQL" Width="100%">
+                                        <ItemTemplate>
+                                            <div class="profile-info">
+                                                <a href="/Profile_Redirect.aspx">
+                                                    <img alt="No Image" title="Go Profile" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>">
+                                                </a>
 
-                                    <li id="product-stock">
-                                        <i class="fa fa-lock"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
-                                    </li>
+                                                <a href="/Profile_Redirect.aspx">
+                                                    <p class="mb-0 font-weight-bold"><%# Eval("UserName") %></p>
+                                                    <p class="mb-0"><%#Eval("Name") %></p>
+                                                </a>
 
-                                    <li id="sell-product">
-                                        <i class="fa fa-lock"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
-                                    </li>
-                                    <li id="Password">
-                                        <i class="fa fa-lock"></i>
-                                        <asp:HyperLink NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />
-                                    </li>
-                                </ul>
+                                                <asp:LoginView ID="CustomerLoginView" runat="server">
+                                                    <AnonymousTemplate>
+                                                        <a href="/Login.aspx">Login</a>
+                                                    </AnonymousTemplate>
+                                                    <LoggedInTemplate>
+                                                        <i class="glyphicon glyphicon-log-out"></i>
+                                                        <asp:LoginStatus ID="LoginStatus1" CssClass="Logout" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
+                                                    </LoggedInTemplate>
+                                                </asp:LoginView>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:FormView>
+
+                                    <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT UserName,Name, RegistrationID FROM Registration WHERE (RegistrationID = @RegistrationID)">
+                                        <SelectParameters>
+                                            <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+
+                                    <ul>
+                                        <li id="Member_List">
+                                            <i class="fa fa-users"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
+                                        </li>
+                                        <li id="Product">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
+                                        </li>
+                                        <li id="Send_B">
+                                            <i class="fa fa-paper-plane"></i>
+                                            <asp:HyperLink ID="HyperLink6" NavigateUrl="~/AccessMember/Send_Balance.aspx" Text="Balance Transfer" runat="server" />
+                                        </li>
+                                        <li id="Withdraw">
+                                            <i class="fa fa-envelope-open"></i>
+                                            <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AccessMember/Withdraw_Balance.aspx" Text="Balance Withdrawal" runat="server" />
+                                        </li>
+                                        <li id="Requested_Withdraw">
+                                            <i class="fas fa-file-alt"></i>
+                                            <asp:HyperLink ID="HyperLink8" NavigateUrl="~/AccessMember/Withdraw_Details.aspx" Text="Withdrawal Details" runat="server" />
+                                        </li>
+                                        <li id="order-product">
+                                            <i class="fas fa-cart-plus"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
+                                        </li>
+                                        <li id="order-record">
+                                            <i class="fas fa-file-alt"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
+                                        </li>
+                                        <li id="add-customer">
+                                            <i class="fas fa-user-plus"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
+                                        </li>
+
+                                        <li id="product-stock">
+                                            <i class="fa fa-lock"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
+                                        </li>
+
+                                        <li id="sell-product">
+                                            <i class="fa fa-lock"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
+                                        </li>
+                                        <li id="Password">
+                                            <i class="fa fa-lock"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </nav>
                     </div>

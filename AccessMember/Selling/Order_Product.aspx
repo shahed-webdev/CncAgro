@@ -22,34 +22,35 @@
         </div>
 
         <div class="table-responsive">
-            <asp:GridView ID="ProductGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid table-hover" DataKeyNames="Product_PointID" DataSourceID="Product_PointSQL" AllowSorting="True">
+            <asp:GridView ID="ProductGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="Product_PointID" DataSourceID="Product_PointSQL" AllowSorting="True">
                 <Columns>
+                    <asp:TemplateField HeaderText="Product Name" SortExpression="Product_Name">
+                        <ItemTemplate>
+                            <strong><%# Eval("Product_Name") %></strong>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Code" SortExpression="Product_Code">
+                        <ItemTemplate>
+                            <%# Eval("Product_Code") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Stock" SortExpression="Stock_Quantity">
+                        <ItemTemplate>
+                            <%# Eval("Stock_Quantity") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Unit Price" SortExpression="Product_Price">
+                        <ItemTemplate>
+                            ৳<%# Eval("Product_Price") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Add">
                         <ItemTemplate>
                             <a class="add-to-cart" href="#" id="<%#Eval("Product_PointID") %>" data-name="<%# Eval("Product_Name") %>" data-price="<%#Eval("Product_Price") %>" data-stock="<%# Eval("Stock_Quantity") %>">
                                 <i class="fa fa-cart-plus mr-1"></i>Add to cart
                             </a>
                         </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Product Name" SortExpression="Product_Name">
-                        <ItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Product_Name") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Code" SortExpression="Product_Code">
-                        <ItemTemplate>
-                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Product_Code") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Stock" SortExpression="Stock_Quantity">
-                        <ItemTemplate>
-                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Stock_Quantity") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Price" SortExpression="Product_Price">
-                        <ItemTemplate>
-                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Product_Price") %>'></asp:Label>
-                        </ItemTemplate>
+                        <ItemStyle Width="120px"/>
                     </asp:TemplateField>
                 </Columns>
                 <EmptyDataTemplate>
@@ -96,6 +97,7 @@
                     addToStore(obj)
                 }
             });
+
 
             //add to store
             function addToStore(product) {
