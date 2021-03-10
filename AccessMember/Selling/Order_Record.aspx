@@ -22,7 +22,7 @@
                     <div class="table-responsive">
                         <asp:GridView ID="PendingGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="Product_DistributionID,MemberID" AllowSorting="True" DataSourceID="PendingSQL">
                             <Columns>
-                                <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?DistributionID={0}" HeaderText="Details" />
+                                <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?id={0}" HeaderText="Details" />
                                 <asp:BoundField DataField="Product_Total_Amount" DataFormatString="{0:N}" HeaderText="Total Amount" SortExpression="Product_Total_Amount" />
                                 <asp:BoundField DataField="InsertDate" DataFormatString="{0:d MMM yyyy}" HeaderText="Order Date" SortExpression="InsertDate" />
                                 <asp:TemplateField HeaderText="Delete" ShowHeader="False">

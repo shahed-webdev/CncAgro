@@ -6,7 +6,7 @@ namespace CncAgro.AccessMember.Selling
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Request.QueryString["DistributionID"]))
+            if (string.IsNullOrEmpty(Request.QueryString["id"]))
             {
                 Response.Redirect("Order_Record.aspx");
             }
