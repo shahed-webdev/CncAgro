@@ -230,7 +230,7 @@ SELECT @ShoppingID = Scope_identity()"
                 source: function (request, result) {
                     $.ajax({
                         type: "POST",
-                        url: "Add_Member.aspx/GetUsers",
+                        url: "Add_New_Member.aspx/GetUsers",
                         data: JSON.stringify({ 'prefix': request }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -300,7 +300,7 @@ SELECT @ShoppingID = Scope_identity()"
                 source: function (request, result) {
                     $.ajax({
                         type: "POST",
-                        url: "Add_Member.aspx/GetProduct",
+                        url: "Add_New_Member.aspx/GetProduct",
                         data: JSON.stringify({ 'prefix': request }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",

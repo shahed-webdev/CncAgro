@@ -239,13 +239,16 @@ namespace CncAgro.AccessMember.Selling
                         }
 
                     }
-
                     else
                     {
-                        ErrorLabel.Text = "Minimum 1000tk product need to join new customer";
+                        ErrorLabel.Text = "Product are stock out";
                     }
 
                 }
+            }
+            else
+            {
+                ErrorLabel.Text = "Minimum 1000tk product need to join new customer";
             }
         }
 
@@ -326,40 +329,43 @@ namespace CncAgro.AccessMember.Selling
 
         //Get Userid Values autocomplete
         [WebMethod]
-        public static string Get_UserInfo_ID(string prefix)
+        public static string GetUsers(string prefix)
         {
-            List<Member> User = new List<Member>();
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+            var user = new List<Member>();
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (var cmd = new SqlCommand())
                 {
                     cmd.CommandText = "SELECT top(3) Registration.UserName,Registration.Name,Registration.Phone,Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE Registration.UserName like @UserName + '%'";
                     cmd.Parameters.AddWithValue("@UserName", prefix);
                     cmd.Connection = con;
 
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    var dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        User.Add(new Member
+                        var list = new Member
                         {
-                            Username = dr["UserName"].ToString(),
+                            UserName = dr["UserName"].ToString(),
                             Name = dr["Name"].ToString(),
                             Phone = dr["Phone"].ToString(),
                             MemberID = dr["MemberID"].ToString(),
-                        });
+                        };
+
+                        user.Add(list);
                     }
+
                     con.Close();
 
-                    var json = new JavaScriptSerializer().Serialize(User);
+                    var json = new JavaScriptSerializer().Serialize(user);
                     return json;
                 }
             }
         }
         class Member
         {
-            public string Username { get; set; }
+            public string UserName { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
             public string MemberID { get; set; }
