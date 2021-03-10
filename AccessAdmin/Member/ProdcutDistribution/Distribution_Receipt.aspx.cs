@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CncAgro.AccessAdmin.Seller
+namespace CncAgro.AccessAdmin.Member.ProductDistribution
 {
     public partial class Distribution_Receipt : System.Web.UI.Page
     {

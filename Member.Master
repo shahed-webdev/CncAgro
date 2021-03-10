@@ -21,7 +21,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <!--custom style-->
     <link href="/CSS/common-style.css?=v=.1" rel="stylesheet" />
-    <link href="/CSS/gridview.css" rel="stylesheet" />
+    <link href="/CSS/gridview.css?v=2" rel="stylesheet" />
     <link href="/CSS/admin-master.css?v=2" rel="stylesheet" />
 
     <!-- JQuery -->

@@ -6,7 +6,7 @@
     <h3>Order Delivery</h3>
 
     <div class="table-responsive">
-        <asp:GridView ID="OrderGridView" runat="server" AllowSorting="True" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="DeliverySQL" DataKeyNames="Product_DistributionID,SellerID">
+        <asp:GridView ID="OrderGridView" runat="server" AllowSorting="True" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="DeliverySQL" DataKeyNames="Product_DistributionID,MemberID">
             <Columns>
                 <asp:TemplateField>
                     <HeaderTemplate>
@@ -22,29 +22,27 @@
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Product_Total_Amount" DataFormatString="{0:N}" HeaderText="Total Price" SortExpression="Product_Total_Amount" />
                 <asp:BoundField DataField="Product_Total_Point" DataFormatString="{0:N}" HeaderText="Total Point" SortExpression="Product_Total_Point" />
-                <asp:BoundField DataField="Commission_Amount" DataFormatString="{0:N}" HeaderText="Total Commi." SortExpression="Commission_Amount" />
-                <asp:BoundField DataField="Net_Amount" DataFormatString="{0:N}" HeaderText="Net" ReadOnly="True" SortExpression="Net_Amount" />
-                <asp:BoundField DataField="Product_Distribution_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Order Date" SortExpression="Product_Distribution_Date" />
+                <asp:BoundField DataField="Confirm_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Confirm Date" SortExpression="Confirm_Date" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="DeliverySQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_Distribution.Product_Total_Point, Product_Distribution.Product_Distribution_Date, Product_Distribution.Distribution_SN, Product_Distribution.Commission_Amount, Product_Distribution.Net_Amount, Registration.UserName, Registration.Name, Product_Distribution.Product_Total_Amount, Product_Distribution.Product_DistributionID, Product_Distribution.SellerID FROM Product_Distribution INNER JOIN Seller ON Product_Distribution.SellerID = Seller.SellerID INNER JOIN Registration ON Seller.SellerRegistrationID = Registration.RegistrationID WHERE (Product_Distribution.Is_Confirmed = 1) AND (Product_Distribution.Is_Delivered = 0)" UpdateCommand="UPDATE Product_Distribution SET Is_Delivered = 1, Delivery_Date = GETDATE(), Delivered_RegistrationID = @Delivered_RegistrationID WHERE (Product_DistributionID = @Product_DistributionID)">
+        <asp:SqlDataSource ID="DeliverySQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_Distribution.Product_Total_Point, Product_Distribution.Distribution_SN, Registration.UserName, Registration.Name, Product_Distribution.Product_Total_Amount, Product_Distribution.Product_DistributionID, Product_Distribution.MemberID, Product_Distribution.Confirm_Date FROM Product_Distribution INNER JOIN Member ON Product_Distribution.MemberID = Member.MemberID INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Product_Distribution.Is_Confirmed = 1) AND (Product_Distribution.Is_Delivered = 0)" UpdateCommand="UPDATE Product_Distribution SET Is_Delivered = 1, Delivery_Date = GETDATE(), Delivered_RegistrationID = @Delivered_RegistrationID WHERE (Product_DistributionID = @Product_DistributionID)">
             <UpdateParameters>
                 <asp:SessionParameter Name="Delivered_RegistrationID" SessionField="RegistrationID" />
                 <asp:Parameter Name="Product_DistributionID" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="Seller_Product_insert_UpdateSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Seller]" InsertCommand=" IF NOT EXISTS (SELECT * FROM  Seller_Product WHERE (SellerID = @SellerID) AND (Product_PointID = @Product_PointID))
+        <asp:SqlDataSource ID="Seller_Product_insert_UpdateSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [MemberProduct]" InsertCommand="IF NOT EXISTS (SELECT * FROM  MemberProduct WHERE (MemberID = @MemberID) AND (Product_PointID = @Product_PointID))
 BEGIN
-INSERT INTO Seller_Product (SellerID, Product_PointID, SellerProduct_Stock) VALUES(@SellerID, @Product_PointID, @SellerProduct_Stock)
+INSERT INTO MemberProduct (Product_PointID, ProductStock) VALUES (@Product_PointID,@ProductStock)
 END
 ELSE
 BEGIN
-UPDATE Seller_Product SET SellerProduct_Stock =SellerProduct_Stock + @SellerProduct_Stock WHERE (SellerID = @SellerID) AND (Product_PointID = @Product_PointID)
+UPDATE MemberProduct SET ProductStock = ProductStock + @ProductStock WHERE (MemberID = @MemberID) AND (Product_PointID = @Product_PointID)
 END">
             <InsertParameters>
-                <asp:Parameter Name="SellerID" />
+                <asp:Parameter Name="MemberID" />
                 <asp:Parameter Name="Product_PointID" />
-                <asp:Parameter Name="SellerProduct_Stock" />
+                <asp:Parameter Name="ProductStock" />
             </InsertParameters>
         </asp:SqlDataSource>
         <asp:SqlDataSource ID="Stock_UpdateSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Product_Point_Code]" UpdateCommand="UPDATE  Product_Point_Code SET Stock_Quantity -= @Stock_Quantity WHERE (Product_PointID = @Product_PointID)">

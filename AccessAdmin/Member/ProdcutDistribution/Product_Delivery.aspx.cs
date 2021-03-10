@@ -23,7 +23,7 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
                 if (ConfirmCheckBox.Checked)
                 {
                     string Product_DistributionID = OrderGridView.DataKeys[row.RowIndex]["Product_DistributionID"].ToString();
-                    string SellerID = OrderGridView.DataKeys[row.RowIndex]["SellerID"].ToString();
+                    string memberId = OrderGridView.DataKeys[row.RowIndex]["MemberID"].ToString();
 
                     DeliverySQL.UpdateParameters["Product_DistributionID"].DefaultValue = Product_DistributionID;
                     DeliverySQL.Update();
@@ -39,9 +39,9 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
 
                     while (Product_Distri.Read())
                     {
-                        Seller_Product_insert_UpdateSQL.InsertParameters["SellerID"].DefaultValue = SellerID;
+                        Seller_Product_insert_UpdateSQL.InsertParameters["MemberID"].DefaultValue = memberId;
                         Seller_Product_insert_UpdateSQL.InsertParameters["Product_PointID"].DefaultValue = Product_Distri["ProductID"].ToString();
-                        Seller_Product_insert_UpdateSQL.InsertParameters["SellerProduct_Stock"].DefaultValue = Product_Distri["SellingQuantity"].ToString();
+                        Seller_Product_insert_UpdateSQL.InsertParameters["ProductStock"].DefaultValue = Product_Distri["SellingQuantity"].ToString();
                         Seller_Product_insert_UpdateSQL.Insert();
 
                         Stock_UpdateSQL.UpdateParameters["Product_PointID"].DefaultValue = Product_Distri["ProductID"].ToString();
