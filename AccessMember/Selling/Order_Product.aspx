@@ -15,7 +15,7 @@
         <h3 class="mb-0">Order Product</h3>
         <a id="btnShowCart" class="btn btn-outline-primary">
             <small id="cartTotalProduct" class="badge badge-pill badge-primary">0</small>
-            View Product
+            Order Now
         </a>
     </div>
 
@@ -146,6 +146,38 @@
                     $.notify("Product added to cart", "success");
                 },
 
+                //update quantity
+                quantityUpdate: function(id, quantity) {
+                    const isExists = store.some(item => item.ProductID === id);
+
+                    if (isExists) {
+                        store.forEach(item => {
+                            if (item.ProductID === id) {
+                                item.Quantity = quantity;
+                                item.TotalPrice = item.Quantity * item.UnitPrice;
+                                return;
+                            }
+                        });
+
+                        //update cart
+                        this.saveCart();
+                        this.countOder();
+                        this.totalPrice();
+                    }
+
+                    return isExists;
+                },
+
+                //remove product
+                removeProduct: function(id) {
+                    store = store.filter(item => item.ProductID !== id);
+
+                    //update cart
+                    this.saveCart();
+                    this.countOder();
+                    this.totalPrice();
+                },
+
                 //save cart
                 saveCart: function () {
                     localStorage.setItem("customer-order-cart", JSON.stringify(store));
@@ -154,6 +186,12 @@
                 //get cart
                 getCart: function () {
                     store = localStorage.getItem("customer-order-cart") ? JSON.parse(localStorage.getItem("customer-order-cart")) : [];
+                },
+
+                //delete local store
+                deleteStore: function() {
+                    localStorage.removeItem("customer-order-cart");
+                    store = [];
                 },
 
                 //count order 
@@ -175,22 +213,18 @@
 
                 //show cart
                 showCart: function () {
-                    const modalCart = $("#modalCart");
-                    const cartBody = document.getElementById("cartBody");
-                    cartBody.innerHTML = "";
-
                     this.getCart();
 
-                    if (!store.length) return;
+                    if (!store.length) return null;
 
+                    const fragment = document.createDocumentFragment();
                     store.forEach(item => {
-                        cartBody.appendChild(this.createRow(item));
+                        fragment.appendChild(this.createRow(item));
                     });
 
                     this.totalPrice();
 
-                    modalCart.modal("show");
-                },
+                    return fragment;                },
 
                 //create table row
                 createRow: function (item) {
@@ -198,9 +232,9 @@
                     tr.innerHTML = `<tr>
                             <td>${item.ProductName}</td>
                             <td>৳${item.UnitPrice}</td>
-                            <td><input type="number" value="${item.Quantity}" min="1" max="${item.Stock}" class="inputQuantity form-control" required></td>
+                            <td><input id="${item.ProductID}" data-unit-price="${item.UnitPrice}" type="number" value="${item.Quantity}" min="1" max="${item.Stock}" class="inputQuantity form-control" required></td>
                             <td>৳<span class="lineTotal">${item.TotalPrice}</span></td>
-                            <td class="text-center"><i class="remove fas fa-trash-alt"></i></td>
+                            <td class="text-center"><i id="${item.ProductID}" class="remove fas fa-trash-alt"></i></td>
                         </tr>`
                     return tr;
                 },
@@ -242,10 +276,50 @@
             });
 
             //show cart
+            const cartBody = document.getElementById("cartBody");
             const btnShowCart = document.getElementById("btnShowCart");
+
             btnShowCart.addEventListener("click", function () {
-                order.showCart();
+                const modalCart = $("#modalCart");
+                const tRow = order.showCart();
+
+                cartBody.innerHTML = "";
+
+                if (!tRow) return;
+
+                cartBody.appendChild(tRow);
+
+                modalCart.modal("show");
             });
+
+            //update quantity
+            cartBody.addEventListener("input", function (evt) {
+                const element = evt.target;
+                const onTarget = element.classList.contains("inputQuantity");
+
+                if (!onTarget) return;
+
+                const id = element.id;
+                const quantity = +element.value;
+
+                const isUpdated = order.quantityUpdate(id, quantity);
+
+                if (isUpdated) {
+                    const unitPrice = +element.getAttribute("data-unit-price");
+                    element.parentElement.parentElement.querySelector(".lineTotal").textContent = quantity * unitPrice;
+                }
+             });
+
+            //remove product
+            cartBody.addEventListener("click", function (evt) {
+                const element = evt.target;
+                const onTarget = element.classList.contains("remove");
+
+                if (!onTarget) return;
+
+                order.removeProduct(element.id);
+
+                element.parentElement.parentElement.remove();            });
 
             //place order
             const formPost = document.getElementById("formPost");
@@ -266,7 +340,9 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        console("success");
+                        order.deleteStore();
+
+                        location.href = "";
                     },
                     error: function (err) {
                         console.log(err);
