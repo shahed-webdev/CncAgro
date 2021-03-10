@@ -78,15 +78,6 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
         protected global::System.Web.UI.WebControls.HiddenField UPHF;
 
         /// <summary>
-        /// Point_HF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Point_HF;
-
-        /// <summary>
         /// Current_StookHF control.
         /// </summary>
         /// <remarks>
@@ -150,6 +141,33 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
         protected global::System.Web.UI.WebControls.GridView ChargeGridView;
 
         /// <summary>
+        /// Product_DistributionSQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Product_DistributionSQL;
+
+        /// <summary>
+        /// Product_Distribution_RecordsSQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Product_Distribution_RecordsSQL;
+
+        /// <summary>
+        /// Cancel_SQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Cancel_SQL;
+
+        /// <summary>
         /// Total_Price_HF control.
         /// </summary>
         /// <remarks>
@@ -184,32 +202,5 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CancelButton;
-
-        /// <summary>
-        /// Product_DistributionSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Product_DistributionSQL;
-
-        /// <summary>
-        /// Product_Distribution_RecordsSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Product_Distribution_RecordsSQL;
-
-        /// <summary>
-        /// Cancel_SQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Cancel_SQL;
     }
 }

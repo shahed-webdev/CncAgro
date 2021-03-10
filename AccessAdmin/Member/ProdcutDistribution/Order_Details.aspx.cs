@@ -15,32 +15,36 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
         protected void Page_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Request.QueryString["DistributionID"]))
-            {
                 Response.Redirect("Order_Confirmation.aspx");
-            }
+            
+            if (IsPostBack) return;
 
-            if (!this.IsPostBack)
+            var chargeTable = new DataTable();
+            chargeTable.Columns.AddRange(new[] { new DataColumn("ProductID"), new DataColumn("Product_Name"),new DataColumn("Product_Code"), new DataColumn("SellingQuantity"), new DataColumn("SellingUnitPrice"), new DataColumn("ProductPrice") });
+            ViewState["ChargeTeble"] = chargeTable;
+
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
+            var memberInfoCmd = new SqlCommand("SELECT Product_Distribution_Records.ProductID, Product_Distribution_Records.SellingQuantity, Product_Distribution_Records.SellingUnitPrice, Product_Distribution_Records.SellingUnitPoint, Product_Distribution_Records.ProductPrice, Product_Distribution_Records.TotalPoint, Product_Point_Code.Product_Name, Product_Point_Code.Product_Code FROM Product_Distribution_Records INNER JOIN Product_Point_Code ON Product_Distribution_Records.ProductID = Product_Point_Code.Product_PointID WHERE (Product_Distribution_Records.Product_DistributionID = @DistributionID)", con);
+            memberInfoCmd.Parameters.AddWithValue("@DistributionID", Request.QueryString["DistributionID"]);
+
+            con.Open();
+            var member = memberInfoCmd.ExecuteReader();
+
+            while (member.Read())
             {
-                DataTable ChargeTeble = new DataTable();
-                ChargeTeble.Columns.AddRange(new DataColumn[7] { new DataColumn("ProductID"), new DataColumn("Product_Name"), new DataColumn("SellingQuantity"), new DataColumn("SellingUnitPrice"), new DataColumn("SellingUnitPoint"), new DataColumn("ProductPrice"), new DataColumn("TotalPoint") });
-                ViewState["ChargeTeble"] = ChargeTeble;
+                chargeTable.Rows.Add(
+                    member["ProductID"].ToString(),
+                    member["Product_Name"].ToString(), 
+                    member["Product_Code"].ToString(), 
+                    member["SellingQuantity"].ToString(),
+                    member["SellingUnitPrice"].ToString(),
+                    member["ProductPrice"].ToString()
+                );
 
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
-                SqlCommand MemberInfo_cmd = new SqlCommand("SELECT Product_Distribution_Records.ProductID, Product_Distribution_Records.SellingQuantity, Product_Distribution_Records.SellingUnitPrice, Product_Distribution_Records.SellingUnitPoint, Product_Distribution_Records.ProductPrice, Product_Distribution_Records.TotalPoint, Product_Point_Code.Product_Name, Product_Point_Code.Product_Code FROM Product_Distribution_Records INNER JOIN Product_Point_Code ON Product_Distribution_Records.ProductID = Product_Point_Code.Product_PointID WHERE (Product_Distribution_Records.Product_DistributionID = @DistributionID)", con);
-                MemberInfo_cmd.Parameters.AddWithValue("@DistributionID", Request.QueryString["DistributionID"].ToString());
-
-                con.Open();
-                SqlDataReader Member;
-                Member = MemberInfo_cmd.ExecuteReader();
-
-                while (Member.Read())
-                {
-                    ChargeTeble.Rows.Add(Member["ProductID"].ToString(), Member["Product_Name"].ToString(), Member["SellingQuantity"].ToString(), Member["SellingUnitPrice"].ToString(), Member["SellingUnitPoint"].ToString(), Member["ProductPrice"].ToString(), Member["TotalPoint"].ToString());
-                    ViewState["ChargeTeble"] = ChargeTeble;
-                    this.BindGrid();
-                }
-                con.Close();
+                ViewState["ChargeTeble"] = chargeTable;
+                BindGrid();
             }
+            con.Close();
         }
 
         /*Add To Cart Button*/
@@ -49,43 +53,52 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
             ChargeGridView.DataSource = ViewState["ChargeTeble"] as DataTable;
             ChargeGridView.DataBind();
         }
+
         protected void RowDelete(object sender, EventArgs e)
         {
-            GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
-            DataTable ChargeTeble = ViewState["ChargeTeble"] as DataTable;
+            var row = (sender as Button)?.NamingContainer as GridViewRow;
 
-            ChargeTeble.Rows.RemoveAt(row.RowIndex);
-            ViewState["ChargeTeble"] = ChargeTeble;
+            if (ViewState["ChargeTeble"] is DataTable chargeTable)
+            {
+                chargeTable.Rows.RemoveAt(row.RowIndex);
+                ViewState["ChargeTeble"] = chargeTable;
+            }
+
             this.BindGrid();
         }
+
         protected void AddToCartButton_Click(object sender, EventArgs e)
         {
             if (ProductID_HF.Value != string.Empty)
             {
-                double Stock = Convert.ToDouble(Current_StookHF.Value);
-                double UnitPrice = Convert.ToDouble(UPHF.Value);
-                double Quntity = Convert.ToDouble(QuantityTextBox.Text);
-                double UnitPoint = Convert.ToDouble(Point_HF.Value);
-
-                bool ID_Check = true;
+                var stock = Convert.ToDouble(Current_StookHF.Value);
+                var unitPrice = Convert.ToDouble(UPHF.Value);
+                var quantity = Convert.ToDouble(QuantityTextBox.Text);
+                
+                var idCheck = true;
                 foreach (GridViewRow row in ChargeGridView.Rows)
                 {
-                    Label ProductIDLabel = row.FindControl("PIDLabel") as Label;
+                    var productIdLabel = (Label) row.FindControl("PIDLabel");
 
-                    if (ProductIDLabel.Text == ProductID_HF.Value)
+                    if (productIdLabel != null && productIdLabel.Text == ProductID_HF.Value)
                     {
-                        ID_Check = false;
+                        idCheck = false;
                     }
                 }
 
 
-                if (ID_Check)
+                if (idCheck)
                 {
-                    if (Stock >= Quntity)
+                    if (stock >= quantity)
                     {
-                        DataTable ChargeTeble = ViewState["ChargeTeble"] as DataTable;
-                        ChargeTeble.Rows.Add(ProductID_HF.Value, ProductName_HF.Value, QuantityTextBox.Text, UnitPrice, UnitPoint, (UnitPrice * Quntity), (UnitPoint * Quntity));
-                        ViewState["ChargeTeble"] = ChargeTeble;
+                        var chargeTable = (DataTable) ViewState["ChargeTeble"];
+                        
+                        if (chargeTable != null)
+                        {
+                            chargeTable.Rows.Add(ProductID_HF.Value, ProductName_HF.Value, ProductCodeTextBox.Text, QuantityTextBox.Text, unitPrice, (unitPrice * quantity));
+                            ViewState["ChargeTeble"] = chargeTable;
+                        }
+
                         this.BindGrid();
 
                         ProductID_HF.Value = "";
@@ -106,7 +119,7 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Product Alrady Added in the Cart')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Product Already Added in the Cart')", true);
                 }
             }
             else
@@ -117,23 +130,23 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
         }
 
         [WebMethod]
-        public static string GetProduct(string prefix, string MemberID)
+        public static string GetProduct(string prefix)
         {
-            List<Product> User = new List<Product>();
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+            var user = new List<Product>();
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (var cmd = new SqlCommand())
                 {
                     cmd.CommandText = "SELECT TOP (2) Product_Code, Product_Name, Product_Price, Product_Point, Product_PointID, Net_Quantity FROM Product_Point_Code WHERE (Stock_Quantity > 0) AND (IsActive = 1) AND (Product_Code LIKE @Product_Code + '%')";
                     cmd.Parameters.AddWithValue("@Product_Code", prefix);
                     cmd.Connection = con;
 
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    var dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        User.Add(new Product
+                        user.Add(new Product
                         {
                             Code = dr["Product_Code"].ToString(),
                             Name = dr["Product_Name"].ToString(),
@@ -145,12 +158,13 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
                     }
                     con.Close();
 
-                    var json = new JavaScriptSerializer().Serialize(User);
+                    var json = new JavaScriptSerializer().Serialize(user);
                     return json;
                 }
             }
         }
-        class Product
+
+        private class Product
         {
             public string Code { get; set; }
             public string Name { get; set; }
@@ -159,6 +173,8 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
             public string Stock { get; set; }
             public string ProductID { get; set; }
         }
+
+
         protected void Confirm_Button_Click(object sender, EventArgs e)
         {
             Product_DistributionSQL.Update();
@@ -167,15 +183,14 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
 
             foreach (GridViewRow row in ChargeGridView.Rows)
             {
-                Label ProductIDLabel = row.FindControl("PIDLabel") as Label;
-                Label QntLabel = row.FindControl("QntLabel") as Label;
-                Label Selling_UPLabel = row.FindControl("Selling_UPLabel") as Label;
-                Label Selling_UPointLabel = row.FindControl("Selling_UPointLabel") as Label;
+                var productIdLabel = row.FindControl("PIDLabel") as Label;
+                var qntLabel = row.FindControl("QntLabel") as Label;
+                var sellingUpLabel = row.FindControl("Selling_UPLabel") as Label;
 
-                Product_Distribution_RecordsSQL.InsertParameters["ProductID"].DefaultValue = ProductIDLabel.Text;
-                Product_Distribution_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = QntLabel.Text;
-                Product_Distribution_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = Selling_UPLabel.Text;
-                Product_Distribution_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = Selling_UPointLabel.Text;
+                Product_Distribution_RecordsSQL.InsertParameters["ProductID"].DefaultValue = productIdLabel.Text;
+                Product_Distribution_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = qntLabel.Text;
+                Product_Distribution_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = sellingUpLabel.Text;
+                Product_Distribution_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = sellingUpLabel.Text;
                 Product_Distribution_RecordsSQL.Insert();
             }
 
@@ -185,9 +200,7 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-
             Cancel_SQL.Delete();
-
             Response.Redirect("Order_Confirmation.aspx");
         }
     }
