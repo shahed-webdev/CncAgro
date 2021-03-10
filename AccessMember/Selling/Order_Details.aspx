@@ -4,8 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Order Details</h3>
-    <a href="Order_Record.aspx"><i class="far fa-hand-point-left"></i>
-        Back To Record</a>
+    <a href="Order_Record.aspx"><i class="far fa-hand-point-left mr-1"></i>Back To Record</a>
 
     <div class="table-responsive">
         <asp:GridView ID="DetailsGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="DetailsSQL">
