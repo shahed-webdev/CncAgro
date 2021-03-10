@@ -342,7 +342,7 @@
                     success: function (response) {
                         order.deleteStore();
 
-                        location.href = "";
+                        location.href = `Order_Details.aspx?id=${response.d}`;
                     },
                     error: function (err) {
                         console.log(err);
