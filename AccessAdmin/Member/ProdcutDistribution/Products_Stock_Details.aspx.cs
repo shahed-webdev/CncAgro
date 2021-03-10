@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CncAgro.AccessAdmin.Seller
+namespace CncAgro.AccessAdmin.Member.ProductDistribution
 {
-    public partial class Seller_Products_Stock_Details : System.Web.UI.Page
+    public partial class Products_Stock_Details : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
