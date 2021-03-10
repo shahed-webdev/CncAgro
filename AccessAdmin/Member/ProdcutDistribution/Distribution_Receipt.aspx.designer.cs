@@ -24,12 +24,12 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
         protected global::System.Web.UI.WebControls.FormView MemberFormView;
 
         /// <summary>
-        /// SellerInfoSQL control.
+        /// MemberInfoSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SellerInfoSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource MemberInfoSQL;
     }
 }

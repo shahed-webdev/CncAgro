@@ -9,7 +9,7 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
 
             if (string.IsNullOrEmpty(Request.QueryString["Distribution"]))
             {
-                Response.Redirect("Product_Distribution.aspx");
+                Response.Redirect("Order_Confirmation.aspx");
             }
         }
     }

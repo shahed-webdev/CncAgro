@@ -50,9 +50,9 @@ DELETE FROM Product_Distribution WHERE (Product_DistributionID = @Product_Distri
                     <div class="table-responsive">
                         <asp:GridView ID="ConfirmGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="Product_DistributionID" DataSourceID="ConfirmSQL" AllowSorting="True">
                             <Columns>
-                                <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?DistributionID={0}" HeaderText="Details" />
+                                <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?id={0}" HeaderText="Details" />
                                 <asp:BoundField DataField="Product_Total_Amount" DataFormatString="{0:N}" HeaderText="Total Amount" SortExpression="Product_Total_Amount" />
-                                <asp:BoundField DataField="Product_Distribution_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Order Date" SortExpression="Product_Distribution_Date" />
+                                <asp:BoundField DataField="Confirm_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Confirm Date" SortExpression="Confirm_Date" />
                             </Columns>
                             <EmptyDataTemplate>
                                 No Confirm Record
@@ -69,9 +69,9 @@ DELETE FROM Product_Distribution WHERE (Product_DistributionID = @Product_Distri
                     <div class="table-responsive">
                         <asp:GridView ID="InstockGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="Product_DistributionID" DataSourceID="InStockSQL" AllowSorting="True">
                             <Columns>
-                                <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?DistributionID={0}" HeaderText="Details" />
+                                <asp:HyperLinkField SortExpression="Distribution_SN" DataTextField="Distribution_SN" DataNavigateUrlFields="Product_DistributionID" DataNavigateUrlFormatString="Order_Details.aspx?id={0}" HeaderText="Details" />
                                 <asp:BoundField DataField="Product_Total_Amount" DataFormatString="{0:N}" HeaderText="Total Amount" SortExpression="Product_Total_Amount" />
-                                <asp:BoundField DataField="Product_Distribution_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Order Date" SortExpression="Product_Distribution_Date" />
+                                <asp:BoundField DataField="Delivery_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Delivery Date" SortExpression="Delivery_Date" />
                             </Columns>
                             <EmptyDataTemplate>
                                 No received Record

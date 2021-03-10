@@ -14,16 +14,16 @@
     <a class="Sub_Link hidden-print" href="Product_Distribution.aspx"><< Back</a>
 <h3>Invoice</h3>
 
-    <asp:FormView ID="MemberFormView" runat="server" DataSourceID="SellerInfoSQL" Width="100%">
+    <asp:FormView ID="MemberFormView" runat="server" DataSourceID="MemberInfoSQL" Width="100%">
         <ItemTemplate>
           <table class="B_Info">
                 <tr>
-                    <td>Distributor ID: <%# Eval("Seller_Username") %></td>
-                    <td class="text-right">Phone: <%# Eval("Seller_Phone") %></td>
+                    <td>Distributor ID: <%# Eval("Member_Username") %></td>
+                    <td class="text-right">Phone: <%# Eval("Member_Phone") %></td>
                 </tr>
                 <tr>
                     <td>Receipts# <%#Eval("Distribution_SN") %></td>
-                    <td class="text-right">Date: <%#Eval("Product_Distribution_Date","{0:d MMM yyyy}") %></td>
+                    <td class="text-right">Date: <%#Eval("Confirm_Date","{0:d MMM yyyy}") %></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -89,7 +89,7 @@
             </table>
         </ItemTemplate>
     </asp:FormView>
-    <asp:SqlDataSource ID="SellerInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name AS Admin_Name, Registration.UserName AS Admin_Username, Seller_Registration.UserName AS Seller_Username, Seller_Registration.Phone AS Seller_Phone, Product_Distribution.Product_Distribution_Date, Product_Distribution.Product_DistributionID, Product_Distribution.Distribution_SN FROM Registration AS Seller_Registration INNER JOIN Seller ON Seller_Registration.RegistrationID = Seller.SellerRegistrationID INNER JOIN Product_Distribution ON Seller.SellerID = Product_Distribution.SellerID LEFT OUTER JOIN Registration ON Product_Distribution.Admin_RegistrationID = Registration.RegistrationID WHERE (Product_Distribution.Product_DistributionID = @Product_DistributionID)">
+    <asp:SqlDataSource ID="MemberInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name AS Admin_Name, Registration.UserName AS Admin_Username, Member_Registration.UserName AS Member_Username, Member_Registration.Phone AS Member_Phone, Product_Distribution.Product_DistributionID, Product_Distribution.Distribution_SN, Member_Registration.Name, Registration.RegistrationID, Product_Distribution.Product_Total_Amount, Product_Distribution.Is_Confirmed, Product_Distribution.Is_Delivered, Product_Distribution.Delivery_Date, Product_Distribution.Confirm_Date, Product_Distribution.InsertDate FROM Registration AS Member_Registration INNER JOIN Member ON Member_Registration.RegistrationID = Member.MemberRegistrationID INNER JOIN Product_Distribution ON Member.MemberID = Product_Distribution.MemberID LEFT OUTER JOIN Registration ON Product_Distribution.Confirmed_RegistrationID = Registration.RegistrationID WHERE (Product_Distribution.Product_DistributionID = @Product_DistributionID)">
         <SelectParameters>
             <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="Distribution" />
         </SelectParameters>

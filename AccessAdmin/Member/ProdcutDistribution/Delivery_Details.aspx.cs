@@ -25,10 +25,10 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
                     Stock_UpdateSQL.UpdateParameters["Stock_Quantity"].DefaultValue = ProductGridView.DataKeys[row.RowIndex]["SellingQuantity"].ToString();
                     Stock_UpdateSQL.Update();
 
-                    Seller_Product_insert_UpdateSQL.InsertParameters["SellerID"].DefaultValue = InfoFormView.DataKey["SellerID"].ToString();
-                    Seller_Product_insert_UpdateSQL.InsertParameters["SellerProduct_Stock"].DefaultValue = ProductGridView.DataKeys[row.RowIndex]["SellingQuantity"].ToString();
-                    Seller_Product_insert_UpdateSQL.InsertParameters["Product_PointID"].DefaultValue = ProductGridView.DataKeys[row.RowIndex]["ProductID"].ToString();
-                    Seller_Product_insert_UpdateSQL.Insert();
+                    Member_Product_insert_UpdateSQL.InsertParameters["MemberID"].DefaultValue = InfoFormView.DataKey["MemberID"].ToString();
+                    Member_Product_insert_UpdateSQL.InsertParameters["ProductStock"].DefaultValue = ProductGridView.DataKeys[row.RowIndex]["SellingQuantity"].ToString();
+                    Member_Product_insert_UpdateSQL.InsertParameters["Product_PointID"].DefaultValue = ProductGridView.DataKeys[row.RowIndex]["ProductID"].ToString();
+                    Member_Product_insert_UpdateSQL.Insert();
 
 
                 }

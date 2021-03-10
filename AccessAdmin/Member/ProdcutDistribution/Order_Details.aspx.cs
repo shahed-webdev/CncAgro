@@ -179,7 +179,7 @@ namespace CncAgro.AccessAdmin.Member.ProductDistribution
                 Product_Distribution_RecordsSQL.Insert();
             }
 
-            Response.Redirect("../Distribution_Receipt.aspx?Distribution=" + Request.QueryString["DistributionID"].ToString());
+            Response.Redirect("Distribution_Receipt.aspx?Distribution=" + Request.QueryString["DistributionID"].ToString());
 
         }
 
