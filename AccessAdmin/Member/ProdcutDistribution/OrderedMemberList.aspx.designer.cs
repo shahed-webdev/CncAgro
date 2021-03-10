@@ -7,65 +7,56 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CncAgro.AccessAdmin.Seller
+namespace DnbBD.AccessAdmin.Member.ProdcutDistribution
 {
 
 
-    public partial class Seller_Products_Stock_Details
+    public partial class OrderedMemberList
     {
 
         /// <summary>
-        /// SellerFormView control.
+        /// FindTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView SellerFormView;
+        protected global::System.Web.UI.WebControls.TextBox FindTextBox;
 
         /// <summary>
-        /// SellerSQL control.
+        /// FindButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SellerSQL;
+        protected global::System.Web.UI.WebControls.Button FindButton;
 
         /// <summary>
-        /// Stock_FormView control.
+        /// Total_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView Stock_FormView;
+        protected global::System.Web.UI.WebControls.Label Total_Label;
 
         /// <summary>
-        /// StockSQL control.
+        /// MemberListGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource StockSQL;
+        protected global::System.Web.UI.WebControls.GridView MemberListGridView;
 
         /// <summary>
-        /// ProductGridView control.
+        /// MemberSQL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ProductGridView;
-
-        /// <summary>
-        /// Seller_ProductSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Seller_ProductSQL;
+        protected global::System.Web.UI.WebControls.SqlDataSource MemberSQL;
     }
 }

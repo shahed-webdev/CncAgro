@@ -98,6 +98,7 @@
     <Content Include="AccessAdmin\CSS\Receipt.css" />
     <Content Include="AccessAdmin\Member\Add_Member.aspx" />
     <Content Include="AccessAdmin\Member\ProdcutDistribution\Delivery_Details.aspx" />
+    <Content Include="AccessAdmin\Member\ProdcutDistribution\OrderedMemberList.aspx" />
     <Content Include="AccessAdmin\Member\ProdcutDistribution\Order_Confirmation.aspx" />
     <Content Include="AccessAdmin\Member\ProdcutDistribution\Order_Details.aspx" />
     <Content Include="AccessAdmin\Member\ProdcutDistribution\Product_Delivery.aspx" />
@@ -113,7 +114,7 @@
     <Content Include="AccessAdmin\Member\Member_Details.aspx" />
     <Content Include="AccessAdmin\Member\Notice_Board.aspx" />
     <Content Include="AccessAdmin\Bonus_Com\Reference_Spot_Com.aspx" />
-    <Content Include="AccessAdmin\Member\ProdcutDistribution\Seller_Products_Stock_Details.aspx" />
+    <Content Include="AccessAdmin\Member\ProdcutDistribution\Products_Stock_Details.aspx" />
     <Content Include="AccessAdmin\SMS\Send_SMS.aspx" />
     <Content Include="AccessAdmin\SMS\Sent_Records.aspx" />
     <Content Include="AccessAdmin\Sub_Admin\Active_Deactivate.aspx" />
@@ -291,6 +292,13 @@
     <Compile Include="AccessAdmin\Member\ProdcutDistribution\Delivery_Details.aspx.designer.cs">
       <DependentUpon>Delivery_Details.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AccessAdmin\Member\ProdcutDistribution\OrderedMemberList.aspx.cs">
+      <DependentUpon>OrderedMemberList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessAdmin\Member\ProdcutDistribution\OrderedMemberList.aspx.designer.cs">
+      <DependentUpon>OrderedMemberList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AccessAdmin\Member\ProdcutDistribution\Order_Confirmation.aspx.cs">
       <DependentUpon>Order_Confirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,12 +397,12 @@
     <Compile Include="AccessAdmin\Bonus_Com\Reference_Spot_Com.aspx.designer.cs">
       <DependentUpon>Reference_Spot_Com.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AccessAdmin\Member\ProdcutDistribution\Seller_Products_Stock_Details.aspx.cs">
-      <DependentUpon>Seller_Products_Stock_Details.aspx</DependentUpon>
+    <Compile Include="AccessAdmin\Member\ProdcutDistribution\Products_Stock_Details.aspx.cs">
+      <DependentUpon>Products_Stock_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccessAdmin\Member\ProdcutDistribution\Seller_Products_Stock_Details.aspx.designer.cs">
-      <DependentUpon>Seller_Products_Stock_Details.aspx</DependentUpon>
+    <Compile Include="AccessAdmin\Member\ProdcutDistribution\Products_Stock_Details.aspx.designer.cs">
+      <DependentUpon>Products_Stock_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccessAdmin\SMS\Send_SMS.aspx.cs">
       <DependentUpon>Send_SMS.aspx</DependentUpon>

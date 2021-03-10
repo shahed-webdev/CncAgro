@@ -32,7 +32,7 @@
                 <Columns>
                     <asp:BoundField DataField="Product_Code" HeaderText="Code" SortExpression="Product_Code" />
                     <asp:BoundField DataField="Product_Name" HeaderText="Name" SortExpression="Product_Name" />
-                    <asp:BoundField DataField="SellerProduct_Stock" HeaderText="Quantity" SortExpression="SellerProduct_Stock" />
+                    <asp:BoundField DataField="ProductStock" HeaderText="Quantity" SortExpression="ProductStock" />
                     <asp:BoundField DataField="Product_Price" HeaderText="Unit Price" SortExpression="Product_Price" />
                     <asp:BoundField DataField="Total_Price" HeaderText="Total Price" SortExpression="Total_Price" />
                 </Columns>
