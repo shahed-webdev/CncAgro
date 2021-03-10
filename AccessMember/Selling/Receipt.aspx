@@ -10,7 +10,6 @@
                 <div class="clearfix">
                     <div class="pull-left MReceipt">
                         <ul>
-                            <li><h4><%# Eval("Shop_Name") %></h4></li>
                             <li>Invoice: <strong>#<%# Eval("Shopping_SN") %></strong></li>
                             <li>Date: <strong><%# Eval("ShoppingDate","{0:d MMM yyyy}") %></strong></li>
                         </ul>
@@ -71,11 +70,11 @@
 
                 <div class="Paid_Stamp">
                     <img src="../CSS/Image/Paid_Sill.jpg" />
-                    <p>Served By: <%# Eval("Seller_Name") %></p>
+                    <p>Served By: <%# Eval("ServedBy") %></p>
                 </div>
             </ItemTemplate>
         </asp:FormView>
-        <asp:SqlDataSource ID="MemberInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Shopping.ShoppingAmount, Shopping.ShoppingPoint, Shopping.ShoppingDate, Registration.Name, Registration.UserName, Registration.Phone, Registration_1.Name AS Seller_Name, Shopping.Shopping_SN, Seller.Shop_Name FROM Shopping INNER JOIN Member ON Shopping.MemberID = Member.MemberID INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID INNER JOIN Seller ON Shopping.SellerID = Seller.SellerID INNER JOIN Registration AS Registration_1 ON Seller.SellerRegistrationID = Registration_1.RegistrationID WHERE (Shopping.ShoppingID = @ShoppingID)">
+        <asp:SqlDataSource ID="MemberInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Shopping.ShoppingAmount, Shopping.ShoppingPoint, Shopping.ShoppingDate, Registration.Name, Registration.UserName, Registration.Phone, Shopping.Shopping_SN, Shopping.Is_Delivered, Registration_1.Name AS ServedBy FROM Shopping INNER JOIN Member ON Shopping.MemberID = Member.MemberID INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID INNER JOIN Registration AS Registration_1 ON Shopping.Seller_RegistrationID = Registration_1.RegistrationID WHERE (Shopping.ShoppingID = @ShoppingID)">
             <SelectParameters>
                 <asp:QueryStringParameter Name="ShoppingID" QueryStringField="ShoppingID" />
             </SelectParameters>
