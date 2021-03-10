@@ -132,7 +132,10 @@
                 <br />
             </ItemTemplate>
         </asp:FormView>
-        <asp:SqlDataSource ID="OrderInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.UserName, Registration.Phone, Registration_1.Name AS ServedBy, Product_Distribution.Product_Total_Amount, Product_Distribution.Distribution_SN, Product_Distribution.Is_Confirmed, Product_Distribution.Is_Delivered, Product_Distribution.Delivery_Date, Product_Distribution.Confirm_Date, Product_Distribution.InsertDate, Product_Distribution.MemberID, Product_Distribution.Product_DistributionID FROM Product_Distribution INNER JOIN Registration INNER JOIN Member ON Registration.RegistrationID = Member.MemberRegistrationID ON Product_Distribution.MemberID = Member.MemberID INNER JOIN Registration AS Registration_1 ON Product_Distribution.Admin_RegistrationID = Registration_1.RegistrationID">
+        <asp:SqlDataSource ID="OrderInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.UserName, Registration.Phone, Registration_1.Name AS ServedBy, Product_Distribution.Product_Total_Amount, Product_Distribution.Distribution_SN, Product_Distribution.Is_Confirmed, Product_Distribution.Is_Delivered, Product_Distribution.Delivery_Date, Product_Distribution.Confirm_Date, Product_Distribution.InsertDate, Product_Distribution.MemberID, Product_Distribution.Product_DistributionID FROM Product_Distribution INNER JOIN Registration INNER JOIN Member ON Registration.RegistrationID = Member.MemberRegistrationID ON Product_Distribution.MemberID = Member.MemberID INNER JOIN Registration AS Registration_1 ON Product_Distribution.Admin_RegistrationID = Registration_1.RegistrationID WHERE (Product_Distribution.Product_DistributionID = @Product_DistributionID)">
+            <SelectParameters>
+                <asp:QueryStringParameter Name="Product_DistributionID" QueryStringField="DistributionID" />
+            </SelectParameters>
         </asp:SqlDataSource>
     <div class="table-responsive">
         <asp:GridView ID="DetailsGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="DetailsSQL">
