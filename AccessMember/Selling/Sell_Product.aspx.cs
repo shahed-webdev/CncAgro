@@ -29,7 +29,8 @@ namespace CncAgro.AccessSeller
             {
                 using (var cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "SELECT top(3) Registration.UserName, Registration.Name, Registration.Phone, Member.MemberID FROM Registration INNER JOIN  Member ON Registration.RegistrationID = Member.MemberRegistrationID WHERE Registration.UserName LIKE @UserName + '%'";
+                    cmd.CommandText = "SELECT top(3) Registration.UserName, Registration.Name, Registration.Phone, Member.MemberID FROM Registration INNER JOIN  Member ON Registration.RegistrationID = Member.MemberRegistrationID WHERE Member.MemberID <> @MemberID AND Registration.UserName LIKE @UserName + '%'";
+                    cmd.Parameters.AddWithValue("@MemberID", HttpContext.Current.Session["MemberID"].ToString());
                     cmd.Parameters.AddWithValue("@UserName", prefix);
                     cmd.Connection = con;
 

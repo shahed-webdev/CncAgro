@@ -22,7 +22,7 @@
     <div class="table-responsive mt-3">
         <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid table-bordered" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
             <Columns>
-                <asp:BoundField DataField="Shopping_SN" HeaderText="Receipt No" InsertVisible="False" ReadOnly="True" SortExpression="Shopping_SN" />
+                <asp:HyperLinkField SortExpression="Shopping_SN" DataTextField="Shopping_SN" DataNavigateUrlFields="ShoppingID" DataNavigateUrlFormatString="../AccessMember/Selling/Receipt.aspx?ShoppingID={0}" HeaderText="Receipt No" />
                 <asp:TemplateField HeaderText="Details">
                     <ItemTemplate>
                         <asp:Repeater runat="server" DataSourceID="Selling_RecordsSQL">
