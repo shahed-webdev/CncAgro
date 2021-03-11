@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="OrderedMemberList.aspx.cs" Inherits="DnbBD.AccessAdmin.Member.ProdcutDistribution.OrderedMemberList" %>
+﻿<%@ Page Title="Ordered customer list" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="OrderedMemberList.aspx.cs" Inherits="DnbBD.AccessAdmin.Member.ProdcutDistribution.OrderedMemberList" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <h3>Customer List</h3>
+    <h3>Ordered Customer List</h3>
 
     <div class="card card-body">
         <div class="form-inline">
@@ -17,6 +18,7 @@
         <h5 class="mt-3">
             <asp:Label ID="Total_Label" runat="server" CssClass="Result_Msg"></asp:Label>
         </h5>
+
         <div class="table-responsive">
             <asp:GridView ID="MemberListGridView" runat="server" AutoGenerateColumns="False" DataSourceID="MemberSQL" CssClass="mGrid" DataKeyNames="MemberID" AllowSorting="True" AllowPaging="True" PageSize="30">
                 <Columns>

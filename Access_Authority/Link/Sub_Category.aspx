@@ -5,13 +5,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <div class="container">
         <a href="Category.aspx">Back to Category</a>
+        
         <h3>Insert URL Under <strong>'<% =Request.QueryString["CN"] %>'</strong></h3>
-        <div class="card">
+        <div class="card card-body mb-4">
             <div class="form-inline">
                 <div class="form-group">
                     <asp:TextBox ID="LinkAsecendingTextBox" placeholder="Ascending" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
-                <div class="form-group">
+                <div class="form-group mx-2">
                     <asp:TextBox ID="PageTitleTextBox" placeholder="Page Title" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="PageTitleTextBox" CssClass="Rf-Error" ErrorMessage="*" ValidationGroup="1"></asp:RequiredFieldValidator>
                 </div>
@@ -19,7 +20,7 @@
                     <asp:TextBox ID="PageURLTextBox" placeholder="Page URL" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="PageURLTextBox" CssClass="Rf-Error" ErrorMessage="*" ValidationGroup="1"></asp:RequiredFieldValidator>
                 </div>
-                <div class="form-group">
+                <div class="form-group mx-2">
                     <asp:DropDownList ID="RoleDropDownList" runat="server" AppendDataBoundItems="True" DataSourceID="RoleSQL" DataTextField="RoleName" DataValueField="RoleId" CssClass="form-control">
                         <asp:ListItem>[ SELECT ]</asp:ListItem>
                     </asp:DropDownList>
@@ -107,12 +108,12 @@ DELETE FROM Link_Users WHERE (LinkID = @LinkID)"
 
 
         <h3>Add Sub-Category Under <strong>'<% =Request.QueryString["CN"] %>'</strong></h3>
-        <div class="card">
+        <div class="card card-body">
             <div class="form-inline">
                 <div class="form-group">
                     <asp:TextBox ID="AscendingTextBox" placeholder="Ascending" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
-                <div class="form-group">
+                <div class="form-group mx-2">
                     <asp:TextBox ID="SubCategoryTextBox" placeholder="Sub Category Name" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="SubCategoryTextBox" CssClass="Rf-Error" ValidationGroup="AS"></asp:RequiredFieldValidator>
                 </div>

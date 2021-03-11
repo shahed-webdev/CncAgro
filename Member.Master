@@ -143,12 +143,12 @@
                                         </li>
 
                                         <li id="product-stock">
-                                            <i class="fa fa-lock"></i>
+                                            <i class="fas fa-layer-group"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
                                         </li>
 
                                         <li id="sell-product">
-                                            <i class="fa fa-lock"></i>
+                                            <i class="fas fa-cart-arrow-down"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
                                         </li>
                                         <li id="Password">

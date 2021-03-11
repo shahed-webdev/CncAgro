@@ -113,7 +113,7 @@
         </div>
 
         <div id="postCustomer" class="mt-3">
-            <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary btn-lg" Text="Submit" ValidationGroup="1" OnClientClick="return formValidation();" OnClick="Add_Customer_Button_Click" />
+            <asp:Button ID="Add_Customer_Button" runat="server" CssClass="btn btn-primary" Text="Submit" ValidationGroup="1" OnClientClick="return formValidation();" OnClick="Add_Customer_Button_Click" />
             <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
 
             <!--pass total amount/point-->
@@ -316,7 +316,7 @@ SELECT @ShoppingID = Scope_identity()"
 
             //save to cart
             function saveCart() {
-                localStorage.setItem('added-product', JSON.stringify(cart));
+                localStorage.setItem('_products-cart-admin', JSON.stringify(cart));
 
                 grandTotalAmount();
             }
@@ -368,7 +368,7 @@ SELECT @ShoppingID = Scope_identity()"
             //append product info
             const rebuildProductTable = function () {
                 tBody.innerHTML = "";
-                const store = localStorage.getItem("added-product");
+                const store = localStorage.getItem("_products-cart-admin");
                 if (!store) return;
 
                 cart = JSON.parse(store);
@@ -455,7 +455,7 @@ SELECT @ShoppingID = Scope_identity()"
             //clear cart after submit
             const emptyCart = function () {
                 cart = [];
-                localStorage.removeItem('added-product');
+                localStorage.removeItem('_products-cart-admin');
             }
 
             //***public function***

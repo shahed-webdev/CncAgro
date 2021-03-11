@@ -11,9 +11,11 @@
                 <small>
                     <i class="fas fa-user-circle"></i>
                     <%# Eval("UserName") %>
-                    <i class="fas fa-phone"></i>
-                    Mobile: <%# Eval("Phone") %>
-                    <i class="fas fa-list-ul"></i>
+
+                    <i class="fas fa-phone ml-2"></i>
+                    <%# Eval("Phone") %>
+
+                    <i class="fas fa-list-ul ml-2"></i>
                     Receipt No. <%# Eval("Distribution_SN") %>
                 </small>
             </div>

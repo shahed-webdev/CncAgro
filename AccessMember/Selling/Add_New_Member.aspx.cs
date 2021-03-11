@@ -17,24 +17,22 @@ namespace CncAgro.AccessMember.Selling
         readonly SqlConnection _con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart();", true);
-            }
+           
         }
 
-        class Shopping
+        public class Shopping
         {
             public string ProductID { get; set; }
             public int Quantity { get; set; }
             public string Price { get; set; }
             public string Point { get; set; }
         }
-        List<Shopping> ProductList()
+
+        public IEnumerable<Shopping> ProductList()
         {
-            string json = JsonData.Value;
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<Shopping> data = js.Deserialize<List<Shopping>>(json);
+            var json = JsonData.Value;
+            var js = new JavaScriptSerializer();
+            var data = js.Deserialize<List<Shopping>>(json);
             return data;
         }
 
@@ -78,13 +76,9 @@ namespace CncAgro.AccessMember.Selling
 
                     foreach (var item in pList)
                     {
-                        var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"]
-                            .ConnectionString);
+                        var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
 
-                        var stockCmd =
-                            new SqlCommand(
-                                "SELECT ProductStock FROM MemberProduct WHERE(Product_PointID = @ProductID) AND(MemberID = @MemberID)",
-                                con);
+                        var stockCmd = new SqlCommand("SELECT ProductStock FROM MemberProduct WHERE(Product_PointID = @ProductID) AND(MemberID = @MemberID)", con);
                         stockCmd.Parameters.AddWithValue("@ProductID", item.ProductID);
                         stockCmd.Parameters.AddWithValue("@MemberID", Session["MemberID"].ToString());
 
@@ -114,8 +108,7 @@ namespace CncAgro.AccessMember.Selling
                             var password = CreatePassword(8);
                             var userName = DateTime.Now.ToString("yyMM") + userSn.ToString().PadLeft(5, '0');
 
-                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?",
-                                DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
+                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?",DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
 
                             if (MembershipCreateStatus.Success == createStatus)
                             {
@@ -134,10 +127,7 @@ namespace CncAgro.AccessMember.Selling
 
                                 RegistrationSQL.Update();
 
-                                var cmdUserMemberId =
-                                    new SqlCommand(
-                                        "SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)",
-                                        _con);
+                                var cmdUserMemberId = new SqlCommand("SELECT Member.MemberID FROM Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (Registration.UserName = @UserName)", _con);
                                 cmdUserMemberId.Parameters.AddWithValue("@UserName", userName);
 
                                 _con.Open();
@@ -363,7 +353,8 @@ namespace CncAgro.AccessMember.Selling
                 }
             }
         }
-        class Member
+
+        public class Member
         {
             public string UserName { get; set; }
             public string Name { get; set; }
@@ -394,10 +385,10 @@ namespace CncAgro.AccessMember.Selling
                         {
                             Code = dr["Product_Code"].ToString(),
                             Name = dr["Product_Name"].ToString(),
-                            Price = dr["Product_Price"].ToString(),
-                            Point = dr["Product_Point"].ToString(),
-                            Stock = dr["ProductStock"].ToString(),
-                            ProductID = dr["Product_PointID"].ToString()
+                            Price = Convert.ToDouble(dr["Product_Price"]),
+                            Point = Convert.ToDouble(dr["Product_Point"]),
+                            Stock = Convert.ToDouble(dr["ProductStock"]),
+                            ProductID = Convert.ToInt32(dr["Product_PointID"])
                         });
                     }
                     con.Close();
@@ -407,14 +398,15 @@ namespace CncAgro.AccessMember.Selling
                 }
             }
         }
-        class Product
+
+        public class Product
         {
             public string Code { get; set; }
             public string Name { get; set; }
-            public string Price { get; set; }
-            public string Point { get; set; }
-            public string Stock { get; set; }
-            public string ProductID { get; set; }
+            public double Price { get; set; }
+            public double Point { get; set; }
+            public double Stock { get; set; }
+            public int ProductID { get; set; }
         }
     }
 }

@@ -1,28 +1,31 @@
 ﻿<%@ Page Title="Receipt" Language="C#" MasterPageFile="~/Member.Master" AutoEventWireup="true" CodeBehind="Receipt.aspx.cs" Inherits="CncAgro.AccessMember.Selling.Receipt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/Receipt.css?v=2" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <div class="Contain">
         <asp:FormView ID="MemberFormView" runat="server" DataSourceID="MemberInfoSQL" Width="100%">
             <ItemTemplate>
-                <div class="clearfix">
-                    <div class="pull-left MReceipt">
-                        <ul>
-                            <li>Invoice: <strong>#<%# Eval("Shopping_SN") %></strong></li>
-                            <li>Date: <strong><%# Eval("ShoppingDate","{0:d MMM yyyy}") %></strong></li>
-                        </ul>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p>Invoice: <strong>#<%# Eval("Shopping_SN") %></strong></p>
+                        <p>Date: <strong><%# Eval("ShoppingDate","{0:d MMM yyyy}") %></strong></p>
                     </div>
 
-                    <div class="pull-right Customer_Info">
+                    <div class="text-right">
                         <ul>
-                            <li><strong><i class="fa fa-user"></i>
-                                <%# Eval("Name") %></strong></li>
-                            <li><strong><i class="fa fa-id-badge"></i>
-                                <%# Eval("UserName") %></strong></li>
-                            <li><strong><i class="fa fa-phone-square"></i>
-                                <%# Eval("Phone") %></strong></li>
+                            <li>
+                                <strong><i class="fa fa-user"></i>
+                                    <%# Eval("Name") %></strong>
+                            </li>
+                            <li>
+                                <strong><i class="fa fa-id-badge"></i>
+                                    <%# Eval("UserName") %></strong>
+                            </li>
+                            <li>
+                                <strong><i class="fa fa-phone-square"></i>
+                                    <%# Eval("Phone") %></strong>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -37,9 +40,6 @@
                         <asp:BoundField DataField="SellingUnitPrice" HeaderText="Unit Price" SortExpression="SellingUnitPrice">
                             <ItemStyle Width="100px" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="SellingUnitPoint" HeaderText="Unit Point" SortExpression="SellingUnitPoint">
-                            <ItemStyle Width="100px" />
-                        </asp:BoundField>
                         <asp:TemplateField HeaderText="Total Price" SortExpression="ProductPrice">
                             <FooterTemplate>
                                 <label id="Amount_GrandTotal"></label>
@@ -47,15 +47,6 @@
                             </FooterTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="TotalPriceLabel" runat="server" Text='<%# Bind("ProductPrice") %>'></asp:Label>
-                            </ItemTemplate>
-                            <ItemStyle Width="130px" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Total Point" SortExpression="TotalPoint">
-                            <FooterTemplate>
-                                <label id="Point_GrandTotal"></label>
-                            </FooterTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="TotalPointLabel" runat="server" Text='<%# Bind("TotalPoint") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle Width="130px" />
                         </asp:TemplateField>
@@ -69,7 +60,6 @@
                 </asp:SqlDataSource>
 
                 <div class="Paid_Stamp">
-                    <img src="../CSS/Image/Paid_Sill.jpg" />
                     <p>Served By: <%# Eval("ServedBy") %></p>
                 </div>
             </ItemTemplate>
@@ -79,21 +69,13 @@
                 <asp:QueryStringParameter Name="ShoppingID" QueryStringField="ShoppingID" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <a class="btn btn-primary hidden-print" href="Sell_Product.aspx"><i class="fa fa-caret-left"></i> Sell Again</a>
-        <button type="button" class="btn btn-primary hidden-print" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> Print</button>
     </div>
 
     <script>
-        $(document).ready(function () {
-            var Amount_Total = 0;
-            $("[id*=TotalPriceLabel]").each(function () { Amount_Total = Amount_Total + parseFloat($(this).text()) });
-            $("#Amount_GrandTotal").text("Total: " + Amount_Total.toFixed(2));
-
-
-            var Point_Total = 0;
-            $("[id*=TotalPointLabel]").each(function () { Point_Total = Point_Total + parseFloat($(this).text()) });
-            $("#Point_GrandTotal").text("Total: " + Point_Total);
-
+        $(function () {
+            var amountTotal = 0;
+            $("[id*=TotalPriceLabel]").each(function () { amountTotal = amountTotal + parseFloat($(this).text()) });
+            $("#Amount_GrandTotal").text(`Total: ${amountTotal.toFixed(2)}`);
         });
     </script>
 </asp:Content>
