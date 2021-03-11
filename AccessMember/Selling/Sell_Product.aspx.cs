@@ -14,10 +14,7 @@ namespace CncAgro.AccessSeller
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart();", true);
-            }
+
         }
 
         //Customer
@@ -41,7 +38,7 @@ namespace CncAgro.AccessSeller
                     {
                         user.Add(new Member
                         {
-                            Username = dr["UserName"].ToString(),
+                            UserName = dr["UserName"].ToString(),
                             Name = dr["Name"].ToString(),
                             Phone = dr["Phone"].ToString(),
                             MemberID = dr["MemberID"].ToString(),
@@ -54,9 +51,10 @@ namespace CncAgro.AccessSeller
                 }
             }
         }
-        class Member
+
+        private class Member
         {
-            public string Username { get; set; }
+            public string UserName { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
             public string MemberID { get; set; }
@@ -85,10 +83,10 @@ namespace CncAgro.AccessSeller
                         {
                             Code = dr["Product_Code"].ToString(),
                             Name = dr["Product_Name"].ToString(),
-                            Price = dr["Product_Price"].ToString(),
-                            Point = dr["Product_Point"].ToString(),
-                            Stock = dr["ProductStock"].ToString(),
-                            ProductID = dr["Product_PointID"].ToString()
+                            Price = Convert.ToDouble(dr["Product_Price"]),
+                            Point = Convert.ToDouble(dr["Product_Point"]),
+                            Stock = Convert.ToDouble(dr["ProductStock"]),
+                            ProductID = Convert.ToInt32(dr["Product_PointID"])
                         });
                     }
                     con.Close();
@@ -98,98 +96,109 @@ namespace CncAgro.AccessSeller
                 }
             }
         }
-        class Product
+        private class Product
         {
             public string Code { get; set; }
             public string Name { get; set; }
-            public string Price { get; set; }
-            public string Point { get; set; }
-            public string Stock { get; set; }
-            public string ProductID { get; set; }
+            public double Price { get; set; }
+            public double Point { get; set; }
+            public double Stock { get; set; }
+            public int ProductID { get; set; }
         }
 
         //shopping cart
-        class Shopping
+        public class Shopping
         {
             public string ProductID { get; set; }
             public int Quantity { get; set; }
-            public string Unit_Price { get; set; }
-            public string Unit_Point { get; set; }
+            public string Price { get; set; }
+            public string Point { get; set; }
         }
-        List<Shopping> ProductList()
+
+        public IEnumerable<Shopping> ProductList()
         {
-            string json = JsonData.Value;
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<Shopping> data = js.Deserialize<List<Shopping>>(json);
+            var json = JsonData.Value;
+            var js = new JavaScriptSerializer();
+            var data = js.Deserialize<List<Shopping>>(json);
             return data;
         }
+
         protected void SellButton_Click(object sender, EventArgs e)
         {
-            if (JsonData.Value != "")
+            //check member id is null
+            if (string.IsNullOrEmpty(HiddenMemberId.Value))
             {
-                #region Check Stock
-                var isAvailable = true;
-                var pList = new List<Shopping>(ProductList());
+                ErrorLabel.Text = "Invalid customer";
+                return;
+            }
+
+            //check product is null
+            if (string.IsNullOrEmpty(JsonData.Value))
+            {
+                ErrorLabel.Text = "No Product added in cart";
+                return;
+            }
+
+            #region Check Stock
+
+            var isAvailable = true;
+            var pList = new List<Shopping>(ProductList());
+
+            foreach (var item in pList)
+            {
+                var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"]
+                    .ConnectionString);
+
+                var cmd = new SqlCommand(
+                    "SELECT ProductStock FROM MemberProduct WHERE(Product_PointID = @ProductID) AND(MemberID = @MemberID)",
+                    con);
+                cmd.Parameters.AddWithValue("@ProductID", item.ProductID);
+                cmd.Parameters.AddWithValue("@MemberID", Session["MemberID"].ToString());
+
+                con.Open();
+                var stock = (int) cmd.ExecuteScalar();
+                con.Close();
+
+                if (stock < item.Quantity)
+                {
+                    isAvailable = false;
+                }
+            }
+
+            #endregion end
+
+            if (isAvailable)
+            {
+                #region Add Product
+
+                ShoppingSQL.Insert();
 
                 foreach (var item in pList)
                 {
-                    var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString);
+                    Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
+                    Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
+                    Product_Selling_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = item.Quantity.ToString();
+                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = item.Price;
+                    Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Point;
+                    Product_Selling_RecordsSQL.Insert();
 
-                    var cmd = new SqlCommand("SELECT ProductStock FROM MemberProduct WHERE(Product_PointID = @ProductID) AND(MemberID = @MemberID)", con);
-                    cmd.Parameters.AddWithValue("@ProductID", item.ProductID);
-                    cmd.Parameters.AddWithValue("@MemberID", Session["MemberID"].ToString());
-
-                    con.Open();
-                    var stock = (int)cmd.ExecuteScalar();
-                    con.Close();
-
-                    if (stock < item.Quantity)
-                    {
-                        isAvailable = false;
-                    }
+                    MemberProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
+                    MemberProductSQL.UpdateParameters["ProductStock"].DefaultValue = item.Quantity.ToString();
+                    MemberProductSQL.Update();
                 }
-                #endregion end
 
+                #endregion End Product
 
-                if (isAvailable)
-                {
-                    #region Add Product
+                // Update S.P Add_Retail_Income
+                RetailSQL.Update();
 
-                    ShoppingSQL.Insert();
+                HiddenGrandTotalAmount.Value = "";
 
-                    foreach (var item in pList)
-                    {
-                        Product_Selling_RecordsSQL.InsertParameters["ProductID"].DefaultValue = item.ProductID;
-                        Product_Selling_RecordsSQL.InsertParameters["ShoppingID"].DefaultValue = ViewState["ShoppingID"].ToString();
-                        Product_Selling_RecordsSQL.InsertParameters["SellingQuantity"].DefaultValue = item.Quantity.ToString();
-                        Product_Selling_RecordsSQL.InsertParameters["SellingUnitPrice"].DefaultValue = item.Unit_Price;
-                        Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Unit_Point;
-                        Product_Selling_RecordsSQL.Insert();
-
-                        MemberProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
-                        MemberProductSQL.UpdateParameters["ProductStock"].DefaultValue = item.Quantity.ToString();
-                        MemberProductSQL.Update();
-                    }
-                    #endregion End Product
-                    // Update S.P Add_Retail_Income
-                    RetailSQL.Update();
-
-
-
-                    GTpriceHF.Value = "";
-                    GTpointHF.Value = "";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Rl", "RemoveCart()", true);
-
-                    Response.Redirect("Receipt.aspx?ShoppingID=" + ViewState["ShoppingID"].ToString());
-                }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Selling quantity more than stock quantity!!')", true);
-                }
+                Response.Redirect($"Receipt.aspx?ShoppingID={ViewState["ShoppingID"]}");
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('No Product added in cart')", true);
+                ErrorLabel.Text = "Selling quantity more than stock quantity";
             }
         }
 

@@ -7,6 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <h3>Product Buying Records</h3>
+
     <div class="NoPrint form-inline">
         <div class="form-group">
             <asp:TextBox ID="From_TextBox" placeholder="From Date" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control datepicker"></asp:TextBox>
@@ -58,7 +59,7 @@
 
     <script>
         $(function () {
-            $("#Product").addClass('L_Active');
+            $("#buying-record").addClass('L_Active');
 
             $('.datepicker').datepicker({
                 format: 'dd M yyyy',

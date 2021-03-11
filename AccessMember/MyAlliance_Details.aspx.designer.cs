@@ -51,6 +51,15 @@ namespace CncAgro.AccessMember
         protected global::System.Web.UI.WebControls.SqlDataSource BonusSQL;
 
         /// <summary>
+        /// Total_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Total_Label;
+
+        /// <summary>
         /// FindTextBox control.
         /// </summary>
         /// <remarks>
@@ -67,15 +76,6 @@ namespace CncAgro.AccessMember
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FindButton;
-
-        /// <summary>
-        /// Total_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Total_Label;
 
         /// <summary>
         /// MembersGridView control.

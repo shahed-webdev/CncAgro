@@ -4,59 +4,33 @@
     <link href="CSS/Member_Profile.css" rel="stylesheet" />
     <style>
         .Comission { text-transform: uppercase; box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12); background-color: #4285F4; color: #fff; padding: 27px 3px; margin-bottom: 19px; text-align: center; }
-        .Info { margin-bottom: 0; }
-            .Info img { height: 120px; width: 100px; border: 1px solid #ddd; }
-        .infowrap { float: left; }
-            .infowrap:first-child { margin-right: 15px; }
 
-        @media (max-width: 768px) {
-            .Info img { margin: auto; display: block; }
-            .infowrap { float: none; text-align: center; }
-                .infowrap:first-child { margin-right: 0; }
-        }
+        .profile-image img { height: 50px; width: 50px; border-radius: 50%; border: 1px solid #ddd; }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="card Member-info">
-        <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" Width="100%">
-            <ItemTemplate>
-                <div class="Info">
-                    <div class="infowrap">
-                        <img src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" class="img-thumbnail img-responsive" />
-                    </div>
-                    <div class="infowrap">
-                        <ul>
-                            <li>
-                                <i class="glyphicon glyphicon-user rest-userico"></i>
-                                <b>Name:</b>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Name") %>' />
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-earphone"></span>
-                                <b>Mobile:</b>
-                                <asp:Label ID="PhoneLabel1" runat="server" Text='<%# Bind("Phone") %>' />
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-user rest-userico"></i>
-                                <b>Referral ID:</b>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Refarel_UserName") %>' />
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-calendar"></i>
-                                <b>Signup Date:</b>
-                                <asp:Label ID="SignUpDateLabel" runat="server" Text='<%# Bind("SignUpDate","{0:d MMMM yyyy}") %>' />
-                            </li>
-                        </ul>
-                    </div>
+    <asp:FormView ID="MemberFormView" runat="server" DataKeyNames="RegistrationID" DataSourceID="MemberSQL" Width="100%">
+        <ItemTemplate>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="font-weight-bold mb-0"><%# Eval("Name") %></h4>
+                    <p>
+                        <%# Eval("SignUpDate","{0:d MMMM yyyy}") %>, 
+                            <%# Eval("Phone") %>,
+                            Reference: <%# Eval("Refarel_UserName") %>
+                    </p>
                 </div>
-            </ItemTemplate>
-        </asp:FormView>
-        <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.Email, Member.MemberID, Member.SignUpDate, Registration.RegistrationID, Refarel_Registration.UserName AS Refarel_UserName, Registration.Phone FROM Registration AS Refarel_Registration INNER JOIN Member AS Refarel_Member ON Refarel_Registration.RegistrationID = Refarel_Member.MemberRegistrationID RIGHT OUTER JOIN Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID ON Refarel_Member.MemberID = Member.Referral_MemberID WHERE (Member.MemberID = @MemberID)">
-            <SelectParameters>
-                <asp:QueryStringParameter Name="MemberID" QueryStringField="Member" />
-            </SelectParameters>
-        </asp:SqlDataSource>
-    </div>
+                <div class="profile-image">
+                    <img src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>" alt="profile image" />
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:FormView>
+    <asp:SqlDataSource ID="MemberSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Registration.Name, Registration.Email, Member.MemberID, Member.SignUpDate, Registration.RegistrationID, Refarel_Registration.UserName AS Refarel_UserName, Registration.Phone FROM Registration AS Refarel_Registration INNER JOIN Member AS Refarel_Member ON Refarel_Registration.RegistrationID = Refarel_Member.MemberRegistrationID RIGHT OUTER JOIN Member INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID ON Refarel_Member.MemberID = Member.Referral_MemberID WHERE (Member.MemberID = @MemberID)">
+        <SelectParameters>
+            <asp:QueryStringParameter Name="MemberID" QueryStringField="Member" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
     <asp:FormView ID="BonusFormView" runat="server" DataSourceID="BonusSQL" Width="100%">
         <ItemTemplate>
@@ -81,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <h3>Send & received balance</h3>
 
             <div class="row">
@@ -144,10 +118,10 @@
             <asp:QueryStringParameter Name="MemberID" QueryStringField="Member" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    
-    
-    <div class="Contain">
-        <h3>Genealogy</h3>
+
+
+    <div class="card card-body">
+        <h3>Genealogy (<asp:Label ID="Total_Label" runat="server"></asp:Label>)</h3>
         <div class="form-inline">
             <div class="form-group">
                 <asp:TextBox ID="FindTextBox" runat="server" CssClass="form-control" placeholder="Find by Userid"></asp:TextBox>
@@ -158,9 +132,6 @@
         </div>
 
         <div class="table-responsive">
-            <div class="alert alert-success">
-                <asp:Label ID="Total_Label" runat="server" CssClass="Result_Msg"></asp:Label>
-            </div>
             <asp:GridView ID="MembersGridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataSourceID="MembersSQL" AllowPaging="True" AllowSorting="True" PageSize="50">
                 <Columns>
                     <asp:HyperLinkField SortExpression="UserName" DataTextField="UserName" DataNavigateUrlFields="MemberID" DataNavigateUrlFormatString="MyAlliance_Details.aspx?Member={0}" HeaderText="Details" />
@@ -180,7 +151,6 @@
                     <asp:QueryStringParameter Name="Referral_MemberID" QueryStringField="Member" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
-
         </div>
     </div>
 </asp:Content>

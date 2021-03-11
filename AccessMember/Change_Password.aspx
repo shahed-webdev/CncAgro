@@ -59,7 +59,7 @@
     </asp:SqlDataSource>
 
     <script>
-        $(document).ready(function () {
+        $(function () {
             $("#Password").addClass('L_Active');
         });
     </script>

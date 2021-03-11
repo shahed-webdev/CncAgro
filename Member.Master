@@ -134,12 +134,12 @@
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
                                         </li>
 
-                                        <li id="Product">
+                                        <li id="selling-record">
                                             <i class="fa fa-shopping-cart"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_Selling_Report.aspx" Text="Selling Record" runat="server" />
                                         </li>
                                         
-                                        <li id="Product">
+                                        <li id="buying-record">
                                             <i class="fa fa-shopping-cart"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
                                         </li>

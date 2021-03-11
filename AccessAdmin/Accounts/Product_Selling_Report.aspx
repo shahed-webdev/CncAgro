@@ -38,26 +38,19 @@
         </asp:SqlDataSource>
 
         <div class="table-responsive">
-            <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
+            <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid table-bordered" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
                 <Columns>
                     <asp:HyperLinkField SortExpression="Shopping_SN" DataTextField="Shopping_SN" DataNavigateUrlFields="ShoppingID" DataNavigateUrlFormatString="../Product_Point/Receipt.aspx?ShoppingID={0}" HeaderText="Receipt No" />
                     <asp:BoundField DataField="UserName" HeaderText="User ID" SortExpression="UserName" />
                     <asp:TemplateField HeaderText="Details">
                         <ItemTemplate>
-                            <asp:DataList ID="RecordsDataList" runat="server" DataSourceID="Selling_RecordsSQL" Width="100%">
+                            <asp:Repeater ID="RecordsRepeater" runat="server" DataSourceID="Selling_RecordsSQL">
                                 <ItemTemplate>
-                                    <asp:Label ID="Product_NameLabel" runat="server" Text='<%# Eval("Product_Name") %>' Font-Bold="True" ForeColor="#009933" />
-                                    <br />
-                                    Quantity:
-                     <asp:Label ID="SellingQuantityLabel" runat="server" Text='<%# Eval("SellingQuantity") %>' />
-                                    <br />
-                                    Unit Price:
-                     <asp:Label ID="SellingUnitPriceLabel" runat="server" Text='<%# Eval("SellingUnitPrice") %>' />
-                                    <br />
-                                    Unit Point:
-                     <asp:Label ID="SellingUnitPointLabel" runat="server" Text='<%# Eval("SellingUnitPoint") %>' />
+                                    <p class="mb-0"><strong><%# Eval("Product_Name") %></strong></p>
+                                    <span>৳<%# Eval("SellingUnitPrice") %> x<%# Eval("SellingQuantity") %></span>
                                 </ItemTemplate>
-                            </asp:DataList>
+                            </asp:Repeater>
+                           
                             <asp:HiddenField ID="ShoppingID_HF" runat="server" Value='<%# Eval("ShoppingID") %>' />
                             <asp:SqlDataSource ID="Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_Selling_Records.SellingQuantity, Product_Selling_Records.SellingUnitPrice, Product_Selling_Records.SellingUnitPoint, Product_Point_Code.Product_Name, Product_Point_Code.Product_Code FROM Product_Selling_Records INNER JOIN Product_Point_Code ON Product_Selling_Records.ProductID = Product_Point_Code.Product_PointID WHERE (Product_Selling_Records.ShoppingID = @ShoppingID)">
                                 <SelectParameters>
