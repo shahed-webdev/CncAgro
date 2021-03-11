@@ -35,41 +35,47 @@ namespace CncAgro.AccessAdmin.Accounts
                 con.Open();
                 double Withdraw_Request = Convert.ToDouble(Withdrcmd.ExecuteScalar());
                 con.Close();
-
-                if ((withdraw_Balance + Withdraw_Request) <= Available_Balance)
+                if (withdraw_Balance >= 500)
                 {
-                    W_Code_SQL.InsertParameters["Transition_Code"].DefaultValue = Num;
-                    W_Code_SQL.InsertParameters["Withdraw_RegistrationID"].DefaultValue = M_detailsFormView.DataKey["RegistrationID"].ToString();
-                    W_Code_SQL.Insert();
-
-                    SMS_Class SMS = new SMS_Class();
-                    int TotalSMS = 0;
-                    int SMSBalance = SMS.SMSBalance;
-                    string Msg = "Your withdrawal verification code is: " + Num + ". CNC Agro";
-
-                    TotalSMS = SMS.SMS_Conut(Msg);
-
-                    if (SMSBalance >= TotalSMS)
+                    if ((withdraw_Balance + Withdraw_Request) <= Available_Balance)
                     {
-                        if (SMS.SMS_GetBalance() >= TotalSMS)
-                        {
-                            Get_Validation IsValid = SMS.SMS_Validation(Phone, Msg);
-                            if (IsValid.Validation)
-                            {
-                                Guid SMS_Send_ID = SMS.SMS_Send(Phone, Msg, "Withdraw Balance");
+                        W_Code_SQL.InsertParameters["Transition_Code"].DefaultValue = Num;
+                        W_Code_SQL.InsertParameters["Withdraw_RegistrationID"].DefaultValue = M_detailsFormView.DataKey["RegistrationID"].ToString();
+                        W_Code_SQL.Insert();
 
-                                SMS_OtherInfoSQL.InsertParameters["SMS_Send_ID"].DefaultValue = SMS_Send_ID.ToString();
-                                SMS_OtherInfoSQL.InsertParameters["SMS_NumberID"].DefaultValue = M_detailsFormView.DataKey["RegistrationID"].ToString();
-                                SMS_OtherInfoSQL.Insert();
+                        SMS_Class SMS = new SMS_Class();
+                        int TotalSMS = 0;
+                        int SMSBalance = SMS.SMSBalance;
+                        string Msg = "Your withdrawal verification code is: " + Num + ". CNC Agro";
+
+                        TotalSMS = SMS.SMS_Conut(Msg);
+
+                        if (SMSBalance >= TotalSMS)
+                        {
+                            if (SMS.SMS_GetBalance() >= TotalSMS)
+                            {
+                                Get_Validation IsValid = SMS.SMS_Validation(Phone, Msg);
+                                if (IsValid.Validation)
+                                {
+                                    Guid SMS_Send_ID = SMS.SMS_Send(Phone, Msg, "Withdraw Balance");
+
+                                    SMS_OtherInfoSQL.InsertParameters["SMS_Send_ID"].DefaultValue = SMS_Send_ID.ToString();
+                                    SMS_OtherInfoSQL.InsertParameters["SMS_NumberID"].DefaultValue = M_detailsFormView.DataKey["RegistrationID"].ToString();
+                                    SMS_OtherInfoSQL.Insert();
+                                }
                             }
                         }
-                    }
 
-                    Response.Redirect("Withdraw_Receipt.aspx");
+                        Response.Redirect("Withdraw_Receipt.aspx");
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Withdraw amount grater than Available Balance and requested amount')", true);
+                    }
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Withdraw amount grater than Available Balance and requested amount')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Withdraw amount must be minimum 500 TK')", true);
                 }
             }
             else
