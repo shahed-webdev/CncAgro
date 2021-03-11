@@ -165,9 +165,9 @@ namespace CncAgro.AccessSeller
                         Product_Selling_RecordsSQL.InsertParameters["SellingUnitPoint"].DefaultValue = item.Unit_Point;
                         Product_Selling_RecordsSQL.Insert();
 
-                        SellerProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
-                        SellerProductSQL.UpdateParameters["ProductStock"].DefaultValue = item.Quantity.ToString();
-                        SellerProductSQL.Update();
+                        MemberProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
+                        MemberProductSQL.UpdateParameters["ProductStock"].DefaultValue = item.Quantity.ToString();
+                        MemberProductSQL.Update();
                     }
                     #endregion End Product
                     // Update S.P Add_Retail_Income

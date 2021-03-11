@@ -153,7 +153,7 @@ namespace CncAgro.AccessMember.Selling
 
 
                                     SellerProductSQL.UpdateParameters["Product_PointID"].DefaultValue = item.ProductID;
-                                    SellerProductSQL.UpdateParameters["Stock_Quantity"].DefaultValue = item.Quantity.ToString();
+                                    SellerProductSQL.UpdateParameters["ProductStock"].DefaultValue = item.Quantity.ToString();
                                     SellerProductSQL.Update();
                                 }
 

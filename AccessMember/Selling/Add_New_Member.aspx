@@ -182,10 +182,11 @@ SELECT @ShoppingID = Scope_identity()"
                 <asp:Parameter Name="ShoppingID" Direction="Output" Size="50" />
             </InsertParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_PointID FROM Product_Point_Code" UpdateCommand="UPDATE Product_Point_Code SET Stock_Quantity = Stock_Quantity - @Stock_Quantity WHERE (Product_PointID = @Product_PointID)">
+        <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_PointID FROM Product_Point_Code" UpdateCommand="UPDATE MemberProduct SET ProductStock = ProductStock - @ProductStock WHERE (Product_PointID = @Product_PointID) AND (MemberID = @MemberID)">
             <UpdateParameters>
-                <asp:Parameter Name="Stock_Quantity" />
+                <asp:Parameter Name="ProductStock" />
                 <asp:Parameter Name="Product_PointID" Type="Int32" />
+                <asp:SessionParameter Name="MemberID" SessionField="MemberID" />
             </UpdateParameters>
         </asp:SqlDataSource>
         <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails" UpdateCommand="Add_Generation_Income" UpdateCommandType="StoredProcedure">
