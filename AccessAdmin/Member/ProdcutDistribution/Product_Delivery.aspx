@@ -22,7 +22,6 @@
                     <asp:BoundField DataField="UserName" HeaderText="User Name" SortExpression="UserName" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                     <asp:BoundField DataField="Product_Total_Amount" DataFormatString="{0:N}" HeaderText="Total Price" SortExpression="Product_Total_Amount" />
-                    <asp:BoundField DataField="Product_Total_Point" DataFormatString="{0:N}" HeaderText="Total Point" SortExpression="Product_Total_Point" />
                     <asp:BoundField DataField="Confirm_Date" DataFormatString="{0:d MMM yyyy}" HeaderText="Confirm Date" SortExpression="Confirm_Date" />
                 </Columns>
             </asp:GridView>

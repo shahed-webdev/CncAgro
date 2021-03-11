@@ -113,10 +113,37 @@
                                             <i class="fa fa-users"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Member_List.aspx" Text="My Customer" runat="server" />
                                         </li>
+                                        <li id="order-product">
+                                            <i class="fas fa-cart-plus"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
+                                        </li>
+                                        <li id="order-record">
+                                            <i class="fas fa-file-alt"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
+                                        </li>
+                                        <li id="product-stock">
+                                            <i class="fas fa-layer-group"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
+                                        </li>
+                                        <li id="add-customer">
+                                            <i class="fas fa-user-plus"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
+                                        </li>
+                                        <li id="sell-product">
+                                            <i class="fas fa-cart-arrow-down"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
+                                        </li>
+
+                                        <li id="Product">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_Selling_Report.aspx" Text="Selling Record" runat="server" />
+                                        </li>
+                                        
                                         <li id="Product">
                                             <i class="fa fa-shopping-cart"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Product_Buying_Records.aspx" Text="Buying Record" runat="server" />
                                         </li>
+
                                         <li id="Send_B">
                                             <i class="fa fa-paper-plane"></i>
                                             <asp:HyperLink ID="HyperLink6" NavigateUrl="~/AccessMember/Send_Balance.aspx" Text="Balance Transfer" runat="server" />
@@ -129,28 +156,12 @@
                                             <i class="fas fa-file-alt"></i>
                                             <asp:HyperLink ID="HyperLink8" NavigateUrl="~/AccessMember/Withdraw_Details.aspx" Text="Withdrawal Details" runat="server" />
                                         </li>
-                                        <li id="order-product">
-                                            <i class="fas fa-cart-plus"></i>
-                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Product.aspx" Text="Order Product" runat="server" />
-                                        </li>
-                                        <li id="order-record">
-                                            <i class="fas fa-file-alt"></i>
-                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Order_Record.aspx" Text="Order Record" runat="server" />
-                                        </li>
-                                        <li id="add-customer">
-                                            <i class="fas fa-user-plus"></i>
-                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Add_New_Member.aspx" Text="Add New Member" runat="server" />
-                                        </li>
 
-                                        <li id="product-stock">
-                                            <i class="fas fa-layer-group"></i>
-                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Product_stock.aspx" Text="Product Stock" runat="server" />
-                                        </li>
+                                        
+                                       
 
-                                        <li id="sell-product">
-                                            <i class="fas fa-cart-arrow-down"></i>
-                                            <asp:HyperLink NavigateUrl="~/AccessMember/Selling/Sell_Product.aspx" Text="Sell Product" runat="server" />
-                                        </li>
+
+
                                         <li id="Password">
                                             <i class="fa fa-lock"></i>
                                             <asp:HyperLink NavigateUrl="~/AccessMember/Change_Password.aspx" Text="Change Password" runat="server" />

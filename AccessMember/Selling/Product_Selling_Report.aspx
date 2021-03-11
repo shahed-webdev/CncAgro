@@ -29,18 +29,18 @@
             </div>
         </ItemTemplate>
     </asp:FormView>
-    <asp:SqlDataSource ID="TotalSQL" runat="server" CancelSelectOnNullParameter="False" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT SUM(ShoppingAmount) AS Total FROM  Shopping WHERE  (SellerID = @SellerID) AND  (CAST(ShoppingDate AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))">
+    <asp:SqlDataSource ID="TotalSQL" runat="server" CancelSelectOnNullParameter="False" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT SUM(ShoppingAmount) AS Total FROM Shopping WHERE (CAST(ShoppingDate AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000')) AND (Seller_RegistrationID = @RegistrationID)">
         <SelectParameters>
             <asp:ControlParameter ControlID="From_TextBox" Name="From_Date" PropertyName="Text" />
             <asp:ControlParameter ControlID="TO_TextBox" Name="To_Date" PropertyName="Text" />
-            <asp:SessionParameter Name="SellerID" SessionField="SellerID" />
+            <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
         </SelectParameters>
     </asp:SqlDataSource>
 
     <div class="table-responsive">
         <asp:GridView ID="Sellingeport_GridView" runat="server" AutoGenerateColumns="False" CssClass="mGrid" DataKeyNames="ShoppingID" DataSourceID="SellingeportSQL" AllowPaging="True" PageSize="50">
             <Columns>
-                <asp:BoundField DataField="Shopping_SN" HeaderText="Receipt No" InsertVisible="False" ReadOnly="True" SortExpression="Shopping_SN" />
+                <asp:HyperLinkField SortExpression="Shopping_SN" DataTextField="Shopping_SN" DataNavigateUrlFields="ShoppingID" DataNavigateUrlFormatString="Receipt.aspx?ShoppingID={0}" HeaderText="Receipt No" />
                 <asp:BoundField DataField="UserName" HeaderText="User ID" SortExpression="UserName" />
                 <asp:TemplateField HeaderText="Details" ItemStyle-HorizontalAlign="Right">
                     <ItemTemplate>
@@ -48,12 +48,7 @@
                             <ItemTemplate>
                                 <span style="color: #009933; font-weight: bold;"><%# Eval("Product_Name") %></span>
                                 <br />
-                                Quantity:<%# Eval("SellingQuantity") %>
-                                <br />
-                                Unit Price:<%# Eval("SellingUnitPrice") %>
-                                <br />
-                                Unit Point:<%# Eval("SellingUnitPoint") %>
-                                <br />
+                                Quantity:<%# Eval("SellingQuantity") %><br />Unit Price:<%# Eval("SellingUnitPrice") %><br />Unit Point:<%# Eval("SellingUnitPoint") %><br />
                             </ItemTemplate>
                         </asp:Repeater>
                         <asp:HiddenField ID="ShoppingID_HF" runat="server" Value='<%# Eval("ShoppingID") %>' />
@@ -73,11 +68,11 @@
             </EmptyDataTemplate>
             <PagerStyle CssClass="pgr" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SellingeportSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Shopping.Shopping_SN, Shopping.ShoppingAmount, Shopping.ShoppingPoint, Shopping.ShoppingDate, Registration.UserName, Shopping.ShoppingID FROM Shopping INNER JOIN Member ON Shopping.MemberID = Member.MemberID INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE  ( Shopping.SellerID = @SellerID) AND  (CAST(Shopping.ShoppingDate AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000'))" CancelSelectOnNullParameter="False">
+        <asp:SqlDataSource ID="SellingeportSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Shopping.Shopping_SN, Shopping.ShoppingAmount, Shopping.ShoppingPoint, Shopping.ShoppingDate, Registration.UserName, Shopping.ShoppingID, Shopping.Seller_RegistrationID FROM Shopping INNER JOIN Member ON Shopping.MemberID = Member.MemberID INNER JOIN Registration ON Member.MemberRegistrationID = Registration.RegistrationID WHERE (CAST(Shopping.ShoppingDate AS DATE) BETWEEN ISNULL(@From_Date, '1-1-1000') AND ISNULL(@To_Date, '1-1-3000')) AND (Shopping.Seller_RegistrationID = @RegistrationID)" CancelSelectOnNullParameter="False">
             <SelectParameters>
                 <asp:ControlParameter ControlID="From_TextBox" Name="From_Date" PropertyName="Text" />
                 <asp:ControlParameter ControlID="TO_TextBox" Name="To_Date" PropertyName="Text" />
-                <asp:SessionParameter Name="SellerID" SessionField="SellerID" />
+                <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" />
             </SelectParameters>
         </asp:SqlDataSource>
     </div>
