@@ -1,387 +1,358 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Sell_Product.aspx.cs" Inherits="CncAgro.AccessAdmin.Product_Point.Sell_Product" %>
+﻿<%@ Page Title="Sell Product" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Sell_Product.aspx.cs" Inherits="CncAgro.AccessAdmin.Product_Point.Sell_Product" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #user-info { display: none; }
-        #Product-info { display: none; }
-
-        .userid { font-size: 14px; padding: 13px 5px; margin-bottom: 7px; }
-        .userid .fa { padding-left: 10px; }
-        .ItemDelete { color: red; cursor: pointer; }
+        .remove { cursor: pointer; color: #ff0000 }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <h3>Sell Product To Customer</h3>
+    <h3>Sell Product</h3>
 
+    <div class="row">
+        <div class="col-md-8">
             <div class="card card-body">
                 <div class="form-group">
-                    <label>
-                        Customer id</label><asp:TextBox ID="MemberUserNameTextBox" placeholder="Customer id" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                    <h6 class="font-weight-bold">Add Product by Code</h6>
+                    <input id="inputProductCode" type="text" autocomplete="off" placeholder="find Product" class="form-control" />
                 </div>
 
-                <div id="user-info" class="alert-success">
-                    <div class="userid">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        <asp:Label ID="Member_Name_Label" runat="server"></asp:Label>
-                        <i class="fa fa-phone-square" aria-hidden="true"></i>
-                        <asp:Label ID="Member_Phone_Label" runat="server"></asp:Label>
-                    </div>
-                    <asp:HiddenField ID="MemberID_HF" runat="server" />
-                    <asp:HiddenField ID="Member_Phone_HF" runat="server" />
-                </div>
+                <table class="table cart">
+                    <thead>
+                        <tr>
+                            <th><strong>Name</strong></th>
+                            <th><strong>Unit Price</strong></th>
+                            <th><strong>Quantity</strong></th>
+                            <th><strong>Total Price</strong></th>
+                            <th class="text-center" style="width: 30px"><strong>Delete</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBody"></tbody>
+                </table>
+            </div>
+        </div>
 
-                <div class="form-group">
-                    <label>
-                        Product Code</label><asp:TextBox ID="ProductCodeTextBox" placeholder="Product Code" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-
-                <div id="Product-info" class="alert-success">
-                    <div class="userid">
-                        <i class="fa fa-shopping-bag"></i>
-                        <label id="ProductNameLabel"></label>
-
-                        <i class="fa fa-money"></i>
-                        Price:
-                <label id="ProductPriceLabel"></label>
-
-                        <i class="fa fa-star"></i>
-                        Point:
-                <label id="ProductPointLabel"></label>
-
-                        <i class="fa fa-chart-pie"></i>
-                        Curent Stock:
-                <label id="Current_Stook_Label"></label>
-                    </div>
-                    <input id="ProductID_HF" type="hidden" />
+        <div class="col-md-4">
+            <div class="card card-body">
+                <div class="mb-3">
+                    <h5 id="grandTotal" class="font-weight-bold"></h5>
                 </div>
 
                 <div class="form-group">
-                    <label>
-                        Quantity
-                <asp:Label ID="StookErLabel" runat="server" ForeColor="#009933"></asp:Label>
-                    </label>
-                    <asp:TextBox ID="QuantityTextBox" placeholder="Quantity" onkeypress="return isNumberKey(event)" autocomplete="off" onDrop="blur();return false;" onpaste="return false" runat="server" CssClass="form-control"></asp:TextBox>
-                    <label id="Tota_Price_Label"></label>
+                    <label id="errorCustomer">Add Customer</label>
+                    <input id="inputCustomer" type="text" autocomplete="off" placeholder="find Customer" class="form-control" />
+                    <asp:HiddenField ID="HiddenMemberId" runat="server" />
+                    <div id="show-customer-info" class="mt-2"></div>
                 </div>
+            </div>
+            <div id="postCustomer" class="mt-3">
+                <asp:Button ID="Sell_Button" runat="server" CssClass="btn btn-primary" OnClientClick="return formValidation();" OnClick="SellButton_Click" Text="Sell Product" />
+                <asp:Label ID="ErrorLabel" runat="server" CssClass="EroorStar"></asp:Label>
 
-                <input id="CartButton" type="button" value="Add To Cart" onclick="addToCart()" class="btn btn-success" />
+                <!--pass total amount/point-->
+                <asp:HiddenField ID="HiddenGrandTotalAmount" runat="server" />
+                <!--pass array as text-->
+                <asp:HiddenField ID="JsonData" runat="server" />
             </div>
         </div>
     </div>
 
-    <table style="visibility: hidden;" class="mGrid cart">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Unit Point</th>
-                <th>Total Price</th>
-                <th>Total Point</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody id="cartBody"></tbody>
-    </table>
 
-    <asp:HiddenField ID="GTpriceHF" runat="server" />
-    <asp:HiddenField ID="GTpointHF" runat="server" />
-
-    <div id="Add_Product" class="form-inline" style="visibility: hidden; margin-top: 15px;">
-        <div class="form-group">
-            <asp:Button ID="Sell_Button" runat="server" CssClass="btn btn-primary" OnClick="SellButton_Click" Text="Sell Product" />
-            <asp:HiddenField ID="JsonData" runat="server" />
-        </div>
+    <div>
+        <asp:SqlDataSource ID="ShoppingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Shopping(Seller_RegistrationID, MemberID, ShoppingAmount, ShoppingPoint) VALUES (@SellerRegistrationID, @MemberID, @ShoppingAmount, @ShoppingPoint)
+SELECT @ShoppingID = Scope_identity()"
+            OnInserted="ShoppingSQL_Inserted" SelectCommand="SELECT * FROM [Shopping]">
+            <InsertParameters>
+                <asp:SessionParameter Name="SellerRegistrationID" SessionField="RegistrationID" />
+                <asp:ControlParameter ControlID="HiddenGrandTotalAmount" Name="ShoppingAmount" PropertyName="Value" />
+                <asp:ControlParameter ControlID="HiddenGrandTotalAmount" Name="ShoppingPoint" PropertyName="Value" />
+                <asp:ControlParameter ControlID="HiddenMemberId" Name="MemberID" PropertyName="Value" Type="Int32" />
+                <asp:Parameter Name="ShoppingID" Direction="Output" Size="50" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="Product_Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Selling_Records(ProductID, ShoppingID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@ProductID,@ShoppingID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)" SelectCommand="SELECT * FROM [Product_Selling_Records]">
+            <InsertParameters>
+                <asp:Parameter Name="ProductID" Type="Int32" />
+                <asp:Parameter Name="ShoppingID" />
+                <asp:Parameter Name="SellingQuantity" />
+                <asp:Parameter Name="SellingUnitPrice" Type="Double" />
+                <asp:Parameter Name="SellingUnitPoint" Type="Double" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_PointID FROM Product_Point_Code" UpdateCommand="UPDATE Product_Point_Code SET Stock_Quantity = Stock_Quantity - @Stock_Quantity WHERE (Product_PointID = @Product_PointID)">
+            <UpdateParameters>
+                <asp:Parameter Name="Stock_Quantity" />
+                <asp:Parameter Name="Product_PointID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails">
+            <InsertParameters>
+                <asp:ControlParameter ControlID="HiddenMemberId" Name="MemberID" PropertyName="Value" Type="Int32" />
+                <asp:ControlParameter ControlID="HiddenGrandTotalAmount" Name="Point" PropertyName="Value" Type="Int32" />
+            </InsertParameters>
+        </asp:SqlDataSource>
     </div>
 
 
-    <asp:SqlDataSource ID="ShoppingSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Shopping(Seller_RegistrationID, MemberID, ShoppingAmount, ShoppingPoint) VALUES (@SellerRegistrationID, @MemberID, @ShoppingAmount, @ShoppingPoint)
-SELECT @ShoppingID = Scope_identity()"
-        OnInserted="ShoppingSQL_Inserted" SelectCommand="SELECT * FROM [Shopping]">
-        <InsertParameters>
-            <asp:SessionParameter Name="SellerRegistrationID" SessionField="RegistrationID" />
-            <asp:ControlParameter ControlID="GTpriceHF" Name="ShoppingAmount" PropertyName="Value" />
-            <asp:ControlParameter ControlID="GTpointHF" Name="ShoppingPoint" PropertyName="Value" />
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-            <asp:Parameter Name="ShoppingID" Direction="Output" Size="50" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Product_Selling_RecordsSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="INSERT INTO Product_Selling_Records(ProductID, ShoppingID, SellingQuantity, SellingUnitPrice, SellingUnitPoint) VALUES (@ProductID,@ShoppingID, @SellingQuantity, @SellingUnitPrice, @SellingUnitPoint)" SelectCommand="SELECT * FROM [Product_Selling_Records]">
-        <InsertParameters>
-            <asp:Parameter Name="ProductID" Type="Int32" />
-            <asp:Parameter Name="ShoppingID" />
-            <asp:Parameter Name="SellingQuantity" />
-            <asp:Parameter Name="SellingUnitPrice" Type="Double" />
-            <asp:Parameter Name="SellingUnitPoint" Type="Double" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SellerProductSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT Product_PointID FROM Product_Point_Code" UpdateCommand="UPDATE Product_Point_Code SET Stock_Quantity = Stock_Quantity - @Stock_Quantity WHERE (Product_PointID = @Product_PointID)">
-        <UpdateParameters>
-            <asp:Parameter Name="Stock_Quantity" />
-            <asp:Parameter Name="Product_PointID" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="Retail_IncomeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" InsertCommand="Add_Retail_Income" InsertCommandType="StoredProcedure" SelectCommand="SELECT Generation_Retail_RecordsID FROM Member_Bouns_Records_Gen_Retails">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="MemberID_HF" Name="MemberID" PropertyName="Value" Type="Int32" />
-            <asp:ControlParameter ControlID="GTpointHF" Name="Point" PropertyName="Value" Type="Int32" />
-        </InsertParameters>
-    </asp:SqlDataSource>
-
-
     <script>
-        var Sell_Cart = [];
+        const sellProduct = (function () {
+            //**** REFERENCE INFO ****
+            const inputCustomer = document.getElementById("inputCustomer");
+            const hiddenMemberId = document.getElementById("body_HiddenMemberId");
+            const customerInfo = document.getElementById("show-customer-info");
 
-        $(function () {
-            $("[id*=Sell_Button]").click(function () {
-                if (localStorage.Sell_Cart) {
-                    $("[id*=JsonData]").val(JSON.stringify(Sell_Cart));
-                }
-            });
-
-            if (localStorage.Sell_Cart) {
-                Sell_Cart = JSON.parse(localStorage.Sell_Cart);
-                showCart();
-            }
-        });
-
-        function addToCart() {
-            var ProductID = $("#ProductID_HF").val();
-            var MemberID = $("[id$=MemberID_HF]").val();
-            var Code = $("[id*=ProductCodeTextBox]").val();
-            var Name = $("#ProductNameLabel").text();
-            var Quantity = $("[id*=QuantityTextBox]").val().trim();
-            var Unit_Price = $("#ProductPriceLabel").text();
-            var Unit_Point = $("#ProductPointLabel").text();
-
-
-            // create JavaScript Object
-            if (Code != '' && Quantity != '' && ProductID != '' && MemberID != '') {
-                // if Code is already present
-                for (var i in Sell_Cart) {
-                    if (Sell_Cart[i].ProductID == ProductID) { alert("This Product already added"); return; }
-                }
-
-                var item = { Code: Code, ProductID: ProductID, Name: Name, Quantity: Quantity, Unit_Price: Unit_Price, Unit_Point: Unit_Point };
-                Sell_Cart.push(item);
-                saveCart();
-                showCart();
-
-                $("[id*=ProductCodeTextBox]").val(null);
-                $("[id*=QuantityTextBox]").val("");
-                $("#ProductNameLabel").text("");
-                $("#ProductPriceLabel").text("");
-                $("#ProductPointLabel").text("");
-                $("#Current_Stook_Label").text("");
-                $("#Tota_Price_Label").text("");
-                $("[id*=StookErLabel]").text("");
-                $("#ProductID_HF").val("");
-                $("#Product-info").css("display", "none");
-            }
-            else {
-                alert("Product code & quantity required");
-            }
-        }
-
-        function saveCart() {
-            if (window.localStorage) {
-                localStorage.Sell_Cart = JSON.stringify(Sell_Cart);
-            }
-        }
-
-        //Delete
-        $(document).on("click", ".ItemDelete", function () {
-            var index = $(this).closest("tr").index();
-
-            Sell_Cart.splice(index, 1);
-            showCart();
-            saveCart();
-
-            getTotalPrice();
-            getTotalPoint();
-        });
-
-        function getTotalPrice() {
-            var total = 0;
-            $.each(Sell_Cart, function () {
-                total += this.Quantity * this.Unit_Price;
-            });
-            $("#GrandTotal").text(total.toFixed(2));
-            $("[id*=GTpriceHF]").val(total);
-        }
-
-        function getTotalPoint() {
-            var total = 0;
-            $.each(Sell_Cart, function () {
-                total += this.Quantity * this.Unit_Point;
-            });
-            $("#PointGrandTotal").text(total.toFixed(2));
-            $("[id*=GTpointHF]").val(total);
-        }
-
-        function showCart() {
-            if (Sell_Cart.length == 0) {
-                $(".cart").css("visibility", "hidden");
-                $("#Add_Product").css("visibility", "hidden");
-                return;
-            }
-
-            $(".cart").css("visibility", "visible");
-            $("#Add_Product").css("visibility", "visible");
-            var cartTable = $("#cartBody");
-            cartTable.empty();
-
-            $.each(Sell_Cart, function () {
-                var tPrice = this.Quantity * this.Unit_Price;
-                var tPoint = this.Quantity * this.Unit_Point;
-                cartTable.append(
-                    '<tr>' +
-                    '<td>' + this.Name + '</td>' +
-                    '<td>' + this.Quantity + '</td>' +
-                    '<td>৳' + this.Unit_Price + '</td>' +
-                    '<td>' + this.Unit_Point + '</td>' +
-                    '<td>৳' + tPrice.toFixed(2) + '</td>' +
-                    '<td>' + tPoint.toFixed(2) + '</td>' +
-                    '<td class="text-center" style="width:30px;"><i class="fa fa-trash ItemDelete"></i></td>' +
-                    '</tr>'
-                );
-            });
-            cartTable.append(
-                '<tr>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td>৳<strong id="GrandTotal"></strong></td>' +
-                '<td><strong id="PointGrandTotal"></strong></td>' +
-                '<td></td>' +
-                '</tr>'
-            );
-            getTotalPrice();
-            getTotalPoint();
-        }
-
-        function RemoveCart() {
-            localStorage.removeItem("Sell_Cart");
-        }
-        /**End Cart*/
-
-        $(function () {
-            $("#Sell").addClass('L_Active');
-
-            //Get Member UserName
-            $('[id*=MemberUserNameTextBox]').typeahead({
-                minLength: 4,
+            //autocomplete
+            $(inputCustomer).typeahead({
+                minLength: 2,
+                displayText: function (item) {
+                    return item.UserName;
+                },
+                afterSelect: function (item) {
+                    this.$element[0].value = item.UserName;
+                },
                 source: function (request, result) {
                     $.ajax({
+                        type: "POST",
                         url: "Sell_Product.aspx/GetCustomers",
                         data: JSON.stringify({ 'prefix': request }),
-                        dataType: "json",
-                        type: "POST",
                         contentType: "application/json; charset=utf-8",
+                        dataType: "json",
                         success: function (response) {
-                            label = [];
-                            map = {};
-                            $.map(JSON.parse(response.d), function (item) {
-                                label.push(item.Username);
-                                map[item.Username] = item;
-                            });
-                            result(label);
-                        }
+                            result(JSON.parse(response.d));
+                        },
+                        error: function (err) { console.log(err) }
                     });
                 },
                 updater: function (item) {
-                    $("#user-info").css("display", "block");
-                    $("[id$=Member_Name_Label]").text(map[item].Name);
-                    $("[id$=Member_Phone_Label]").text(map[item].Phone);
-                    $("[id$=MemberID_HF]").val(map[item].MemberID);
-                    $("[id$=Member_Phone_HF]").val(map[item].Phone);
+                    appendCustomerInfo(item);
                     return item;
                 }
+            })
+
+            //on input customer id
+            inputCustomer.addEventListener("input", function () {
+                hiddenMemberId.value = "";
+                customerInfo.innerHTML = "";
             });
 
-            //Get Product info
-            $('[id*=ProductCodeTextBox]').typeahead({
-                minLength: 1,
-                source: function (request, result) {
-                    $.ajax({
-                        url: "Sell_Product.aspx/GetProduct",
-                        data: JSON.stringify({ 'prefix': request }),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (response) {
-                            label = [];
-                            map = {};
-                            $.map(JSON.parse(response.d), function (item) {
-                                label.push(item.Code);
-                                map[item.Code] = item;
-                            });
-                            result(label);
-                        }
-                    });
-                },
-                updater: function (item) {
-                    $("#Product-info").css("display", "block");
-                    $("#ProductNameLabel").text(map[item].Name);
-                    $("#ProductPriceLabel").text(map[item].Price);
-                    $("#ProductPointLabel").text(map[item].Point);
-                    $("#Current_Stook_Label").text(map[item].Stock);
-                    $("#ProductID_HF").val(map[item].ProductID);
-                    return item;
-                }
-            });
-
-            if (parseFloat($("[id*=GTpointHF]").val()) > 125) {
-                $("[id*=Generation_Type_RadioB]").hide();
-                $("[id*=Generation_Type_RadioB]").find("input[value='G']").attr("checked", "checked");
+            //append find customer info
+            function appendCustomerInfo(item) {
+                hiddenMemberId.value = item.MemberID;
+                customerInfo.innerHTML = `<span class="badge badge-secondary mr-2">${item.Name}</span><span class="badge badge-secondary">${item.Phone}</span>`
             }
 
-            //User reset
-            $("[id*=MemberUserNameTextBox]").on('keyup', function () {
-                $("[id$=Member_Name_Label]").text("");
-                $("[id$=Member_Phone_Label]").text("");
-                $("[id$=MemberID_HF]").val("");
-                $("[id$=Member_Phone_HF]").val("");
-                $("[id*=ProductCodeTextBox]").val("");
-                $("#user-info").css("display", "none");
-            });
 
-            //Product reset
-            $("[id*=ProductCodeTextBox]").on('keyup', function () {
-                $("[id*=QuantityTextBox]").val("");
-                $("#ProductNameLabel").text("");
-                $("#ProductPriceLabel").text("");
-                $("#ProductPointLabel").text("");
-                $("#Current_Stook_Label").text("");
-                $("#Tota_Price_Label").text("");
-                $("[id*=StookErLabel]").text("");
-                $("#ProductID_HF").val("");
-                $("#Product-info").css("display", "none");
-            });
+            //**** PRODUCT ****//
+            let cart = [];
+            const inputProductCode = document.getElementById("inputProductCode");
+            const tBody = document.getElementById("tBody");
 
-            //Quantity TextBox
-            $("[id*=QuantityTextBox]").on('keyup', function () {
-                var Price = parseFloat($("#ProductPriceLabel").text());
-                var Qntity = parseFloat($("[id*=QuantityTextBox]").val());
-                var StookQunt = parseFloat($("#Current_Stook_Label").text());
-
-                var total = parseFloat(Price * Qntity);
-
-                if (!isNaN(total)) {
-                    $("#Tota_Price_Label").text("Total Price: " + total.toFixed(2) + " Tk");
-                    StookQunt >= Qntity ? ($("#CartButton").prop("disabled", !1), $("[id*=StookErLabel]").text("Remaining Stook " + (StookQunt - Qntity))) : ($("#CartButton").prop("disabled", !0), $("[id*=StookErLabel]").text("Stock Product Quantity " + StookQunt + ". You Don't Sell " + Qntity));
+            //product autocomplete
+            $(inputProductCode).typeahead({
+                minLength: 2,
+                displayText: function (item) {
+                    return item.Code;
+                },
+                afterSelect: function (item) {
+                    this.$element[0].value = "";
+                },
+                source: function (request, result) {
+                    $.ajax({
+                        type: "POST",
+                        url: "Sell_Product.aspx/GetProduct",
+                        data: JSON.stringify({ 'prefix': request }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            result(JSON.parse(response.d));
+                        },
+                        error: function (err) { console.log(err) }
+                    });
+                },
+                updater: function (item) {
+                    addProduct(item);
+                    return item;
                 }
-                else {
-                    $("#Tota_Price_Label").text("");
-                    $("[id*=StookErLabel]").text("");
+            })
+
+            //save to cart
+            function saveCart() {
+                localStorage.setItem('_products-sell_cart-admin_', JSON.stringify(cart));
+
+                grandTotalAmount();
+            }
+
+            //sum total amount
+            const postJsonData = document.getElementById("body_JsonData");
+
+            function grandTotalAmount() {
+                const total = cart.reduce((acc, item) => acc + item.TotalPrice, 0);
+
+                document.getElementById("body_HiddenGrandTotalAmount").value = total;
+                document.getElementById("grandTotal").textContent = `Grand Total: ৳${total}`;
+
+                //set array for submit to database
+                postJsonData.value = cart.length ? JSON.stringify(cart) : "";
+            }
+
+            //add new product to table
+            function addProduct(product) {
+                const isAdded = cart.some(item => item.ProductID === product.ProductID);
+                if (isAdded) {
+                    $(inputProductCode).notify(`'${product.Code}' Product already added to list`, { position: "bottom left" });
+                    return;
                 }
-            });
+
+                product.Quantity = 1;
+                product.TotalPrice = product.Price;
+                cart.push(product);
+
+                //save data to local store
+                saveCart();
+
+                //append row in table
+                tBody.appendChild(createRow(product));
+            }
+
+            //create table row
+            function createRow(item) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><strong class="d-block">${item.Name}</strong><em>${item.Code}</em></td>
+                    <td>৳${item.Price}</td>
+                    <td><input min="1" max="${item.Stock}" id="${item.ProductID}" data-stock="${item.Stock}" data-price="${item.Price}" type="number" value="${item.Quantity}" class="form-control inputQuantity" required></td>
+                    <td>৳<span class="total-price">${item.TotalPrice}</span></td>
+                    <td class="text-center"><i id="${item.ProductID}" class="remove fas fa-trash"></i></td>`
+                return tr;
+            }
+
+            //append product info
+            const rebuildProductTable = function () {
+                tBody.innerHTML = "";
+                const store = localStorage.getItem("_products-sell_cart-admin_");
+                if (!store) return;
+
+                cart = JSON.parse(store);
+
+                cart.forEach(item => {
+                    tBody.appendChild(createRow(item));
+                });
+
+                grandTotalAmount();
+            }
+
+            //on update quantity/delete
+            tBody.addEventListener("input", onQuantityAndDelete);
+            tBody.addEventListener("click", onQuantityAndDelete);
+
+            //reset reference info 
+            const resetCustomerInfo = function () {
+                if (inputCustomer.value)
+                    inputCustomer.value = "";
+
+                hiddenMemberId.value = "";
+                customerInfo.innerHTML = "";
+            }
+
+            //function delete and quantity update
+            function onQuantityAndDelete(evt) {
+                const element = evt.target;
+
+                const onQuantity = element.classList.contains("inputQuantity");
+                const onRemove = element.classList.contains("remove");
+
+                //quantity update
+                if (onQuantity) {
+                    const id = +element.id;
+                    const price = +element.getAttribute("data-price");
+                    const stock = +element.getAttribute("data-stock");
+                    const inputQuantity = +element.value;
+                    const setTotalPrice = element.parentElement.parentElement.querySelector(".total-price");
+
+                    if (stock < inputQuantity) {
+                        $("#tBody").notify(`Quantity more than stock. current stock: ${stock}`, { position: "bottom center" });
+                        return;
+                    }
+
+                    const totalPrice = price * inputQuantity;
+
+                    cart.forEach((item, i) => {
+                        if (item.ProductID === id) {
+                            cart[i].Quantity = inputQuantity;
+                            cart[i].TotalPrice = totalPrice;
+                        }
+                    });
+
+                    setTotalPrice.textContent = totalPrice;
+                }
+
+                //remove product from list
+
+                if (onRemove) {
+                    const id = +element.id;
+                    cart = cart.filter(item => item.ProductID !== id);
+                    element.parentElement.parentElement.remove();
+                }
+
+                //save changes cart
+                saveCart();
+            }
+
+            //check form validation before submit
+            const formIsValid = function () {
+                if (!hiddenMemberId.value) {
+                    $("#errorCustomer").notify("insert valid customer", { position: "top left" });
+                    return false;
+                }
+
+                if (!postJsonData.value) {
+                    $("#postCustomer").notify("No Product Added!", { position: "bottom left" });
+                    return false;
+                }
+
+                return true;
+            }
+
+            //clear cart after submit
+            const emptyCart = function () {
+                cart = [];
+                localStorage.removeItem('_products-sell_cart-admin_');
+            }
+
+            //***public function***
+            return {
+                rebuildProductTable,
+                resetCustomerInfo,
+                formIsValid,
+                emptyCart
+            }
+        })();
+
+
+        //call function
+        sellProduct.resetCustomerInfo();
+        sellProduct.rebuildProductTable();
+
+        //check form validation before submit
+        function formValidation() {
+            const isValid = sellProduct.formIsValid();
+
+            if (isValid) sellProduct.emptyCart();
+
+            return isValid;
+        }
+
+        //allow only number
+        function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 !== a && 31 < a && (48 > a || 57 < a) ? false : true };
+
+        //prevent submit on enter press
+        $(document).on("keypress", "input", function (e) {
+            const code = e.keyCode || e.which;
+            if (code === 13) {
+                e.preventDefault();
+                return false;
+            }
+            return true;
         });
-
-        function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 != a && 31 < a && (48 > a || 57 < a) ? !1 : !0 };
     </script>
 </asp:Content>

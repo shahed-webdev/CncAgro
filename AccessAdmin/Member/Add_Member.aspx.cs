@@ -19,7 +19,7 @@ namespace CncAgro.AccessAdmin.Member
         {
         }
 
-        private class Shopping
+        public class Shopping
         {
             public string ProductID { get; set; }
             public int Quantity { get; set; }

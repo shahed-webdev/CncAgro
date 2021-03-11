@@ -22,7 +22,7 @@
     <!--custom style-->
     <link href="/CSS/common-style.css?=v=.1" rel="stylesheet" />
     <link href="/CSS/gridview.css?v=1" rel="stylesheet" />
-    <link href="/CSS/admin-master.css?v=1.2" rel="stylesheet" />
+    <link href="/CSS/admin-master.css?v=1.3" rel="stylesheet" />
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -58,54 +58,56 @@
 
         <main class="container-fluid">
             <div class="row">
-                <div class="col-lg-2 h-100">
+                <div class="col-lg-2">
                     <div class="side-bar">
                         <nav class="navbar-expand-lg">
-                            <asp:FormView ID="AdminFormView" runat="server" DataSourceID="AdminInfoSQL" Width="100%">
-                                <ItemTemplate>
-                                    <div class="profile-info">
-                                        <a href="/Profile_Redirect.aspx">
-                                            <img alt="No Image" title="Go Profile" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>">
-                                        </a>
-                                        <strong class="d-block">
-                                            <a href="/Profile_Redirect.aspx">
-                                                <i class="fas fa-user"></i>
-                                                <asp:Label ID="NameLabel" runat="server" Text='<%# Bind("UserName") %>' />
-                                            </a>
-                                        </strong>
-
-                                        <asp:LoginView ID="CustomerLoginView" runat="server">
-                                            <AnonymousTemplate>
-                                                <a href="/Login.aspx">Login</a>
-                                            </AnonymousTemplate>
-                                            <LoggedInTemplate>
-                                                <i class="glyphicon glyphicon-log-out"></i>
-                                                <asp:LoginStatus ID="LoginStatus1" CssClass="Logout" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
-                                            </LoggedInTemplate>
-                                        </asp:LoginView>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:FormView>
-
-                            <asp:SqlDataSource ID="AdminInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
-                                SelectCommand="SELECT RegistrationID, UserName FROM Registration WHERE (RegistrationID = @RegistrationID)">
-                                <SelectParameters>
-                                    <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" Type="Int32" />
-                                </SelectParameters>
-                            </asp:SqlDataSource>
-
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <asp:TreeView ID="LinkTreeView"
-                                    Width="100%"
-                                    ExpandImageUrl="~/CSS/Image/Expand_Ico.png"
-                                    CollapseImageUrl="~/CSS/Image/Collaps_Ico.png"
-                                    NodeStyle-CssClass="treeNode"
-                                    RootNodeStyle-CssClass="rootNode"
-                                    LeafNodeStyle-CssClass="leafNode"
-                                    SelectedNodeStyle-CssClass="Selected_Node"
-                                    NodeWrap="true"
-                                    runat="server">
-                                </asp:TreeView>
+                                <div class="flex-grow-1">
+                                    <asp:FormView ID="AdminFormView" runat="server" DataSourceID="AdminInfoSQL" Width="100%">
+                                        <ItemTemplate>
+                                            <div class="profile-info">
+                                                <a href="/Profile_Redirect.aspx">
+                                                    <img alt="No Image" title="Go Profile" src="/Handler/UserPhoto.ashx?id=<%#Eval("RegistrationID") %>">
+                                                </a>
+                                                <strong class="d-block">
+                                                    <a href="/Profile_Redirect.aspx">
+                                                        <i class="fas fa-user"></i>
+                                                        <asp:Label ID="NameLabel" runat="server" Text='<%# Bind("UserName") %>' />
+                                                    </a>
+                                                </strong>
+
+                                                <asp:LoginView ID="CustomerLoginView" runat="server">
+                                                    <AnonymousTemplate>
+                                                        <a href="/Login.aspx">Login</a>
+                                                    </AnonymousTemplate>
+                                                    <LoggedInTemplate>
+                                                        <i class="glyphicon glyphicon-log-out"></i>
+                                                        <asp:LoginStatus ID="LoginStatus1" CssClass="Logout" runat="server" LogoutPageUrl="~/Default.aspx" LogoutAction="Redirect" OnLoggingOut="LoginStatus1_LoggingOut" />
+                                                    </LoggedInTemplate>
+                                                </asp:LoginView>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:FormView>
+
+                                    <asp:SqlDataSource ID="AdminInfoSQL" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
+                                        SelectCommand="SELECT RegistrationID, UserName FROM Registration WHERE (RegistrationID = @RegistrationID)">
+                                        <SelectParameters>
+                                            <asp:SessionParameter Name="RegistrationID" SessionField="RegistrationID" Type="Int32" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+
+                                    <asp:TreeView ID="LinkTreeView"
+                                        Width="100%"
+                                        ExpandImageUrl="~/CSS/Image/Expand_Ico.png"
+                                        CollapseImageUrl="~/CSS/Image/Collaps_Ico.png"
+                                        NodeStyle-CssClass="treeNode"
+                                        RootNodeStyle-CssClass="rootNode"
+                                        LeafNodeStyle-CssClass="leafNode"
+                                        SelectedNodeStyle-CssClass="Selected_Node"
+                                        NodeWrap="true"
+                                        runat="server">
+                                    </asp:TreeView>
+                                </div>
                             </div>
                         </nav>
                     </div>

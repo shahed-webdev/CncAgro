@@ -483,5 +483,15 @@ SELECT @ShoppingID = Scope_identity()"
 
         //allow only number
         function isNumberKey(a) { a = a.which ? a.which : event.keyCode; return 46 !== a && 31 < a && (48 > a || 57 < a) ? false : true };
+
+        //prevent submit on enter press
+        $(document).on("keypress", "input", function (e) {
+            const code = e.keyCode || e.which;
+            if (code === 13) {
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        });
     </script>
 </asp:Content>
