@@ -17,7 +17,7 @@ namespace CncAgro.AccessMember.Selling
         readonly SqlConnection _con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         public class Shopping
@@ -54,7 +54,7 @@ namespace CncAgro.AccessMember.Selling
 
 
             var point = Convert.ToDouble(HiddenGrandTotalAmount.Value);
-            if (point >= 1000)
+            if (point >= 5000)
             {
                 //var cmd = new SqlCommand("SELECT Count(Phone) FROM Registration WHERE (Phone = @Phone)", _con);
                 //cmd.Parameters.AddWithValue("@Phone", PhoneTextBox.Text.Trim());
@@ -108,7 +108,7 @@ namespace CncAgro.AccessMember.Selling
                             var password = CreatePassword(8);
                             var userName = DateTime.Now.ToString("yyMM") + userSn.ToString().PadLeft(5, '0');
 
-                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?",DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
+                            Membership.CreateUser(userName, password, Email.Text, "When you SignUp?", DateTime.Now.ToString(CultureInfo.InvariantCulture), true, out var createStatus);
 
                             if (MembershipCreateStatus.Success == createStatus)
                             {
@@ -159,22 +159,22 @@ namespace CncAgro.AccessMember.Selling
 
                                 #endregion End Product
 
-                                // Update S.P Add_Referral_Bonus
+                                // Update S.P Add_Referral_Bonus (Referral commission 20% on point)
                                 A_PointSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
                                 A_PointSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
                                 A_PointSQL.Update();
 
 
-                                // Generation commission 2% to 6 upper generation S.P Add_Generation_Income
+                                // Generation commission 2% to 10 upper generation S.P Add_Generation_Income
                                 Retail_IncomeSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
                                 Retail_IncomeSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
                                 Retail_IncomeSQL.Update();
 
                                 // Update S.P Add_Retail_Income
-                                if (point > 1000)
+                                if (point > 5000)
                                 {
                                     Retail_IncomeSQL.InsertParameters["MemberID"].DefaultValue = userMemberId;
-                                    Retail_IncomeSQL.InsertParameters["Point"].DefaultValue = (point - 1000).ToString(CultureInfo.InvariantCulture);
+                                    Retail_IncomeSQL.InsertParameters["Point"].DefaultValue = (point - 5000).ToString(CultureInfo.InvariantCulture);
                                     Retail_IncomeSQL.Insert();
                                 }
 
@@ -238,7 +238,7 @@ namespace CncAgro.AccessMember.Selling
             }
             else
             {
-                ErrorLabel.Text = "Minimum 1000tk product need to join new customer";
+                ErrorLabel.Text = "Minimum 5000tk product need to join new customer";
             }
         }
 

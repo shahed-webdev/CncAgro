@@ -52,7 +52,7 @@ namespace CncAgro.AccessAdmin.Member
             }
 
             var point = Convert.ToDouble(HiddenGrandTotalAmount.Value);
-            if (point >= 1000)
+            if (point >= 5000)
             {
                 //var cmd = new SqlCommand("SELECT Count(Phone) FROM Registration WHERE (Phone = @Phone)", _con);
                 //cmd.Parameters.AddWithValue("@Phone", PhoneTextBox.Text.Trim());
@@ -154,23 +154,22 @@ namespace CncAgro.AccessAdmin.Member
 
                                 #endregion End Product
 
-
-                                // Update S.P Add_Referral_Bonus
+                                // Update S.P Add_Referral_Bonus (Referral commission 20% on point) 
                                 A_PointSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
                                 A_PointSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
                                 A_PointSQL.Update();
 
 
-                                // Generation commission 2% to 6 upper generation S.P Add_Generation_Income
+                                // Generation commission 2% to 10 upper generation S.P Add_Generation_Income
                                 Retail_IncomeSQL.UpdateParameters["MemberID"].DefaultValue = userMemberId;
                                 Retail_IncomeSQL.UpdateParameters["Point"].DefaultValue = HiddenGrandTotalAmount.Value;
                                 Retail_IncomeSQL.Update();
 
                                 // Update S.P Add_Retail_Income
-                                if (point > 1000)
+                                if (point > 5000)
                                 {
                                     Retail_IncomeSQL.InsertParameters["MemberID"].DefaultValue = userMemberId;
-                                    Retail_IncomeSQL.InsertParameters["Point"].DefaultValue = (point - 1000).ToString(CultureInfo.InvariantCulture);
+                                    Retail_IncomeSQL.InsertParameters["Point"].DefaultValue = (point - 5000).ToString(CultureInfo.InvariantCulture);
                                     Retail_IncomeSQL.Insert();
                                 }
 
@@ -231,7 +230,7 @@ namespace CncAgro.AccessAdmin.Member
             }
             else
             {
-                ErrorLabel.Text = "Minimum 1000tk product need to join new customer";
+                ErrorLabel.Text = "Minimum 5000tk product need to join new customer";
             }
         }
 
